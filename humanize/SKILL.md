@@ -1,6 +1,6 @@
 ---
 name: humanize
-description: "Humanize this, make this concise, remove AI patterns, tighten copy, compress content, make this sound human, de-AI this, strip AI voice, reduce bloat, make this punchier — AI pattern removal, content compression, voice injection, copy tightening, editorial polish."
+description: "Humanize content, strip AI patterns, compress copy, inject voice, tighten writing, make this sound human, de-AI this — AI pattern removal, content compression, editorial polish."
 license: MIT
 metadata:
   author: hungv47
