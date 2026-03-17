@@ -39,9 +39,6 @@ Attribution and IMC Plan can read strategy artifacts (`.agents/mkt/solution-desi
 - "Write copy" → `content-create`
 - "Map attribution" → `attribution`
 - "Optimize landing page" → `lp-optimization`
-
-## Part of [Agent Skills](https://github.com/hungv47/agent-skills)
-
 ## License
 
 MIT
