@@ -13,6 +13,10 @@ metadata:
 
 **Core Question:** "How do all these channels work together?"
 
+## Philosophy
+
+Frameworks, percentages, and templates here are strong defaults — not rigid rules. When audience data, business context, or creative instinct suggests a different approach, adapt freely. Document reasoning so the team learns from deviations.
+
 ## Inputs Required
 - ICP research from `.agents/mkt/icp-research.md`
 
@@ -73,12 +77,14 @@ Read `.agents/mkt/icp-research.md`. Import personas, pains, habitat maps, VoC qu
 
 Extract 3-5 pillars from ICP research:
 
-| Source | Pillar Type | % Content |
+| Source | Pillar Type | % Content (default) |
 |--------|------------|-----------|
 | Top Pain Points | Problem | 25-30% |
 | Aspirational Identity | Transformation | 30-35% |
 | Current Workarounds | Alternative | 20-25% |
 | Decision Criteria | Trust | 15-20% |
+
+Adjust based on audience awareness level — an Unaware market may need 50%+ Problem content. Let ICP data drive the split, not this table.
 
 Trace each pillar to a VoC quote or ICP finding — pillars without audience evidence produce content that sounds generic.
 
@@ -114,6 +120,8 @@ When multiple angles pass the 3-Question Test, score them to decide production o
 | Production Effort | 10% | How easy to produce? (lower effort = higher score) |
 
 **Weighted score** = (Pain × 0.4) + (3Q × 0.3) + (Fit × 0.2) + (Effort × 0.1)
+
+Starting defaults. If resource-constrained, increase Production Effort weight. If you have few angles, skip scoring and produce them all. The formula prevents common mistakes at scale — it's not required for a 3-angle plan.
 
 Produce highest-scoring angles first. This prevents the common trap of producing easy content that doesn't address the sharpest audience pains.
 
@@ -151,11 +159,13 @@ See [references/channel-strategy.md](references/channel-strategy.md) for channel
 
 ## Step 5: Phase Timeline
 
-| Phase | Dates | Focus | Content Mix |
+| Phase | Dates | Focus | Content Mix (typical) |
 |-------|-------|-------|-------------|
 | Pre-launch | [start–end] | Build anticipation, educate on problem | 70% Problem, 30% Solution |
 | Launch | [start–end] | Drive action, prove value | 30% Problem, 40% Proof, 30% CTA |
 | Sustain | [start–ongoing] | Maintain presence, deepen trust | 40% Solution, 30% Proof, 30% Brand |
+
+Depends on existing assets and audience awareness. A product with strong proof can front-load Proof in pre-launch. A category-creating product may need 90% Problem throughout.
 
 ---
 
@@ -313,12 +323,14 @@ After the IMC plan is created, content needs a production cadence — not just a
 
 Allocate content production across pillars and types:
 
-| Content Type | % of Weekly Output | Purpose |
+| Content Type | % of Weekly Output (default) | Purpose |
 |-------------|-------------------|---------|
 | Pillar content (long-form) | 20% | SEO, authority, depth |
 | Angle-driven social | 50% | Engagement, reach, community |
 | Trust/proof content | 20% | Case studies, testimonials, data |
 | Brand/culture | 10% | Personality, team, values |
+
+Starting allocation. Adjust based on what's working — re-evaluate quarterly based on attribution data.
 
 ### Batch Production
 

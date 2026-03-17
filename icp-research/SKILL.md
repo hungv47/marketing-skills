@@ -13,6 +13,10 @@ metadata:
 
 **Core Question:** "Who exactly are we talking to and what keeps them up at night?"
 
+## Philosophy
+
+This skill provides research structure, not a rigid formula. The minimums for channels, quotes, and platforms ensure thoroughness — they're not arbitrary thresholds. If overwhelming evidence surfaces in 2 channels, you don't need a third. If one devastating quote captures a pain perfectly, you don't need three. Let evidence dictate depth.
+
 ## Inputs Required
 - Product context from `.agents/mkt/product-context.md` (or willingness to answer product questions)
 
@@ -22,7 +26,7 @@ metadata:
 ## Quality Gate
 Before delivering, verify:
 - [ ] Every VoC quote includes platform name and is from a real source (not agent-generated)
-- [ ] Each persona has a habitat map with ≥3 specific channels (not just "Reddit" — which subreddit?)
+- [ ] Each persona has a habitat map with specific channels with supporting evidence. Aim for ≥3; if research surfaces fewer, document why (niche audience, concentrated community). (Not just "Reddit" — which subreddit?)
 - [ ] Each emotional driver is traced to ≥2 specific quotes
 - [ ] Decision psychology section names specific cognitive biases and objections (not generic "they need trust")
 
@@ -114,7 +118,7 @@ Use these specific queries. Adapt [topic] to the product/audience:
 
 ### Multi-Platform Coverage
 
-Search ≥4 of these categories:
+Search across multiple categories for breadth. Aim for ≥4 when audience is spread; for niche B2B, 2-3 may suffice if they cover primary habitats:
 
 | Category | Where | What to Extract |
 |----------|-------|----------------|
@@ -149,6 +153,8 @@ Collect 3 quotes per pain category. Stop when patterns repeat.
 | **2x** | Quote contradicting your assumptions | The most valuable data is what surprises you |
 | **1x** | User/practitioner quote expressing pain | Useful for copy but doesn't reveal buying dynamics |
 | **0.5x** | Emotion-only quote ("this is so frustrating") without mechanism | Validates intensity but gives no strategic direction |
+
+Relative priority guide, not a formula. These communicate which quote types are most strategically useful. You don't need to literally multiply. The point: hunt for mechanism-revealing and decision-maker quotes first.
 
 When you have 3 quotes for a pain category, check: do you have at least one mechanism-revealing quote? If all 3 are emotion-only, keep searching — you have the WHAT but not the WHY.
 
@@ -197,7 +203,7 @@ Document:
 
 ## Step 3: Synthesize
 
-### 2 Personas (max)
+### 2 Personas (max) — Genuine constraint: more than 2 dilutes focus for downstream skills. Force-rank if research reveals 4+ segments.
 
 For each persona, provide ALL of:
 - **Demographics:** Age range, role, industry, company size

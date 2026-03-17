@@ -13,6 +13,10 @@ metadata:
 
 **Core Question:** "How do we get found — by both search engines and AI models?"
 
+## Philosophy
+
+SEO combines hard technical constraints (Google's CWV thresholds, character limits) with strategic judgment. This skill distinguishes between the two. Technical specs from platform documentation are constraints. Strategic recommendations are defaults with context for when to deviate.
+
 ## Inputs Required
 - ICP research from `.agents/mkt/icp-research.md` (audience questions, pain points, search behavior)
 - IMC plan from `.agents/mkt/imc-plan.md` (content pillars and angles)
@@ -109,7 +113,7 @@ Layer 5: Authority & Links (does the site have external credibility?)
 - [ ] Crawl budget is not wasted on low-value pages (paginated archives, tag pages, search results)
 
 ### Layer 2: Technical Foundations
-- [ ] Core Web Vitals pass: LCP < 2.5s, INP < 200ms, CLS < 0.1
+- [ ] Core Web Vitals pass: LCP < 2.5s, INP < 200ms, CLS < 0.1 (Google's official thresholds — not adjustable)
 - [ ] Mobile-friendly (responsive, no horizontal scroll, touch targets ≥44px)
 - [ ] HTTPS everywhere (no mixed content)
 - [ ] URL structure is clean (lowercase, hyphenated, human-readable, no over-nesting)
@@ -118,8 +122,8 @@ Layer 5: Authority & Links (does the site have external credibility?)
 - [ ] Page speed: load time < 3s on mobile
 
 ### Layer 3: On-Page Optimization
-- [ ] Title tags: 50-60 characters, include primary keyword, unique per page
-- [ ] Meta descriptions: 150-160 characters, include CTA, unique per page
+- [ ] Title tags: 50-60 characters, include primary keyword, unique per page (display limits set by search engines — content beyond gets truncated)
+- [ ] Meta descriptions: 150-160 characters, include CTA, unique per page (display limits set by search engines — content beyond gets truncated)
 - [ ] H1: one per page, includes primary keyword
 - [ ] H2/H3 hierarchy: logical, covers subtopics, matches search intent
 - [ ] Primary keyword appears in first 100 words
@@ -170,7 +174,7 @@ AI models extract and cite content that's structured for easy parsing.
 | Rule | Why | How |
 |------|-----|-----|
 | Clear H2/H3 hierarchy | AI models parse headings to understand topic structure | Every section answers one specific question |
-| 40-60 word answer passages | Citation-length sweet spot — long enough to be useful, short enough to quote in full | Write a concise answer paragraph immediately after each H2 |
+| 40-60 word answer passages (typical — adjust for topic complexity: simple definitions may need 20-30 words; technical explanations may need 80-100) | Citation-length sweet spot — long enough to be useful, short enough to quote in full | Write a concise answer paragraph immediately after each H2 |
 | Comparison tables | Comparisons are #1 most-cited content type (33% of AI citations) | Use tables for feature comparisons, pricing tiers, tool comparisons |
 | Source citations in content | Citing sources is the **strongest single factor** for AI visibility — +40% citation boost (Princeton GEO study) | Link to primary sources, studies, data |
 | Statistics in content | +37% citation boost | Include specific numbers, percentages, data points |

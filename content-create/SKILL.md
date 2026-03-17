@@ -13,6 +13,10 @@ metadata:
 
 **Core Question:** "Would the target persona actually stop scrolling for this?"
 
+## Philosophy
+
+The copy frameworks (PAS, 3-Question Test, CTA formula) are proven tools — not mandatory templates. A skilled writer may combine frameworks, or write a hook that breaks the 8-word guideline because the extra words earn their place. The test is: does this stop the scroll and move the reader? Frameworks get you there faster. They don't define the only path.
+
 ## Inputs Required
 - Angle + channel from `.agents/mkt/imc-plan.md` (or user-provided)
 
@@ -21,7 +25,7 @@ metadata:
 
 ## Quality Gate
 Before delivering, verify:
-- [ ] Hook communicable in ≤8 words (if the core message doesn't fit in 8 words, it's too complex)
+- [ ] Hook communicable concisely — ≤8 words is a strong target; if longer, every extra word must earn its place by adding specificity or surprise
 - [ ] Hook passes 3-question test: visual? falsifiable? uniquely yours?
 - [ ] Every headline/hook contains concrete nouns or specific numbers (no abstract "better," "innovative," "leading")
 - [ ] Key headlines pass the Competitor Swap Test (swap in competitor name — if it still works, rewrite)
@@ -108,6 +112,8 @@ Write the ACTUAL copy — not an outline, not a description.
 | Solution Aware | Compare | "See how we're different →" |
 | Product Aware | Try | "Start free trial →" |
 | Most Aware | Act | "Start now — first month free →" |
+
+Starting vocabulary, not a prescription. Match CTA energy to audience readiness, not just the awareness stage label. A Most Aware audience may respond better to a softer CTA if trust is already established.
 
 Include: exact CTA text, destination, tracking parameters.
 

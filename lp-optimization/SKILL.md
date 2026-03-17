@@ -17,6 +17,10 @@ metadata:
 
 **Core Question:** "What's stopping visitors from converting?"
 
+## Philosophy
+
+The frameworks here (PAS, 4-U, social proof hierarchy) are evidence-backed defaults. They work in most situations. But landing pages serve different audiences, traffic sources, and goals. When your data or testing reveals a different optimal approach, follow the data. The principles matter more than the specific numbers.
+
 ## Inputs Required
 - Landing page URL or description of the page
 - ICP research from `.agents/mkt/icp-research.md` (recommended — VoC language strengthens copy)
@@ -117,6 +121,8 @@ Don't rely on `site:` searches alone — paid ads aren't indexed by Google, and 
 
 A 6-month-old testimonial with results beats a 2-year-old case study, even though case studies rank higher in the hierarchy. Prioritize freshness when you have multiple options per tier.
 
+Context-dependent. Fast-moving industries (AI, crypto): 6-month-old proof already feels dated. Stable industries (manufacturing, legal): 18-month case studies still carry weight. Principle: proof should reflect a reality your visitors recognize.
+
 ### Cognitive Bias Stack
 
 | Bias | How to Apply |
@@ -128,7 +134,7 @@ A 6-month-old testimonial with results beats a 2-year-old case study, even thoug
 | Authority | Expert quotes, certification badges, press logos |
 
 ### Form Rules
-- Limit to 5 fields — every additional field costs ~10% conversions
+- Limit to 5 fields — every additional field costs ~10% conversions (evidence-backed default from Unbounce/HubSpot research). Exceptions: high-intent enterprise traffic may tolerate 7-8 fields. If your completion rate is >60% with more fields, the default doesn't apply. Principle: only ask for what you need right now.
 - Start with just email. Use progressive profiling for the rest
 - Each field justifies its existence — if it can be asked later, ask later
 
