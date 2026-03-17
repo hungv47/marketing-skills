@@ -33,6 +33,7 @@ Before delivering, verify:
 - [ ] One primary CTA per page (secondary CTAs don't compete)
 - [ ] Trust signals appear within scroll-distance of every CTA
 - [ ] Form has ≤5 fields (or justified why more are needed)
+- [ ] Every audit finding includes: what was observed, which principle it violates, and a specific recommended fix
 
 ## Chain Position
 Horizontal — works with `icp-research` (audience data), `content-create` (copy principles), `experiment` (test design)

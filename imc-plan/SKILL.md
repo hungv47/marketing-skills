@@ -98,6 +98,8 @@ Every angle must pass ALL three:
 
 3 yeses → keep. Any no → rewrite or cut — angles that fail even one question underperform in production.
 
+Also screen for AI copy slop — if the angle reads like generic SaaS marketing ("Unlock the power of...", "Revolutionize your...", "In today's fast-paced world..."), it fails Uniquely Yours regardless of the product name. Slop enters the pipeline here; catching it prevents wasted production effort in `content-create`.
+
 See [references/3d-angle-framework.md](references/3d-angle-framework.md) for hook types and generation framework.
 
 ### Angle Prioritization (when angles exceed capacity)
