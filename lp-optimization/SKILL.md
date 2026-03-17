@@ -152,7 +152,7 @@ Use `experiment` for proper test design with success/kill thresholds and sample 
 6. Identify highest-impact fix
 7. Design A/B test via `experiment`
 
-Every finding must include:
+Audit findings without evidence are opinions — they don't give the team enough to act on. Every finding must include:
 1. **What was observed** — specific text, element, or metric on the page
 2. **Which principle it violates** — name the framework (4-U, message match, social proof hierarchy, etc.)
 3. **Recommended fix** — exact replacement text, not "improve the headline"
