@@ -4,7 +4,7 @@ description: "Optimize a landing page, improve conversion rates, review my landi
 license: MIT
 metadata:
   author: hungv47
-  version: "2.1.0"
+  version: "2.2.0"
   sources:
     - https://copyhackers.com
     - https://cxl.com

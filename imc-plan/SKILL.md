@@ -4,7 +4,7 @@ description: "Create an IMC plan, develop integrated marketing, build a campaign
 license: MIT
 metadata:
   author: hungv47
-  version: "7.1.0"
+  version: "7.2.0"
 ---
 
 # Integrated Marketing Communication (IMC)

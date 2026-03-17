@@ -43,6 +43,7 @@ Attribution and IMC Plan can read strategy artifacts (`.agents/mkt/solution-desi
 - "SEO audit" → `seo`
 - "Optimize for AI search" → `seo`
 - "Build programmatic SEO pages" → `seo`
+
 ## License
 
 MIT

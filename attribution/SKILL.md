@@ -4,7 +4,7 @@ description: "Map attribution, connect initiatives to KPIs, trace content to goa
 license: MIT
 metadata:
   author: hungv47
-  version: "2.1.0"
+  version: "2.2.0"
 ---
 
 # Attribution Mapping

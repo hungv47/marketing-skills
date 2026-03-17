@@ -4,7 +4,7 @@ description: "Research my ICP, understand my target audience, create customer pe
 license: MIT
 metadata:
   author: hungv47
-  version: "2.1.0"
+  version: "2.2.0"
 ---
 
 # ICP Research & Audience Intelligence
@@ -146,15 +146,15 @@ Collect 3 quotes per pain category. Stop when patterns repeat.
 
 **Quote weighting** — not all quotes are equally useful. Prioritize:
 
-| Weight | Quote Type | Why |
-|--------|-----------|-----|
-| **3x** | Decision-maker quote (buyer, budget holder) | Their words are what stops or starts a purchase |
-| **2x** | Quote revealing mechanism (explains WHY pain exists, not just that it does) | Mechanisms inform solutions; complaints only inform messaging |
-| **2x** | Quote contradicting your assumptions | The most valuable data is what surprises you |
-| **1x** | User/practitioner quote expressing pain | Useful for copy but doesn't reveal buying dynamics |
-| **0.5x** | Emotion-only quote ("this is so frustrating") without mechanism | Validates intensity but gives no strategic direction |
+| Priority | Quote Type | Why |
+|----------|-----------|-----|
+| **Critical** | Decision-maker quote (buyer, budget holder) | Their words are what stops or starts a purchase |
+| **High** | Quote revealing mechanism (explains WHY pain exists, not just that it does) | Mechanisms inform solutions; complaints only inform messaging |
+| **High** | Quote contradicting your assumptions | The most valuable data is what surprises you |
+| **Standard** | User/practitioner quote expressing pain | Useful for copy but doesn't reveal buying dynamics |
+| **Low** | Emotion-only quote ("this is so frustrating") without mechanism | Validates intensity but gives no strategic direction |
 
-Relative priority guide, not a formula. These communicate which quote types are most strategically useful. You don't need to literally multiply. The point: hunt for mechanism-revealing and decision-maker quotes first.
+Hunt for mechanism-revealing and decision-maker quotes first — they're the most strategically useful.
 
 When you have 3 quotes for a pain category, check: do you have at least one mechanism-revealing quote? If all 3 are emotion-only, keep searching — you have the WHAT but not the WHY.
 

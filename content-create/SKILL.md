@@ -4,7 +4,7 @@ description: "Create content, write a content brief, make content for, create pl
 license: MIT
 metadata:
   author: hungv47
-  version: "2.1.0"
+  version: "2.2.0"
 ---
 
 # Content Creation
