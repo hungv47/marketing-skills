@@ -35,6 +35,18 @@ Previous: `icp-research` + `imc-plan` (reads audience questions and content pill
 
 Horizontal skill — can be invoked independently or after IMC planning.
 
+### Coordination with IMC Plan
+
+When both `seo` and `imc-plan` are in use, they should coordinate:
+
+| Situation | Who Leads | How They Coordinate |
+|-----------|----------|-------------------|
+| Content pillar has search demand | SEO leads topic selection | IMC provides angles and audience language; SEO provides keyword clusters and structure |
+| Content pillar is novel/contrarian | IMC leads topic selection | IMC creates shareable content; SEO optimizes for related informational queries |
+| Existing content needs both reach types | Both | Tag angles as Searchable/Shareable in IMC; SEO optimizes searchable angles for AI+traditional |
+
+**Rule:** Don't let SEO keyword data override IMC audience insights or vice versa. The best content addresses a real audience pain (IMC) AND has search demand (SEO). When they conflict, audience pain wins — you can promote great content through non-search channels, but you can't make irrelevant content convert even if it ranks.
+
 ---
 
 ## Before Starting

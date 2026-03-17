@@ -313,3 +313,4 @@ Run `imc-plan` to turn these insights into a communication plan.
 - [references/habitat-mapping.md](references/habitat-mapping.md) — Density definitions, cross-persona analysis
 - [references/icp-to-imc-handoff.md](references/icp-to-imc-handoff.md) — How to package outputs for IMC
 - [references/voice-of-customer.md](references/voice-of-customer.md) — VoC collection patterns
+- [references/customer-interviews.md](references/customer-interviews.md) — Win/loss interview methodology, support ticket analysis

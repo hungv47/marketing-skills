@@ -253,8 +253,13 @@ None — both initiatives map to KPIs.
 
 **Static attribution maps** — Building the map once and never updating it. Attribution maps decay as initiatives ship, KPIs shift, and new content is produced. Set a review cadence (monthly minimum).
 
+**Wrong attribution model for the business** — Using last-touch attribution for a B2B product with 90-day sales cycles attributes everything to the final touchpoint and misses the content that created awareness. Match model to buying cycle length. See [references/attribution-models.md](references/attribution-models.md).
+
+**Metrics without owners** — Every KPI and initiative must have a named person (not "the team"). Unowned metrics don't get improved — they get reported on and shrugged at.
+
 ---
 
 ## References
 
 - [references/attribution-examples.md](references/attribution-examples.md) — Worked examples across business types
+- [references/attribution-models.md](references/attribution-models.md) — Model selection guide by business type and buying cycle

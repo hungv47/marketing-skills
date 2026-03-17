@@ -265,6 +265,65 @@ Run `content-create` to turn angles into production-ready content.
 
 ---
 
+## Launch Sequencing (ORB Framework)
+
+When the IMC plan is for a product launch (not ongoing campaign), use phased rollout instead of a single "launch day":
+
+### Channel Priority: Owned → Rented → Borrowed
+
+| Channel Type | Examples | Role | When |
+|-------------|---------|------|------|
+| **Owned** | Email list, blog, community | Build anticipation with people you control | Pre-launch through sustain |
+| **Rented** | Social media, marketplaces, paid ads | Amplify to borrowed audiences | Launch through sustain |
+| **Borrowed** | Guest posts, influencer partnerships, PR | Credibility + reach from others' audiences | Launch peak |
+
+Everything should funnel back to owned channels. Rented and borrowed channels build your owned audience — they're not ends in themselves.
+
+### Five-Phase Launch
+
+| Phase | Duration | Focus | Key Action |
+|-------|----------|-------|-----------|
+| **Internal** | 1-2 weeks | Align team, prepare assets | Ensure everyone can demo and explain |
+| **Alpha** | 1-2 weeks | Trusted users/advisors | Get candid feedback, fix breaking issues |
+| **Beta** | 2-4 weeks | Wider trusted group | Collect testimonials, refine messaging |
+| **Early Access** | 1-2 weeks | Waitlist, community | Build anticipation, create FOMO with limited access |
+| **Full Launch** | Launch day + 2 weeks | Public | Coordinate all channels simultaneously |
+
+**Key insight:** A launch is a campaign, not a day. Stagger announcements across phases to maintain momentum — shipping everything at once means one spike and silence.
+
+---
+
+## Editorial Calendar Guidance
+
+After the IMC plan is created, content needs a production cadence — not just a one-time angle bank.
+
+### Weekly Content Mix
+
+Allocate content production across pillars and types:
+
+| Content Type | % of Weekly Output | Purpose |
+|-------------|-------------------|---------|
+| Pillar content (long-form) | 20% | SEO, authority, depth |
+| Angle-driven social | 50% | Engagement, reach, community |
+| Trust/proof content | 20% | Case studies, testimonials, data |
+| Brand/culture | 10% | Personality, team, values |
+
+### Batch Production
+
+Produce content in batches, not one piece at a time:
+1. **Weekly batch:** Generate 5-7 social pieces from 1-2 angles
+2. **Bi-weekly batch:** Produce 1 long-form piece (blog, guide, video)
+3. **Monthly batch:** Create 1 proof piece (case study, data report)
+
+### Pillar Rotation
+
+Rotate through pillars to prevent audience fatigue:
+- Don't post the same pillar more than 2 days in a row
+- Each pillar should appear at least once per week
+- Track which pillars drive the most engagement — adjust % allocation quarterly
+
+---
+
 ## References
 
 - [references/3d-angle-framework.md](references/3d-angle-framework.md) — Hook types × awareness × triggers

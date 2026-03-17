@@ -116,7 +116,18 @@ Create variant B that changes exactly ONE element:
 
 ---
 
-## Step 5: Asset Checklist
+## Step 5: VoC Validation Check
+
+Before finalizing, verify the content echoes actual audience language:
+- [ ] Hook uses words/phrases from VoC quotes in ICP research (not marketing-speak)
+- [ ] Pain expressions match how the audience actually describes the problem
+- [ ] Emotional triggers are grounded in ICP emotional drivers (not assumed)
+
+If `.agents/mkt/icp-research.md` exists, pull 2-3 VoC quotes and check: does this content sound like something the persona would share, or something a marketer would write? The gap between these two is where content underperforms.
+
+---
+
+## Step 6: Asset Checklist
 
 What the production team needs. Be specific about dimensions, formats, and brand assets.
 
@@ -308,3 +319,5 @@ Before writing any key line, answer:
 - [references/platform-specs.md](references/platform-specs.md) — Platform dimensions, limits, native patterns
 - [references/copy-frameworks.md](references/copy-frameworks.md) — Headline formulas, PAS framework, page templates
 - [references/copywriting-craft.md](references/copywriting-craft.md) — Variation workflow, extended techniques, evaluation rubric, annotation guide
+- [references/seven-sweeps.md](references/seven-sweeps.md) — Structured 7-pass editing method (Clarity → Voice → So What → Prove It → Specificity → Emotion → Zero Risk)
+- [references/repurposing-cascade.md](references/repurposing-cascade.md) — Hero → derivative content workflow across channels
