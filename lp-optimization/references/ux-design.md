@@ -173,3 +173,58 @@ Accessible design improves conversions for everyone:
 - [ ] Focus states visible for keyboard users
 - [ ] Alt text on meaningful images
 - [ ] Logical heading hierarchy (H1, H2, H3)
+
+---
+
+## Signup Flow Optimization
+
+Signup flows are a special case of landing page conversion — the form IS the page. These rules apply to any signup, registration, or account creation flow.
+
+### Progressive Profiling
+
+Ask only what you need at signup. Defer everything else.
+
+| Step | Ask For | Why |
+|------|---------|-----|
+| Signup | Email only (or email + password) | Minimize friction at highest-dropout point |
+| Onboarding | Name, role | Needed to personalize experience |
+| First value moment | Company, team size | Needed for product configuration |
+| Later | Everything else | User is now invested |
+
+**The 3-Field Threshold:** More than 3 visible fields at signup → must use progressive profiling (multi-step) or progressive disclosure. Each additional field above 3 reduces completion rate by ~10%.
+
+### Value-First Principle
+
+Show product value before asking for account creation. The user should understand what they get before they give anything.
+
+**Pattern:**
+1. Let them see/try the product (demo, preview, free tool)
+2. Hit a value moment ("Your report is ready")
+3. Gate the value ("Create an account to download")
+
+Anti-pattern: Leading with a registration wall before the user understands the product.
+
+### Signup Form UX Rules
+
+- **Don't clear form fields on error** — preserve user input, highlight only the field that failed
+- **Inline validation** — validate as the user moves between fields, not on submit
+- **Specific error messages** — "Password must be 8+ characters" not "Invalid password"
+- **Show password toggle** — reduces password errors by 75%
+- **Auto-focus first field** on page load
+- **Disable submit button** until required fields are valid (with clear indication of what's missing)
+
+### Social Auth Placement
+
+- Place social auth buttons (Google, Microsoft, SSO) **above** the email/password form
+- For B2B: Google and Microsoft sign-in should be prominent (most companies use these)
+- Label: "Continue with Google" not "Sign up with Google" (lower commitment language)
+- Show a clear "OR" divider between social auth and email form
+
+### Mobile Signup Specs
+
+- [ ] All touch targets ≥44px height
+- [ ] Appropriate keyboard types (`type="email"` for email, `type="tel"` for phone)
+- [ ] Single-column layout (no side-by-side fields on mobile)
+- [ ] Sticky CTA button at bottom of viewport for long forms
+- [ ] Auto-capitalize off for email fields
+- [ ] Input padding ≥12px for comfortable tapping

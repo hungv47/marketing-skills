@@ -34,7 +34,12 @@ Previous: none (or any skill needing audience context) | Next: `imc-plan`
 ## Before Starting
 
 ### Step 0: Product Context (Canonical Source)
-Check for `.agents/mkt/product-context.md`. If missing: **INTERVIEW.** This skill is the canonical source for product context across all marketing skills. Interview for these 8 dimensions and save to `.agents/mkt/product-context.md`:
+Check for `.agents/mkt/product-context.md`. If missing, **scan first, then interview for gaps:**
+
+1. **Auto-scan available sources:** Look for README.md, marketing site copy, pricing page, product descriptions, and any existing documentation in the codebase. Extract what you can about the 8 dimensions below.
+2. **Interview only for gaps:** Present what you found and ask the user to confirm, correct, or fill in missing dimensions.
+
+This scan-then-interview approach avoids asking the user questions they've already answered elsewhere. This skill is the canonical source for product context across all marketing skills. Save to `.agents/mkt/product-context.md`:
 
 ```markdown
 # Product Context

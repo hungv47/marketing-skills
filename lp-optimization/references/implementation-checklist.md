@@ -197,6 +197,9 @@ Use this for rapid landing page reviews:
 - [ ] Mobile-friendly?
 - [ ] Clear visual hierarchy?
 - [ ] One primary CTA?
+- [ ] Signup form ≤3 fields (or uses progressive profiling)?
+- [ ] Mobile touch targets ≥44px?
+- [ ] Form preserves input on error?
 
 ### Conversion Path
 

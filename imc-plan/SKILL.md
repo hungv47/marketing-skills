@@ -100,6 +100,25 @@ Every angle must pass ALL three:
 
 See [references/3d-angle-framework.md](references/3d-angle-framework.md) for hook types and generation framework.
 
+### Angle Prioritization (when angles exceed capacity)
+
+When multiple angles pass the 3-Question Test, score them to decide production order:
+
+| Factor | Weight | Score 1-5 |
+|--------|--------|-----------|
+| Audience Pain Intensity | 40% | How acute is the underlying pain? (from ICP research) |
+| 3-Question Score | 30% | How strongly does it pass visual + falsifiable + unique? |
+| Channel-Content Fit | 20% | How well does the angle suit available channels? |
+| Production Effort | 10% | How easy to produce? (lower effort = higher score) |
+
+**Weighted score** = (Pain × 0.4) + (3Q × 0.3) + (Fit × 0.2) + (Effort × 0.1)
+
+Produce highest-scoring angles first. This prevents the common trap of producing easy content that doesn't address the sharpest audience pains.
+
+### Content Classification
+
+Tag each surviving angle as **Searchable** (captures existing demand via keywords), **Shareable** (creates demand via novelty/emotion), or **Both**. See [references/channel-strategy.md](references/channel-strategy.md) for classification details and channel routing rules.
+
 ---
 
 ## Step 4: Channels (from habitat map)
@@ -154,12 +173,12 @@ status: draft
 
 ## Angle Bank
 
-| Pillar | Angle | Hook Type | Stage | 3Q: V/F/U |
-|--------|-------|-----------|-------|-----------|
-| 1 | "[angle text]" | Data | Problem Aware | Y/Y/Y |
-| 1 | "[angle text]" | Contrarian | Solution Aware | Y/Y/Y |
-| 1 | "[angle text]" | Story | Unaware | Y/Y/Y |
-| 2 | ... | ... | ... | ... |
+| Pillar | Angle | Hook Type | Stage | 3Q: V/F/U | Priority Score | Type |
+|--------|-------|-----------|-------|-----------|---------------|------|
+| 1 | "[angle text]" | Data | Problem Aware | Y/Y/Y | [X.X] | Searchable/Shareable/Both |
+| 1 | "[angle text]" | Contrarian | Solution Aware | Y/Y/Y | [X.X] | Searchable/Shareable/Both |
+| 1 | "[angle text]" | Story | Unaware | Y/Y/Y | [X.X] | Searchable/Shareable/Both |
+| 2 | ... | ... | ... | ... | ... | ... |
 
 ## Channel Assignments
 

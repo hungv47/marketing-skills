@@ -16,6 +16,24 @@ Detailed channel selection frameworks including fit matrices and habitat-informe
 
 ---
 
+## Content Classification: Searchable vs. Shareable
+
+Every piece of content serves one of two demand modes. This is orthogonal to the pillar system — any pillar can produce both types.
+
+| Type | Purpose | Characteristics | Distribution |
+|------|---------|----------------|--------------|
+| **Searchable** | Capture existing demand | Keyword-driven, answers known questions, evergreen, SEO-optimized | Blog, YouTube, Quora, SEO landing pages |
+| **Shareable** | Create new demand | Novel insights, contrarian takes, original data, emotional hooks | Social, email, KOLs, communities |
+
+**Why this matters:** Searchable content compounds over time (traffic grows). Shareable content spikes and decays (engagement-driven). A healthy content mix needs both — pure searchable builds slow, pure shareable requires constant production.
+
+**Assignment rule:** For each angle in the Angle Bank, tag it as Searchable, Shareable, or Both. Then match to channels:
+- Searchable angles → owned blog, YouTube, SEO-focused channels
+- Shareable angles → social, community, KOL, email
+- Both → prioritize for highest-effort production (these are your best content investments)
+
+---
+
 ## Angle-to-Channel Fit Matrix
 
 Match angle characteristics to optimal platforms:

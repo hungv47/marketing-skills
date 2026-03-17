@@ -1,5 +1,26 @@
 # Advanced Sales Psychology
 
+## Behavioral Models
+
+These models are most actionable in conversion optimization and landing page design. For research-stage models, see `icp-research/references/voice-of-customer.md`.
+
+### Goal-Gradient Effect
+People accelerate effort as they approach a goal. Application: Show progress indicators on multi-step forms. "Step 2 of 3" converts better than no indicator. Start progress bars at 20% (not 0%) — the perceived head start increases completion.
+
+### Peak-End Rule
+People judge experiences by their peak moment and the ending, not the average. Application: Optimize the highest-emotion moment on the page (usually the hero or testimonial) and the final CTA section. A mediocre middle matters less than a strong open and close.
+
+### Zeigarnik Effect
+Incomplete tasks create mental tension that drives completion. Application: Open loops in headlines ("The strategy that changed everything — and why most people get it wrong"). Start a story in the hero section that resolves after the CTA.
+
+### BJ Fogg Behavior Model
+Behavior = Motivation × Ability × Prompt. All three must be present simultaneously. Application: High-motivation visitors need simpler forms (increase Ability). Low-motivation visitors need stronger value props (increase Motivation). Every CTA is a Prompt — it must appear when both M and A are sufficient.
+
+### Activation Energy
+The initial effort required to start a behavior is disproportionately high. Application: Reduce first-step friction ruthlessly. "Start free" beats "Sign up for a free trial." Pre-fill form fields. Default to the most common option. Remove every unnecessary click before the first value moment.
+
+---
+
 ## 26. Proven Headline Formulas
 
 **Rule**: Test 10+ headlines for every campaign—headlines alone can 10x results

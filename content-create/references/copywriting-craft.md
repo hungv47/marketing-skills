@@ -170,6 +170,24 @@ and its rubric score.
 
 ---
 
+## Psychology of Persuasion
+
+### Pratfall Effect
+Small, authentic imperfections increase trust. A brand that admits a weakness
+("Our UI isn't the prettiest — but our data is the most accurate") is more
+believable than one that claims perfection. Application: Include one honest
+limitation in long-form copy, then pivot to your strength. The admission makes
+everything else more credible.
+
+### Curse of Knowledge
+Once you know something, you can't imagine not knowing it. Product teams write
+copy that assumes the reader understands their jargon, architecture, and mental
+models. Application: Test every key line with someone outside the company. If
+they can't explain it back in their own words, it's too insider. Use the Zoom-In
+Technique (above) to replace abstraction with concreteness.
+
+---
+
 ## Anti-Patterns
 
 **Adjective stacking** — "Innovative, cutting-edge, best-in-class solution"
