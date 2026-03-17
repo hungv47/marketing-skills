@@ -33,6 +33,7 @@ Before delivering, verify:
 - [ ] One primary CTA per page (secondary CTAs don't compete)
 - [ ] Trust signals appear within scroll-distance of every CTA
 - [ ] Form has ≤5 fields (or justified why more are needed)
+- [ ] Every audit finding includes: what was observed, which principle it violates, and a specific recommended fix
 
 ## Chain Position
 Horizontal — works with `icp-research` (audience data), `content-create` (copy principles), `experiment` (test design)
@@ -151,6 +152,11 @@ Use `experiment` for proper test design with success/kill thresholds and sample 
 5. Check mobile experience (thumb zone CTAs, load time)
 6. Identify highest-impact fix
 7. Design A/B test via `experiment`
+
+Audit findings without evidence are opinions — they don't give the team enough to act on. Every finding must include:
+1. **What was observed** — specific text, element, or metric on the page
+2. **Which principle it violates** — name the framework (4-U, message match, social proof hierarchy, etc.)
+3. **Recommended fix** — exact replacement text, not "improve the headline"
 
 ---
 

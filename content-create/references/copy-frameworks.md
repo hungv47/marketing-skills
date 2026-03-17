@@ -236,3 +236,33 @@ Best testimonials include:
 - Something quotable and specific
 
 Avoid testimonials that just say "Great product!", "Love it!", or "Easy to use!"
+
+---
+
+## The Conflict Framework
+
+State what you're AGAINST, then what you stand FOR. Tension creates memorability.
+
+**Pattern:** "We don't [conventional]. We [our way]."
+
+| Against | For | Result |
+|---|---|---|
+| "Don't buy this jacket" | Quality > consumption | Patagonia |
+| "Think different" | Non-conformity > status quo | Apple |
+| "A dating app designed to be deleted" | Relationships > engagement | Hinge |
+
+**When to use:** Contrarian hooks, brand positioning, manifesto content.
+
+---
+
+## Copy Evaluation Rubric
+
+Score key lines 1-5 on three dimensions after drafting.
+
+| Dimension | 1 (Weak) | 3 (Adequate) | 5 (Strong) |
+|---|---|---|---|
+| **Visual Clarity** | No mental image | Vague picture | Instant picture |
+| **Falsifiability** | Anyone could claim | Partly specific | Concrete, checkable |
+| **Competitive Uniqueness** | Competitor could sign it | Somewhat ours | Only we could say this |
+
+**Threshold:** Average ≥3.5. Below 3 on any = rewrite that dimension.

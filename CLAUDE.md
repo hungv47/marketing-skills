@@ -4,7 +4,7 @@ Marketing communication: audience research → campaign planning → content cre
 
 ## Pipeline
 icp-research → imc-plan → content-create → attribution
-Horizontal: lp-optimization
+Horizontal: lp-optimization, seo
 
 ## Artifacts
 Skills write to `.agents/mkt/`:
@@ -13,6 +13,7 @@ Skills write to `.agents/mkt/`:
 - `.agents/mkt/imc-plan.md`
 - `.agents/mkt/content/[slug].md`
 - `.agents/mkt/attribution.md`
+- `.agents/mkt/seo-[mode].md` (mode = audit | ai | programmatic | competitor)
 
 ## Cross-Stack (Optional)
 Attribution and IMC Plan can read strategy artifacts for alignment:

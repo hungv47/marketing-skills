@@ -327,6 +327,21 @@ For each major theme identified:
 
 ---
 
+## Research Lenses: Psychology Models for Deeper Analysis
+
+Use these models as lenses when analyzing VoC data — they reveal motivations the audience won't state directly.
+
+### Mimetic Desire
+People want things because other people want them. In VoC analysis, look for: references to what peers/competitors are doing, "everyone is switching to X," FOMO language, status comparisons. When you see mimetic desire, the audience's stated reason ("it has better features") may mask the real driver ("everyone in my industry uses it and I feel behind").
+
+### Status-Quo Bias
+The preference for the current state of affairs, even when alternatives are objectively better. In VoC analysis, look for: "we've always done it this way," rationalizations for current tools despite complaints, fear of migration/switching costs, "the devil you know." Overcoming status-quo bias requires making the cost of NOT switching more vivid than the cost of switching.
+
+### Hyperbolic Discounting
+People disproportionately prefer immediate rewards over future rewards. In VoC analysis, look for: impatience with long-term ROI arguments, desire for instant results, "I need this yesterday" language, dismissal of tools that require setup time before delivering value. Messaging implication: lead with what they get TODAY, not what they'll get in 6 months.
+
+---
+
 ## Quality Checklist
 
 Before finalizing VoC analysis:

@@ -23,6 +23,8 @@ metadata:
 Before delivering, verify:
 - [ ] Hook communicable in ≤8 words (if the core message doesn't fit in 8 words, it's too complex)
 - [ ] Hook passes 3-question test: visual? falsifiable? uniquely yours?
+- [ ] Every headline/hook contains concrete nouns or specific numbers (no abstract "better," "innovative," "leading")
+- [ ] Key headlines pass the Competitor Swap Test (swap in competitor name — if it still works, rewrite)
 - [ ] CTA follows formula: [action verb] + [what they get] (not "Learn More" or "Click Here")
 - [ ] A/B variant changes exactly ONE element — and hypothesis states the learning if B wins
 
@@ -71,6 +73,8 @@ The hook stops the scroll. Write the exact text.
 
 Run the hook through the 3-question test. If any answer is no, rewrite before continuing — weak hooks waste every downstream production effort.
 
+Write 3-5 hook variations using different hook types before selecting. Run each through the 3-question test. Keep the strongest; present top 2 as alternatives with annotations explaining why each works. See [references/copywriting-craft.md](references/copywriting-craft.md) for the full variation workflow and evaluation rubric.
+
 ---
 
 ## Step 2: Write the Body
@@ -81,6 +85,7 @@ Write the ACTUAL copy — not an outline, not a description.
 **Static post:** Complete caption, every word.
 **Carousel:** Every slide, cover to CTA.
 **Thread:** Every post, numbered.
+**Full-page copy** (landing pages, homepages): Organize output section-by-section with 2-3 alternatives per key section — see [references/copywriting-craft.md](references/copywriting-craft.md) for section structure.
 
 ---
 
@@ -140,6 +145,7 @@ status: draft
 [Exact hook text]
 
 **3Q Test:** Visual: [Y/N] | Falsifiable: [Y/N] | Uniquely ours: [Y/N]
+**Annotations:** [Rule that drove hook choice, cut alternative, rubric score — see copywriting-craft.md annotation guide]
 
 ## Body
 
@@ -240,6 +246,8 @@ status: draft
 
 **Writing for the brand, not the buyer** — Copy that sounds impressive to the marketing team but doesn't use the buyer's language. Pull phrasing from VoC quotes and ICP research — write how they talk, not how the brand talks.
 
+**AI copy slop** — Recognizable AI-generated patterns that signal generic output: "Unlock the power of...", "In today's fast-paced world...", "Revolutionize your workflow", "Seamlessly integrate", "Whether you're a [X] or a [Y]". The Competitor Swap Test catches most of these — if it reads like any SaaS website's hero, it fails.
+
 ---
 
 ## Copy Principles
@@ -299,3 +307,4 @@ Before writing any key line, answer:
 - [references/examples.md](references/examples.md) — Complete worked examples with full copy
 - [references/platform-specs.md](references/platform-specs.md) — Platform dimensions, limits, native patterns
 - [references/copy-frameworks.md](references/copy-frameworks.md) — Headline formulas, PAS framework, page templates
+- [references/copywriting-craft.md](references/copywriting-craft.md) — Variation workflow, extended techniques, evaluation rubric, annotation guide
