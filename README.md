@@ -1,0 +1,47 @@
+# Communication Skills
+
+Marketing communication skills — audience research, campaign planning, content creation, and performance attribution.
+
+## Installation
+
+```bash
+npx skills add hungv47/comms-skills
+```
+
+## Skills
+
+| Skill | Description |
+|-------|-------------|
+| `icp-research` | Deep audience research and Ideal Customer Profile development |
+| `imc-plan` | Integrated Marketing Communication planning |
+| `content-create` | Production-ready platform-native content with A/B variants and copy principles |
+| `attribution` | KPI-initiative-content mapping and coverage audit |
+| `lp-optimization` | High-conversion landing page optimization |
+
+## Pipeline
+
+```
+icp-research → imc-plan → content-create → attribution
+Horizontal: lp-optimization
+```
+
+Artifacts save to `.agents/mkt/`.
+
+## Cross-Stack Workflow
+
+Attribution and IMC Plan can read strategy artifacts (`.agents/mkt/solution-design.md`, `.agents/mkt/targets.md`) from [strategy-skills](https://github.com/hungv47/strategy-skills).
+
+## Usage
+
+- "Research my ICP" → `icp-research`
+- "Create an IMC plan" → `imc-plan`
+- "Create content" → `content-create`
+- "Write copy" → `content-create`
+- "Map attribution" → `attribution`
+- "Optimize landing page" → `lp-optimization`
+
+## Part of [Agent Skills](https://github.com/hungv47/agent-skills)
+
+## License
+
+MIT
