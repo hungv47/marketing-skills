@@ -17,12 +17,13 @@ npx skills add hungv47/comms-skills
 | `content-create` | Production-ready platform-native content with A/B variants and copy principles |
 | `attribution` | KPI-initiative-content mapping and coverage audit |
 | `lp-optimization` | High-conversion landing page optimization |
+| `seo` | Technical audit, AI/GEO optimization, programmatic SEO, competitor pages |
 
 ## Pipeline
 
 ```
 icp-research → imc-plan → content-create → attribution
-Horizontal: lp-optimization
+Horizontal: lp-optimization, seo
 ```
 
 Artifacts save to `.agents/mkt/`.
@@ -39,6 +40,9 @@ Attribution and IMC Plan can read strategy artifacts (`.agents/mkt/solution-desi
 - "Write copy" → `content-create`
 - "Map attribution" → `attribution`
 - "Optimize landing page" → `lp-optimization`
+- "SEO audit" → `seo`
+- "Optimize for AI search" → `seo`
+- "Build programmatic SEO pages" → `seo`
 ## License
 
 MIT
