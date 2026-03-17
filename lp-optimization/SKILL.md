@@ -33,6 +33,7 @@ Before delivering, verify:
 - [ ] One primary CTA per page (secondary CTAs don't compete)
 - [ ] Trust signals appear within scroll-distance of every CTA
 - [ ] Form has ≤5 fields (or justified why more are needed)
+- [ ] Social proof is from the last 12 months (older proof replaced or removed)
 - [ ] Every audit finding includes: what was observed, which principle it violates, and a specific recommended fix
 
 ## Chain Position
@@ -80,7 +81,14 @@ None — can audit any page standalone.
 
 Check: does the landing page headline echo the exact promise from the ad/email/link? Broken promise = instant bounce.
 
-Use WebSearch when auditing a live page — search `site:[domain] "[headline text]"` to find the ads/links driving traffic and verify message match.
+**Message match verification method:**
+1. **Analytics first:** Check GA4 → Acquisition → Traffic Source → filter by landing page. Identify top 3 traffic sources.
+2. **Paid sources:** Log into the ads platform (Google Ads, Meta, LinkedIn) → find active ads pointing to this page → check if ad headline matches landing page headline.
+3. **Organic sources:** Search the page's target keywords → check if the meta title/description that appears in search results matches the page headline.
+4. **Email/referral:** Check the email or referring link copy that drives traffic → verify the promise matches.
+5. **Document mismatches:** For each source, note: [source headline/promise] vs. [landing page headline] → match or mismatch.
+
+Don't rely on `site:` searches alone — paid ads aren't indexed by Google, and many traffic sources are invisible to search.
 
 ### First-Person CTA
 
@@ -97,6 +105,17 @@ Use WebSearch when auditing a live page — search `site:[domain] "[headline tex
 4. Media mentions / press logos
 5. Expert endorsements
 6. Customer logos
+
+**Recency multiplier** — within each tier, recent proof outperforms old proof:
+
+| Age | Multiplier | Action |
+|-----|-----------|--------|
+| <3 months | 100% | Use prominently |
+| 3-6 months | 80% | Use — still credible |
+| 6-12 months | 60% | Use if nothing fresher available |
+| >12 months | 40% | Replace — signals stagnation to visitors |
+
+A 6-month-old testimonial with results beats a 2-year-old case study, even though case studies rank higher in the hierarchy. Prioritize freshness when you have multiple options per tier.
 
 ### Cognitive Bias Stack
 

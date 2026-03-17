@@ -237,6 +237,28 @@ Decision: If you want AI citations, allow the crawlers. If GPTBot is blocked, Ch
 3. **Authority audit:** Third-party mentions, review site presence, expert attribution, original data published?
 4. **Crawler audit:** robots.txt directives for AI bots, sitemap accessibility, server log activity?
 
+### AI SEO Validation Protocol
+
+Optimization without validation is guesswork. Track whether changes actually improve AI citations:
+
+**Baseline (before optimization):**
+1. Pick 10-20 queries: 5 brand queries, 5 category queries, 5 "how to" queries from ICP research
+2. Run each across ChatGPT, Perplexity, Google AI Overviews, Claude
+3. Score each: 0 = not mentioned, 1 = mentioned but not cited, 2 = cited with link/attribution
+4. Record total baseline score (max = queries × platforms × 2)
+
+**Post-optimization (re-test weekly for 4 weeks):**
+1. Run the same 10-20 queries on the same platforms
+2. Score identically
+3. Track delta from baseline
+
+| Outcome | Interpretation | Action |
+|---------|---------------|--------|
+| Score improves >20% in 4 weeks | Optimization working | Continue and expand to more content |
+| Score flat after 4 weeks | Wrong optimization target | Re-diagnose: is the issue Structure, Authority, or Presence? |
+| Score improves on some platforms but not others | Platform-specific gap | Focus on the lagging platform's specific data source |
+| Score decreases | Something broke | Check crawler access (robots.txt), content freshness, and entity consistency |
+
 See [references/ai-seo.md](references/ai-seo.md) for platform-specific optimization details and content templates.
 
 ---

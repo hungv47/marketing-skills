@@ -108,7 +108,7 @@ When multiple angles pass the 3-Question Test, score them to decide production o
 
 | Factor | Weight | Score 1-5 |
 |--------|--------|-----------|
-| Audience Pain Intensity | 40% | How acute is the underlying pain? (from ICP research) |
+| Audience Pain Intensity | 40% | How acute is the pain this angle targets? (scored using ICP evidence — see below) |
 | 3-Question Score | 30% | How strongly does it pass visual + falsifiable + unique? |
 | Channel-Content Fit | 20% | How well does the angle suit available channels? |
 | Production Effort | 10% | How easy to produce? (lower effort = higher score) |
@@ -116,6 +116,18 @@ When multiple angles pass the 3-Question Test, score them to decide production o
 **Weighted score** = (Pain × 0.4) + (3Q × 0.3) + (Fit × 0.2) + (Effort × 0.1)
 
 Produce highest-scoring angles first. This prevents the common trap of producing easy content that doesn't address the sharpest audience pains.
+
+**How to score Pain Intensity (the 40% factor):**
+
+| Score | Evidence Required |
+|-------|------------------|
+| 5 | Pain blocks purchase decisions (cited as top objection in ICP decision psychology) |
+| 4 | Pain has financial or career impact (specific cost/consequence cited in VoC) |
+| 3 | Pain causes regular time waste (mentioned in 3+ VoC quotes) |
+| 2 | Pain is acknowledged but low priority ("nice to fix" language in VoC) |
+| 1 | Pain is assumed, no VoC evidence supports it |
+
+Cross-reference against ICP research: count distinct quotes mentioning this pain, check if it appears in decision psychology objections, and check emotional intensity. A pain that blocks purchase (score 5) deserves 40% weight; an assumed pain (score 1) doesn't deserve production resources.
 
 ### Content Classification
 

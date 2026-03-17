@@ -140,6 +140,18 @@ A **bad quote** is:
 
 Collect 3 quotes per pain category. Stop when patterns repeat.
 
+**Quote weighting** — not all quotes are equally useful. Prioritize:
+
+| Weight | Quote Type | Why |
+|--------|-----------|-----|
+| **3x** | Decision-maker quote (buyer, budget holder) | Their words are what stops or starts a purchase |
+| **2x** | Quote revealing mechanism (explains WHY pain exists, not just that it does) | Mechanisms inform solutions; complaints only inform messaging |
+| **2x** | Quote contradicting your assumptions | The most valuable data is what surprises you |
+| **1x** | User/practitioner quote expressing pain | Useful for copy but doesn't reveal buying dynamics |
+| **0.5x** | Emotion-only quote ("this is so frustrating") without mechanism | Validates intensity but gives no strategic direction |
+
+When you have 3 quotes for a pain category, check: do you have at least one mechanism-revealing quote? If all 3 are emotion-only, keep searching — you have the WHAT but not the WHY.
+
 ### Pain Analysis (3 Levels)
 
 | Level | What | Where to Find |
@@ -157,6 +169,18 @@ For every platform where audience activity appears, document specifically — va
 | Reddit | r/[specific subreddit] | H/M/L | Lurker/Engager/Creator | Discovery/Trust/Conversion |
 
 Specify the exact community, not just the platform — "Reddit" is too vague; name the subreddit. "LinkedIn" is too vague; name the group or content type.
+
+**Engagement type classification** — sample 20-30 profiles from the community to classify:
+
+| Type | Behavior Threshold | How to Identify |
+|------|-------------------|----------------|
+| **Lurker** | Visits regularly, posts <1x/month, consumes >10 pieces/week | No visible post history in community; high member count vs. low post volume |
+| **Engager** | Comments/likes 1-4x/month, occasionally shares | Visible in comment sections, responds to others, doesn't start threads |
+| **Creator** | Posts original content 1x/week+, starts discussions, responds to replies | Active post history, recognized by community, generates threads |
+| **Subscriber** | Prefers push content (email, notifications), passive consumption | Follows newsletters, subscribed to feeds, rarely visible in community |
+| **Searcher** | Uses platform search when problems arise, no ongoing presence | Appears in search-triggered threads, asks questions then disappears |
+
+Assign **density** as % of your target persona active in the community: H = >30%, M = 10-30%, L = <10%. Estimate by checking: how many posts in the last month are from someone matching your persona's role/situation?
 
 See [references/habitat-mapping.md](references/habitat-mapping.md) for density definitions.
 

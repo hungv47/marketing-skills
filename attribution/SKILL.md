@@ -184,7 +184,18 @@ North Star: [metric] — [current] → [target]
 | 1 | ... | ... | ... | ... |
 
 ## Previous Review Progress
-[If re-running: status of prior action items]
+
+| # | Prior Action | Status | Outcome |
+|---|-------------|--------|---------|
+| 1 | [action from last review] | Done / In Progress / Parked / Dropped | [Result if Done: what metric moved? If not done: blocker or reason] |
+
+Status definitions:
+- **Done** — shipped AND outcome measured. If no outcome data, it's In Progress.
+- **In Progress** — started but not complete. Note blocker if any.
+- **Parked** — deprioritized deliberately. Note what changed.
+- **Dropped** — decided not to pursue. Note explicit reason.
+
+If the same action appears as "Parked" or "Dropped" across 2+ reviews, escalate: either commit to doing it or kill the underlying initiative.
 
 > On re-run: rename existing artifact to `attribution.v[N].md` and create new with incremented version.
 ```

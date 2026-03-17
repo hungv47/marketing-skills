@@ -75,6 +75,16 @@ Run the hook through the 3-question test. If any answer is no, rewrite before co
 
 Write 3-5 hook variations using different hook types before selecting. Run each through the 3-question test. Keep the strongest; present top 2 as alternatives with annotations explaining why each works. See [references/copywriting-craft.md](references/copywriting-craft.md) for the full variation workflow and evaluation rubric.
 
+**When 2+ hooks tie on the 3Q test**, apply secondary criteria:
+
+| Tiebreaker | Question | Higher Score Wins |
+|-----------|---------|-------------------|
+| **Surprise** | Which hook was least obvious / most unexpected? | Surprising hooks stop the scroll |
+| **ICP anchor** | Which hook maps to a specific metric or pain from ICP research? | Grounded hooks convert better |
+| **Objection-free** | Which hook triggers zero obvious objections? | Clean hooks have less falloff |
+
+Document which tiebreaker you used — this trains your judgment for future content.
+
 ---
 
 ## Step 2: Write the Body
