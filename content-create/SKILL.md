@@ -23,6 +23,7 @@ metadata:
 Before delivering, verify:
 - [ ] Hook communicable in ≤8 words (if the core message doesn't fit in 8 words, it's too complex)
 - [ ] Hook passes 3-question test: visual? falsifiable? uniquely yours?
+- [ ] Every headline/hook contains concrete nouns or specific numbers (no abstract "better," "innovative," "leading")
 - [ ] CTA follows formula: [action verb] + [what they get] (not "Learn More" or "Click Here")
 - [ ] A/B variant changes exactly ONE element — and hypothesis states the learning if B wins
 
@@ -70,6 +71,8 @@ The hook stops the scroll. Write the exact text.
 | Contrarian | "Stop [common advice]" | "Stop tracking velocity." |
 
 Run the hook through the 3-question test. If any answer is no, rewrite before continuing — weak hooks waste every downstream production effort.
+
+Write 3-5 hook variations using different hook types before selecting. Run each through the 3-question test. Keep the strongest; present top 2 as alternatives with annotations explaining why each works. See [references/copywriting-craft.md](references/copywriting-craft.md) for the full variation workflow and evaluation rubric.
 
 ---
 
@@ -299,3 +302,4 @@ Before writing any key line, answer:
 - [references/examples.md](references/examples.md) — Complete worked examples with full copy
 - [references/platform-specs.md](references/platform-specs.md) — Platform dimensions, limits, native patterns
 - [references/copy-frameworks.md](references/copy-frameworks.md) — Headline formulas, PAS framework, page templates
+- [references/copywriting-craft.md](references/copywriting-craft.md) — Variation workflow, extended techniques, evaluation rubric, annotation guide
