@@ -24,6 +24,7 @@ Before delivering, verify:
 - [ ] Hook communicable in ≤8 words (if the core message doesn't fit in 8 words, it's too complex)
 - [ ] Hook passes 3-question test: visual? falsifiable? uniquely yours?
 - [ ] Every headline/hook contains concrete nouns or specific numbers (no abstract "better," "innovative," "leading")
+- [ ] Key headlines pass the Competitor Swap Test (swap in competitor name — if it still works, rewrite)
 - [ ] CTA follows formula: [action verb] + [what they get] (not "Learn More" or "Click Here")
 - [ ] A/B variant changes exactly ONE element — and hypothesis states the learning if B wins
 
@@ -84,6 +85,7 @@ Write the ACTUAL copy — not an outline, not a description.
 **Static post:** Complete caption, every word.
 **Carousel:** Every slide, cover to CTA.
 **Thread:** Every post, numbered.
+**Full-page copy** (landing pages, homepages): Organize output section-by-section with 2-3 alternatives per key section — see [references/copywriting-craft.md](references/copywriting-craft.md) for section structure.
 
 ---
 
@@ -143,6 +145,7 @@ status: draft
 [Exact hook text]
 
 **3Q Test:** Visual: [Y/N] | Falsifiable: [Y/N] | Uniquely ours: [Y/N]
+**Annotations:** [Rule that drove hook choice, cut alternative, rubric score — see copywriting-craft.md annotation guide]
 
 ## Body
 
