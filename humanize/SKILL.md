@@ -141,7 +141,7 @@ Systematic compression using [references/conciseness-rules.md](references/concis
 
 ## Step 5: Final Audit
 
-Re-scan the entire piece using a two-pass self-audit:
+Re-scan the entire piece using a three-pass self-audit:
 
 ### Pass 1: Systematic check
 1. **Pattern check** — Run all 33 patterns again. Steps 3-4 can reintroduce patterns (especially during voice injection when new sentences are written). Fix any that appear.
@@ -196,7 +196,7 @@ compression: [X]%
 | AI patterns fixed | [count] |
 | Hard Tells remaining | 0 |
 | Soft Tells remaining | [0-2] |
-| Quality score | [X]/50 (D:[n] R:[n] T:[n] A:[n] Dn:[n]) |
+| Quality score | [X]/50 (Di:[n] R:[n] T:[n] A:[n] De:[n]) |
 
 ## Change Log
 

@@ -50,6 +50,8 @@ Exact phrases to search for. Unlike the vocabulary list (individual words that c
 - "No, really."
 
 ### Business Jargon (replace with plain equivalents)
+Note: "navigate" and "landscape" also appear in the vocabulary list above. The vocabulary list flags clusters; this table provides direct replacements.
+
 | AI Jargon | Plain Equivalent |
 |-----------|-----------------|
 | navigate | handle |
@@ -385,7 +387,7 @@ When auditing content, scan in this order (most obvious tells first):
 
 A flat 11-item rapid-fire checklist for re-checking during final audit (Step 5). Covers the most common residual tells — patterns that survive initial stripping or get reintroduced during voice injection.
 
-- [ ] Any sentence that could be a LinkedIn pull-quote? → Rewrite with specifics
+- [ ] Any sentence that sounds profound but says nothing specific? → Rewrite with facts
 - [ ] "Full stop." / "Let that sink in." / "Make no mistake" → Delete
 - [ ] Paragraph starting with "So" or "Look," → Delete the opener
 - [ ] "Not X. Y." binary contrast used more than once → Keep the best, rewrite the rest
