@@ -1,6 +1,6 @@
 ---
 name: icp-research
-description: "Researches ideal customer profiles and builds deep audience intelligence from real data — personas, pain profiles, habitat maps, and VoC quotes. Use when the user asks to research their ICP, understand their target audience, create customer personas, analyze pain points, or find voice of customer data — ICP, ideal customer profile, target audience research, persona development, customer research, audience intelligence, VoC collection, B2B/B2C audience analysis."
+description: "This skill should be invoked when the user needs to understand who they are selling to. Triggers include researching customers, building personas, analyzing pain points, finding voice-of-customer data, or understanding a target market -- even if they just say 'I don't know who my customer is' or 'we're guessing at our audience.' Also invoke when starting any new project that needs audience context. Not for campaign planning (use imc-plan) or competitive analysis."
 license: MIT
 metadata:
   author: hungv47

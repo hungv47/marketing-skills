@@ -1,6 +1,6 @@
 ---
 name: seo
-description: "Provides technical SEO audits, AI/generative engine optimization, programmatic SEO strategy, and competitor comparison page planning. Use when the user asks for an SEO audit, AI SEO, programmatic SEO, competitor pages, technical SEO, generative engine optimization, or site architecture analysis — SEO strategy, technical audit, GEO, AI citations, pSEO, comparison pages, alternative pages, schema markup, site structure."
+description: "This skill should be invoked when the user wants to improve search visibility, organic traffic, or AI discoverability. Triggers include 'how do I rank for...', 'nobody can find us online', 'how do I get more traffic', 'SEO audit', 'show up in AI answers', programmatic pages, competitor comparison pages, or schema markup -- even if they just say 'we're invisible on Google.' Not for landing page conversion (use lp-optimization) or paid advertising strategy."
 argument-hint: "[url or mode]"
 license: MIT
 metadata:

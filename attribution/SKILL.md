@@ -1,6 +1,6 @@
 ---
 name: attribution
-description: "Maps attribution chains from content to initiatives to KPIs, identifies orphan content and initiatives, and produces gap analysis with action items. Use when the user asks to map attribution, connect initiatives to KPIs, trace content to goals, audit coverage, check KPI alignment, or find orphan initiatives — attribution mapping, KPI hierarchy, coverage analysis, initiative alignment, content-to-revenue mapping, campaign ROI analysis, marketing accountability."
+description: "This skill should be invoked when the user wants to connect marketing activities to business outcomes. Triggers include 'is my marketing working', 'what's driving results', 'which content matters', 'are we wasting effort', tracing initiatives to KPIs, auditing coverage gaps, or mapping content to revenue -- even if they just say 'I can't tell what's working.' Not for setting future targets (use funnel-planner) or creating new content (use content-create)."
 license: MIT
 metadata:
   author: hungv47
