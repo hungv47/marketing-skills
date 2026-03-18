@@ -14,8 +14,8 @@ metadata:
 **Core Question:** "Can we trace every initiative to a measurable outcome?"
 
 ## Inputs Required
-- KPIs from `.agents/mkt/targets.md` or existing OKRs
-- Initiatives from `.agents/mkt/solution-design.md`
+- KPIs from `.agents/targets.md` or existing OKRs
+- Initiatives from `.agents/solution-design.md`
 - Content from `.agents/mkt/imc-plan.md` or `.agents/mkt/content/`
 
 ## Output
@@ -30,13 +30,23 @@ Before delivering, verify:
 
 ## Chain Position
 Previous: `content-create` | Next: Monthly review (re-run this skill)
+**Re-run triggers:** Monthly review cycle (set review date ~4 weeks from creation), after experiments conclude, when KPIs or initiatives change.
+
+### Cross-Track Prerequisites
+This skill maps content → initiatives → KPIs. For full-stack attribution:
+1. **Strategy stack first** (optional): Run `problem-analysis` → `solution-design` → `funnel-planner` to generate `.agents/solution-design.md` (initiatives) and `.agents/targets.md` (KPIs).
+2. **Comms stack**: Run `icp-research` → `imc-plan` → `content-create` to generate content artifacts.
+3. **Then attribution**: Maps content to initiatives to KPIs with gap analysis.
+
+Without strategy artifacts, this skill interviews for KPIs and initiatives directly — it still works, but cross-stack alignment is stronger with upstream artifacts.
 
 ---
 
 ## Before Starting
 
 ### Step 0: Product Context
-Check for `.agents/mkt/product-context.md`. If available, read for product context. If missing, recommend running `icp-research` to bootstrap it.
+Check for `.agents/product-context.md`. If available, read for product context. If missing, strongly recommend running `icp-research` first — attribution mapping is significantly more accurate with product context.
+If `.agents/targets.md`, `.agents/solution-design.md`, or `.agents/mkt/imc-plan.md` `date` fields are older than 30 days, recommend re-running upstream skills — stale data produces inaccurate attribution maps.
 
 ### Required Artifacts
 None — can build from scratch by interviewing.
@@ -48,8 +58,9 @@ None — can build from scratch by interviewing.
 | `solution-design.md` | solution-design (from hungv47/strategy-skills) | Initiative list to map |
 | `imc-plan.md` | imc-plan | Content plan to audit |
 | Previous `attribution.md` | attribution | Check progress on prior action items |
+| `experiment-*.md` | experiment (from strategy-skills) | Experiment outcomes as confidence adjustments — concluded experiments update contribution confidence |
 
-Read upstream files if they exist: `.agents/mkt/targets.md`, `.agents/mkt/solution-design.md`, `.agents/mkt/imc-plan.md`. If previous `.agents/mkt/attribution.md` exists, read it — check progress on prior action items before building the new map.
+Read upstream files if they exist: `.agents/targets.md`, `.agents/solution-design.md`, `.agents/mkt/imc-plan.md`. If previous `.agents/mkt/attribution.md` exists, read it — check progress on prior action items before building the new map.
 
 ### Interview
 If no upstream files exist, interview for:
@@ -61,6 +72,8 @@ If no upstream files exist, interview for:
 ---
 
 ## Step 1: KPI Hierarchy
+
+**Source of truth:** `funnel-planner` SETS targets (baselines + goals); `attribution` MAPS content and initiatives to those targets. If `funnel-planner` has been run, use its targets as the KPI hierarchy — don't re-interview for KPIs that already exist in `.agents/targets.md`.
 
 ```
 North Star: [metric] — [current] → [target]
@@ -78,6 +91,12 @@ North Star: [metric] — [current] → [target]
 | [Name] | [KPI] | ~X% of target | H/M/L |
 
 **Unknown contributions:** Mark "Unknown" and add action item: "Run `experiment` to measure actual impact."
+
+### Experiment Outcome Integration
+If `.agents/experiment-*.md` files exist with concluded results:
+- **Success** → Upgrade Confidence to H for that initiative's contribution
+- **Iterate** → Keep Confidence at M, note iteration in progress
+- **Kill** → Remove initiative from map, note reason in Orphan Initiatives
 
 ### Flag Orphans
 
@@ -264,6 +283,8 @@ None — both initiatives map to KPIs.
 
 **Static attribution maps** — Building the map once and never updating it. Attribution maps decay as initiatives ship, KPIs shift, and new content is produced. Set a review cadence (monthly minimum).
 
+**Attribution without tracking infrastructure** — Mapping content to KPIs on paper while having no event tracking, UTM parameters, or analytics in place. The map becomes theoretical without implementation. See [references/tracking-guide.md](references/tracking-guide.md) for minimum viable tracking.
+
 **Wrong attribution model for the business** — Using last-touch attribution for a B2B product with 90-day sales cycles attributes everything to the final touchpoint and misses the content that created awareness. Match model to buying cycle length. See [references/attribution-models.md](references/attribution-models.md).
 
 **Metrics without owners** — Every KPI and initiative must have a named person (not "the team"). Unowned metrics don't get improved — they get reported on and shrugged at.
@@ -274,3 +295,4 @@ None — both initiatives map to KPIs.
 
 - [references/attribution-examples.md](references/attribution-examples.md) — Worked examples across business types
 - [references/attribution-models.md](references/attribution-models.md) — Model selection guide by business type and buying cycle
+- [references/tracking-guide.md](references/tracking-guide.md) — Event naming conventions, UTM standards, minimum viable tracking stack

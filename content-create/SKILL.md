@@ -34,13 +34,22 @@ Before delivering, verify:
 
 ## Chain Position
 Previous: `imc-plan` | Next: `attribution`
+**Re-run triggers:** When IMC plan angles are updated, when targeting a new platform, or when A/B test results suggest a new direction.
+
+### Skill Deference
+- **Page already exists and problem is conversion?** → Run `lp-optimization` first — it diagnoses conversion blockers before rewriting.
+- **Content reads as AI-generated?** → Run `humanize` after this skill — it strips AI patterns and compresses.
+- **Seven-Sweeps (Step 6) is a quality pass within this skill.** If output still reads as AI-generated after Seven-Sweeps, run `humanize` as a dedicated pass.
+- **Angle already defined in IMC plan?** → Use it directly — don't re-derive. This skill refines hooks within an angle, not replaces the angle.
+- **Optimizing for search/AI citations?** → Coordinate with `seo` for keyword targeting, schema markup, and content structure.
 
 ---
 
 ## Before Starting
 
 ### Step 0: Product Context
-Check for `.agents/mkt/product-context.md`. If available, read for product details and accuracy.
+Check for `.agents/product-context.md`. If available, read for product details and accuracy.
+If `.agents/mkt/imc-plan.md` or `.agents/product-context.md` `date` fields are older than 30 days, recommend re-running upstream skills before proceeding — stale data produces misaligned content.
 
 ### Required Artifacts
 | Artifact | Source | If Missing |
@@ -100,6 +109,7 @@ Write the ACTUAL copy — not an outline, not a description.
 **Carousel:** Every slide, cover to CTA.
 **Thread:** Every post, numbered.
 **Full-page copy** (landing pages, homepages): Organize output section-by-section with 2-3 alternatives per key section — see [references/copywriting-craft.md](references/copywriting-craft.md) for section structure.
+**Email** (drip campaigns, onboarding sequences, lifecycle emails): Subject line (≤50 chars, A/B variants) + preview text (≤90 chars) + body (one CTA per email, PAS or story framework) + CTA button text + P.S. line (optional — high-read section). For sequences, include send timing and trigger conditions between emails.
 
 ---
 

@@ -39,6 +39,12 @@ Previous: `icp-research` + `imc-plan` (reads audience questions and content pill
 
 Horizontal skill — can be invoked independently or after IMC planning.
 
+**Re-run triggers:** Technical audit quarterly, AI SEO monthly (AI landscape changes fast), after Google core updates, when entering new keyword territories.
+
+### Skill Deference
+- **Need production-quality copy for comparison pages?** → Run `content-create` after SEO defines the page structure and keyword targets.
+- **Content pillar prioritization?** → Defer to `imc-plan` for audience-driven prioritization; SEO provides search demand data.
+
 ### Coordination with IMC Plan
 
 When both `seo` and `imc-plan` are in use, they should coordinate:
@@ -48,6 +54,7 @@ When both `seo` and `imc-plan` are in use, they should coordinate:
 | Content pillar has search demand | SEO leads topic selection | IMC provides angles and audience language; SEO provides keyword clusters and structure |
 | Content pillar is novel/contrarian | IMC leads topic selection | IMC creates shareable content; SEO optimizes for related informational queries |
 | Existing content needs both reach types | Both | Tag angles as Searchable/Shareable in IMC; SEO optimizes searchable angles for AI+traditional |
+| Angles include competitor comparisons | IMC leads prioritization | IMC decides which comparisons to produce and when; SEO owns technical optimization (schema, structure, internal linking) of those pages |
 
 **Rule:** Don't let SEO keyword data override IMC audience insights or vice versa. The best content addresses a real audience pain (IMC) AND has search demand (SEO). When they conflict, audience pain wins — you can promote great content through non-search channels, but you can't make irrelevant content convert even if it ranks.
 
@@ -56,7 +63,8 @@ When both `seo` and `imc-plan` are in use, they should coordinate:
 ## Before Starting
 
 ### Step 0: Product Context
-Check for `.agents/mkt/product-context.md`. If available, read for product positioning context.
+Check for `.agents/product-context.md`. If available, read for product positioning context.
+If `.agents/mkt/icp-research.md` or `.agents/mkt/imc-plan.md` `date` fields are older than 30 days, recommend re-running upstream skills — stale audience data weakens SEO strategy.
 
 ### Required Artifacts
 | Artifact | Source | If Missing |

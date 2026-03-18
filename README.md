@@ -28,10 +28,11 @@ Horizontal: lp-optimization, seo, humanize
 ```
 
 Artifacts save to `.agents/mkt/`.
+Exception: `.agents/product-context.md` is saved to the shared cross-stack path (not `.agents/mkt/`).
 
 ## Cross-Stack Workflow
 
-Attribution and IMC Plan can read strategy artifacts (`.agents/mkt/solution-design.md`, `.agents/mkt/targets.md`) from [strategy-skills](https://github.com/hungv47/strategy-skills).
+Attribution and IMC Plan can read strategy artifacts (`.agents/solution-design.md`, `.agents/targets.md`) from [strategy-skills](https://github.com/hungv47/strategy-skills).
 
 ## Usage
 
