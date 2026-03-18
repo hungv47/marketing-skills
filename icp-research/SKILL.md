@@ -1,10 +1,10 @@
 ---
 name: icp-research
-description: "This skill should be invoked when the user needs to understand who they are selling to. Triggers include 'researching customers', 'building personas', 'ideal customer', 'analyzing pain points', 'understanding a target market', 'who are we building for', 'who should we target', 'buyer persona', 'jobs to be done', 'competitive analysis', 'market sizing', 'how should we segment', or 'what do people actually want' -- even if they just say 'I don't know who my customer is', 'we're guessing at our audience', or 'we're attracting the wrong people.' Not for competitive positioning or strategy (use solution-design), campaign planning (use imc-plan), or fixing existing copy (use humanize)."
+description: "This skill should be invoked when the user needs to understand who they are selling to. Triggers include 'researching customers', 'building personas', 'ideal customer', 'analyzing pain points', 'understanding a target market', 'who are we building for', 'who should we target', 'buyer persona', 'jobs to be done', 'competitive audience analysis', 'market sizing', 'how should we segment', or 'what do people actually want' -- even if they just say 'I don't know who my customer is', 'we're guessing at our audience', or 'we're attracting the wrong people.' Not for competitive positioning or strategy (use solution-design), campaign planning (use imc-plan), or fixing existing copy (use humanize)."
 license: MIT
 metadata:
   author: hungv47
-  version: "2.2.0"
+  version: "2.2.1"
 ---
 
 # ICP Research & Audience Intelligence

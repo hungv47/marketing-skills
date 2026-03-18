@@ -5,7 +5,7 @@ argument-hint: "[url or description]"
 license: MIT
 metadata:
   author: hungv47
-  version: "2.2.0"
+  version: "2.2.1"
 ---
 
 # Landing Page Conversion Optimization

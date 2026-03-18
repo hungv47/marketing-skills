@@ -5,7 +5,7 @@ argument-hint: "[content file or text]"
 license: MIT
 metadata:
   author: hungv47
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Humanize & Compress

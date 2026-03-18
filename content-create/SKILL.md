@@ -5,7 +5,7 @@ argument-hint: "[angle or topic]"
 license: MIT
 metadata:
   author: hungv47
-  version: "2.2.0"
+  version: "2.2.1"
 ---
 
 # Content Creation

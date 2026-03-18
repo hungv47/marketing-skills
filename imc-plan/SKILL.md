@@ -4,7 +4,7 @@ description: "This skill should be invoked when the user wants a marketing strat
 license: MIT
 metadata:
   author: hungv47
-  version: "7.2.0"
+  version: "7.2.1"
 ---
 
 # Integrated Marketing Communication (IMC)
