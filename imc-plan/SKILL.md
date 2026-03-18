@@ -1,6 +1,6 @@
 ---
 name: imc-plan
-description: "Create an IMC plan, develop integrated marketing, build a campaign strategy, plan a product launch — IMC, integrated marketing, multi-channel marketing, campaign planning, content pillars, angle development, channel strategy, launch timeline."
+description: "Turns audience insights into content pillars, tested angles, channel assignments, and a phased timeline. Use when the user asks to create an IMC plan, develop integrated marketing, build a campaign strategy, or plan a product launch — IMC, integrated marketing, multi-channel marketing, campaign planning, content pillars, angle development, channel strategy, launch timeline."
 license: MIT
 metadata:
   author: hungv47

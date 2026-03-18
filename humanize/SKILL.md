@@ -1,6 +1,7 @@
 ---
 name: humanize
-description: "Humanize content, strip AI patterns, compress copy, inject voice, tighten writing, make this sound human, de-AI this — AI pattern removal, content compression, editorial polish."
+description: "Strips AI-generated patterns and compresses content so it reads like a human wrote it. Use when the user asks to humanize content, strip AI patterns, compress copy, inject voice, tighten writing, make text sound human, or de-AI content — AI pattern removal, content compression, editorial polish."
+argument-hint: "[content file or text]"
 license: MIT
 metadata:
   author: hungv47

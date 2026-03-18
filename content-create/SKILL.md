@@ -1,6 +1,7 @@
 ---
 name: content-create
-description: "Create content, write a content brief, make content for, create platform-native content, create social post, write content from IMC plan, write copy, create a headline, write a tagline, improve my copy — content creation, creative briefs, platform-native content, carousel, video script, thread, social media copy, A/B variants, copywriting, persuasive writing, headline formulas, CTA optimization."
+description: "Creates platform-native content with hooks, body copy, CTAs, and A/B variants from IMC plan angles. Use when the user asks to create content, write a content brief, make social posts, write copy, create headlines, write taglines, or improve copy — content creation, creative briefs, platform-native content, carousel, video script, thread, social media copy, A/B variants, copywriting, persuasive writing, headline formulas, CTA optimization."
+argument-hint: "[angle or topic]"
 license: MIT
 metadata:
   author: hungv47

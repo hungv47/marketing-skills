@@ -1,6 +1,6 @@
 ---
 name: icp-research
-description: "Research my ICP, understand my target audience, create customer personas, analyze customer pain points, find voice of customer data, B2B/B2C audience analysis, persona creation, competitor audience mapping — ICP, ideal customer profile, target audience research, persona development, customer research, audience intelligence, VoC collection."
+description: "Researches ideal customer profiles and builds deep audience intelligence from real data — personas, pain profiles, habitat maps, and VoC quotes. Use when the user asks to research their ICP, understand their target audience, create customer personas, analyze pain points, or find voice of customer data — ICP, ideal customer profile, target audience research, persona development, customer research, audience intelligence, VoC collection, B2B/B2C audience analysis."
 license: MIT
 metadata:
   author: hungv47

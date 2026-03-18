@@ -1,14 +1,11 @@
 ---
 name: lp-optimization
-description: "Optimize a landing page, improve conversion rates, review my landing page, create a high-converting landing page, audit my LP, reduce bounce rate — landing page design, conversion optimization, A/B testing strategy, CTA optimization, message match, form optimization, above-the-fold design, page speed."
+description: "Audits and optimizes landing pages for conversion using headline formulas, message match, social proof hierarchy, and form optimization. Use when the user asks to optimize a landing page, improve conversion rates, review a landing page, create a high-converting page, audit an LP, or reduce bounce rate — landing page design, conversion optimization, A/B testing strategy, CTA optimization, message match, form optimization, above-the-fold design, page speed."
+argument-hint: "[url or description]"
 license: MIT
 metadata:
   author: hungv47
   version: "2.2.0"
-  sources:
-    - https://copyhackers.com
-    - https://cxl.com
-    - https://unbounce.com/landing-page-articles/
 ---
 
 # Landing Page Conversion Optimization
@@ -277,3 +274,5 @@ Expected impact: ~40% form completion improvement
 | [advanced-psychology.md](references/advanced-psychology.md) | Headline formulas, close sequences, pricing, urgency |
 | [testing-optimization.md](references/testing-optimization.md) | A/B testing, tracking |
 | [implementation-checklist.md](references/implementation-checklist.md) | Pre-launch checklists |
+
+**Sources:** [CopyHackers](https://copyhackers.com), [CXL](https://cxl.com), [Unbounce](https://unbounce.com/landing-page-articles/)

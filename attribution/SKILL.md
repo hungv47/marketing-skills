@@ -1,6 +1,6 @@
 ---
 name: attribution
-description: "Map attribution, connect initiatives to KPIs, trace content to goals, audit coverage, check KPI alignment, find orphan initiatives — attribution mapping, KPI hierarchy, coverage analysis, initiative alignment, KPI tracking, content-to-revenue mapping, campaign ROI analysis, marketing accountability."
+description: "Maps attribution chains from content to initiatives to KPIs, identifies orphan content and initiatives, and produces gap analysis with action items. Use when the user asks to map attribution, connect initiatives to KPIs, trace content to goals, audit coverage, check KPI alignment, or find orphan initiatives — attribution mapping, KPI hierarchy, coverage analysis, initiative alignment, content-to-revenue mapping, campaign ROI analysis, marketing accountability."
 license: MIT
 metadata:
   author: hungv47

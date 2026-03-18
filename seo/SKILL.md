@@ -1,6 +1,7 @@
 ---
 name: seo
-description: "SEO audit, AI SEO, programmatic SEO, competitor pages, technical SEO, generative engine optimization, site architecture — SEO strategy, technical audit, GEO, AI citations, pSEO, comparison pages, alternative pages, schema markup, site structure."
+description: "Provides technical SEO audits, AI/generative engine optimization, programmatic SEO strategy, and competitor comparison page planning. Use when the user asks for an SEO audit, AI SEO, programmatic SEO, competitor pages, technical SEO, generative engine optimization, or site architecture analysis — SEO strategy, technical audit, GEO, AI citations, pSEO, comparison pages, alternative pages, schema markup, site structure."
+argument-hint: "[url or mode]"
 license: MIT
 metadata:
   author: hungv47
