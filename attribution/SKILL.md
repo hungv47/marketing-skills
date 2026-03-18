@@ -14,8 +14,8 @@ metadata:
 **Core Question:** "Can we trace every initiative to a measurable outcome?"
 
 ## Inputs Required
-- KPIs from `.agents/mkt/targets.md` or existing OKRs
-- Initiatives from `.agents/mkt/solution-design.md`
+- KPIs from `.agents/targets.md` or existing OKRs
+- Initiatives from `.agents/solution-design.md`
 - Content from `.agents/mkt/imc-plan.md` or `.agents/mkt/content/`
 
 ## Output
@@ -60,7 +60,7 @@ None — can build from scratch by interviewing.
 | Previous `attribution.md` | attribution | Check progress on prior action items |
 | `experiment-*.md` | experiment (from strategy-skills) | Experiment outcomes as confidence adjustments — concluded experiments update contribution confidence |
 
-Read upstream files if they exist: `.agents/mkt/targets.md`, `.agents/mkt/solution-design.md`, `.agents/mkt/imc-plan.md`. If previous `.agents/mkt/attribution.md` exists, read it — check progress on prior action items before building the new map.
+Read upstream files if they exist: `.agents/targets.md`, `.agents/solution-design.md`, `.agents/mkt/imc-plan.md`. If previous `.agents/mkt/attribution.md` exists, read it — check progress on prior action items before building the new map.
 
 ### Interview
 If no upstream files exist, interview for:
@@ -283,6 +283,8 @@ None — both initiatives map to KPIs.
 
 **Static attribution maps** — Building the map once and never updating it. Attribution maps decay as initiatives ship, KPIs shift, and new content is produced. Set a review cadence (monthly minimum).
 
+**Attribution without tracking infrastructure** — Mapping content to KPIs on paper while having no event tracking, UTM parameters, or analytics in place. The map becomes theoretical without implementation. See [references/tracking-guide.md](references/tracking-guide.md) for minimum viable tracking.
+
 **Wrong attribution model for the business** — Using last-touch attribution for a B2B product with 90-day sales cycles attributes everything to the final touchpoint and misses the content that created awareness. Match model to buying cycle length. See [references/attribution-models.md](references/attribution-models.md).
 
 **Metrics without owners** — Every KPI and initiative must have a named person (not "the team"). Unowned metrics don't get improved — they get reported on and shrugged at.
@@ -293,3 +295,4 @@ None — both initiatives map to KPIs.
 
 - [references/attribution-examples.md](references/attribution-examples.md) — Worked examples across business types
 - [references/attribution-models.md](references/attribution-models.md) — Model selection guide by business type and buying cycle
+- [references/tracking-guide.md](references/tracking-guide.md) — Event naming conventions, UTM standards, minimum viable tracking stack

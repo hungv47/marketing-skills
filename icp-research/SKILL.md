@@ -347,6 +347,8 @@ Run `imc-plan` to turn these insights into a communication plan.
 
 **Platform-level habitat mapping** — "They're on LinkedIn" is too vague to act on. Specify the exact subreddit, group, hashtag, or content type — vague platforms produce vague channel strategies.
 
+**Recycling stale research** — Reusing personas and VoC quotes from a previous product iteration or market without re-validation. Markets shift, competitors launch, and pain points evolve. Always validate existing research against current sources before reusing.
+
 ---
 
 ## References

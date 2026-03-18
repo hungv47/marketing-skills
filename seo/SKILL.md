@@ -38,6 +38,11 @@ Before delivering, verify:
 Previous: `icp-research` + `imc-plan` (reads audience questions and content pillars) | Next: content production / site updates / `experiment` (to test SEO changes)
 
 Horizontal skill — can be invoked independently or after IMC planning.
+
+### Skill Deference
+- **Need production-quality copy for comparison pages?** → Run `content-create` after SEO defines the page structure and keyword targets.
+- **Content pillar prioritization?** → Defer to `imc-plan` for audience-driven prioritization; SEO provides search demand data.
+
 **Re-run triggers:** Technical audit quarterly, AI SEO monthly (AI landscape changes fast), after Google core updates, when entering new keyword territories.
 
 ### Coordination with IMC Plan

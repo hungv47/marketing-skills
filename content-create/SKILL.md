@@ -40,6 +40,8 @@ Previous: `imc-plan` | Next: `attribution`
 - **Page already exists and problem is conversion?** → Run `lp-optimization` first — it diagnoses conversion blockers before rewriting.
 - **Content reads as AI-generated?** → Run `humanize` after this skill — it strips AI patterns and compresses.
 - **Seven-Sweeps (Step 6) is a quality pass within this skill.** If output still reads as AI-generated after Seven-Sweeps, run `humanize` as a dedicated pass.
+- **Angle already defined in IMC plan?** → Use it directly — don't re-derive. This skill refines hooks within an angle, not replaces the angle.
+- **Optimizing for search/AI citations?** → Coordinate with `seo` for keyword targeting, schema markup, and content structure.
 
 ---
 
