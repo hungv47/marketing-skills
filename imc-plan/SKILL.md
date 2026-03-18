@@ -4,7 +4,7 @@ description: "Create an IMC plan, develop integrated marketing, build a campaign
 license: MIT
 metadata:
   author: hungv47
-  version: "7.1.0"
+  version: "7.2.0"
 ---
 
 # Integrated Marketing Communication (IMC)
@@ -12,6 +12,10 @@ metadata:
 *Communicate Track — Step 2 of 4. Turns audience insights into pillars, tested angles, channel assignments, and a phased timeline.*
 
 **Core Question:** "How do all these channels work together?"
+
+## Philosophy
+
+Frameworks, percentages, and templates here are strong defaults — not rigid rules. When audience data, business context, or creative instinct suggests a different approach, adapt freely. Document reasoning so the team learns from deviations.
 
 ## Inputs Required
 - ICP research from `.agents/mkt/icp-research.md`
@@ -73,12 +77,14 @@ Read `.agents/mkt/icp-research.md`. Import personas, pains, habitat maps, VoC qu
 
 Extract 3-5 pillars from ICP research:
 
-| Source | Pillar Type | % Content |
+| Source | Pillar Type | % Content (default) |
 |--------|------------|-----------|
 | Top Pain Points | Problem | 25-30% |
 | Aspirational Identity | Transformation | 30-35% |
 | Current Workarounds | Alternative | 20-25% |
 | Decision Criteria | Trust | 15-20% |
+
+Adjust based on audience awareness level — an Unaware market may need 50%+ Problem content. Let ICP data drive the split, not this table.
 
 Trace each pillar to a VoC quote or ICP finding — pillars without audience evidence produce content that sounds generic.
 
@@ -108,14 +114,28 @@ When multiple angles pass the 3-Question Test, score them to decide production o
 
 | Factor | Weight | Score 1-5 |
 |--------|--------|-----------|
-| Audience Pain Intensity | 40% | How acute is the underlying pain? (from ICP research) |
+| Audience Pain Intensity | 40% | How acute is the pain this angle targets? (scored using ICP evidence — see below) |
 | 3-Question Score | 30% | How strongly does it pass visual + falsifiable + unique? |
 | Channel-Content Fit | 20% | How well does the angle suit available channels? |
 | Production Effort | 10% | How easy to produce? (lower effort = higher score) |
 
 **Weighted score** = (Pain × 0.4) + (3Q × 0.3) + (Fit × 0.2) + (Effort × 0.1)
 
+Starting defaults. If resource-constrained, increase Production Effort weight. If you have few angles, skip scoring and produce them all. The formula prevents common mistakes at scale — it's not required for a 3-angle plan.
+
 Produce highest-scoring angles first. This prevents the common trap of producing easy content that doesn't address the sharpest audience pains.
+
+**How to score Pain Intensity (the 40% factor):**
+
+| Score | Evidence Required |
+|-------|------------------|
+| 5 | Pain blocks purchase decisions (cited as top objection in ICP decision psychology) |
+| 4 | Pain has financial or career impact (specific cost/consequence cited in VoC) |
+| 3 | Pain causes regular time waste (mentioned in 3+ VoC quotes) |
+| 2 | Pain is acknowledged but low priority ("nice to fix" language in VoC) |
+| 1 | Pain is assumed, no VoC evidence supports it |
+
+Cross-reference against ICP research: count distinct quotes mentioning this pain, check if it appears in decision psychology objections, and check emotional intensity. A pain that blocks purchase (score 5) deserves 40% weight; an assumed pain (score 1) doesn't deserve production resources.
 
 ### Content Classification
 
@@ -139,11 +159,13 @@ See [references/channel-strategy.md](references/channel-strategy.md) for channel
 
 ## Step 5: Phase Timeline
 
-| Phase | Dates | Focus | Content Mix |
+| Phase | Dates | Focus | Content Mix (typical) |
 |-------|-------|-------|-------------|
 | Pre-launch | [start–end] | Build anticipation, educate on problem | 70% Problem, 30% Solution |
 | Launch | [start–end] | Drive action, prove value | 30% Problem, 40% Proof, 30% CTA |
 | Sustain | [start–ongoing] | Maintain presence, deepen trust | 40% Solution, 30% Proof, 30% Brand |
+
+Depends on existing assets and audience awareness. A product with strong proof can front-load Proof in pre-launch. A category-creating product may need 90% Problem throughout.
 
 ---
 
@@ -262,6 +284,67 @@ Run `content-create` to turn angles into production-ready content.
 **Timeline without dependencies** — Listing phases without specifying what must complete before the next phase begins. Pre-launch content must exist before launch — if it doesn't, the timeline is fiction.
 
 **Too many pillars** — More than 5 pillars dilutes content quality and makes the editorial calendar unmanageable. Force-rank by audience pain intensity and cut to 3-5.
+
+---
+
+## Launch Sequencing (ORB Framework)
+
+When the IMC plan is for a product launch (not ongoing campaign), use phased rollout instead of a single "launch day":
+
+### Channel Priority: Owned → Rented → Borrowed
+
+| Channel Type | Examples | Role | When |
+|-------------|---------|------|------|
+| **Owned** | Email list, blog, community | Build anticipation with people you control | Pre-launch through sustain |
+| **Rented** | Social media, marketplaces, paid ads | Amplify to borrowed audiences | Launch through sustain |
+| **Borrowed** | Guest posts, influencer partnerships, PR | Credibility + reach from others' audiences | Launch peak |
+
+Everything should funnel back to owned channels. Rented and borrowed channels build your owned audience — they're not ends in themselves.
+
+### Five-Phase Launch
+
+| Phase | Duration | Focus | Key Action |
+|-------|----------|-------|-----------|
+| **Internal** | 1-2 weeks | Align team, prepare assets | Ensure everyone can demo and explain |
+| **Alpha** | 1-2 weeks | Trusted users/advisors | Get candid feedback, fix breaking issues |
+| **Beta** | 2-4 weeks | Wider trusted group | Collect testimonials, refine messaging |
+| **Early Access** | 1-2 weeks | Waitlist, community | Build anticipation, create FOMO with limited access |
+| **Full Launch** | Launch day + 2 weeks | Public | Coordinate all channels simultaneously |
+
+**Key insight:** A launch is a campaign, not a day. Stagger announcements across phases to maintain momentum — shipping everything at once means one spike and silence.
+
+---
+
+## Editorial Calendar Guidance
+
+After the IMC plan is created, content needs a production cadence — not just a one-time angle bank.
+
+### Weekly Content Mix
+
+Allocate content production across pillars and types:
+
+| Content Type | % of Weekly Output (default) | Purpose |
+|-------------|-------------------|---------|
+| Pillar content (long-form) | 20% | SEO, authority, depth |
+| Angle-driven social | 50% | Engagement, reach, community |
+| Trust/proof content | 20% | Case studies, testimonials, data |
+| Brand/culture | 10% | Personality, team, values |
+
+Starting allocation. Adjust based on what's working — re-evaluate quarterly based on attribution data.
+
+### Batch Production
+
+Produce content in batches, not one piece at a time:
+1. **Weekly batch:** Generate 5-7 social pieces from 1-2 angles
+2. **Bi-weekly batch:** Produce 1 long-form piece (blog, guide, video)
+3. **Monthly batch:** Create 1 proof piece (case study, data report)
+
+### Pillar Rotation
+
+Rotate through pillars to prevent audience fatigue:
+- Don't post the same pillar more than 2 days in a row
+- Each pillar should appear at least once per week
+- Track which pillars drive the most engagement — adjust % allocation quarterly
 
 ---
 

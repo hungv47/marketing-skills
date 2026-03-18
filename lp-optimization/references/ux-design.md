@@ -191,7 +191,24 @@ Ask only what you need at signup. Defer everything else.
 | First value moment | Company, team size | Needed for product configuration |
 | Later | Everything else | User is now invested |
 
-**The 3-Field Threshold:** More than 3 visible fields at signup → must use progressive profiling (multi-step) or progressive disclosure. Each additional field above 3 reduces completion rate by ~10%.
+**The 3-Field Threshold:** More than 3 visible fields at signup → must use progressive profiling (multi-step) or progressive disclosure.
+
+**Field cost quantification:**
+
+| Field Count | Conversion Impact |
+|-------------|------------------|
+| 1-3 fields | Baseline (optimal) |
+| 4-6 fields | 10-25% reduction |
+| 7+ fields | 25-50%+ reduction |
+
+Each additional field above 3 costs approximately 5-10% conversion. Use this data when stakeholders push for more fields — the cost is quantifiable, not just "best practice."
+
+**Field-level analytics** (essential, not optional):
+- Track completion rate per field (where do people abandon?)
+- Track error rate per field (which fields cause the most mistakes?)
+- Track time per field (which fields slow people down?)
+
+These three metrics pinpoint exactly which field to fix or remove — without them, form optimization is guesswork.
 
 ### Value-First Principle
 

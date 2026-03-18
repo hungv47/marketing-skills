@@ -13,6 +13,10 @@ metadata:
 
 **Core Question:** "How do we get found — by both search engines and AI models?"
 
+## Philosophy
+
+SEO combines hard technical constraints (Google's CWV thresholds, character limits) with strategic judgment. This skill distinguishes between the two. Technical specs from platform documentation are constraints. Strategic recommendations are defaults with context for when to deviate.
+
 ## Inputs Required
 - ICP research from `.agents/mkt/icp-research.md` (audience questions, pain points, search behavior)
 - IMC plan from `.agents/mkt/imc-plan.md` (content pillars and angles)
@@ -34,6 +38,18 @@ Before delivering, verify:
 Previous: `icp-research` + `imc-plan` (reads audience questions and content pillars) | Next: content production / site updates / `experiment` (to test SEO changes)
 
 Horizontal skill — can be invoked independently or after IMC planning.
+
+### Coordination with IMC Plan
+
+When both `seo` and `imc-plan` are in use, they should coordinate:
+
+| Situation | Who Leads | How They Coordinate |
+|-----------|----------|-------------------|
+| Content pillar has search demand | SEO leads topic selection | IMC provides angles and audience language; SEO provides keyword clusters and structure |
+| Content pillar is novel/contrarian | IMC leads topic selection | IMC creates shareable content; SEO optimizes for related informational queries |
+| Existing content needs both reach types | Both | Tag angles as Searchable/Shareable in IMC; SEO optimizes searchable angles for AI+traditional |
+
+**Rule:** Don't let SEO keyword data override IMC audience insights or vice versa. The best content addresses a real audience pain (IMC) AND has search demand (SEO). When they conflict, audience pain wins — you can promote great content through non-search channels, but you can't make irrelevant content convert even if it ranks.
 
 ---
 
@@ -97,7 +113,7 @@ Layer 5: Authority & Links (does the site have external credibility?)
 - [ ] Crawl budget is not wasted on low-value pages (paginated archives, tag pages, search results)
 
 ### Layer 2: Technical Foundations
-- [ ] Core Web Vitals pass: LCP < 2.5s, INP < 200ms, CLS < 0.1
+- [ ] Core Web Vitals pass: LCP < 2.5s, INP < 200ms, CLS < 0.1 (Google's official thresholds — not adjustable)
 - [ ] Mobile-friendly (responsive, no horizontal scroll, touch targets ≥44px)
 - [ ] HTTPS everywhere (no mixed content)
 - [ ] URL structure is clean (lowercase, hyphenated, human-readable, no over-nesting)
@@ -106,8 +122,8 @@ Layer 5: Authority & Links (does the site have external credibility?)
 - [ ] Page speed: load time < 3s on mobile
 
 ### Layer 3: On-Page Optimization
-- [ ] Title tags: 50-60 characters, include primary keyword, unique per page
-- [ ] Meta descriptions: 150-160 characters, include CTA, unique per page
+- [ ] Title tags: 50-60 characters, include primary keyword, unique per page (display limits set by search engines — content beyond gets truncated)
+- [ ] Meta descriptions: 150-160 characters, include CTA, unique per page (display limits set by search engines — content beyond gets truncated)
 - [ ] H1: one per page, includes primary keyword
 - [ ] H2/H3 hierarchy: logical, covers subtopics, matches search intent
 - [ ] Primary keyword appears in first 100 words
@@ -158,7 +174,7 @@ AI models extract and cite content that's structured for easy parsing.
 | Rule | Why | How |
 |------|-----|-----|
 | Clear H2/H3 hierarchy | AI models parse headings to understand topic structure | Every section answers one specific question |
-| 40-60 word answer passages | Citation-length sweet spot — long enough to be useful, short enough to quote in full | Write a concise answer paragraph immediately after each H2 |
+| 40-60 word answer passages (typical — adjust for topic complexity: simple definitions may need 20-30 words; technical explanations may need 80-100) | Citation-length sweet spot — long enough to be useful, short enough to quote in full | Write a concise answer paragraph immediately after each H2 |
 | Comparison tables | Comparisons are #1 most-cited content type (33% of AI citations) | Use tables for feature comparisons, pricing tiers, tool comparisons |
 | Source citations in content | Citing sources is the **strongest single factor** for AI visibility — +40% citation boost (Princeton GEO study) | Link to primary sources, studies, data |
 | Statistics in content | +37% citation boost | Include specific numbers, percentages, data points |
@@ -224,6 +240,28 @@ Decision: If you want AI citations, allow the crawlers. If GPTBot is blocked, Ch
 2. **Structure audit:** Do top pages have H2/H3 hierarchy, 40-60 word answer passages, comparison tables, source citations?
 3. **Authority audit:** Third-party mentions, review site presence, expert attribution, original data published?
 4. **Crawler audit:** robots.txt directives for AI bots, sitemap accessibility, server log activity?
+
+### AI SEO Validation Protocol
+
+Optimization without validation is guesswork. Track whether changes actually improve AI citations:
+
+**Baseline (before optimization):**
+1. Pick 10-20 queries: 5 brand queries, 5 category queries, 5 "how to" queries from ICP research
+2. Run each across ChatGPT, Perplexity, Google AI Overviews, Claude
+3. Score each: 0 = not mentioned, 1 = mentioned but not cited, 2 = cited with link/attribution
+4. Record total baseline score (max = queries × platforms × 2)
+
+**Post-optimization (re-test weekly for 4 weeks):**
+1. Run the same 10-20 queries on the same platforms
+2. Score identically
+3. Track delta from baseline
+
+| Outcome | Interpretation | Action |
+|---------|---------------|--------|
+| Score improves >20% in 4 weeks | Optimization working | Continue and expand to more content |
+| Score flat after 4 weeks | Wrong optimization target | Re-diagnose: is the issue Structure, Authority, or Presence? |
+| Score improves on some platforms but not others | Platform-specific gap | Focus on the lagging platform's specific data source |
+| Score decreases | Something broke | Check crawler access (robots.txt), content freshness, and entity consistency |
 
 See [references/ai-seo.md](references/ai-seo.md) for platform-specific optimization details and content templates.
 

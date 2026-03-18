@@ -4,7 +4,7 @@ description: "Research my ICP, understand my target audience, create customer pe
 license: MIT
 metadata:
   author: hungv47
-  version: "2.1.0"
+  version: "2.2.0"
 ---
 
 # ICP Research & Audience Intelligence
@@ -12,6 +12,10 @@ metadata:
 *Communicate Track — Step 1 of 4. Builds deep audience intelligence from real research, not assumptions.*
 
 **Core Question:** "Who exactly are we talking to and what keeps them up at night?"
+
+## Philosophy
+
+This skill provides research structure, not a rigid formula. The minimums for channels, quotes, and platforms ensure thoroughness — they're not arbitrary thresholds. If overwhelming evidence surfaces in 2 channels, you don't need a third. If one devastating quote captures a pain perfectly, you don't need three. Let evidence dictate depth.
 
 ## Inputs Required
 - Product context from `.agents/mkt/product-context.md` (or willingness to answer product questions)
@@ -22,7 +26,7 @@ metadata:
 ## Quality Gate
 Before delivering, verify:
 - [ ] Every VoC quote includes platform name and is from a real source (not agent-generated)
-- [ ] Each persona has a habitat map with ≥3 specific channels (not just "Reddit" — which subreddit?)
+- [ ] Each persona has a habitat map with specific channels with supporting evidence. Aim for ≥3; if research surfaces fewer, document why (niche audience, concentrated community). (Not just "Reddit" — which subreddit?)
 - [ ] Each emotional driver is traced to ≥2 specific quotes
 - [ ] Decision psychology section names specific cognitive biases and objections (not generic "they need trust")
 
@@ -114,7 +118,7 @@ Use these specific queries. Adapt [topic] to the product/audience:
 
 ### Multi-Platform Coverage
 
-Search ≥4 of these categories:
+Search across multiple categories for breadth. Aim for ≥4 when audience is spread; for niche B2B, 2-3 may suffice if they cover primary habitats:
 
 | Category | Where | What to Extract |
 |----------|-------|----------------|
@@ -140,6 +144,20 @@ A **bad quote** is:
 
 Collect 3 quotes per pain category. Stop when patterns repeat.
 
+**Quote weighting** — not all quotes are equally useful. Prioritize:
+
+| Priority | Quote Type | Why |
+|----------|-----------|-----|
+| **Critical** | Decision-maker quote (buyer, budget holder) | Their words are what stops or starts a purchase |
+| **High** | Quote revealing mechanism (explains WHY pain exists, not just that it does) | Mechanisms inform solutions; complaints only inform messaging |
+| **High** | Quote contradicting your assumptions | The most valuable data is what surprises you |
+| **Standard** | User/practitioner quote expressing pain | Useful for copy but doesn't reveal buying dynamics |
+| **Low** | Emotion-only quote ("this is so frustrating") without mechanism | Validates intensity but gives no strategic direction |
+
+Hunt for mechanism-revealing and decision-maker quotes first — they're the most strategically useful.
+
+When you have 3 quotes for a pain category, check: do you have at least one mechanism-revealing quote? If all 3 are emotion-only, keep searching — you have the WHAT but not the WHY.
+
 ### Pain Analysis (3 Levels)
 
 | Level | What | Where to Find |
@@ -158,6 +176,18 @@ For every platform where audience activity appears, document specifically — va
 
 Specify the exact community, not just the platform — "Reddit" is too vague; name the subreddit. "LinkedIn" is too vague; name the group or content type.
 
+**Engagement type classification** — sample 20-30 profiles from the community to classify:
+
+| Type | Behavior Threshold | How to Identify |
+|------|-------------------|----------------|
+| **Lurker** | Visits regularly, posts <1x/month, consumes >10 pieces/week | No visible post history in community; high member count vs. low post volume |
+| **Engager** | Comments/likes 1-4x/month, occasionally shares | Visible in comment sections, responds to others, doesn't start threads |
+| **Creator** | Posts original content 1x/week+, starts discussions, responds to replies | Active post history, recognized by community, generates threads |
+| **Subscriber** | Prefers push content (email, notifications), passive consumption | Follows newsletters, subscribed to feeds, rarely visible in community |
+| **Searcher** | Uses platform search when problems arise, no ongoing presence | Appears in search-triggered threads, asks questions then disappears |
+
+Assign **density** as % of your target persona active in the community: H = >30%, M = 10-30%, L = <10%. Estimate by checking: how many posts in the last month are from someone matching your persona's role/situation?
+
 See [references/habitat-mapping.md](references/habitat-mapping.md) for density definitions.
 
 ### Decision Psychology
@@ -173,7 +203,7 @@ Document:
 
 ## Step 3: Synthesize
 
-### 2 Personas (max)
+### 2 Personas (max) — Genuine constraint: more than 2 dilutes focus for downstream skills. Force-rank if research reveals 4+ segments.
 
 For each persona, provide ALL of:
 - **Demographics:** Age range, role, industry, company size
@@ -313,3 +343,4 @@ Run `imc-plan` to turn these insights into a communication plan.
 - [references/habitat-mapping.md](references/habitat-mapping.md) — Density definitions, cross-persona analysis
 - [references/icp-to-imc-handoff.md](references/icp-to-imc-handoff.md) — How to package outputs for IMC
 - [references/voice-of-customer.md](references/voice-of-customer.md) — VoC collection patterns
+- [references/customer-interviews.md](references/customer-interviews.md) — Win/loss interview methodology, support ticket analysis

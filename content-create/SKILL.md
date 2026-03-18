@@ -4,7 +4,7 @@ description: "Create content, write a content brief, make content for, create pl
 license: MIT
 metadata:
   author: hungv47
-  version: "2.1.0"
+  version: "2.2.0"
 ---
 
 # Content Creation
@@ -12,6 +12,10 @@ metadata:
 *Communicate Track — Step 3 of 4. Turns IMC angles into production-ready content with A/B variants.*
 
 **Core Question:** "Would the target persona actually stop scrolling for this?"
+
+## Philosophy
+
+The copy frameworks (PAS, 3-Question Test, CTA formula) are proven tools — not mandatory templates. A skilled writer may combine frameworks, or write a hook that breaks the 8-word guideline because the extra words earn their place. The test is: does this stop the scroll and move the reader? Frameworks get you there faster. They don't define the only path.
 
 ## Inputs Required
 - Angle + channel from `.agents/mkt/imc-plan.md` (or user-provided)
@@ -21,7 +25,7 @@ metadata:
 
 ## Quality Gate
 Before delivering, verify:
-- [ ] Hook communicable in ≤8 words (if the core message doesn't fit in 8 words, it's too complex)
+- [ ] Hook communicable concisely — ≤8 words is a strong target; if longer, every extra word must earn its place by adding specificity or surprise
 - [ ] Hook passes 3-question test: visual? falsifiable? uniquely yours?
 - [ ] Every headline/hook contains concrete nouns or specific numbers (no abstract "better," "innovative," "leading")
 - [ ] Key headlines pass the Competitor Swap Test (swap in competitor name — if it still works, rewrite)
@@ -75,6 +79,16 @@ Run the hook through the 3-question test. If any answer is no, rewrite before co
 
 Write 3-5 hook variations using different hook types before selecting. Run each through the 3-question test. Keep the strongest; present top 2 as alternatives with annotations explaining why each works. See [references/copywriting-craft.md](references/copywriting-craft.md) for the full variation workflow and evaluation rubric.
 
+**When 2+ hooks tie on the 3Q test**, apply secondary criteria:
+
+| Tiebreaker | Question | Higher Score Wins |
+|-----------|---------|-------------------|
+| **Surprise** | Which hook was least obvious / most unexpected? | Surprising hooks stop the scroll |
+| **ICP anchor** | Which hook maps to a specific metric or pain from ICP research? | Grounded hooks convert better |
+| **Objection-free** | Which hook triggers zero obvious objections? | Clean hooks have less falloff |
+
+Document which tiebreaker you used — this trains your judgment for future content.
+
 ---
 
 ## Step 2: Write the Body
@@ -99,6 +113,8 @@ Write the ACTUAL copy — not an outline, not a description.
 | Product Aware | Try | "Start free trial →" |
 | Most Aware | Act | "Start now — first month free →" |
 
+Starting vocabulary, not a prescription. Match CTA energy to audience readiness, not just the awareness stage label. A Most Aware audience may respond better to a softer CTA if trust is already established.
+
 Include: exact CTA text, destination, tracking parameters.
 
 ---
@@ -116,7 +132,18 @@ Create variant B that changes exactly ONE element:
 
 ---
 
-## Step 5: Asset Checklist
+## Step 5: VoC Validation Check
+
+Before finalizing, verify the content echoes actual audience language:
+- [ ] Hook uses words/phrases from VoC quotes in ICP research (not marketing-speak)
+- [ ] Pain expressions match how the audience actually describes the problem
+- [ ] Emotional triggers are grounded in ICP emotional drivers (not assumed)
+
+If `.agents/mkt/icp-research.md` exists, pull 2-3 VoC quotes and check: does this content sound like something the persona would share, or something a marketer would write? The gap between these two is where content underperforms.
+
+---
+
+## Step 6: Asset Checklist
 
 What the production team needs. Be specific about dimensions, formats, and brand assets.
 
@@ -308,3 +335,5 @@ Before writing any key line, answer:
 - [references/platform-specs.md](references/platform-specs.md) — Platform dimensions, limits, native patterns
 - [references/copy-frameworks.md](references/copy-frameworks.md) — Headline formulas, PAS framework, page templates
 - [references/copywriting-craft.md](references/copywriting-craft.md) — Variation workflow, extended techniques, evaluation rubric, annotation guide
+- [references/seven-sweeps.md](references/seven-sweeps.md) — Structured 7-pass editing method (Clarity → Voice → So What → Prove It → Specificity → Emotion → Zero Risk)
+- [references/repurposing-cascade.md](references/repurposing-cascade.md) — Hero → derivative content workflow across channels

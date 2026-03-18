@@ -4,7 +4,7 @@ description: "Map attribution, connect initiatives to KPIs, trace content to goa
 license: MIT
 metadata:
   author: hungv47
-  version: "2.1.0"
+  version: "2.2.0"
 ---
 
 # Attribution Mapping
@@ -184,7 +184,18 @@ North Star: [metric] — [current] → [target]
 | 1 | ... | ... | ... | ... |
 
 ## Previous Review Progress
-[If re-running: status of prior action items]
+
+| # | Prior Action | Status | Outcome |
+|---|-------------|--------|---------|
+| 1 | [action from last review] | Done / In Progress / Parked / Dropped | [Result if Done: what metric moved? If not done: blocker or reason] |
+
+Status definitions:
+- **Done** — shipped AND outcome measured. If no outcome data, it's In Progress.
+- **In Progress** — started but not complete. Note blocker if any.
+- **Parked** — deprioritized deliberately. Note what changed.
+- **Dropped** — decided not to pursue. Note explicit reason.
+
+If the same action appears as "Parked" or "Dropped" across 2+ reviews, escalate: either commit to doing it or kill the underlying initiative.
 
 > On re-run: rename existing artifact to `attribution.v[N].md` and create new with incremented version.
 ```
@@ -253,8 +264,13 @@ None — both initiatives map to KPIs.
 
 **Static attribution maps** — Building the map once and never updating it. Attribution maps decay as initiatives ship, KPIs shift, and new content is produced. Set a review cadence (monthly minimum).
 
+**Wrong attribution model for the business** — Using last-touch attribution for a B2B product with 90-day sales cycles attributes everything to the final touchpoint and misses the content that created awareness. Match model to buying cycle length. See [references/attribution-models.md](references/attribution-models.md).
+
+**Metrics without owners** — Every KPI and initiative must have a named person (not "the team"). Unowned metrics don't get improved — they get reported on and shrugged at.
+
 ---
 
 ## References
 
 - [references/attribution-examples.md](references/attribution-examples.md) — Worked examples across business types
+- [references/attribution-models.md](references/attribution-models.md) — Model selection guide by business type and buying cycle
