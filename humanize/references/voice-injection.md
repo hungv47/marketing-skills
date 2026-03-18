@@ -102,6 +102,32 @@ Experience markers that signal human authorship:
 
 ---
 
+## Reader Presence
+
+AI defaults to third-person generalization — floating above the scene, narrating from a distance. Human writing puts the reader inside the scene. This technique replaces distant observations with direct address.
+
+| Distant (AI) | Present (Human) |
+|--------------|-----------------|
+| "Nobody designed this." | "You didn't sit down and design this." |
+| "People tend to avoid hard conversations." | "You avoid the hard conversation. Everyone does." |
+| "The industry is shifting toward X." | "Your competitors shipped X last quarter." |
+| "Organizations struggle with retention." | "You're losing people. You probably know exactly who's next." |
+| "This happens because teams lack alignment." | "Your team isn't aligned — and the standups aren't fixing it." |
+
+**When to apply:**
+- Any sentence where "people," "organizations," "teams," or "companies" could be replaced with "you" or "your"
+- Any sentence where "nobody" or "everyone" creates false universality — scope it to the reader's experience
+- Any declarative observation that would hit harder as a direct statement
+
+**When NOT to apply:**
+- Documentation and technical writing (maintain neutral register)
+- Academic or research content (maintain formal distance)
+- When the reader genuinely isn't the subject — don't force "you" into sentences about third parties
+
+This technique pairs with Pattern 32 (Narrator-from-a-Distance) in [ai-patterns.md](ai-patterns.md). Use Pattern 32 to detect, this section to fix.
+
+---
+
 ## Colloquialism Calibration
 
 The right level of informal language depends on the content type and audience:

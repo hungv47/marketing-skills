@@ -22,7 +22,7 @@ metadata:
 
 ## Quality Gate
 Before delivering, verify:
-- [ ] Zero Hard Tell patterns from the 30-pattern checklist
+- [ ] Zero Hard Tell patterns from the 33-pattern checklist
 - [ ] ≤2 Soft Tell patterns in the entire piece
 - [ ] No clusters of 3+ high-frequency AI vocabulary words in any paragraph
 - [ ] ≥15% word reduction from original
@@ -63,7 +63,7 @@ None — can humanize any text standalone.
 
 Scan the content for two categories of problems:
 
-**AI Patterns** — Run through all 30 patterns in [references/ai-patterns.md](references/ai-patterns.md). Start with the high-frequency AI vocabulary scan, then work through each category. For each pattern found, log:
+**AI Patterns** — Run through all 33 patterns in [references/ai-patterns.md](references/ai-patterns.md). Start with the high-frequency AI vocabulary scan, then work through each category. For each pattern found, log:
 - Pattern number and name
 - Exact text that triggered it
 - Severity (Hard Tell / Soft Tell)
@@ -144,16 +144,31 @@ Systematic compression using [references/conciseness-rules.md](references/concis
 Re-scan the entire piece using a two-pass self-audit:
 
 ### Pass 1: Systematic check
-1. **Pattern check** — Run all 30 patterns again. Steps 3-4 can reintroduce patterns (especially during voice injection when new sentences are written). Fix any that appear.
+1. **Pattern check** — Run all 33 patterns again. Steps 3-4 can reintroduce patterns (especially during voice injection when new sentences are written). Fix any that appear.
 2. **Vocabulary check** — Scan for clusters of 3+ high-frequency AI words in any paragraph. Replace or restructure.
 3. **Density check** — Every paragraph must contain at least one concrete fact, number, or named example. Paragraphs that are pure abstraction get cut or upgraded.
 4. **Meaning preservation** — Compare against the original. Every unique idea, data point, example, and nuance from the original must still be present. If compression removed substance, restore it.
 5. **Compression verification** — Calculate final word count vs. original. Must be ≥15% reduction. If not, return to Step 4.
 
 ### Pass 2: Introspection loop
-After Pass 1, explicitly ask: **"What still makes this obviously AI-generated?"** Answer honestly — identify any remaining tells, even subtle ones not in the 30-pattern checklist. Then fix those tells and re-read. This catches emergent patterns that no checklist covers: the overall "feel" of AI writing that comes from multiple small signals combining.
+After Pass 1, explicitly ask: **"What still makes this obviously AI-generated?"** Answer honestly — identify any remaining tells, even subtle ones not in the 33-pattern checklist. Then fix those tells and re-read. This catches emergent patterns that no checklist covers: the overall "feel" of AI writing that comes from multiple small signals combining.
 
-6. **Read-aloud test** — Read the final piece aloud. Mark any sentence where you stumble or where the rhythm feels mechanical. Fix those sentences. If nothing catches, the piece is done.
+6. **Cut quotables** — If any sentence sounds like it was designed to be pulled as a quote or shared on social media, rewrite it. AI generates sentences that sound profound in isolation but say nothing specific. "The best time to start was yesterday" is a quotable. "We lost 40% of signups in the first 48 hours" is a fact. Keep facts, kill quotables.
+
+7. **Read-aloud test** — Read the final piece aloud. Mark any sentence where you stumble or where the rhythm feels mechanical. Fix those sentences. If nothing catches, move to Pass 3.
+
+### Pass 3: Scoring rubric
+Score the final piece on five dimensions, 1-10 each:
+
+| Dimension | Question | 1 (worst) | 10 (best) |
+|-----------|----------|-----------|-----------|
+| Directness | Does the text state things or announce it will state things? | Every paragraph has a setup sentence | Every sentence carries information |
+| Rhythm | Do three consecutive sentences match length? | Metronomic — all 12-15 words | Varied — short punches, long development, fragments |
+| Trust | Does the text explain things the reader already knows? | Patronizing — defines basic terms | Respects the reader's existing knowledge |
+| Authenticity | Would I know who wrote this without a byline? | Could be any brand, any author | Distinctive voice, specific perspective |
+| Density | Can I delete any sentence without losing information? | 30%+ is filler | Every sentence earns its place |
+
+**Threshold: 35/50.** Below 35 → return to Step 3 (voice injection) and re-apply with more specificity and personality. Above 35 → the piece is done.
 
 ---
 
@@ -181,6 +196,7 @@ compression: [X]%
 | AI patterns fixed | [count] |
 | Hard Tells remaining | 0 |
 | Soft Tells remaining | [0-2] |
+| Quality score | [X]/50 (D:[n] R:[n] T:[n] A:[n] Dn:[n]) |
 
 ## Change Log
 
@@ -262,7 +278,7 @@ This skill's examples are marketing-focused, but it works on any content type. A
 
 | Content Type | Strip Intensity | Voice Injection | Compression Target |
 |-------------|----------------|-----------------|-------------------|
-| Marketing copy | Full — all 30 patterns | Full — brand voice adjectives | 20-30% |
+| Marketing copy | Full — all 33 patterns | Full — brand voice adjectives | 20-30% |
 | Blog posts / thought leadership | Full | Moderate — author voice, not brand voice | 15-25% |
 | Documentation / technical writing | Light — focus on clarity patterns only | Minimal — accuracy over personality | 10-15% |
 | Internal communications | Moderate | Light — conversational, not branded | 15-20% |
@@ -276,6 +292,6 @@ This skill's examples are marketing-focused, but it works on any content type. A
 
 | Reference | Use For |
 |-----------|---------|
-| [ai-patterns.md](references/ai-patterns.md) | 30 AI writing patterns + high-frequency vocabulary list — detection, examples, fixes, severity |
+| [ai-patterns.md](references/ai-patterns.md) | 33 AI writing patterns + high-frequency vocabulary & phrase lists — detection, examples, fixes, severity |
 | [conciseness-rules.md](references/conciseness-rules.md) | Compression techniques at sentence, paragraph, and section level |
 | [voice-injection.md](references/voice-injection.md) | Voice adjective framework, rhythm, specificity, personality injection |

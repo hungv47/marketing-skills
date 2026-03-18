@@ -1,6 +1,6 @@
 # AI Writing Patterns — Detection & Fix Reference
 
-30 patterns across 6 categories. Each pattern includes severity:
+33 patterns across 7 categories. Each pattern includes severity:
 - **Hard Tell** — Immediately flags content as AI-generated. Fix before publishing.
 - **Soft Tell** — Suspicious in clusters. Fix when 3+ appear in the same piece.
 
@@ -12,7 +12,54 @@ These words appear significantly more often in post-2023 AI-generated text than 
 
 > additionally, align (with), comprehensive, crucial, cutting-edge, delve, dynamic, elevate, empower, endeavor, enhance, ensure, evolving, foster, furthermore, garner, harness, highlight, holistic, implement, innovative, interplay, intricate, landscape, leverage, meticulous, moreover, multifaceted, navigate, notably, optimize, overarching, pivotal, realm, robust, seamless, showcase, streamline, tapestry, testament, transformative, underscore, utilize, vibrant
 
+**Sophistication-seeking words** (above) are chosen to sound impressive. The list below covers a different failure mode:
+
+**Lazy extremes** — false-authority words that substitute for evidence:
+
+> always, every, everyone, everybody, never, nobody
+
+These make claims sound definitive without providing proof. "Everyone struggles with onboarding" is unfalsifiable filler. "68% of trial users drop off before day 3" is a claim. Replace with specifics or scope the claim honestly.
+
 **Rule:** When you spot 3+ of these in a paragraph, flag the paragraph for rewrite. Replace each with a plain-language equivalent or delete if the sentence works without it.
+
+---
+
+## High-Frequency AI Phrases
+
+Exact phrases to search for. Unlike the vocabulary list (individual words that cluster), these are multi-word constructions that are almost always AI-generated.
+
+### Emphasis Crutches (delete on sight)
+- "Full stop."
+- "Let that sink in."
+- "Make no mistake"
+- "Read that again."
+- "And that's the point."
+
+### Meta-Commentary (delete — the writing should speak for itself)
+- "In this section, we'll..."
+- "As we'll see..."
+- "Let me walk you through..."
+- "Before we dive in..."
+- "Here's the thing:"
+
+### Performative Emphasis (delete — if it needs a promise, it's not convincing)
+- "I promise"
+- "This is what X actually looks like"
+- "And I mean that"
+- "Seriously."
+- "No, really."
+
+### Business Jargon (replace with plain equivalents)
+| AI Jargon | Plain Equivalent |
+|-----------|-----------------|
+| navigate | handle |
+| unpack | explain |
+| lean into | accept |
+| landscape | situation |
+| deep dive | analysis |
+| double down | commit |
+| circle back | revisit |
+| moving forward | next |
 
 ---
 
@@ -180,6 +227,11 @@ These words appear significantly more often in post-2023 AI-generated text than 
 > "In today's rapidly evolving business landscape, companies of all sizes are discovering the importance of effective communication strategies."
 **Fix:** Delete every sentence before the first one that says something specific. The right opening is usually your second or third sentence.
 
+**Also flag these sentence starters** (common residual tells after stripping the obvious throat-clearers):
+- **Wh- setup starters:** "What makes this hard is..." → State the constraint directly: "The constraint is..."
+- **Paragraphs starting with "So"** — conversational filler disguised as a logical connector. Delete "So" or replace with the actual logical link.
+- **Sentences starting with "Look,"** — performs directness rather than being direct. Delete "Look," and the sentence is already direct.
+
 ### 22. "Comprehensive" Promise
 **Severity:** Hard Tell
 **Description:** Promising completeness: "This comprehensive guide will cover everything you need to know about..." or "Here's a complete breakdown of..." Human writers rarely promise comprehensiveness because they know they can't deliver it.
@@ -224,7 +276,16 @@ These words appear significantly more often in post-2023 AI-generated text than 
 **Description:** "It's not just X; it's Y" / "Not only...but also..." AI overuses this construction for dramatic emphasis. Occasional use is fine; every-other-paragraph use is a tell.
 **Example:**
 > "It's not just about the technology; it's about the people. It's not just a tool; it's a movement."
-**Fix:** State the positive claim directly. "The value is in how teams use it" instead of "It's not just a tool; it's a movement." Reserve the "not just X; it's Y" structure for one genuinely surprising contrast per piece maximum.
+**Common variants** (same construction, different wrapper):
+- "Not because X. Because Y."
+- "[X] isn't the problem. [Y] is."
+- "The answer isn't X. It's Y."
+- "It feels like X. It's actually Y."
+- "stops being X and starts being Y"
+
+A single instance of any variant is fine. The tell is clusters — two or more binary contrasts in the same piece signals AI structure.
+
+**Fix:** State the positive claim directly. "The value is in how teams use it" instead of "It's not just a tool; it's a movement." Reserve the "not just X; it's Y" structure (or any variant) for one genuinely surprising contrast per piece maximum.
 
 ### 28. Synonym Cycling
 **Severity:** Soft Tell
@@ -251,6 +312,31 @@ These words appear significantly more often in post-2023 AI-generated text than 
 
 ---
 
+## Category 7: Agency & Perspective Tells
+
+### 31. False Agency
+**Severity:** Hard Tell
+**Description:** Inanimate things given human verbs — attributing intention, desire, or action to concepts, data, markets, or abstractions. AI does this to sound analytical; it reads as evasive because it hides who actually did the thing.
+**Example:**
+> "The data tells us that retention is declining. The culture shifts toward remote work. The market rewards companies that move fast."
+**Fix:** Name the actor. "We looked at the data — retention dropped 12% in Q3." "More employees are choosing remote." "Customers are switching to faster competitors." If you can't name who does the verb, the sentence is too abstract.
+
+### 32. Narrator-from-a-Distance
+**Severity:** Soft Tell
+**Description:** Floating above the scene, observing and commentating without being inside it. The writing reads like a documentary voiceover — omniscient, detached, slightly condescending. AI defaults to this because it has no actual position in the scene.
+**Example:**
+> "Nobody designed this to happen. This is simply how organizations evolve. People tend to avoid hard conversations until the cost becomes unavoidable."
+**Fix:** Put the reader (or the writer) inside the scene. Replace "nobody" and "people" with "you" or "we." See the Reader Presence table in [voice-injection.md](voice-injection.md) for specific rewrites.
+
+### 33. Vague Declaratives
+**Severity:** Hard Tell
+**Description:** Announcing that something is important, significant, or high-stakes without naming what it is or why. The sentence performs emphasis instead of providing it. AI uses these as paragraph openers to build false momentum.
+**Example:**
+> "The implications are significant. The stakes are high. This matters more than most people realize."
+**Fix:** Replace with the actual implication, the actual stake, the actual reason it matters. "If this migration fails, we lose 3 months of pipeline data" instead of "The stakes are high." If you can't name the specific consequence, delete the sentence.
+
+---
+
 ## Quick Scan Checklist
 
 When auditing content, scan in this order (most obvious tells first):
@@ -272,6 +358,8 @@ When auditing content, scan in this order (most obvious tells first):
    - [ ] Caveat avalanche (19)
    - [ ] Generic positive conclusion (25)
    - [ ] Predictable paragraph structure (1)
+   - [ ] False agency (31)
+   - [ ] Vague declaratives (33)
 
 2. **Soft Tells** — Flag when 3+ appear in the same piece
    - [ ] Symmetric lists (2)
@@ -287,5 +375,24 @@ When auditing content, scan in this order (most obvious tells first):
    - [ ] Synonym cycling (28)
    - [ ] False ranges (29)
    - [ ] Colon-list dependency (30)
+   - [ ] Narrator-from-a-distance (32)
 
 3. **Vocabulary check** — Scan for 3+ high-frequency AI words in any single paragraph (see vocabulary list above)
+
+---
+
+## Speed Scan Checklist
+
+A flat 11-item rapid-fire checklist for re-checking during final audit (Step 5). Covers the most common residual tells — patterns that survive initial stripping or get reintroduced during voice injection.
+
+- [ ] Any sentence that could be a LinkedIn pull-quote? → Rewrite with specifics
+- [ ] "Full stop." / "Let that sink in." / "Make no mistake" → Delete
+- [ ] Paragraph starting with "So" or "Look," → Delete the opener
+- [ ] "Not X. Y." binary contrast used more than once → Keep the best, rewrite the rest
+- [ ] Inanimate subject + human verb ("the data tells us") → Name the actor
+- [ ] "The implications are significant" or similar vague declarative → Name the implication
+- [ ] Three consecutive sentences within ±3 words of each other → Vary length
+- [ ] Lazy extreme (always/never/everyone/nobody) without evidence → Scope or cite
+- [ ] "Navigate," "unpack," "lean into," or "landscape" → Replace with plain equivalent
+- [ ] -ing phrase tacked onto the end of a sentence → Delete and check if meaning survives
+- [ ] Any sentence announcing what the text will do ("In this section...") → Delete
