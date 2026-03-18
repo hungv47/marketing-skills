@@ -1,6 +1,6 @@
 ---
 name: humanize
-description: "This skill should be invoked when the user has existing text that sounds robotic, generic, or AI-generated and wants it to read like a human wrote it. Triggers include 'this sounds like AI', 'sounds like ChatGPT', 'make this more human', 'too robotic', 'tighten this up', 'compress this', 'make this shorter', 'edit this', 'fix my copy', 'polish this', 'clean this up', 'too formal', 'too stiff', 'too corporate', 'this doesn't sound like us', 'more conversational', or 'rewrite in our brand voice' -- even if they just paste text without comment and the issue is clearly AI tone, or say 'this won't pass AI detection.' Not for writing new content from scratch (use content-create) or rewriting full landing pages (use lp-optimization)."
+description: "This skill should be invoked when the user has existing text that sounds robotic, generic, or AI-generated and wants it to read like a human wrote it. Triggers include 'this sounds like AI', 'sounds like ChatGPT', 'make this more human', 'too robotic', 'tighten this up', 'make this shorter', 'edit this', 'fix my copy', 'polish this', 'too formal', 'too corporate', 'this doesn't sound like us', 'more conversational', or 'rewrite in our brand voice' -- even if they just paste text without comment and the issue is clearly AI tone, or say 'this won't pass AI detection.' Not for writing new content from scratch (use content-create) or rewriting full landing pages (use lp-optimization)."
 argument-hint: "[content file or text]"
 license: MIT
 metadata:
