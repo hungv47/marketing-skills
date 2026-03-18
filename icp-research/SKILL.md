@@ -9,7 +9,7 @@ metadata:
 
 # ICP Research & Audience Intelligence
 
-*Communicate Track — Step 1 of 4. Builds deep audience intelligence from real research, not assumptions.*
+*Communicate Track — Step 1 of 4. Foundational skill for all stacks. Builds deep audience intelligence from real research, not assumptions.*
 
 **Core Question:** "Who exactly are we talking to and what keeps them up at night?"
 
@@ -18,7 +18,7 @@ metadata:
 This skill provides research structure, not a rigid formula. The minimums for channels, quotes, and platforms ensure thoroughness — they're not arbitrary thresholds. If overwhelming evidence surfaces in 2 channels, you don't need a third. If one devastating quote captures a pain perfectly, you don't need three. Let evidence dictate depth.
 
 ## Inputs Required
-- Product context from `.agents/mkt/product-context.md` (or willingness to answer product questions)
+- Product context from `.agents/product-context.md` (or willingness to answer product questions)
 
 ## Output
 - `.agents/mkt/icp-research.md`
@@ -31,19 +31,22 @@ Before delivering, verify:
 - [ ] Decision psychology section names specific cognitive biases and objections (not generic "they need trust")
 
 ## Chain Position
-Previous: none (or any skill needing audience context) | Next: `imc-plan`
+Previous: none (or any skill needing audience context) | Next: `imc-plan`, `brand-system` (from design-skills — uses audience data for brand strategy)
+
+**Foundational role:** This skill creates `.agents/product-context.md`, used by 12+ downstream skills across all 4 stacks (comms, strategy, prod, design). Running it first provides significantly better output for all downstream skills.
+**Re-run triggers:** When pivoting audience, entering a new market, after major product changes, or quarterly for active products.
 
 ---
 
 ## Before Starting
 
 ### Step 0: Product Context (Canonical Source)
-Check for `.agents/mkt/product-context.md`. If missing, **scan first, then interview for gaps:**
+Check for `.agents/product-context.md`. If missing, **scan first, then interview for gaps:**
 
 1. **Auto-scan available sources:** Look for README.md, marketing site copy, pricing page, product descriptions, and any existing documentation in the codebase. Extract what you can about the 8 dimensions below.
 2. **Interview only for gaps:** Present what you found and ask the user to confirm, correct, or fill in missing dimensions.
 
-This scan-then-interview approach avoids asking the user questions they've already answered elsewhere. This skill is the canonical source for product context across all marketing skills. Save to `.agents/mkt/product-context.md`:
+This scan-then-interview approach avoids asking the user questions they've already answered elsewhere. This skill is the canonical source for product context across all skill stacks (comms, strategy, prod, design). Save to `.agents/product-context.md`:
 
 ```markdown
 # Product Context
@@ -80,7 +83,7 @@ All marketing skills read this file for product context.
 ### Required Artifacts
 | Artifact | Source | If Missing |
 |----------|--------|------------|
-| `product-context.md` | icp-research | **INTERVIEW.** Interview for 8 product dimensions and save to `.agents/mkt/product-context.md`. |
+| `product-context.md` | icp-research | **INTERVIEW.** Interview for 8 product dimensions and save to `.agents/product-context.md`. |
 
 ### Optional Artifacts
 | Artifact | Source | Benefit |
@@ -100,7 +103,15 @@ Interview for:
 
 ## Step 2: Research
 
-Use WebSearch — real quotes prevent hallucinated personas and grounded pain points. Avoid generating hypothetical quotes, invented personas, or assumed pain points — they collapse under scrutiny and mislead downstream skills.
+Use research tools to find real quotes — they prevent hallucinated personas and ground pain points. Avoid generating hypothetical quotes, invented personas, or assumed pain points — they collapse under scrutiny and mislead downstream skills.
+
+**Research tool priority:**
+1. **Exa MCP** or **Perplexity MCP** (if installed) — best for semantic search across forums, communities, and reviews. Use first when available.
+2. **Firecrawl** or **Defuddle** (if installed) — for scraping specific pages (G2 reviews, competitor blogs, community threads).
+3. **WebSearch** — supporting role for broad discovery and gap-filling. Always available as fallback.
+4. **User interview fallback** — when all tools yield insufficient data, ask the user for customer quotes, support tickets, sales call notes, or internal Slack threads.
+
+When data is thin (niche audience, few public discussions), flag confidence level as **LOW** in the artifact and note specific data gaps.
 
 ### Search Query Patterns
 

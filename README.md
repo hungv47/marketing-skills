@@ -28,6 +28,7 @@ Horizontal: lp-optimization, seo, humanize
 ```
 
 Artifacts save to `.agents/mkt/`.
+Exception: `.agents/product-context.md` is saved to the shared cross-stack path (not `.agents/mkt/`).
 
 ## Cross-Stack Workflow
 

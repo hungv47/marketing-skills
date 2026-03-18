@@ -32,13 +32,18 @@ Before delivering, verify:
 
 ## Chain Position
 Previous: `icp-research` | Next: `content-create`
+**Re-run triggers:** When ICP research is updated, after major product launches, when entering new channels, or quarterly.
+
+### Coordination with SEO
+If angles include competitor comparisons, coordinate with `seo` for technical SEO optimization of comparison pages. IMC owns angle selection and prioritization; SEO owns page structure, schema markup, and keyword targeting.
 
 ---
 
 ## Before Starting
 
 ### Step 0: Product Context
-Check for `.agents/mkt/product-context.md`. If available, read for product positioning context.
+Check for `.agents/product-context.md`. If available, read for product positioning context.
+If the artifact's `date` field is older than 30 days, recommend re-running `icp-research` before proceeding — stale audience data produces misaligned communication plans.
 
 ### Required Artifacts
 | Artifact | Source | If Missing |

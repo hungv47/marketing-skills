@@ -42,13 +42,19 @@ Before delivering, verify:
 
 ## Chain Position
 Horizontal — works with `icp-research` (audience data), `content-create` (copy principles), `experiment` (test design)
+**Re-run triggers:** After major page redesigns, when conversion drops >10%, when traffic source mix changes significantly, or quarterly.
+
+### Skill Deference
+- **Need to write copy from scratch (not optimize existing)?** → Use `content-create` — this skill optimizes existing pages, not blank-page writing.
+- **AI pattern cleanup needed?** → Use `humanize` — this skill focuses on conversion mechanics, not voice/pattern editing.
 
 ---
 
 ## Before Starting
 
 ### Step 0: Product Context
-Check for `.agents/mkt/product-context.md`. If available, read for product details and accuracy. If missing, recommend running `icp-research` to bootstrap it.
+Check for `.agents/product-context.md`. If available, read for product details and accuracy. If missing, strongly recommend running `icp-research` first — this skill works without it but produces significantly better output with it.
+If upstream artifacts' `date` fields are older than 30 days, recommend re-running upstream skills — stale VoC data weakens copy recommendations.
 
 ### Required Artifacts
 None — can audit any page standalone.
@@ -250,6 +256,14 @@ Expected impact: ~40% form completion improvement
 ## Anti-Patterns
 
 **Redesign without diagnosis** — jumping to "make it look better" without identifying what's actually blocking conversion. Diagnose before prescribing.
+
+**Testing design before copy** — A/B testing button colors or layouts when the headline doesn't pass the 4-U test. Copy is responsible for 80%+ of conversion impact — fix the words before the visuals.
+
+**Ignoring mobile experience** — Optimizing for desktop when 60%+ of traffic is mobile. Check thumb zone placement for CTAs, ensure forms are completable one-handed, and verify load time on mobile networks.
+
+**Social proof without specificity** — "Trusted by thousands of companies" is weaker than "Used by 3,247 teams including Stripe and Notion." Generic social proof triggers skepticism, not trust.
+
+**Multiple competing CTAs** — Primary CTA, secondary CTA, sidebar CTA, and exit-intent popup all fighting for attention. One primary CTA per page — secondary CTAs must not visually compete.
 
 ---
 

@@ -31,13 +31,20 @@ Before delivering, verify:
 
 ## Chain Position
 Horizontal — works on output from any skill. If content passed `content-create`'s seven-sweeps, humanize focuses on compression + residual patterns. For external or AI-generated content, full 5-step process applies.
+**Re-run triggers:** When brand voice adjectives change, when content-create output consistently triggers AI detection, or when voice injection guidance is updated.
+
+### Skill Deference
+- **Need new content written from scratch?** → Use `content-create` — this skill cleans existing content, not creates new.
+- **Conversion optimization needed?** → Use `lp-optimization` — this skill focuses on voice and AI pattern removal, not conversion mechanics.
+- **Content already passed content-create's Seven-Sweeps?** → Focus on compression + residual AI patterns only — skip full audit if seven-sweeps already ran.
 
 ---
 
 ## Before Starting
 
 ### Step 0: Product Context
-Check for `.agents/mkt/product-context.md`. If available, read for voice adjectives and brand personality. Voice injection (Step 3) requires these adjectives — without them, output will be clean but generic.
+Check for `.agents/product-context.md`. If available, read for voice adjectives and brand personality. Voice injection (Step 3) requires these adjectives — without them, output will be clean but generic.
+If the `date` field is older than 30 days, recommend re-running `icp-research` to refresh voice adjectives — brand voice evolves.
 
 ### Required Artifacts
 None — can humanize any text standalone.
@@ -245,6 +252,22 @@ compression: [X]%
 **Ignoring audience register** — Compressing a developer blog post into marketing-speak, or making a white paper sound like a tweet thread. Compression preserves register — it removes filler within the existing tone, not across tones.
 
 **Skipping the final audit** — Steps 3 and 4 frequently reintroduce AI patterns (especially during voice injection when new sentences are written). The final audit catches these. Skip it and you'll ship content with the same patterns you started with.
+
+---
+
+## Content Type Calibration
+
+This skill's examples are marketing-focused, but it works on any content type. Adjust the intensity of each step by content type:
+
+| Content Type | Strip Intensity | Voice Injection | Compression Target |
+|-------------|----------------|-----------------|-------------------|
+| Marketing copy | Full — all 30 patterns | Full — brand voice adjectives | 20-30% |
+| Blog posts / thought leadership | Full | Moderate — author voice, not brand voice | 15-25% |
+| Documentation / technical writing | Light — focus on clarity patterns only | Minimal — accuracy over personality | 10-15% |
+| Internal communications | Moderate | Light — conversational, not branded | 15-20% |
+| Academic / research | Light — remove only Hard Tells | None — maintain formal register | 5-10% |
+
+**Key principle:** The further from marketing, the lighter the touch. Documentation that sounds like a blog post is worse than documentation with a few AI tells.
 
 ---
 

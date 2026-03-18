@@ -6,9 +6,12 @@ Marketing communication: audience research → campaign planning → content cre
 icp-research → imc-plan → content-create → attribution
 Horizontal: lp-optimization, seo, humanize
 
+## Recommended Starting Point
+Run `icp-research` first — it creates `.agents/product-context.md`, the canonical cross-stack artifact consumed by 12+ downstream skills across comms, strategy, prod, and design stacks.
+
 ## Artifacts
 Skills write to `.agents/mkt/`:
-- `.agents/mkt/product-context.md` (canonical source)
+- `.agents/product-context.md` (canonical cross-stack source — shared with strategy, prod, and design skills)
 - `.agents/mkt/icp-research.md`
 - `.agents/mkt/imc-plan.md`
 - `.agents/mkt/content/[slug].md`
