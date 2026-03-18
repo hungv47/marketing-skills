@@ -54,7 +54,7 @@ Horizontal — works with `icp-research` (audience data), `content-create` (copy
 
 ### Step 0: Product Context
 Check for `.agents/product-context.md`. If available, read for product details and accuracy. If missing, strongly recommend running `icp-research` first — this skill works without it but produces significantly better output with it.
-If upstream artifacts' `date` fields are older than 30 days, recommend re-running upstream skills — stale VoC data weakens copy recommendations.
+If `.agents/product-context.md` or `.agents/mkt/icp-research.md` `date` fields are older than 30 days, recommend re-running `icp-research` — stale VoC data weakens copy recommendations.
 
 ### Required Artifacts
 None — can audit any page standalone.

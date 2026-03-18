@@ -39,11 +39,11 @@ Previous: `icp-research` + `imc-plan` (reads audience questions and content pill
 
 Horizontal skill — can be invoked independently or after IMC planning.
 
+**Re-run triggers:** Technical audit quarterly, AI SEO monthly (AI landscape changes fast), after Google core updates, when entering new keyword territories.
+
 ### Skill Deference
 - **Need production-quality copy for comparison pages?** → Run `content-create` after SEO defines the page structure and keyword targets.
 - **Content pillar prioritization?** → Defer to `imc-plan` for audience-driven prioritization; SEO provides search demand data.
-
-**Re-run triggers:** Technical audit quarterly, AI SEO monthly (AI landscape changes fast), after Google core updates, when entering new keyword territories.
 
 ### Coordination with IMC Plan
 
@@ -64,7 +64,7 @@ When both `seo` and `imc-plan` are in use, they should coordinate:
 
 ### Step 0: Product Context
 Check for `.agents/product-context.md`. If available, read for product positioning context.
-If upstream artifacts' `date` fields are older than 30 days, recommend re-running upstream skills before proceeding — stale audience data weakens SEO strategy.
+If `.agents/mkt/icp-research.md` or `.agents/mkt/imc-plan.md` `date` fields are older than 30 days, recommend re-running upstream skills — stale audience data weakens SEO strategy.
 
 ### Required Artifacts
 | Artifact | Source | If Missing |

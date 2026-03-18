@@ -44,7 +44,7 @@ Horizontal — works on output from any skill. If content passed `content-create
 
 ### Step 0: Product Context
 Check for `.agents/product-context.md`. If available, read for voice adjectives and brand personality. Voice injection (Step 3) requires these adjectives — without them, output will be clean but generic.
-If the `date` field is older than 30 days, recommend re-running `icp-research` to refresh voice adjectives — brand voice evolves.
+If `.agents/product-context.md`'s `date` field is older than 30 days, recommend re-running `icp-research` to refresh voice adjectives — brand voice evolves.
 
 ### Required Artifacts
 None — can humanize any text standalone.

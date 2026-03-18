@@ -69,3 +69,9 @@ For teams starting from zero:
 | **Attribution** | UTM parameters + GA4 | Content → conversion mapping |
 
 Add more tools only when you have questions these three can't answer.
+
+---
+
+## Closing the Loop
+
+Once tracking is implemented, re-run `attribution` to map content → conversion with real data instead of estimates.

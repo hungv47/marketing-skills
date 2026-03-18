@@ -46,7 +46,7 @@ Without strategy artifacts, this skill interviews for KPIs and initiatives direc
 
 ### Step 0: Product Context
 Check for `.agents/product-context.md`. If available, read for product context. If missing, strongly recommend running `icp-research` first — attribution mapping is significantly more accurate with product context.
-If upstream artifacts' `date` fields are older than 30 days, recommend re-running upstream skills before proceeding — stale data produces inaccurate attribution maps.
+If `.agents/targets.md`, `.agents/solution-design.md`, or `.agents/mkt/imc-plan.md` `date` fields are older than 30 days, recommend re-running upstream skills — stale data produces inaccurate attribution maps.
 
 ### Required Artifacts
 None — can build from scratch by interviewing.

@@ -49,7 +49,7 @@ Previous: `imc-plan` | Next: `attribution`
 
 ### Step 0: Product Context
 Check for `.agents/product-context.md`. If available, read for product details and accuracy.
-If the upstream artifacts' `date` fields are older than 30 days, recommend re-running upstream skills before proceeding — stale data produces misaligned content.
+If `.agents/mkt/imc-plan.md` or `.agents/product-context.md` `date` fields are older than 30 days, recommend re-running upstream skills before proceeding — stale data produces misaligned content.
 
 ### Required Artifacts
 | Artifact | Source | If Missing |

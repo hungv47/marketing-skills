@@ -43,7 +43,7 @@ If angles include competitor comparisons, coordinate with `seo` for technical SE
 
 ### Step 0: Product Context
 Check for `.agents/product-context.md`. If available, read for product positioning context.
-If the artifact's `date` field is older than 30 days, recommend re-running `icp-research` before proceeding — stale audience data produces misaligned communication plans.
+If `.agents/mkt/icp-research.md`'s `date` field is older than 30 days, recommend re-running `icp-research` before proceeding — stale audience data produces misaligned communication plans.
 
 ### Required Artifacts
 | Artifact | Source | If Missing |
