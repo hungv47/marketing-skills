@@ -1,6 +1,6 @@
 ---
 name: content-create
-description: "This skill should be invoked when the user wants to write or draft new marketing content -- social posts, ads, emails, email sequences, newsletters, blog posts, landing page copy, video scripts, carousels, threads, cold emails, or launch announcements. Triggers include 'write me a post', 'I need content for...', 'draft copy', 'create headlines', 'hooks', 'tagline', 'I don't know what to say', or 'what should I write about' -- even if they just name a platform like 'LinkedIn', 'Twitter', 'Instagram', or 'TikTok' or a format like 'carousel' or 'reel.' Not for editing or fixing existing text (use humanize) or auditing a live landing page (use lp-optimization)."
+description: "This skill should be invoked when the user wants to write or draft new marketing content -- social posts, ads, emails, email sequences, newsletters, blog posts, case studies, landing page copy, video scripts, carousels, threads, cold emails, or launch announcements. Triggers include 'write me a post', 'I need content for...', 'draft copy', 'create headlines', 'hooks', 'tagline', 'I don't know what to say', or 'what should I write about' -- even if they just name a platform like 'LinkedIn', 'Twitter', 'Instagram', or 'TikTok' or a format like 'carousel' or 'reel.' Not for editing or fixing existing text (use humanize), auditing a live landing page (use lp-optimization), or technical documentation (use technical-writer)."
 argument-hint: "[angle or topic]"
 license: MIT
 metadata:
