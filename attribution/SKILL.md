@@ -1,6 +1,6 @@
 ---
 name: attribution
-description: "This skill should be invoked when the user wants to connect marketing activities to business outcomes. Triggers include 'is my marketing working', 'what's driving results', 'which content matters', 'are we wasting effort', 'what's our ROI', 'where should I spend budget', 'what should I stop doing', or mapping content to revenue -- even if they just say 'I can't tell what's working.' Not for setting new KPIs or future targets (use funnel-planner) or creating new content (use content-create)."
+description: "This skill should be invoked when the user wants to evaluate whether marketing activities are producing results. Triggers include 'is my marketing working', 'what's driving results', 'which content matters', 'are we wasting money', 'what's our ROI', 'marketing report', 'what's working and what's not', 'should I keep doing X', or 'what's the impact of...' -- even if they just say 'I can't tell what's working' or 'we're doing a lot but nothing moves the needle.' Not for setting new KPIs or future targets (use funnel-planner) or creating new content (use content-create)."
 license: MIT
 metadata:
   author: hungv47

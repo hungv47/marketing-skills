@@ -1,6 +1,6 @@
 ---
 name: lp-optimization
-description: "This skill should be invoked when the user mentions a landing page, signup page, or any page that needs to convert visitors. Triggers include 'my page isn't converting', 'nobody is signing up', 'high bounce rate', 'review my landing page', 'optimize for conversion', or 'improve my signup flow' -- even if they just share a URL and ask 'what's wrong with this.' Not for writing net-new marketing content (use content-create) or full site SEO audits (use seo)."
+description: "This skill should be invoked when the user mentions a landing page, signup page, pricing page, checkout page, or any single page that needs to convert visitors. Triggers include 'my page isn't converting', 'nobody is signing up', 'people visit but don't buy', 'high bounce rate', 'review my landing page', 'optimize for conversion', 'CTA isn't working', or 'people click our ads but then leave' -- even if they just share a URL and ask 'what's wrong with this.' Not for writing net-new marketing content (use content-create), full site SEO audits (use seo), or multi-step in-app flows (use user-flow)."
 argument-hint: "[url or description]"
 license: MIT
 metadata:
