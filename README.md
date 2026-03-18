@@ -18,12 +18,13 @@ npx skills add hungv47/comms-skills
 | `attribution` | KPI-initiative-content mapping and coverage audit |
 | `lp-optimization` | High-conversion landing page optimization |
 | `seo` | Technical audit, AI/GEO optimization, programmatic SEO, competitor pages |
+| `humanize` | Strip AI patterns, inject voice, and compress content for density |
 
 ## Pipeline
 
 ```
 icp-research → imc-plan → content-create → attribution
-Horizontal: lp-optimization, seo
+Horizontal: lp-optimization, seo, humanize
 ```
 
 Artifacts save to `.agents/mkt/`.
@@ -43,6 +44,9 @@ Attribution and IMC Plan can read strategy artifacts (`.agents/mkt/solution-desi
 - "SEO audit" → `seo`
 - "Optimize for AI search" → `seo`
 - "Build programmatic SEO pages" → `seo`
+- "Humanize this" → `humanize`
+- "Make this concise" → `humanize`
+- "Remove AI patterns" → `humanize`
 
 ## License
 
