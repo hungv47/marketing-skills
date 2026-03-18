@@ -1,6 +1,6 @@
 ---
 name: seo
-description: "This skill should be invoked when the user wants to improve search visibility or organic traffic. Triggers include 'how do I rank for...', 'keywords', 'keyword research', 'backlinks', 'link building', 'site speed', 'page speed', 'nobody can find us online', 'how do I get more organic traffic', 'competitors outrank us', 'SEO audit', 'show up in AI answers', 'show up on ChatGPT', or 'we write content but get no traffic from it' -- even if they just say 'we're invisible on Google' or paste a URL and ask 'why aren't we ranking.' Not for landing page conversion (use lp-optimization), paid advertising, or social media strategy (use imc-plan)."
+description: "This skill should be invoked when the user wants to improve search visibility or organic traffic. Triggers include 'how do I rank for...', 'keywords', 'keyword research', 'backlinks', 'link building', 'site speed', 'page speed', 'nobody can find us online', 'how do I get more organic traffic', 'competitors outrank us', 'SEO audit', 'show up in AI answers', 'show up on ChatGPT', 'blog isn't driving leads', 'topical authority', or 'we write content but get no traffic from it' -- even if they just say 'we're invisible on Google', 'how do I build domain authority', or paste a URL and ask 'why aren't we ranking.' Not for landing page conversion (use lp-optimization), paid advertising, social media strategy (use imc-plan), or app store optimization."
 argument-hint: "[url or mode]"
 license: MIT
 metadata:
