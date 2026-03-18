@@ -1,6 +1,6 @@
 ---
 name: imc-plan
-description: "This skill should be invoked when the user wants a marketing strategy, campaign plan, or channel strategy -- even if they just say 'how do I market this' or 'I have a product but no go-to-market plan.' Triggers include planning a launch, choosing channels, building content pillars, developing campaign angles, or creating a marketing calendar. Not for writing actual content (use content-create) or setting numeric targets (use funnel-planner)."
+description: "This skill should be invoked when the user wants a marketing strategy, campaign plan, or channel strategy -- even if they just say 'how do I market this', 'I have a product but no go-to-market plan', 'nobody knows about us', or 'how do I get the word out.' Triggers include planning a launch, GTM strategy, choosing channels, 'which channels should I use', building content pillars, developing campaign angles, content calendar, or editorial calendar. Not for writing actual content (use content-create) or setting numeric targets (use funnel-planner)."
 license: MIT
 metadata:
   author: hungv47

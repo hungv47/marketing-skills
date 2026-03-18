@@ -1,6 +1,6 @@
 ---
 name: icp-research
-description: "This skill should be invoked when the user needs to understand who they are selling to. Triggers include researching customers, building personas, analyzing pain points, finding voice-of-customer data, or understanding a target market -- even if they just say 'I don't know who my customer is' or 'we're guessing at our audience.' Also invoke when starting any new project that needs audience context. Not for campaign planning (use imc-plan) or competitive analysis."
+description: "This skill should be invoked when the user needs to understand who they are selling to. Triggers include researching customers, building personas, analyzing pain points, finding voice-of-customer data, understanding a target market, 'who are we building for', 'buyer persona', or 'jobs to be done' -- even if they just say 'I don't know who my customer is', 'we're guessing at our audience', 'our messaging isn't resonating', or 'I just launched and don't know where to start.' Also covers competitor audience analysis. Not for campaign planning (use imc-plan)."
 license: MIT
 metadata:
   author: hungv47

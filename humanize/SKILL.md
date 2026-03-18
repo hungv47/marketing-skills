@@ -1,6 +1,6 @@
 ---
 name: humanize
-description: "This skill should be invoked when the user has existing text that sounds robotic, generic, or AI-generated and wants it to read like a human wrote it. Triggers include 'this sounds like AI', 'make this more human', 'too robotic', 'tighten this up', 'compress this', 'this is too wordy', 'strip the AI feel', or 'add voice' -- even if they just paste text and say 'fix this' and the issue is clearly AI tone. Not for writing new content from scratch (use content-create)."
+description: "This skill should be invoked when the user has existing text that sounds robotic, generic, or AI-generated and wants it to read like a human wrote it. Triggers include 'this sounds like AI', 'make this more human', 'too robotic', 'tighten this up', 'compress this', 'this is too wordy', 'rewrite this', 'tone is off', 'too formal', 'too stiff', 'this doesn't sound like us', or 'add voice' -- even if they just paste text without comment and the issue is clearly AI tone. Not for writing new content from scratch (use content-create)."
 argument-hint: "[content file or text]"
 license: MIT
 metadata:
