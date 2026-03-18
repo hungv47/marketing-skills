@@ -1,11 +1,11 @@
 ---
 name: content-create
-description: "Creates platform-native content with hooks, body copy, CTAs, and A/B variants from IMC plan angles. Use when the user asks to create content, write a content brief, make social posts, write copy, create headlines, write taglines, or improve copy — content creation, creative briefs, platform-native content, carousel, video script, thread, social media copy, A/B variants, copywriting, persuasive writing, headline formulas, CTA optimization."
+description: "This skill should be invoked when the user wants to write or draft new marketing content including social posts, ads, emails, email sequences, newsletters, blog posts, case studies, landing page copy, video scripts, carousels, threads, cold emails, or launch announcements. Triggers include 'write me a post', 'I need content for...', 'draft copy', 'create headlines', 'hooks', 'tagline', 'I need to announce something', 'I don't know what to say', or 'what should I write about' -- even if they just name a platform like 'LinkedIn', 'Twitter', 'Instagram', or 'TikTok' or a format like 'carousel' or 'reel.' Not for editing or fixing existing text (use humanize), auditing a live landing page (use lp-optimization), diagnosing why existing content underperforms (use seo or attribution), or technical documentation (use technical-writer)."
 argument-hint: "[angle or topic]"
 license: MIT
 metadata:
   author: hungv47
-  version: "2.2.0"
+  version: "2.2.1"
 ---
 
 # Content Creation

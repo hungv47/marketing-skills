@@ -1,10 +1,10 @@
 ---
 name: imc-plan
-description: "Turns audience insights into content pillars, tested angles, channel assignments, and a phased timeline. Use when the user asks to create an IMC plan, develop integrated marketing, build a campaign strategy, or plan a product launch — IMC, integrated marketing, multi-channel marketing, campaign planning, content pillars, angle development, channel strategy, launch timeline."
+description: "This skill should be invoked when the user wants a marketing strategy, campaign plan, or channel strategy. Triggers include 'how do I market this', 'I have a product but no go-to-market plan', 'we have no marketing plan', 'nobody knows about us', 'how do I get the word out', 'how do I promote this', 'planning a marketing launch', 'GTM strategy', 'choosing channels', 'which channels should I use', 'should I be on TikTok or LinkedIn', 'how should we position this', 'content strategy', 'content calendar', or 'get my first users' -- even if they just say 'where should we spend our marketing budget' or 'we post a lot but nothing works.' Not for writing actual content (use content-create), setting numeric targets (use funnel-planner), strategic prioritization across non-marketing levers (use solution-design), diagnosing why a launched product has no traction (use problem-analysis), or organic search strategy (use seo)."
 license: MIT
 metadata:
   author: hungv47
-  version: "7.2.0"
+  version: "7.2.1"
 ---
 
 # Integrated Marketing Communication (IMC)

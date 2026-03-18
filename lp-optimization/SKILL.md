@@ -1,11 +1,11 @@
 ---
 name: lp-optimization
-description: "Audits and optimizes landing pages for conversion using headline formulas, message match, social proof hierarchy, and form optimization. Use when the user asks to optimize a landing page, improve conversion rates, review a landing page, create a high-converting page, audit an LP, or reduce bounce rate — landing page design, conversion optimization, A/B testing strategy, CTA optimization, message match, form optimization, above-the-fold design, page speed."
+description: "This skill should be invoked when the user mentions a landing page, homepage, signup page, pricing page, checkout page, or any single page that needs to convert visitors. Triggers include 'my page isn't converting', 'nobody is signing up', 'people visit but don't buy', 'high bounce rate', 'review my landing page', 'review my homepage', 'optimize for conversion', 'is my conversion rate good', 'CTA isn't working', or 'people click our ads but then leave' -- even if they just share a URL and ask 'what's wrong with this' or say 'our ads are sending traffic but we're not converting.' Not for A/B testing page variants (use experiment), writing net-new marketing content (use content-create), full site SEO audits (use seo), or multi-step in-app flows (use user-flow)."
 argument-hint: "[url or description]"
 license: MIT
 metadata:
   author: hungv47
-  version: "2.2.0"
+  version: "2.2.1"
 ---
 
 # Landing Page Conversion Optimization
