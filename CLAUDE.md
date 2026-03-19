@@ -4,7 +4,7 @@ Marketing communication: audience research → campaign planning → content cre
 
 ## Pipeline
 icp-research → imc-plan → content-create → attribution
-Horizontal: lp-optimization, seo, humanize
+Horizontal: lp-optimization, seo, humanize, copywriting
 
 ## Recommended Starting Point
 Run `icp-research` first — it creates `.agents/product-context.md`, the canonical cross-stack artifact consumed by 12+ downstream skills across comms, strategy, prod, and design stacks.
@@ -15,6 +15,7 @@ Skills write to `.agents/mkt/`, except `product-context.md` which is cross-stack
 - `.agents/mkt/icp-research.md`
 - `.agents/mkt/imc-plan.md`
 - `.agents/mkt/content/[slug].md`
+- `.agents/mkt/content/[slug].copy.md`
 - `.agents/mkt/attribution.md`
 - `.agents/mkt/seo-[mode].md` (mode = audit | ai | programmatic | competitor)
 - `.agents/mkt/content/[slug].humanized.md`

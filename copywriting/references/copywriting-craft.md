@@ -162,7 +162,7 @@ alternatives for each key section:
 3. **Problem** — articulate their pain (2 variations)
 4. **Solution** — bridge to your product
 5. **How It Works** — 3-4 numbered steps
-6. **Testimonials** — selected per criteria in copy-frameworks.md
+6. **Testimonials** — selected per criteria in [page-sections.md](page-sections.md)
 7. **Final CTA** — recap + CTA (2 variations)
 
 For each section with alternatives, annotate which rule each version leans on
