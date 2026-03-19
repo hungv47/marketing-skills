@@ -10,7 +10,7 @@
 
 These words appear significantly more often in post-2023 AI-generated text than in human writing. A single instance is fine — clusters of 3+ in one piece are a signal.
 
-> additionally, align (with), comprehensive, crucial, cutting-edge, delve, dynamic, elevate, empower, endeavor, enhance, ensure, evolving, foster, furthermore, garner, harness, highlight, holistic, implement, innovative, interplay, intricate, landscape, leverage, meticulous, moreover, multifaceted, navigate, notably, optimize, overarching, pivotal, realm, robust, seamless, showcase, streamline, tapestry, testament, transformative, underscore, utilize, vibrant
+> additionally, actually, align (with), comprehensive, crucial, cutting-edge, delve, dynamic, elevate, empower, endeavor, enhance, ensure, evolving, foster, furthermore, garner, harness, highlight, holistic, implement, innovative, interplay, intricate, landscape, leverage, meticulous, moreover, multifaceted, navigate, notably, optimize, overarching, pivotal, realm, robust, seamless, showcase, streamline, tapestry, testament, transformative, underscore, utilize, vibrant
 
 **Sophistication-seeking words** (above) are chosen to sound impressive. The list below covers a different failure mode:
 
@@ -45,9 +45,28 @@ Exact phrases to search for. Unlike the vocabulary list (individual words that c
 ### Performative Emphasis (delete — if it needs a promise, it's not convincing)
 - "I promise"
 - "This is what X actually looks like"
+- "X that actually Y" (any sentence using "actually" as emphasis)
 - "And I mean that"
 - "Seriously."
 - "No, really."
+
+### Rhetorical Questions as Hooks (delete — these perform curiosity instead of creating it)
+- "Why?" (standalone)
+- "The best part?"
+- "So what does this mean?"
+- "Sound familiar?"
+- "But here's the question:"
+- "Want to know the secret?"
+- Any one-sentence question used as a paragraph opener to create false suspense. State the point directly instead.
+
+### Filler Context Phrases (delete on sight — vague scene-setting that says nothing)
+- "In today's [anything]" (environment, world, landscape, economy, market)
+- "In the competitive business environment"
+- "In an increasingly [anything] world"
+- "As the world becomes more [anything]"
+- "In this rapidly changing [anything]"
+- "Being inclusive" (as a standalone virtue signal)
+- Any sentence that could apply to any industry, any company, any decade
 
 ### Business Jargon (replace with plain equivalents)
 Note: "navigate" and "landscape" also appear in the vocabulary list above. The vocabulary list flags clusters; this table provides direct replacements.
@@ -152,12 +171,12 @@ Note: "navigate" and "landscape" also appear in the vocabulary list above. The v
 > "Great news! Our new feature is live! Try it today and see the difference!"
 **Fix:** Remove all exclamation marks. Add back only where the sentence genuinely demands one (commands, actual surprise, direct quotes). Maximum one per 500 words.
 
-### 12. Em-Dash Overuse
-**Severity:** Soft Tell
-**Description:** Em dashes appearing 3+ times in a short piece as a structural crutch — used to insert asides — where commas or periods would work — creating a choppy rhythm.
+### 12. Em-Dash Usage
+**Severity:** Hard Tell
+**Description:** Em dashes (—) are a hallmark of AI-generated text. AI uses them as a structural crutch to insert asides, create pauses, and connect clauses where commas, periods, or parentheses would work. Even a single em dash flags the content as AI.
 **Example:**
 > "Our platform — built for modern teams — offers real-time collaboration — making it easy to stay aligned — no matter where your team is located."
-**Fix:** Keep one em dash per 300 words maximum. Replace others with commas, periods, or parentheses. Often the aside can be cut entirely.
+**Fix:** Replace ALL em dashes. Use commas, periods, parentheses, or restructure the sentence. Zero em dashes in the final output. No exceptions. If an aside is important enough to include, make it its own sentence. If it's not, cut it.
 
 ### 13. Emoji as Punctuation
 **Severity:** Hard Tell
@@ -274,8 +293,8 @@ Note: "navigate" and "landscape" also appear in the vocabulary list above. The v
 **Fix:** Use the actual number. If there are two things, list two. If there are five, list five (or the most important two). Don't pad to three or trim to three for rhythm.
 
 ### 27. Negative Parallelism
-**Severity:** Soft Tell
-**Description:** "It's not just X; it's Y" / "Not only...but also..." AI overuses this construction for dramatic emphasis. Occasional use is fine; every-other-paragraph use is a tell.
+**Severity:** Hard Tell
+**Description:** "It's not just X; it's Y" / "Not only...but also..." is one of the most recognizable AI writing patterns. It sounds profound but says nothing. Never use it.
 **Example:**
 > "It's not just about the technology; it's about the people. It's not just a tool; it's a movement."
 **Common variants** (same construction, different wrapper):
@@ -284,10 +303,9 @@ Note: "navigate" and "landscape" also appear in the vocabulary list above. The v
 - "The answer isn't X. It's Y."
 - "It feels like X. It's actually Y."
 - "stops being X and starts being Y"
+- "X that actually Y" (using "actually" to reframe)
 
-A single instance of any variant is fine. The tell is clusters — two or more binary contrasts in the same piece signals AI structure.
-
-**Fix:** State the positive claim directly. "The value is in how teams use it" instead of "It's not just a tool; it's a movement." Reserve the "not just X; it's Y" structure (or any variant) for one genuinely surprising contrast per piece maximum.
+**Fix:** State the positive claim directly. "The value is in how teams use it" instead of "It's not just a tool; it's a movement." Do not use this construction or any of its variants. Zero instances in the final output.
 
 ### 28. Synonym Cycling
 **Severity:** Soft Tell
@@ -303,14 +321,14 @@ A single instance of any variant is fine. The tell is clusters — two or more b
 **Fix:** List the actual things. "The platform handles ingestion, transformation, and storage" is clearer than a false range. Use "from X to Y" only when X and Y are genuine endpoints of a meaningful spectrum.
 
 ### 30. Colon-List Dependency
-**Severity:** Soft Tell
-**Description:** Over-reliance on "Here's what/why/how:" followed by a bulleted list. Human writing integrates information into prose more often than it lists.
+**Severity:** Hard Tell
+**Description:** Over-reliance on colons to introduce lists, explanations, or emphasis. AI uses colons as a structural crutch: "Here's what/why/how:" followed by a bulleted list, or "The answer: [dramatic reveal]." Colons in prose signal AI formatting habits. In humanized output, avoid colons entirely.
 **Example:**
 > "Here's why this matters:
 > - Reason one
 > - Reason two
 > - Reason three"
-**Fix:** Integrate 2-3 items into a sentence. Reserve lists for 4+ genuinely parallel items. "This matters because [reason one], and teams that ignore it [consequence]."
+**Fix:** Integrate items into a sentence. "This matters because [reason one], and teams that ignore it [consequence]." For technical documentation or tables, colons may be acceptable. In marketing copy, blog posts, and general prose, eliminate colons. Restructure "X: Y" constructions into natural sentences.
 
 ---
 
@@ -362,21 +380,24 @@ When auditing content, scan in this order (most obvious tells first):
    - [ ] Predictable paragraph structure (1)
    - [ ] False agency (31)
    - [ ] Vague declaratives (33)
+   - [ ] Em dashes — any instance (12)
+   - [ ] Negative parallelism — "it's not just X, it's Y" and all variants (27)
+   - [ ] Colon-list dependency — colons in prose (30)
+   - [ ] Rhetorical questions as hooks — "Why?", "The best part?", "Sound familiar?" (phrases list)
+   - [ ] "Actually" as emphasis — "X that actually Y" (phrases list)
+   - [ ] Filler context — "In today's [anything]", "rapidly changing" (phrases list)
 
 2. **Soft Tells** — Flag when 3+ appear in the same piece
    - [ ] Symmetric lists (2)
    - [ ] Section uniformity (3)
    - [ ] Premature certainty (18)
-   - [ ] Em-dash overuse (12)
    - [ ] Bold-keyword highlighting (14)
    - [ ] Title case in headings (15)
    - [ ] Redundant bridges (23)
    - [ ] Safety-net qualifier (24)
    - [ ] Rule of three overuse (26)
-   - [ ] Negative parallelism (27)
    - [ ] Synonym cycling (28)
    - [ ] False ranges (29)
-   - [ ] Colon-list dependency (30)
    - [ ] Narrator-from-a-distance (32)
 
 3. **Vocabulary check** — Scan for 3+ high-frequency AI words in any single paragraph (see vocabulary list above)
@@ -387,14 +408,19 @@ When auditing content, scan in this order (most obvious tells first):
 
 A flat 11-item rapid-fire checklist for re-checking during final audit (Step 5). Covers the most common residual tells — patterns that survive initial stripping or get reintroduced during voice injection.
 
-- [ ] Any sentence that sounds profound but says nothing specific? → Rewrite with facts
-- [ ] "Full stop." / "Let that sink in." / "Make no mistake" → Delete
-- [ ] Paragraph starting with "So" or "Look," → Delete the opener
-- [ ] "Not X. Y." binary contrast used more than once → Keep the best, rewrite the rest
-- [ ] Inanimate subject + human verb ("the data tells us") → Name the actor
-- [ ] "The implications are significant" or similar vague declarative → Name the implication
-- [ ] Three consecutive sentences within ±3 words of each other → Vary length
-- [ ] Lazy extreme (always/never/everyone/nobody) without evidence → Scope or cite
-- [ ] "Navigate," "unpack," "lean into," or "landscape" → Replace with plain equivalent
-- [ ] -ing phrase tacked onto the end of a sentence → Delete and check if meaning survives
-- [ ] Any sentence announcing what the text will do ("In this section...") → Delete
+- [ ] Any em dash (—) anywhere? → Replace with comma, period, or parentheses. Zero allowed.
+- [ ] Any "it's not just X, it's Y" or variant? → State the positive claim directly. Zero allowed.
+- [ ] Any rhetorical question used as a hook? ("Why?", "The best part?", "Sound familiar?") → Delete. State the point.
+- [ ] Any colon introducing a list or explanation in prose? → Restructure into a sentence.
+- [ ] Any use of "actually" as emphasis? ("X that actually Y") → Delete "actually" or rewrite.
+- [ ] Any "In today's [anything]" or "rapidly changing" filler? → Delete the entire phrase/sentence.
+- [ ] Any sentence that sounds profound but says nothing specific? → Rewrite with facts.
+- [ ] "Full stop." / "Let that sink in." / "Make no mistake" → Delete.
+- [ ] Paragraph starting with "So" or "Look," → Delete the opener.
+- [ ] Inanimate subject + human verb ("the data tells us") → Name the actor.
+- [ ] "The implications are significant" or similar vague declarative → Name the implication.
+- [ ] Three consecutive sentences within ±3 words of each other → Vary length.
+- [ ] Lazy extreme (always/never/everyone/nobody) without evidence → Scope or cite.
+- [ ] "Navigate," "unpack," "lean into," or "landscape" → Replace with plain equivalent.
+- [ ] -ing phrase tacked onto the end of a sentence → Delete and check if meaning survives.
+- [ ] Any sentence announcing what the text will do ("In this section...") → Delete.

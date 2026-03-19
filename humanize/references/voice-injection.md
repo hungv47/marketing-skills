@@ -52,9 +52,9 @@ Vary sentence length deliberately:
 Every sentence: 7-9 words. Monotone.
 
 **Good (human rhythm):**
-> "Teams waste hours switching between tools just to figure out who's doing what. Our platform kills that. One screen, real-time updates, no tab-juggling. The average team saves 6 hours a week — mostly from meetings they no longer need."
+> "Teams waste hours switching between tools just to figure out who's doing what. Our platform kills that. One screen, real-time updates, no tab-juggling. The average team saves 6 hours a week, mostly from meetings they no longer need."
 
-Sentence lengths: 15, 4, 7, 18. The short sentence ("Our platform kills that.") lands hard because the sentences around it are longer.
+Sentence lengths: 15, 4, 7, 17. The short sentence ("Our platform kills that.") lands hard because the sentences around it are longer.
 
 ### The 1-3-1 Pattern
 A useful rhythm template (not a rule — vary it):
