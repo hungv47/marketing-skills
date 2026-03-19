@@ -34,7 +34,7 @@ Before delivering, verify:
 - [ ] Competitors named with specific differentiators (not "better than alternatives")
 - [ ] Value props pass the Swap Test (replace product name with competitor — if still works, rewrite)
 - [ ] Pricing reflects current public info, confirmed by user
-- [ ] ≥3 external sources consulted
+- [ ] ≥3 external sources consulted (for pre-launch/stealth products with minimal public presence: ≥1 source + user interview; flag as primarily user-sourced)
 - [ ] Gaps/unknowns explicitly flagged with `[UNKNOWN]`, not filled with guesses
 - [ ] `product-context.md` updated with improved data
 - [ ] Confidence level marked per section (HIGH / MEDIUM / LOW)
@@ -120,19 +120,7 @@ See [references/product-analysis-framework.md](references/product-analysis-frame
 
 ### Research Notes Format
 
-As you scan, record findings in this structure (internal working notes — not part of final artifact):
-
-```
-### [Source: URL or description]
-**Confidence:** HIGH / MEDIUM / LOW
-**Key findings:**
-- [finding 1]
-- [finding 2]
-**Quotes/evidence:**
-- "[exact text from source]"
-**Conflicts with other sources:**
-- [note any contradictions]
-```
+As you scan, record findings using the research notes template in [references/product-analysis-framework.md](references/product-analysis-framework.md). These are internal working notes — not part of the final artifact.
 
 ---
 
@@ -394,7 +382,7 @@ sources-consulted: [number]
 **Model:** [subscription/freemium/usage-based/etc.]
 **Free tier:** [yes/no — details]
 
-*Confidence: [HIGH/MEDIUM/LOW]*
+*Confidence: [HIGH/MEDIUM/LOW] (use per-subsection scoring when confidence varies, e.g., "HIGH (features), MEDIUM (competitor comparison — single source)")*
 
 ## 8. Trust & Credibility
 
@@ -579,6 +567,15 @@ sources-consulted: 5
 | Shortcut | Direct | API flexibility, Clubhouse legacy community | Slower iteration, less polished | We have tighter GitHub integration |
 | Jira | Indirect | Enterprise features, ecosystem | Complexity, configuration overhead | We're opinionated for Rails; they're configurable for everyone |
 | Spreadsheets | Alternative/Status quo | Zero learning curve | No automation, no code integration | We automate the tracking they do manually |
+
+### Positioning Matrix
+
+| | **Manager-centric** | **Developer-centric** |
+|---|---|---|
+| **Specialist** | Basecamp (small teams) | **Railtrack** (Rails only) |
+| **Generalist** | Jira (everything for everyone) | Linear (all dev teams) |
+
+Dimensions chosen: Specialist↔Generalist (Railtrack's key differentiator is narrow focus) and Manager↔Developer-centric (Railtrack optimizes for developer workflow, not manager reporting).
 
 ### Moat Analysis
 | Moat Type | Strength | Evidence |
