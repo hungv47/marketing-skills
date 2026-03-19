@@ -245,6 +245,8 @@ Mark each section with a confidence level. See [references/product-analysis-fram
 | **LOW** | Inferred from indirect evidence, limited data, or conflicting sources unresolved |
 | **UNKNOWN** | No data found, or user declined to answer — mark as `[UNKNOWN — reason]`, do not guess |
 
+When confidence varies within a section, use per-subsection scoring: e.g., `*Confidence: HIGH (social proof, team), MEDIUM (security — single source)*`
+
 ---
 
 ## Phase 4: Update product-context.md
@@ -382,7 +384,7 @@ sources-consulted: [number]
 **Model:** [subscription/freemium/usage-based/etc.]
 **Free tier:** [yes/no — details]
 
-*Confidence: [HIGH/MEDIUM/LOW] (use per-subsection scoring when confidence varies, e.g., "HIGH (features), MEDIUM (competitor comparison — single source)")*
+*Confidence: [HIGH/MEDIUM/LOW]*
 
 ## 8. Trust & Credibility
 
