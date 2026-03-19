@@ -10,7 +10,7 @@
 
 These words appear significantly more often in post-2023 AI-generated text than in human writing. A single instance is fine — clusters of 3+ in one piece are a signal.
 
-> additionally, actually, align (with), comprehensive, crucial, cutting-edge, delve, dynamic, elevate, empower, endeavor, enhance, ensure, evolving, foster, furthermore, garner, harness, highlight, holistic, implement, innovative, interplay, intricate, landscape, leverage, meticulous, moreover, multifaceted, navigate, notably, optimize, overarching, pivotal, realm, robust, seamless, showcase, streamline, tapestry, testament, transformative, underscore, utilize, vibrant
+> additionally, align (with), comprehensive, crucial, cutting-edge, delve, dynamic, elevate, empower, endeavor, enhance, ensure, evolving, foster, furthermore, garner, harness, highlight, holistic, implement, innovative, interplay, intricate, landscape, leverage, meticulous, moreover, multifaceted, navigate, notably, optimize, overarching, pivotal, realm, robust, seamless, showcase, streamline, tapestry, testament, transformative, underscore, utilize, vibrant
 
 **Sophistication-seeking words** (above) are chosen to sound impressive. The list below covers a different failure mode:
 
@@ -406,7 +406,7 @@ When auditing content, scan in this order (most obvious tells first):
 
 ## Speed Scan Checklist
 
-A flat 11-item rapid-fire checklist for re-checking during final audit (Step 5). Covers the most common residual tells — patterns that survive initial stripping or get reintroduced during voice injection.
+A flat 16-item rapid-fire checklist for re-checking during final audit (Step 5). Covers the most common residual tells — patterns that survive initial stripping or get reintroduced during voice injection.
 
 - [ ] Any em dash (—) anywhere? → Replace with comma, period, or parentheses. Zero allowed.
 - [ ] Any "it's not just X, it's Y" or variant? → State the positive claim directly. Zero allowed.

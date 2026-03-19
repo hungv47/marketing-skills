@@ -237,7 +237,7 @@ compression: [X]%
 
 > SaaS companies with structured onboarding retain 50% more users. Yet most treat it as a product tour and stop there.
 >
-> Onboarding that works combines three things. Triggered emails based on usage gaps, in-app guidance tied to the user's workflow (not a generic checklist), and human support when activation stalls. Intercom's onboarding rebuild in 2024 cut their time-to-value from 14 days to 3 by replacing their 12-step tour with two targeted nudges.
+> Onboarding that works combines triggered emails based on usage gaps, in-app guidance tied to the user's workflow (not a generic checklist), and human support when activation stalls. Intercom's onboarding rebuild in 2024 cut their time-to-value from 14 days to 3 by replacing their 12-step tour with two targeted nudges.
 >
 > Less coverage, more precision. Guide users to one aha-moment fast, then expand.
 
