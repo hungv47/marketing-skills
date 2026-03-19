@@ -89,6 +89,7 @@ All marketing skills read this file for product context.
 | Artifact | Source | Benefit |
 |----------|--------|---------|
 | `problem-analysis.md` | problem-analysis (from hungv47/strategy-skills) | Problem context sharpens audience research |
+| `market-research.md` | market-research (from hungv47/strategy-skills) | Market landscape focuses persona research on identified underserved segments |
 
 ---
 
