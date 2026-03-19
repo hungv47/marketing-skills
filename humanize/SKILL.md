@@ -5,7 +5,7 @@ argument-hint: "[content file or text]"
 license: MIT
 metadata:
   author: hungv47
-  version: "1.0.1"
+  version: "1.1.0"
 ---
 
 # Humanize & Compress
@@ -29,6 +29,16 @@ Before delivering, verify:
 - [ ] No unique ideas, data, examples, or nuance removed (check against original)
 - [ ] Read aloud — no stumbles, no robotic rhythm
 - [ ] Every paragraph contains at least one concrete fact, number, or named example
+
+### Absolute Prohibitions (zero tolerance, no exceptions)
+These patterns are so strongly associated with AI that a single instance ruins credibility:
+1. **No em dashes (—).** Replace every em dash with a comma, period, or parentheses. Restructure the sentence if needed. Zero em dashes in final output.
+2. **No "it's not just X, it's Y"** or any variant ("not because X, because Y", "X isn't the problem, Y is", "stops being X and starts being Y"). State the positive claim directly.
+3. **No rhetorical questions as hooks.** Never use "Why?", "The best part?", "Sound familiar?", "So what does this mean?" or any standalone question designed to create false suspense. State the point.
+4. **No colons in prose.** Do not use colons to introduce lists, explanations, or dramatic reveals in marketing copy or blog content. Restructure into natural sentences.
+5. **No "actually" as emphasis.** "X that actually Y" is an AI tell. Delete "actually" or rewrite the sentence.
+6. **No filler context phrases.** "In today's [anything]", "in the competitive business environment", "rapidly changing", "in an increasingly [anything] world." Delete the entire phrase or sentence.
+7. **No emojis.** Not in any content type.
 
 ## Chain Position
 Horizontal — works on output from any skill. If content passed `copywriting`'s Seven-Sweeps, humanize focuses on compression + residual patterns. For external or AI-generated content, full 5-step process applies.
@@ -225,11 +235,11 @@ compression: [X]%
 
 ### Humanized + Compressed (91 words)
 
-> SaaS companies with structured onboarding retain 50% more users — yet most treat it as a product tour and stop there.
+> SaaS companies with structured onboarding retain 50% more users. Yet most treat it as a product tour and stop there.
 >
-> Onboarding that works combines three things: triggered emails based on usage gaps, in-app guidance tied to the user's actual workflow (not a generic checklist), and human support when activation stalls. Intercom's onboarding rebuild in 2024 cut their time-to-value from 14 days to 3 by replacing their 12-step tour with two targeted nudges.
+> Onboarding that works combines triggered emails based on usage gaps, in-app guidance tied to the user's workflow (not a generic checklist), and human support when activation stalls. Intercom's onboarding rebuild in 2024 cut their time-to-value from 14 days to 3 by replacing their 12-step tour with two targeted nudges.
 >
-> The pattern: less coverage, more precision. Guide users to one aha-moment fast, then expand.
+> Less coverage, more precision. Guide users to one aha-moment fast, then expand.
 
 ### Change Annotation
 
@@ -250,7 +260,7 @@ compression: [X]%
 
 ## Anti-Patterns
 
-**Mechanical pattern-matching without judgment** — Not every instance of a Soft Tell pattern needs fixing. A single em dash in a 1,000-word piece is fine. A single hedge before a genuinely uncertain claim is honest. Use the checklist as a detection tool, not a find-and-replace script.
+**Mechanical pattern-matching without judgment** — Not every instance of a Soft Tell pattern needs fixing. A single hedge before a genuinely uncertain claim is honest. Use the checklist as a detection tool, not a find-and-replace script. Exception: the Absolute Prohibitions (em dashes, negative parallelism, rhetorical questions, colons in prose, "actually" as emphasis, filler context phrases, emojis) are always enforced with zero tolerance.
 
 **Sterile output** — Content that's been stripped of AI patterns but has no personality. If the output reads like a legal document, Step 3 (voice injection) was skipped or under-applied. Clean ≠ good.
 
