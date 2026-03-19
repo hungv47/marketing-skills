@@ -14,8 +14,9 @@ npx skills add hungv47/comms-skills
 |-------|-------------|
 | `icp-research` | Deep audience research and Ideal Customer Profile development |
 | `imc-plan` | Integrated Marketing Communication planning |
-| `content-create` | Production-ready platform-native content with A/B variants and copy principles |
+| `content-create` | Production-ready platform-native content assets with A/B variants |
 | `attribution` | KPI-initiative-content mapping and coverage audit |
+| `copywriting` | Craft-quality copy — headlines, hooks, CTAs, full-page copy with annotations |
 | `lp-optimization` | High-conversion landing page optimization |
 | `seo` | Technical audit, AI/GEO optimization, programmatic SEO, competitor pages |
 | `humanize` | Strip AI patterns, inject voice, and compress content for density |
@@ -24,7 +25,7 @@ npx skills add hungv47/comms-skills
 
 ```
 icp-research → imc-plan → content-create → attribution
-Horizontal: lp-optimization, seo, humanize
+Horizontal: lp-optimization, seo, humanize, copywriting
 ```
 
 Artifacts save to `.agents/mkt/`.
@@ -39,7 +40,9 @@ Attribution and IMC Plan can read strategy artifacts (`.agents/solution-design.m
 - "Research my ICP" → `icp-research`
 - "Create an IMC plan" → `imc-plan`
 - "Create content" → `content-create`
-- "Write copy" → `content-create`
+- "Write copy" → `copywriting`
+- "Write headlines" → `copywriting`
+- "Evaluate this copy" → `copywriting`
 - "Map attribution" → `attribution`
 - "Optimize landing page" → `lp-optimization`
 - "SEO audit" → `seo`

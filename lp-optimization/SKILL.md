@@ -38,11 +38,12 @@ Before delivering, verify:
 - [ ] Every audit finding includes: what was observed, which principle it violates, and a specific recommended fix
 
 ## Chain Position
-Horizontal — works with `icp-research` (audience data), `content-create` (copy principles), `experiment` (test design)
+Horizontal — works with `icp-research` (audience data), `content-create` (content assets), `copywriting` (copy craft), `experiment` (test design)
 **Re-run triggers:** After major page redesigns, when conversion drops >10%, when traffic source mix changes significantly, or quarterly.
 
 ### Skill Deference
 - **Need to write copy from scratch (not optimize existing)?** → Use `content-create` — this skill optimizes existing pages, not blank-page writing.
+- **Need craft-quality headline rewrites or CTA copy?** → Run `copywriting` for variation workflow and evaluation rubric.
 - **AI pattern cleanup needed?** → Use `humanize` — this skill focuses on conversion mechanics, not voice/pattern editing.
 
 ---

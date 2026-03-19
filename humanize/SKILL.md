@@ -31,13 +31,13 @@ Before delivering, verify:
 - [ ] Every paragraph contains at least one concrete fact, number, or named example
 
 ## Chain Position
-Horizontal — works on output from any skill. If content passed `content-create`'s seven-sweeps, humanize focuses on compression + residual patterns. For external or AI-generated content, full 5-step process applies.
+Horizontal — works on output from any skill. If content passed `copywriting`'s Seven-Sweeps, humanize focuses on compression + residual patterns. For external or AI-generated content, full 5-step process applies.
 **Re-run triggers:** When brand voice adjectives change, when content-create output consistently triggers AI detection, or when voice injection guidance is updated.
 
 ### Skill Deference
 - **Need new content written from scratch?** → Use `content-create` — this skill cleans existing content, not creates new.
 - **Conversion optimization needed?** → Use `lp-optimization` — this skill focuses on voice and AI pattern removal, not conversion mechanics.
-- **Content already passed content-create's Seven-Sweeps?** → Focus on compression + residual AI patterns only — skip full audit if seven-sweeps already ran.
+- **Content already passed copywriting's Seven-Sweeps?** → Focus on compression + residual AI patterns only — skip full audit if seven-sweeps already ran.
 
 ---
 
@@ -55,7 +55,7 @@ None — can humanize any text standalone.
 |----------|--------|---------|
 | `product-context.md` | icp-research | Voice adjectives for personality injection |
 | `icp-research.md` | icp-research | Audience register calibration |
-| `content/[slug].md` | content-create | Original content with seven-sweeps applied |
+| `content/[slug].md` | content-create | Original content with copywriting's seven-sweeps applied |
 
 ---
 

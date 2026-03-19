@@ -1,22 +1,22 @@
 ---
 name: content-create
-description: "This skill should be invoked when the user wants to write or draft new marketing content including social posts, ads, emails, email sequences, newsletters, blog posts, case studies, landing page copy, video scripts, carousels, threads, cold emails, or launch announcements. Triggers include 'write me a post', 'I need content for...', 'draft copy', 'create headlines', 'hooks', 'tagline', 'I need to announce something', 'I don't know what to say', or 'what should I write about' -- even if they just name a platform like 'LinkedIn', 'Twitter', 'Instagram', or 'TikTok' or a format like 'carousel' or 'reel.' Not for editing or fixing existing text (use humanize), auditing a live landing page (use lp-optimization), diagnosing why existing content underperforms (use seo or attribution), or technical documentation (use technical-writer)."
+description: "This skill should be invoked when the user wants to write or draft new marketing content assets including social posts, ads, emails, email sequences, newsletters, blog posts, case studies, video scripts, carousels, threads, cold emails, or launch announcements. Triggers include 'write me a post', 'I need content for...', 'draft content', 'I need to announce something', 'I don't know what to say', or 'what should I write about' -- even if they just name a platform like 'LinkedIn', 'Twitter', 'Instagram', or 'TikTok' or a format like 'carousel' or 'reel.' For craft-quality headlines, hooks, CTAs, or full-page section-by-section copy, defer to copywriting. Not for editing or fixing existing text (use humanize), auditing a live landing page (use lp-optimization), diagnosing why existing content underperforms (use seo or attribution), or technical documentation (use technical-writer)."
 argument-hint: "[angle or topic]"
 license: MIT
 metadata:
   author: hungv47
-  version: "2.2.1"
+  version: "3.0.0"
 ---
 
 # Content Creation
 
-*Communicate Track — Step 3 of 4. Turns IMC angles into production-ready content with A/B variants.*
+*Communicate Track — Step 3 of 4. Turns IMC angles into production-ready content assets with A/B variants.*
 
 **Core Question:** "Would the target persona actually stop scrolling for this?"
 
 ## Philosophy
 
-The copy frameworks (PAS, 3-Question Test, CTA formula) are proven tools — not mandatory templates. A skilled writer may combine frameworks, or write a hook that breaks the 8-word guideline because the extra words earn their place. The test is: does this stop the scroll and move the reader? Frameworks get you there faster. They don't define the only path.
+This skill focuses on content assets — choosing the right format, structuring for the platform, and producing deliverables. For copy craft (variation workflows, evaluation rubrics, annotation), use `copywriting`.
 
 ## Inputs Required
 - Angle + channel from `.agents/mkt/imc-plan.md` (or user-provided)
@@ -27,9 +27,7 @@ The copy frameworks (PAS, 3-Question Test, CTA formula) are proven tools — not
 ## Quality Gate
 Before delivering, verify:
 - [ ] Hook communicable concisely — ≤8 words is a strong target; if longer, every extra word must earn its place by adding specificity or surprise
-- [ ] Hook passes 3-question test: visual? falsifiable? uniquely yours?
-- [ ] Every headline/hook contains concrete nouns or specific numbers (no abstract "better," "innovative," "leading")
-- [ ] Key headlines pass the Competitor Swap Test (swap in competitor name — if it still works, rewrite)
+- [ ] Key lines pass `copywriting` skill's quality gate (3Q test, rubric ≥3.5, swap test, variations, annotations)
 - [ ] CTA follows formula: [action verb] + [what they get] (not "Learn More" or "Click Here")
 - [ ] A/B variant changes exactly ONE element — and hypothesis states the learning if B wins
 
@@ -38,9 +36,9 @@ Previous: `imc-plan` | Next: `attribution`
 **Re-run triggers:** When IMC plan angles are updated, when targeting a new platform, or when A/B test results suggest a new direction.
 
 ### Skill Deference
+- **Need craft-quality headlines, hooks, or page copy?** → Run `copywriting` for variation workflow, 3Q test, and evaluation rubric.
 - **Page already exists and problem is conversion?** → Run `lp-optimization` first — it diagnoses conversion blockers before rewriting.
 - **Content reads as AI-generated?** → Run `humanize` after this skill — it strips AI patterns and compresses.
-- **Seven-Sweeps (Step 6) is a quality pass within this skill.** If output still reads as AI-generated after Seven-Sweeps, run `humanize` as a dedicated pass.
 - **Angle already defined in IMC plan?** → Use it directly — don't re-derive. This skill refines hooks within an angle, not replaces the angle.
 - **Optimizing for search/AI citations?** → Coordinate with `seo` for keyword targeting, schema markup, and content structure.
 
@@ -85,19 +83,7 @@ The hook stops the scroll. Write the exact text.
 | Data | "[Surprising stat]" | "31 hours/month in unproductive meetings" |
 | Contrarian | "Stop [common advice]" | "Stop tracking velocity." |
 
-Run the hook through the 3-question test. If any answer is no, rewrite before continuing — weak hooks waste every downstream production effort.
-
-Write 3-5 hook variations using different hook types before selecting. Run each through the 3-question test. Keep the strongest; present top 2 as alternatives with annotations explaining why each works. See [references/copywriting-craft.md](references/copywriting-craft.md) for the full variation workflow and evaluation rubric.
-
-**When 2+ hooks tie on the 3Q test**, apply secondary criteria:
-
-| Tiebreaker | Question | Higher Score Wins |
-|-----------|---------|-------------------|
-| **Surprise** | Which hook was least obvious / most unexpected? | Surprising hooks stop the scroll |
-| **ICP anchor** | Which hook maps to a specific metric or pain from ICP research? | Grounded hooks convert better |
-| **Objection-free** | Which hook triggers zero obvious objections? | Clean hooks have less falloff |
-
-Document which tiebreaker you used — this trains your judgment for future content.
+Apply `copywriting`'s Variation Workflow and Three-Question Test to the hook. Write 3-5 variations, score with the evaluation rubric, and annotate the winner.
 
 ---
 
@@ -109,7 +95,7 @@ Write the ACTUAL copy — not an outline, not a description.
 **Static post:** Complete caption, every word.
 **Carousel:** Every slide, cover to CTA.
 **Thread:** Every post, numbered.
-**Full-page copy** (landing pages, homepages): Organize output section-by-section with 2-3 alternatives per key section — see [references/copywriting-craft.md](references/copywriting-craft.md) for section structure.
+**Full-page copy** (landing pages, homepages): Run `copywriting` for section-by-section organization with alternatives and annotations.
 **Email** (drip campaigns, onboarding sequences, lifecycle emails): Subject line (≤50 chars, A/B variants) + preview text (≤90 chars) + body (one CTA per email, PAS or story framework) + CTA button text + P.S. line (optional — high-read section). For sequences, include send timing and trigger conditions between emails.
 
 ---
@@ -156,7 +142,7 @@ If `.agents/mkt/icp-research.md` exists, pull 2-3 VoC quotes and check: does thi
 
 ## Step 6: Asset Checklist
 
-What the production team needs. Be specific about dimensions, formats, and brand assets.
+What the production team needs. Be specific about dimensions, formats, and brand assets. For copy polish, apply `copywriting`'s Seven Sweeps or `humanize` for AI pattern removal.
 
 ---
 
@@ -183,7 +169,7 @@ status: draft
 [Exact hook text]
 
 **3Q Test:** Visual: [Y/N] | Falsifiable: [Y/N] | Uniquely ours: [Y/N]
-**Annotations:** [Rule that drove hook choice, cut alternative, rubric score — see copywriting-craft.md annotation guide]
+**Annotations:** [Rule that drove hook choice, cut alternative, rubric score — see copywriting skill]
 
 ## Body
 
@@ -278,73 +264,10 @@ status: draft
 
 **Writing outlines instead of copy** — Delivering "Slide 3: Talk about the pain point" instead of the actual words. Content creation means writing every word, slide, and timestamp — outlines are not deliverables.
 
-**Adjective-heavy copy** — "Innovative, cutting-edge, best-in-class solution" says nothing specific. Replace every adjective with a fact: "Used by 3,000 teams" beats "trusted by many."
-
-**Features without benefits** — "Real-time sync" is a feature. "Never ask 'did you see my update?' again" is a benefit. Lead with the outcome the reader cares about, then mention the feature that enables it.
-
-**Writing for the brand, not the buyer** — Copy that sounds impressive to the marketing team but doesn't use the buyer's language. Pull phrasing from VoC quotes and ICP research — write how they talk, not how the brand talks.
-
-**AI copy slop** — Recognizable AI-generated patterns that signal generic output: "Unlock the power of...", "In today's fast-paced world...", "Revolutionize your workflow", "Seamlessly integrate", "Whether you're a [X] or a [Y]". The Competitor Swap Test catches most of these — if it reads like any SaaS website's hero, it fails.
-
----
-
-## Copy Principles
-
-### The Three-Question Test
-
-Run every key sentence through this filter:
-
-1. **Visual?** Close eyes — can the reader see it? ("Couch to 5K" = yes. "Regain fitness" = no.)
-2. **Falsifiable?** Is it true or false? ("6'2, reads on the tube" = yes. "Funny, smart, good values" = no.)
-3. **Uniquely yours?** Could a competitor sign this? ("The dating app designed to be deleted" = only Hinge. "The best platform" = anyone.)
-
-Three yeses = keep. Any no = rewrite.
-
-### Core Rules
-
-**Make It Visual** — Abstract words evaporate. Concrete words stick. Zoom-in technique: Write the abstract word → ask "what do I actually mean?" → keep zooming until you hit something you can drop on your foot.
-
-**Make It Falsifiable** — True-or-false statements put your head on the chopping block. "Don't talk, only point" — point at the graph, the statistic, the specific feature.
-
-**Make It Yours Alone** — "Never write an ad a competitor can sign." Test: Swap in competitor's name. Still works? Rewrite.
-
-**Facts Over Adjectives** — Start with a fact. Build from there. "Even when it's not Heinz, it's Heinz."
-
-### CTA Formula
-
-`[Action Verb] + [What They Get] + [Qualifier]`
-
-Bad: Submit, Learn More, Click Here
-Good: "Start your free trial", "Download the 2026 playbook", "See pricing for your team"
-
-### Speed Test
-
-Show someone the copy for two seconds. If they don't get it, rewrite.
-
-### Copy Process
-
-Before writing any key line, answer:
-1. Who am I talking to? What do they currently believe?
-2. What should they believe after reading this?
-3. What can I say that nobody else can?
-
-### Page-Specific Guidance
-
-| Page | Key Principle |
-|------|--------------|
-| **Homepage** | What you do in one sentence. Primary use case, not every feature. |
-| **Landing Page** | One goal, one CTA. Match headline to traffic source. Remove nav. |
-| **Pricing** | Lead with value, not price. Anchor with most popular plan. |
-| **Feature** | Lead with outcome ("Track time in one click"), not feature name. |
-| **About** | Founding story. What you believe. Team photos + real context. |
-
 ---
 
 ## References
 
 - [references/examples.md](references/examples.md) — Complete worked examples with full copy
 - [references/platform-specs.md](references/platform-specs.md) — Platform dimensions, limits, native patterns
-- [references/copy-frameworks.md](references/copy-frameworks.md) — Headline formulas, PAS framework, page templates
-- [references/copywriting-craft.md](references/copywriting-craft.md) — Variation workflow, extended techniques, evaluation rubric, annotation guide
-- [references/seven-sweeps.md](references/seven-sweeps.md) — Structured 7-pass editing method (Clarity → Voice → So What → Prove It → Specificity → Emotion → Zero Risk)
 - [references/repurposing-cascade.md](references/repurposing-cascade.md) — Hero → derivative content workflow across channels
