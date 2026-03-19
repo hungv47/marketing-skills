@@ -8,7 +8,11 @@ Horizontal: lp-optimization, seo, humanize, copywriting
 Foundational: product-description, icp-research
 
 ## Recommended Starting Point
-Run `product-description` or `icp-research` first — they are foundational "Step 0" skills. `product-description` creates `.agents/mkt/product-description.md` (comprehensive product intelligence) and updates `.agents/product-context.md`. `icp-research` creates `.agents/mkt/icp-research.md` and `.agents/product-context.md` (the canonical cross-stack artifact consumed by 12+ downstream skills).
+Run `product-description` or `icp-research` first — they are foundational "Step 0" skills:
+- **`product-description`** when you need deep product intelligence (features, positioning, competitors, value props) → creates `.agents/mkt/product-description.md` and updates `.agents/product-context.md`
+- **`icp-research`** when you need audience understanding (personas, pain points, habitats) → creates `.agents/mkt/icp-research.md` and `.agents/product-context.md`
+
+Either can run first. Running both gives downstream skills the strongest foundation.
 
 ## Artifacts
 Skills write to `.agents/mkt/`, except `product-context.md` which is cross-stack:

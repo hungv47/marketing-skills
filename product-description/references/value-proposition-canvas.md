@@ -28,13 +28,29 @@ For each major feature discovered in Phase 1:
 
 The third "so what" usually reveals the real value proposition. The first is just a feature description.
 
-**Example:**
+**Example (SaaS):**
 - Feature: "Real-time GitHub sync"
 - So what? → "Tasks update automatically when code changes"
 - So what? → "No more stale boards that don't reflect reality"
 - So what? → "Stop wasting standup time reconciling what actually shipped"
 
 Value prop: "Stop wasting standup time reconciling what actually shipped."
+
+**Example (physical product — insulated water bottle):**
+- Feature: "Triple-wall vacuum insulation"
+- So what? → "Keeps drinks cold for 24 hours"
+- So what? → "One fill lasts an entire day without ice melting"
+- So what? → "Stop buying plastic bottles at the gym because your water got warm"
+
+Value prop: "One fill. Ice-cold at the gym, still cold at dinner."
+
+**Example (service — bookkeeping):**
+- Feature: "Dedicated bookkeeper assigned to your account"
+- So what? → "Same person handles your books every month"
+- So what? → "They learn your business patterns and catch anomalies"
+- So what? → "Stop explaining your business from scratch every tax season"
+
+Value prop: "A bookkeeper who already knows why March is always weird."
 
 ---
 

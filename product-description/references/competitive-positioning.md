@@ -59,21 +59,17 @@ The two axes should be:
 
 ### Matrix Template
 
-```
-                    [Dimension 1: High]
-                         │
-          ┌──────────────┼──────────────┐
-          │              │              │
-          │  [Quadrant]  │  [Quadrant]  │
-          │              │              │
-[Dim 2:   ├──────────────┼──────────────┤  [Dim 2:
- Low]     │              │              │   High]
-          │  [Quadrant]  │  [Quadrant]  │
-          │              │              │
-          └──────────────┼──────────────┘
-                         │
-                    [Dimension 1: Low]
-```
+| | **[Dim 2]: Low** | **[Dim 2]: High** |
+|---|---|---|
+| **[Dim 1]: High** | [competitors in this quadrant] | [competitors in this quadrant] |
+| **[Dim 1]: Low** | [competitors in this quadrant] | [competitors in this quadrant] |
+
+**Example** (Railtrack — Specialist vs. Generalist, Developer-centric vs. Manager-centric):
+
+| | **Manager-centric** | **Developer-centric** |
+|---|---|---|
+| **Specialist** | Basecamp (small teams) | **Railtrack** (Rails only) |
+| **Generalist** | Jira (everything for everyone) | Linear (all dev teams) |
 
 Place each competitor (direct and indirect) on the matrix. The goal is to identify:
 - **White space** — quadrants with no competitors (opportunity or warning)
@@ -125,6 +121,13 @@ Most startups and growth-stage products have 0-2 weak moats. That's normal and w
 - **Weak moats** → invest in strengthening them, don't over-claim in messaging
 - **No moats** → positioning must rely on execution speed, specialization, or brand
 - **Multiple no-moats** → flag this as a strategic risk; recommend `solution-design` for strategic response
+
+### Early-Stage Products (Concept / MVP / Beta)
+
+For pre-launch or early-stage products, moats are typically undeveloped — reporting "None" across all six types is expected, not a failure. When this is the case:
+- **Don't over-analyze** — a full moat assessment for a product with 10 users is premature. Note the stage and move on.
+- **Focus positioning on:** specialization (narrow audience or use case), speed-to-market (first to solve this specific problem), and founder credibility (team's unique qualification to build this).
+- **Flag moat-building opportunities** instead of moat gaps — e.g., "Switching costs could develop as teams accumulate task history" is more useful than "Switching Costs: None."
 
 ---
 

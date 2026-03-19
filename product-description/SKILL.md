@@ -1,6 +1,7 @@
 ---
 name: product-description
 description: "This skill should be invoked when the user needs a comprehensive product intelligence document — the single source of truth for what the product is, how it works, why it matters, and how it compares. Triggers include 'describe our product', 'product overview', 'product description', 'what does our product do', 'product intelligence', 'product analysis', 'competitive analysis', 'how do we compare', 'value proposition', 'what makes us different', 'product positioning', 'product brief', or when downstream skills need deeper product understanding than product-context.md provides. Not for audience/persona research (use icp-research), campaign planning (use imc-plan), writing marketing copy (use copywriting), or brand identity (use brand-system)."
+argument-hint: "[product name or URL]"
 license: MIT
 metadata:
   author: hungv47
@@ -57,6 +58,13 @@ Previous: none (entry point, foundational) | Next: all skills reading `product-c
 ### Step 0: Check Existing Artifacts
 Check for `.agents/product-context.md` and `.agents/mkt/product-description.md`. If the product description already exists, check its `date` field — if older than 90 days, recommend a full re-run. If recent, ask whether the user wants a targeted update or full re-run.
 
+**Targeted update workflow:** When the user wants a targeted update (not a full re-run):
+1. Ask which sections need updating and why (new feature, pricing change, new competitor, etc.)
+2. Re-run Phase 1 research ONLY for the affected source types
+3. Skip Phase 2 unless research surfaces conflicts with existing user-confirmed data
+4. Update only the affected sections in the artifact, preserving existing confidence scores elsewhere
+5. Increment the artifact version and note which sections changed
+
 ### Required Artifacts
 None — this is an entry point skill. Only needs a product name or URL.
 
@@ -79,20 +87,36 @@ Before asking the user a single question, scan all available public sources. Use
 3. **WebSearch** — supporting role for broad discovery and gap-filling. Always available as fallback.
 4. **User interview fallback** — Phase 2 handles this.
 
+### Pre-Launch / Low-Visibility Products
+
+If the product is pre-launch, stealth, or has minimal public presence (≤1 source found after initial scan):
+- **Skip the rest of Phase 1** — don't waste queries searching for data that doesn't exist.
+- **Expand Phase 2** into a full product interview instead of gap-fill. Use Part B and Part C questions as the primary interview, and add: "Walk me through the product — what does a user do from signup to first value?"
+- **Mark all sections as LOW confidence** unless user-confirmed, since there's no external verification.
+- **Note in the artifact header:** `sources-consulted: 0-1 (pre-launch product, primarily user-sourced)`
+
 ### Source Scan Matrix
 
-For each source type, extract specific information. Skip sources that don't exist (not every product has app store listings or G2 reviews).
+For each source type, extract specific information. Skip sources that don't exist for this product type.
 
-| Source | Search Pattern | What to Extract |
-|--------|---------------|----------------|
-| **Product website / landing page** | `[product name] site:[domain]` | Value prop, features, pricing, CTAs, social proof, messaging hierarchy, brand voice |
-| **Documentation / README** | `[product name] documentation OR docs OR readme` | Technical capabilities, integrations, API, limitations, architecture |
-| **App store listings** | `site:apps.apple.com OR site:play.google.com "[product name]"` | Category, ratings, review count, update frequency, screenshots |
-| **G2 / Capterra reviews** | `site:g2.com OR site:capterra.com "[product name]"` | Strengths, weaknesses, use cases, competitor comparisons, satisfaction scores |
-| **Social media profiles** | `[product name] site:twitter.com OR site:linkedin.com` | Brand voice in practice, community size, engagement patterns |
-| **Competitor comparison pages** | `[product name] vs OR alternative OR compared to` | How they position against alternatives, claimed differentiators |
-| **Press / media coverage** | `[product name] launch OR funding OR raised OR interview` | Narrative, founding story, funding, team, milestones |
-| **Pricing page** | `[product name] pricing` | Plans, pricing model, free tier, enterprise options |
+**SaaS / Digital Products:**
+
+| Source | What to Extract |
+|--------|----------------|
+| **Product website / landing page** | Value prop, features, pricing, CTAs, social proof, messaging hierarchy, brand voice |
+| **Documentation / README** | Technical capabilities, integrations, API, limitations, architecture |
+| **App store listings** | Category, ratings, review count, update frequency, screenshots |
+| **G2 / Capterra reviews** | Strengths, weaknesses, use cases, competitor comparisons, satisfaction scores |
+| **Social media profiles** | Brand voice in practice, community size, engagement patterns |
+| **Competitor comparison pages** | How they position against alternatives, claimed differentiators |
+| **Press / media coverage** | Narrative, founding story, funding, team, milestones |
+| **Pricing page** | Plans, pricing model, free tier, enterprise options |
+
+**Physical Products** — also scan: Amazon/marketplace reviews, unboxing/review videos, retail listings, trade publications.
+**Services** — also scan: Yelp/Trustpilot reviews, industry directories, case studies, portfolio/client pages.
+**Marketplaces** — also scan: both supply-side and demand-side reviews, commission/fee structures, seller/creator forums.
+
+See [references/product-analysis-framework.md](references/product-analysis-framework.md) for search query patterns, source reliability hierarchy, and conflict resolution.
 
 ### Research Notes Format
 
@@ -110,17 +134,15 @@ As you scan, record findings in this structure (internal working notes — not p
 - [note any contradictions]
 ```
 
-See [references/product-analysis-framework.md](references/product-analysis-framework.md) for source reliability hierarchy and conflict resolution.
-
 ---
 
 ## Phase 2: Gap Interview
 
-Present a structured summary of research findings to the user, organized by what you found and what's missing. This is NOT a blank questionnaire — it's a confirmation-and-gap-fill conversation.
+Present a structured summary of research findings to the user, organized by what you found and what's missing. This is NOT a blank questionnaire — it's a confirmation-and-gap-fill conversation. **Adapt the interview to what Phase 1 actually found:** only present Part A items where you have data, only ask Part B questions where research left gaps, and skip Part C if competitive positioning is already clear.
 
 ### Interview Structure
 
-**Part A — Confirm or Correct** (present what you found):
+**Part A — Confirm or Correct** (only for items where you found data):
 > "Based on my research, here's what I've gathered about [product]. Please confirm, correct, or add nuance:"
 >
 > 1. **Core function:** [your finding]
@@ -129,7 +151,9 @@ Present a structured summary of research findings to the user, organized by what
 > 4. **Pricing:** [your finding]
 > 5. **Main competitors:** [your findings]
 
-**Part B — Fill Gaps** (ask only what research couldn't answer):
+If Phase 1 found strong data for an item (HIGH confidence from ≥2 sources), present it as a statement to confirm. If it found weak data (single source, MEDIUM confidence), present it as a question to verify.
+
+**Part B — Fill Gaps** (ask only what research couldn't answer — skip items already covered):
 - Product stage (concept/MVP/beta/launch/growth/mature)?
 - Internal roadmap items that affect positioning?
 - Unpublished features or upcoming changes?
@@ -139,13 +163,13 @@ Present a structured summary of research findings to the user, organized by what
 - Security/compliance certifications?
 - Anything the public sources get wrong?
 
-**Part C — Positioning Intent** (strategic context):
+**Part C — Positioning Intent** (skip if competitive positioning is already clear from research):
 - How do YOU describe the product in one sentence?
 - What competitor do prospects most often compare you to?
 - What's the #1 reason customers choose you over alternatives?
 - What's the #1 reason prospects DON'T choose you?
 
-Keep the interview focused. If research was thorough, Part B should be short.
+Keep the interview focused. A thorough Phase 1 should reduce this to 3-5 questions, not 15.
 
 ---
 
@@ -171,7 +195,8 @@ Build the 12-section product intelligence document. Every claim must be sourced 
 - Core workflow in 3-5 steps
 
 **4. Feature Analysis**
-- Features grouped by capability area
+- Features grouped by capability area (max 4-5 areas)
+- For each area: top 2-3 features that matter for positioning (max 10-12 features total — downstream skills need signal, not an exhaustive feature list)
 - For each major feature: what it does, why it matters, how it compares to competitors
 - Feature maturity indicators where available (new, stable, flagship)
 
@@ -223,12 +248,14 @@ Build the 12-section product intelligence document. Every claim must be sourced 
 
 ### Confidence Scoring
 
-Mark each section with a confidence level:
-- **HIGH** — verified from ≥2 independent sources or user-confirmed
-- **MEDIUM** — single source, plausible but unverified
-- **LOW** — inferred, limited data, or conflicting sources
+Mark each section with a confidence level. See [references/product-analysis-framework.md](references/product-analysis-framework.md) for full criteria and decay guidelines.
 
-Flag unknowns explicitly with `[UNKNOWN — reason]` rather than guessing.
+| Level | Criteria |
+|-------|----------|
+| **HIGH** | Verified from ≥2 independent sources, OR user-confirmed, OR from official documentation |
+| **MEDIUM** | Single reliable source, plausible but unverified by user or second source |
+| **LOW** | Inferred from indirect evidence, limited data, or conflicting sources unresolved |
+| **UNKNOWN** | No data found, or user declined to answer — mark as `[UNKNOWN — reason]`, do not guess |
 
 ---
 
@@ -248,7 +275,12 @@ Map findings to the 8 fields:
 | Voice | Section 9 (Brand Voice) — 3 adjectives |
 | Primary CTA | Section 1 or 11 — main call to action |
 
-Only update fields where the new research provides better/more current data than what exists. Preserve user-confirmed data that research didn't improve.
+**Precedence rules** (to avoid conflicts with `icp-research`, which also writes this file):
+1. **User-confirmed data always wins** over research-inferred data, regardless of which skill wrote it
+2. **Newer data wins** over older data at the same confidence level
+3. **Never downgrade confidence** — if a field is HIGH confidence from `icp-research`, don't overwrite with MEDIUM confidence research
+4. If `product-context.md` exists and has a `date` field, compare dates. If the existing file is <30 days old and all fields are populated, skip Phase 4 unless your research found corrections
+5. When updating, preserve the existing `date` field's format and add a comment: `<!-- Updated by product-description [date] -->`
 
 ---
 
@@ -445,21 +477,21 @@ sources-consulted: [number]
 **User:** "Describe our product — it's called Railtrack, railtrack.app"
 
 **Phase 1 — Research Scan:**
-Agent scans railtrack.app landing page, docs, G2 reviews, Twitter, comparison articles. Finds: project tracking tool for Rails developers, integrates with GitHub, $15/mo per seat, 4.3 on G2, main competitors are Linear and Shortcut.
+Agent scans railtrack.app landing page, docs, G2 reviews, Twitter, comparison articles (5 sources). Finds: project tracking tool for Rails developers, integrates with GitHub, $15/mo per seat, 4.3 on G2, main competitors are Linear and Shortcut. No app store listings (web-only). No referral program found.
 
-**Phase 2 — Gap Interview:**
-> "Based on my research, here's what I've gathered about Railtrack:
+**Phase 2 — Gap Interview (adapted to what Phase 1 found):**
+> "Based on my research, here's what I've gathered about Railtrack. Please confirm, correct, or add nuance:
 > 1. **Core function:** Project tracking built specifically for Rails teams, with GitHub integration
 > 2. **Primary value prop:** Native Rails conventions in project management (migrations as tasks, PR-linked stories)
 > 3. **Pricing:** $15/seat/month, free tier for up to 3 users
 > 4. **Main competitors:** Linear, Shortcut, Jira
 >
-> Please confirm or correct. Also:
+> Gaps from research:
 > - What stage are you at? (looks like Growth based on G2 review count)
-> - Any upcoming features that affect positioning?
+> - Any referral or partner programs? (couldn't find any publicly)
 > - What's the #1 reason customers choose you over Linear?"
 
-User confirms, adds: "We're post-launch/growth. The #1 reason is our deploy-linked task completion — when a PR merges, linked tasks auto-close with deploy context. Nobody else does that natively."
+User confirms, adds: "We're post-launch/growth. No referral program yet. The #1 reason is our deploy-linked task completion — when a PR merges, linked tasks auto-close with deploy context. Nobody else does that natively."
 
 **Phase 3 — Artifact saved to `.agents/mkt/product-description.md`:**
 
@@ -504,6 +536,38 @@ sources-consulted: 5
 
 **"Only we can say":** "The only project tracker where merging your PR closes the task with deploy context — no webhooks, no Zapier, no 'mark as done'." (Swap Test: Linear/Shortcut can't claim native deploy-linked closure.)
 
+**Proof points:**
+- "Used by 400+ Rails teams" — [G2 profile]
+- "4.3★ average rating" — [G2, 89 reviews]
+- "Built by Rails core contributors" — [about page]
+
+*Confidence: HIGH*
+
+## 3. How It Works
+
+1. Connect your GitHub repo (OAuth, 30 seconds)
+2. Create tasks using Rails conventions — migrations, generators, and console commands map to task types
+3. Link tasks to PRs (auto-detected from branch names or manual)
+4. When a linked PR merges and deploys, the task auto-closes with deploy context (commit SHA, environment, timestamp)
+
+**Key mechanics:** The deploy-linked closure is native to the data model — not a webhook or third-party integration. Task state is derived from Git state, so the board always reflects what actually shipped.
+
+*Confidence: HIGH*
+
+## 4. Feature Analysis
+
+### Core Tracking
+| Feature | What It Does | Why It Matters | vs. Competitors |
+|---------|-------------|----------------|-----------------|
+| Deploy-linked closure | Tasks auto-close when linked PR deploys | Board always reflects reality | Linear/Shortcut require manual updates or generic webhooks |
+| Rails task types | Migrations, generators as first-class task types | Matches how Rails teams think about work | No competitor has framework-specific task types |
+
+### Integrations
+| Feature | What It Does | Why It Matters | vs. Competitors |
+|---------|-------------|----------------|-----------------|
+| GitHub-native sync | Real-time bidirectional sync, <1s | No stale boards, no broken links | Linear has GitHub integration but not framework-aware |
+| CI/CD awareness | Reads deploy events from GitHub Actions, Heroku, Render | Closure triggers on actual deploy, not just merge | Unique — competitors close on merge at best |
+
 *Confidence: HIGH*
 
 ## 5. Competitive Positioning
@@ -516,13 +580,135 @@ sources-consulted: 5
 | Jira | Indirect | Enterprise features, ecosystem | Complexity, configuration overhead | We're opinionated for Rails; they're configurable for everyone |
 | Spreadsheets | Alternative/Status quo | Zero learning curve | No automation, no code integration | We automate the tracking they do manually |
 
+### Moat Analysis
+| Moat Type | Strength | Evidence |
+|-----------|----------|---------|
+| Switching Costs | Weak | Task history and conventions create mild lock-in, but data is exportable |
+| Data Advantage | None | No ML or proprietary dataset yet |
+| Brand | Weak | Growing recognition in Rails community, "built by Rails core contributors" |
+| Network Effects | None | Single-team tool, no cross-team dynamics |
+
 *Confidence: HIGH*
+
+## 6. Target Market Overview
+
+**Market:** B2B, small-to-mid SaaS companies with Rails backends, US/EU
+**Primary use cases:**
+1. Sprint tracking for Rails engineering teams (5-30 developers)
+2. Async project visibility for distributed Rails teams
+3. Replacing Jira/spreadsheets for teams that find them too heavy
+
+*→ For deep audience research, run `icp-research`.*
+
+*Confidence: HIGH*
+
+## 7. Pricing & Business Model
+
+| Plan | Price | Key Features |
+|------|-------|-------------|
+| Free | $0 (≤3 users) | Core tracking, GitHub sync, 1 repo |
+| Team | $15/seat/month | Unlimited repos, deploy-linked closure, CI/CD awareness |
+| Enterprise | Custom | SSO, audit log, dedicated support |
+
+**Model:** Per-seat subscription with free tier
+**Free tier:** Full features for ≤3 users, 1 repo limit
+
+*Confidence: HIGH*
+
+## 8. Trust & Credibility
+
+**Social proof:**
+- "Used by 400+ Rails teams" — [G2 profile]
+- 4.3★ on G2 (89 reviews) — [G2]
+- "Finally a tracker that knows what a migration is" — [G2 review, 2026-01]
+
+**Security & compliance:**
+- SOC 2 Type II — [trust page]
+- GDPR compliant — [privacy policy]
+
+**Team credibility:**
+- Founded by 2 Rails core contributors — [about page]
+
+*Confidence: HIGH (social proof, team), MEDIUM (security — single source)*
+
+## 9. Brand Voice & Personality
+
+**Voice adjectives:** direct, technical, opinionated
+
+**Tone examples from actual copy:**
+- "Your board should reflect what shipped, not what someone remembered to update." — [homepage hero]
+- "We built this because we were tired of Jira. You probably are too." — [about page]
+
+**Personality traits:** Anti-complexity, developer-first, Rails-proud
+
+*→ For designing a new brand voice, run `brand-system`.*
+
+*Confidence: HIGH*
+
+## 10. Vision & Roadmap
+
+**Vision:** "Make project tracking invisible — derived from code, not typed into a form." — [about page]
+
+**Known roadmap:**
+- Multi-repo projects — [public roadmap page]
+- Hotwire/Turbo-native desktop app — [public roadmap page]
+- [user-confirmed, not public] Considering CI/CD integrations beyond GitHub Actions
+
+*Confidence: MEDIUM (roadmap items may shift)*
+
+## 11. Getting Started / Onboarding
+
+1. Sign up with GitHub OAuth (10 seconds)
+2. Select a repo to connect (30 seconds)
+3. First task created from existing PR (auto-suggested, 1 minute)
+4. First deploy-linked closure (next PR merge — varies)
+
+**Time-to-value:** ~2 minutes to first task; first "aha moment" on next deploy
+**Common friction:** "Initial setup assumes GitHub — GitLab users can't use it" — [G2 review]
+
+*Confidence: HIGH (onboarding), MEDIUM (friction — single review source)*
+
+## 12. Programs & Incentives
+
+- **Referral:** [UNKNOWN — no public program found, user confirmed none yet]
+- **Affiliate/Partner:** [UNKNOWN]
+- **Loyalty:** [UNKNOWN]
+- **Promotions:** Annual billing discount (2 months free) — [pricing page]
+
+*Confidence: LOW*
+
+---
+
+## Source Log
+
+| # | Source | Type | Date Accessed | Key Contribution |
+|---|--------|------|---------------|-----------------|
+| 1 | railtrack.app | website | 2026-03-19 | Value prop, features, pricing, voice, vision |
+| 2 | railtrack.app/docs | docs | 2026-03-19 | Technical capabilities, integrations, onboarding flow |
+| 3 | g2.com/products/railtrack | review | 2026-03-19 | User count, rating, strengths/weaknesses, friction |
+| 4 | twitter.com/railtrack | social | 2026-03-19 | Brand voice examples, community size |
+| 5 | User interview | user | 2026-03-19 | Stage, differentiator, competitive win reason |
+
+## Next Steps
+- Run `icp-research` to build deep audience intelligence
+- Run `imc-plan` to plan communication campaigns
+- Run `copywriting` for craft-quality copy based on this intelligence
+
+> On re-run: rename existing artifact to `product-description.v[N].md` and create new with incremented version.
 ```
 
 **Phase 4 — Updated `.agents/product-context.md`:**
-- Product: "Railtrack — project tracking for Rails teams with deploy-linked task completion"
-- Differentiator: "Only tracker where merging a PR auto-closes the task with deploy context"
-- Model: "$15/seat/month, free for ≤3 users"
+
+Existing file was created by `icp-research` 45 days ago. Fields updated where product-description research found better data:
+
+| Field | Before | After | Reason |
+|-------|--------|-------|--------|
+| Product | "Railtrack — project tracking for Rails teams" | "Railtrack — project tracking for Rails teams with deploy-linked task completion" | Added key differentiator (user-confirmed) |
+| Differentiator | "Built for Rails teams" | "Only tracker where merging a PR auto-closes the task with deploy context" | More specific, passes Swap Test (user-confirmed) |
+| Model | "$15/seat/month" | "$15/seat/month, free for ≤3 users" | Added free tier detail (website) |
+| Social Proof | [was empty] | "Used by 400+ Rails teams, 4.3★ on G2" | New data (G2) |
+
+Fields preserved (icp-research data was already user-confirmed and current): Buyer, Problem, Voice, Primary CTA.
 
 ---
 
