@@ -1,6 +1,6 @@
 ---
 name: lp-optimization
-description: "Audits a landing page for conversion — analyzes hero, CTA, social proof, objection handling, and page flow with scored recommendations. Produces scored recommendations with specific copy and structure changes. Not for A/B testing variants (use experiment) or full site SEO audits (use seo)."
+description: "Audits a landing page for conversion — analyzes hero, CTA, social proof, objection handling, and page flow. Produces specific copy and structure change recommendations. Not for A/B testing variants (use experiment) or full site SEO audits (use seo)."
 argument-hint: "[url or description]"
 license: MIT
 metadata:
