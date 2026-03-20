@@ -1,6 +1,6 @@
 ---
 name: seo
-description: "Audits and plans search visibility — keyword research, on-page optimization, technical SEO, link building strategy, and AI search optimization. Produces `.agents/mkt/seo.md`. Not for landing page conversion (use lp-optimization) or writing content (use content-create)."
+description: "Audits and plans search visibility — keyword research, on-page optimization, technical SEO, link building strategy, and AI search optimization. Produces `.agents/mkt/seo-[mode].md`. Not for landing page conversion (use lp-optimization) or writing content (use content-create)."
 argument-hint: "[url or mode]"
 license: MIT
 metadata:
