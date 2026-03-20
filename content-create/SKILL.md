@@ -1,11 +1,11 @@
 ---
 name: content-create
-description: "This skill should be invoked when the user wants to write or draft new marketing content assets including social posts, ads, emails, email sequences, newsletters, blog posts, case studies, video scripts, carousels, threads, cold emails, or launch announcements. Triggers include 'write me a post', 'I need content for...', 'draft content', 'I need to announce something', 'I don't know what to say', or 'what should I write about' -- even if they just name a platform like 'LinkedIn', 'Twitter', 'Instagram', or 'TikTok' or a format like 'carousel' or 'reel.' For craft-quality headlines, hooks, CTAs, or full-page section-by-section copy, defer to copywriting. Not for editing or fixing existing text (use humanize), auditing a live landing page (use lp-optimization), diagnosing why existing content underperforms (use seo or attribution), or technical documentation (use technical-writer)."
+description: "Drafts marketing content assets — social posts, ads, emails, newsletters, blog posts, case studies, video scripts, and launch announcements in platform-native formats. Produces `.agents/mkt/content/[slug].md`. Not for editing existing text (use humanize) or persuasive headlines and CTAs (use copywriting)."
 argument-hint: "[angle or topic]"
 license: MIT
 metadata:
   author: hungv47
-  version: "3.0.0"
+  version: "3.0.1"
 ---
 
 # Content Creation

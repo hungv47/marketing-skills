@@ -1,10 +1,11 @@
 ---
 name: imc-plan
-description: "This skill should be invoked when the user wants a marketing strategy, campaign plan, or channel strategy. Triggers include 'how do I market this', 'I have a product but no go-to-market plan', 'we have no marketing plan', 'nobody knows about us', 'how do I get the word out', 'how do I promote this', 'planning a marketing launch', 'GTM strategy', 'choosing channels', 'which channels should I use', 'should I be on TikTok or LinkedIn', 'how should we position this', 'content strategy', 'content calendar', or 'get my first users' -- even if they just say 'where should we spend our marketing budget' or 'we post a lot but nothing works.' Not for writing actual content (use content-create), setting numeric targets (use funnel-planner), strategic prioritization across non-marketing levers (use solution-design), diagnosing why a launched product has no traction (use problem-analysis), or organic search strategy (use seo)."
+description: "Creates integrated marketing plans — channel strategy, positioning, content calendar, budget allocation, and go-to-market timelines. Produces `.agents/mkt/imc-plan.md`. Not for writing actual content (use content-create) or setting numeric targets (use funnel-planner)."
+argument-hint: "[product or campaign to plan]"
 license: MIT
 metadata:
   author: hungv47
-  version: "7.2.1"
+  version: "7.2.2"
 ---
 
 # Integrated Marketing Communication (IMC)

@@ -1,11 +1,11 @@
 ---
 name: seo
-description: "This skill should be invoked when the user wants to improve search visibility or organic traffic. Triggers include 'how do I rank for...', 'keyword research', 'link building', 'site speed', 'nobody can find us online', 'how do I get more organic traffic', 'competitors outrank us', 'SEO audit', 'show up in AI answers', 'show up on ChatGPT', 'blog isn't driving leads', 'nobody reads our blog', or 'we write content but get no traffic from it' -- even if they just say 'we're invisible on Google', 'how do I build domain authority', or paste a URL and ask 'why aren't we ranking.' Not for landing page conversion (use lp-optimization), writing the actual blog or comparison page content (use content-create), or paid advertising and social media strategy (use imc-plan)."
+description: "Audits and plans search visibility — keyword research, on-page optimization, technical SEO, link building strategy, and AI search optimization. Produces `.agents/mkt/seo.md`. Not for landing page conversion (use lp-optimization) or writing content (use content-create)."
 argument-hint: "[url or mode]"
 license: MIT
 metadata:
   author: hungv47
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # SEO

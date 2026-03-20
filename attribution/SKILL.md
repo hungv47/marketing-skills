@@ -1,10 +1,11 @@
 ---
 name: attribution
-description: "This skill should be invoked when the user wants to evaluate whether marketing activities are producing results. Triggers include 'is my marketing working', 'what's driving results', 'which content matters', 'are we wasting money', 'what's our marketing ROI', 'marketing report', 'where are our customers coming from', 'how do I track my marketing', 'what's working and what's not', 'should I keep doing X', or 'which campaigns should we cut' -- even if they just say 'I can't tell what's working' or 'we're doing a lot but nothing moves the needle.' Not for setting new KPIs or future targets (use funnel-planner), creating new content (use content-create), or diagnosing why a specific channel underperforms (use seo for search, lp-optimization for pages)."
+description: "Maps marketing activities to business outcomes — evaluates channel ROI, identifies what's driving results, and recommends where to double down or cut spend. Produces `.agents/mkt/attribution.md`. Not for setting new KPIs (use funnel-planner) or creating new content (use content-create)."
+argument-hint: "[initiatives or KPIs to map]"
 license: MIT
 metadata:
   author: hungv47
-  version: "2.2.1"
+  version: "2.2.2"
 ---
 
 # Attribution Mapping

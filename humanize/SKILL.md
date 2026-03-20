@@ -1,11 +1,11 @@
 ---
 name: humanize
-description: "This skill should be invoked when the user has existing text that sounds robotic, generic, or AI-generated and wants it to read like a human wrote it. Triggers include 'this sounds like AI', 'this reads like a template', 'make this more human', 'too robotic', 'tighten this up', 'make this shorter', 'edit this', 'fix my copy', 'polish this', 'too formal', 'too corporate', 'this doesn't sound like us', 'more conversational', or 'rewrite in our brand voice' -- even if they just paste text without comment and the issue is clearly AI tone, or say 'this won't pass AI detection.' Not for writing new content from scratch (use content-create) or rewriting full landing pages (use lp-optimization)."
+description: "Strips AI patterns, injects brand voice, and compresses existing text so it reads human-written. Targets 15%+ word reduction with zero idea loss. Produces `.agents/mkt/content/[slug].humanized.md`. Not for writing new content (use content-create)."
 argument-hint: "[content file or text]"
 license: MIT
 metadata:
   author: hungv47
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # Humanize & Compress
