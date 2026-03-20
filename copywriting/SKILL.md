@@ -1,11 +1,11 @@
 ---
 name: copywriting
-description: "This skill should be invoked when the user needs persuasive copy — headlines, hooks, CTAs, taglines, subject lines, or full-page section-by-section copy with annotations and alternatives. Triggers include 'write headlines', 'evaluate this copy', 'is this headline good', 'write landing page copy', 'section-by-section copy', 'annotate the copy', 'variation workflow', 'headline formulas', 'copy evaluation', 'three-question test', 'swap test', or when another skill needs key lines written with craft rigor. Not for choosing content formats or platforms (use content-create), editing existing text for AI patterns (use humanize), or diagnosing landing page conversion issues (use lp-optimization)."
+description: "Writes and evaluates persuasive copy — headlines, hooks, CTAs, taglines, and full-page section copy with rubric scoring, annotations, and ranked alternatives. Produces inline annotations or `.agents/mkt/content/[slug].copy.md`. Not for content format selection (use content-create) or editing AI-sounding text (use humanize)."
 argument-hint: "[copy task or text to evaluate]"
 license: MIT
 metadata:
   author: hungv47
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Copywriting
