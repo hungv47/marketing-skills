@@ -86,7 +86,14 @@ Scan the content for two categories of problems:
 - Bridge sentences that exist only to connect ideas
 - Sections that don't pass the earn-your-place test
 
-Produce an internal diagnosis — do not modify the content yet. The diagnosis informs Steps 2-4.
+Produce the diagnosis, then present it to the user before proceeding. Show:
+- Count of Hard Tell vs Soft Tell patterns found
+- Top 3 most impactful patterns with examples from their text
+- Estimated compression potential
+
+If zero patterns are found in both categories, inform the user the content is already clean and skip directly to Step 3 (voice injection).
+
+Otherwise, ask: "Proceed with all fixes, or review the flagged patterns first?" Voice and tone decisions are subjective enough to warrant confirmation. If the user approves, continue to Step 2. If they want to review, walk through each flagged pattern and confirm which to fix vs keep.
 
 ---
 
@@ -94,7 +101,7 @@ Produce an internal diagnosis — do not modify the content yet. The diagnosis i
 
 Surgical removal of AI tells and filler. **Only subtract — do not rewrite for style yet.**
 
-For each flagged pattern from Step 1:
+For each flagged pattern from Step 1 (excluding any the user chose to keep during the checkpoint review):
 - Apply the specific fix from [references/ai-patterns.md](references/ai-patterns.md)
 - Replace paired synonyms → pick the stronger word
 - Fix copula avoidance → "serves as" becomes "is"
