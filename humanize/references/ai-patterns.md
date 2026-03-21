@@ -1,6 +1,6 @@
 # AI Writing Patterns — Detection & Fix Reference
 
-33 patterns across 7 categories. Each pattern includes severity:
+36 patterns across 8 categories. Each pattern includes severity:
 - **Hard Tell** — Immediately flags content as AI-generated. Fix before publishing.
 - **Soft Tell** — Suspicious in clusters. Fix when 3+ appear in the same piece.
 
@@ -10,7 +10,7 @@
 
 These words appear significantly more often in post-2023 AI-generated text than in human writing. A single instance is fine — clusters of 3+ in one piece are a signal.
 
-> additionally, align (with), comprehensive, crucial, cutting-edge, delve, dynamic, elevate, empower, endeavor, enhance, ensure, evolving, foster, furthermore, garner, harness, highlight, holistic, implement, innovative, interplay, intricate, landscape, leverage, meticulous, moreover, multifaceted, navigate, notably, optimize, overarching, pivotal, realm, robust, seamless, showcase, streamline, tapestry, testament, transformative, underscore, utilize, vibrant
+> additionally, align (with), at scale, comprehensive, crucial, cutting-edge, deep dive, delve, dynamic, ecosystem, elevate, empower, endeavor, enhance, ensure, evolving, foster, furthermore, game-changer, garner, harness, highlight, holistic, implement, innovative, interplay, intricate, journey, landscape, leverage, meticulous, moreover, multifaceted, navigate, north star, notably, optimize, overarching, pain point, pivotal, realm, resonate, revolutionize, robust, seamless, showcase, space (as in "the AI space"), stakeholder, streamline, tapestry, testament, transformative, underscore, unlock, utilize, vibrant
 
 **Sophistication-seeking words** (above) are chosen to sound impressive. The list below covers a different failure mode:
 
@@ -67,6 +67,18 @@ Exact phrases to search for. Unlike the vocabulary list (individual words that c
 - "In this rapidly changing [anything]"
 - "Being inclusive" (as a standalone virtue signal)
 - Any sentence that could apply to any industry, any company, any decade
+
+### False Insight Phrases (delete — these perform wisdom instead of providing it)
+- "Imagine a world where..." / "Imagine if..."
+- "Here's the kicker"
+- "Spoiler alert:"
+- "At the end of the day"
+- "It goes without saying"
+- "(yes, really)" / "(and that's okay)"
+- "The short answer is..."
+- "Let's be honest"
+- "The reality is..."
+- "Here's what most people get wrong"
 
 ### Business Jargon (replace with plain equivalents)
 Note: "navigate" and "landscape" also appear in the vocabulary list above. The vocabulary list flags clusters; this table provides direct replacements.
@@ -357,6 +369,31 @@ Note: "navigate" and "landscape" also appear in the vocabulary list above. The v
 
 ---
 
+## Category 8: Number & Data Tells
+
+### 34. AI-Typical "Random" Numbers
+**Severity:** Hard Tell
+**Description:** LLMs disproportionately select 47 and 73 when generating a "random" number. These are known AI fingerprints. If a number appears in content without a cited source and happens to be 47 or 73, it was likely AI-generated.
+**Example:**
+> "We surveyed 47 companies and found..." or "The team grew from 12 to 73 engineers in two years."
+**Fix:** If the number comes from real data, cite the source. If the number was generated to sound specific, replace it with an actual data point or remove the false precision entirely.
+
+### 35. Round Number Bias
+**Severity:** Soft Tell
+**Description:** AI defaults to clean, round figures: 50%, 30%, 10x, 100%, 3x. Real data has ugly numbers. When every stat in a piece is suspiciously round, the numbers were likely invented for rhetorical effect.
+**Example:**
+> "Companies see a 50% improvement in productivity and a 30% reduction in costs, delivering 10x ROI."
+**Fix:** Use real numbers with their actual messiness: "47.3% improvement" or "2.7x ROI." If you don't have real data, remove the number rather than inventing a round one. One round number is fine; three in a row is a tell.
+
+### 36. Fabricated Precision
+**Severity:** Hard Tell
+**Description:** AI invents specific-sounding statistics with no source. The number sounds precise enough to be real but was hallucinated. Often paired with vague attributions (pattern #10): "Studies show 73% of users prefer..." or "Research indicates a 4.2x improvement."
+**Example:**
+> "Studies show that 73% of users abandon onboarding before completing it, costing companies an average of $47,000 per quarter."
+**Fix:** Every specific number needs a named source and date. "Mixpanel's 2024 benchmark found 68% of trial users drop before day 3." If you can't cite the source, remove the stat. Unsourced precision is worse than no number at all — it looks like a lie.
+
+---
+
 ## Quick Scan Checklist
 
 When auditing content, scan in this order (most obvious tells first):
@@ -386,6 +423,9 @@ When auditing content, scan in this order (most obvious tells first):
    - [ ] Rhetorical questions as hooks — "Why?", "The best part?", "Sound familiar?" (phrases list)
    - [ ] "Actually" as emphasis — "X that actually Y" (phrases list)
    - [ ] Filler context — "In today's [anything]", "rapidly changing" (phrases list)
+   - [ ] False insight phrases — "Imagine a world where...", "Here's the kicker", "Let's be honest" (phrases list)
+   - [ ] AI-typical numbers — 47 or 73 as "random" numbers without cited source (34)
+   - [ ] Fabricated precision — specific stats with no named source (36)
 
 2. **Soft Tells** — Flag when 3+ appear in the same piece
    - [ ] Symmetric lists (2)
@@ -399,6 +439,7 @@ When auditing content, scan in this order (most obvious tells first):
    - [ ] Synonym cycling (28)
    - [ ] False ranges (29)
    - [ ] Narrator-from-a-distance (32)
+   - [ ] Round number bias — all stats suspiciously clean (50%, 30%, 10x) (35)
 
 3. **Vocabulary check** — Scan for 3+ high-frequency AI words in any single paragraph (see vocabulary list above)
 
@@ -406,7 +447,7 @@ When auditing content, scan in this order (most obvious tells first):
 
 ## Speed Scan Checklist
 
-A flat 16-item rapid-fire checklist for re-checking during final audit (Step 5). Covers the most common residual tells — patterns that survive initial stripping or get reintroduced during voice injection.
+A flat 18-item rapid-fire checklist for re-checking during final audit (Step 5). Covers the most common residual tells — patterns that survive initial stripping or get reintroduced during voice injection.
 
 - [ ] Any em dash (—) anywhere? → Replace with comma, period, or parentheses. Zero allowed.
 - [ ] Any "it's not just X, it's Y" or variant? → State the positive claim directly. Zero allowed.
@@ -424,3 +465,5 @@ A flat 16-item rapid-fire checklist for re-checking during final audit (Step 5).
 - [ ] "Navigate," "unpack," "lean into," or "landscape" → Replace with plain equivalent.
 - [ ] -ing phrase tacked onto the end of a sentence → Delete and check if meaning survives.
 - [ ] Any sentence announcing what the text will do ("In this section...") → Delete.
+- [ ] Number 47 or 73 used as a "random" value? → Cite the source or replace with real data.
+- [ ] Three or more round numbers (50%, 30%, 10x) in the same piece? → Replace with actual data or remove.
