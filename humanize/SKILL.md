@@ -5,7 +5,7 @@ argument-hint: "[content file or text]"
 license: MIT
 metadata:
   author: hungv47
-  version: "1.1.1"
+  version: "1.2.0"
 ---
 
 # Humanize & Compress
@@ -22,7 +22,7 @@ metadata:
 
 ## Quality Gate
 Before delivering, verify:
-- [ ] Zero Hard Tell patterns from the 33-pattern checklist
+- [ ] Zero Hard Tell patterns from the 36-pattern checklist
 - [ ] ≤2 Soft Tell patterns in the entire piece
 - [ ] No clusters of 3+ high-frequency AI vocabulary words in any paragraph
 - [ ] ≥15% word reduction from original
@@ -39,6 +39,7 @@ These patterns are so strongly associated with AI that a single instance ruins c
 5. **No "actually" as emphasis.** "X that actually Y" is an AI tell. Delete "actually" or rewrite the sentence.
 6. **No filler context phrases.** "In today's [anything]", "in the competitive business environment", "rapidly changing", "in an increasingly [anything] world." Delete the entire phrase or sentence.
 7. **No emojis.** Not in any content type.
+8. **No unsourced 47 or 73.** These are known LLM number biases. Any instance of 47 or 73 in the output must have a cited real-world source. If the number was generated, replace with actual data or remove entirely.
 
 ## Chain Position
 Horizontal — works on output from any skill. If content passed `copywriting`'s Seven-Sweeps, humanize focuses on compression + residual patterns. For external or AI-generated content, full 5-step process applies.
@@ -73,7 +74,7 @@ None — can humanize any text standalone.
 
 Scan the content for two categories of problems:
 
-**AI Patterns** — Run through all 33 patterns in [references/ai-patterns.md](references/ai-patterns.md). Start with the high-frequency AI vocabulary scan, then work through each category. For each pattern found, log:
+**AI Patterns** — Run through all 36 patterns in [references/ai-patterns.md](references/ai-patterns.md). Start with the high-frequency AI vocabulary scan, then work through each category. For each pattern found, log:
 - Pattern number and name
 - Exact text that triggered it
 - Severity (Hard Tell / Soft Tell)
@@ -161,14 +162,14 @@ Systematic compression using [references/conciseness-rules.md](references/concis
 Re-scan the entire piece using a three-pass self-audit:
 
 ### Pass 1: Systematic check
-1. **Pattern check** — Run all 33 patterns again. Steps 3-4 can reintroduce patterns (especially during voice injection when new sentences are written). Fix any that appear.
+1. **Pattern check** — Run all 36 patterns again. Steps 3-4 can reintroduce patterns (especially during voice injection when new sentences are written). Fix any that appear.
 2. **Vocabulary check** — Scan for clusters of 3+ high-frequency AI words in any paragraph. Replace or restructure.
 3. **Density check** — Every paragraph must contain at least one concrete fact, number, or named example. Paragraphs that are pure abstraction get cut or upgraded.
 4. **Meaning preservation** — Compare against the original. Every unique idea, data point, example, and nuance from the original must still be present. If compression removed substance, restore it.
 5. **Compression verification** — Calculate final word count vs. original. Must be ≥15% reduction. If not, return to Step 4.
 
 ### Pass 2: Introspection loop
-After Pass 1, explicitly ask: **"What still makes this obviously AI-generated?"** Answer honestly — identify any remaining tells, even subtle ones not in the 33-pattern checklist. Then fix those tells and re-read. This catches emergent patterns that no checklist covers: the overall "feel" of AI writing that comes from multiple small signals combining.
+After Pass 1, explicitly ask: **"What still makes this obviously AI-generated?"** Answer honestly — identify any remaining tells, even subtle ones not in the 36-pattern checklist. Then fix those tells and re-read. This catches emergent patterns that no checklist covers: the overall "feel" of AI writing that comes from multiple small signals combining.
 
 6. **Cut quotables** — If any sentence sounds like it was designed to be pulled as a quote or shared on social media, rewrite it. AI generates sentences that sound profound in isolation but say nothing specific. "The best time to start was yesterday" is a quotable. "We lost 40% of signups in the first 48 hours" is a fact. Keep facts, kill quotables.
 
@@ -295,7 +296,7 @@ This skill's examples are marketing-focused, but it works on any content type. A
 
 | Content Type | Strip Intensity | Voice Injection | Compression Target |
 |-------------|----------------|-----------------|-------------------|
-| Marketing copy | Full — all 33 patterns | Full — brand voice adjectives | 20-30% |
+| Marketing copy | Full — all 36 patterns | Full — brand voice adjectives | 20-30% |
 | Blog posts / thought leadership | Full | Moderate — author voice, not brand voice | 15-25% |
 | Documentation / technical writing | Light — focus on clarity patterns only | Minimal — accuracy over personality | 10-15% |
 | Internal communications | Moderate | Light — conversational, not branded | 15-20% |
@@ -309,6 +310,6 @@ This skill's examples are marketing-focused, but it works on any content type. A
 
 | Reference | Use For |
 |-----------|---------|
-| [ai-patterns.md](references/ai-patterns.md) | 33 AI writing patterns + high-frequency vocabulary & phrase lists — detection, examples, fixes, severity |
+| [ai-patterns.md](references/ai-patterns.md) | 36 AI writing patterns across 8 categories + high-frequency vocabulary & phrase lists — detection, examples, fixes, severity |
 | [conciseness-rules.md](references/conciseness-rules.md) | Compression techniques at sentence, paragraph, and section level |
 | [voice-injection.md](references/voice-injection.md) | Voice adjective framework, rhythm, specificity, personality injection |
