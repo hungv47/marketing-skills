@@ -8,7 +8,7 @@ metadata:
   version: "3.0.0"
 ---
 
-# Attribution Mapping
+# Attribution Mapping — Orchestrator
 
 *Communication — Step 4 of 4. Validates the system — every initiative and content piece connects to a KPI, with action items for every gap.*
 

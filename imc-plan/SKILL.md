@@ -8,9 +8,9 @@ metadata:
   version: "8.0.0"
 ---
 
-# IMC Plan — Multi-Agent Orchestrator
+# IMC Plan — Orchestrator
 
-*Communicate Track — Step 2 of 4. Coordinates specialized agents to turn ICP research into an integrated marketing communication strategy.*
+*Communication — Step 2 of 4. Coordinates specialized agents to turn ICP research into an integrated marketing communication strategy.*
 
 **Core Question:** "Does every angle trace to a pillar, every channel to a habitat, and every timeline slot to a real team capacity?"
 

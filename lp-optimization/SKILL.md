@@ -8,9 +8,9 @@ metadata:
   version: "3.0.0"
 ---
 
-# Landing Page Conversion Optimization — Multi-Agent Orchestrator
+# Landing Page Conversion Optimization — Orchestrator
 
-*Coordinates specialized audit agents to diagnose conversion blockers and produce prioritized, evidence-based fix recommendations.*
+*Communication — Horizontal. Coordinates specialized audit agents to diagnose conversion blockers and produce prioritized, evidence-based fix recommendations.*
 
 **Core Question:** "What's stopping visitors from converting?"
 
