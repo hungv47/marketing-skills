@@ -47,6 +47,8 @@ Some skills use a two-layer multi-agent orchestration pattern:
 - `content-create` — 8 agents (format, voc-extraction, hook, body, CTA, platform-compliance, ab-variant, critic). Layer 1→1.5→2 pattern (format resolves first, then writers parallel).
 - `imc-plan` — 6 agents (pillar, angle, channel, timeline, launch-sequencing, critic). Primarily sequential — pillar→angle→channel→timeline→launch→critic.
 - `humanize` — 6 agents (pattern-scanner, voice-extractor, strip, soul-injection, compression, critic). Layer 1 parallel (scan + extract) → Layer 2 sequential (strip→inject→compress→critic).
+- `lp-optimization` — 7 agents (hero-audit, trust-audit, cta-audit, ux-audit, message-match, prioritization, critic). Layer 1 parallel (4 audit agents) → Layer 2 sequential (message-match→prioritization→critic).
+- `seo` — 11 agents across 4 modes (technical: crawl+foundations+content-quality+authority; AI: ai-structure+ai-presence; programmatic: template+quality; competitor: comparison-page; shared: prioritization+critic). Mode-based routing.
 
 ### Reusable template
 `copywriting/agents/_template.md` defines the standard structure for agent instruction files. Use it when converting other skills to multi-agent.
