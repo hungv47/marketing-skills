@@ -5,14 +5,21 @@ argument-hint: "[angle or topic]"
 license: MIT
 metadata:
   author: hungv47
-  version: "3.0.1"
+  version: "4.0.0"
 ---
 
-# Content Creation
+# Content Creation — Multi-Agent Orchestrator
 
-*Communicate Track — Step 3 of 4. Turns IMC angles into production-ready content assets with A/B variants.*
+*Communicate Track — Step 3 of 4. Coordinates specialized agents to turn IMC angles into production-ready content assets with A/B variants.*
 
 **Core Question:** "Would the target persona actually stop scrolling for this?"
+
+## Critical Gates — Read First
+
+- **Do NOT write content without format specs.** Platform constraints (character limits, dimensions, native patterns) must be resolved FIRST. Hook/body/CTA agents cannot write without them.
+- **Do NOT dispatch all agents for a single social post.** Route A exists for quick assets. Only Route B uses the full agent stack.
+- **Do NOT write outlines.** Every agent must produce complete copy — every word, slide, timestamp. "Discuss benefits" is not a deliverable.
+- **Stale IMC data (>30 days) produces misaligned content.** Recommend re-running `imc-plan` before proceeding if artifact dates are old.
 
 ## Philosophy
 
@@ -25,30 +32,104 @@ This skill focuses on content assets — choosing the right format, structuring 
 - `.agents/mkt/content/[slug].md`
 
 ## Quality Gate
-Before delivering, verify:
-- [ ] Hook communicable concisely — ≤8 words is a strong target; if longer, every extra word must earn its place by adding specificity or surprise
-- [ ] Key lines pass `copywriting` skill's quality gate (3Q test, rubric ≥3.5, swap test, variations, annotations)
-- [ ] CTA follows formula: [action verb] + [what they get] (not "Learn More" or "Click Here")
-- [ ] A/B variant changes exactly ONE element — and hypothesis states the learning if B wins
+Before delivering, the **critic agent** verifies:
+- [ ] Hook ≤8 words or within platform character limit
+- [ ] Key lines pass 3Q test (Visual, Falsifiable, Uniquely ours)
+- [ ] CTA follows formula: [action verb] + [what they get]
+- [ ] A/B variant changes exactly ONE element with testable hypothesis
+- [ ] Complete copy — every word written, no outlines or placeholders
+- [ ] Format compliance — all platform specs met
+- [ ] VoC language present — buyer words, not brand words
 
 ## Chain Position
 Previous: `imc-plan` | Next: `attribution`
 **Re-run triggers:** When IMC plan angles are updated, when targeting a new platform, or when A/B test results suggest a new direction.
 
 ### Skill Deference
-- **Need craft-quality headlines, hooks, or page copy?** → Run `copywriting` for variation workflow, 3Q test, and evaluation rubric.
-- **Page already exists and problem is conversion?** → Run `lp-optimization` first — it diagnoses conversion blockers before rewriting.
-- **Content reads as AI-generated?** → Run `humanize` after this skill — it strips AI patterns and compresses.
-- **Angle already defined in IMC plan?** → Use it directly — don't re-derive. This skill refines hooks within an angle, not replaces the angle.
-- **Optimizing for search/AI citations?** → Coordinate with `seo` for keyword targeting, schema markup, and content structure.
+- **Need craft-quality headlines or page copy?** → Run `copywriting` for variation workflow and rubric.
+- **Page exists, problem is conversion?** → Run `lp-optimization` first.
+- **Content reads as AI-generated?** → Run `humanize` after.
+- **Optimizing for search/AI citations?** → Coordinate with `seo`.
 
 ---
 
-## Before Starting
+## Agent Manifest
 
-### Step 0: Product Context
-Check for `.agents/product-context.md`. If available, read for product details and accuracy.
-If `.agents/mkt/imc-plan.md` or `.agents/product-context.md` `date` fields are older than 30 days, recommend re-running upstream skills before proceeding — stale data produces misaligned content.
+| Agent | Layer | File | Focus |
+|-------|-------|------|-------|
+| Format Agent | 1 (parallel) | `agents/format-agent.md` | Platform specs, dimensions, native patterns |
+| VoC Extraction Agent | 1 (parallel) | `agents/voc-extraction-agent.md` | Buyer language from ICP research |
+| Hook Agent | 1.5 (after format) | `agents/hook-agent.md` | Opening line adapted to format constraints |
+| Body Agent | 1.5 (after format) | `agents/body-agent.md` | Complete content between hook and CTA |
+| CTA Agent | 1.5 (after format) | `agents/cta-agent.md` | Platform-native call to action |
+| Platform Compliance Agent | 2 (sequential) | `agents/platform-compliance-agent.md` | Technical spec verification |
+| A/B Variant Agent | 2 (sequential) | `agents/ab-variant-agent.md` | One testable alternative |
+| Critic Agent | 2 (final) | `agents/critic-agent.md` | Quality scoring, PASS/FAIL |
+
+### Shared References (read by multiple agents)
+- `references/platform-specs.md` — Platform dimensions, character limits, native patterns
+- `references/examples.md` — Complete worked examples with full copy
+- `references/repurposing-cascade.md` — Hero → derivative content workflow
+
+---
+
+## Routing Logic
+
+### Route A: Single Asset (Quick)
+**When:** One social post, one email, or one ad — not a multi-asset campaign.
+
+```
+1. Pre-dispatch: Gather context (Step 0)
+2. LAYER 1 — Dispatch IN PARALLEL:
+   - format-agent (determines platform constraints)
+   - voc-extraction-agent (pulls buyer language)
+3. LAYER 1.5 — Dispatch IN PARALLEL (after format-agent returns):
+   - hook-agent (receives format specs)
+   - cta-agent (receives format specs)
+4. Orchestrator writes body inline (single asset doesn't need full body-agent)
+5. Dispatch: platform-compliance-agent
+6. Dispatch: critic-agent
+7. If FAIL → re-dispatch named agent(s) with feedback (max 2 cycles)
+8. Deliver artifact
+```
+
+### Route B: Full Asset (Campaign or Complex)
+**When:** Multi-slide carousel, video script, email sequence, or multi-asset campaign.
+
+```
+1. Pre-dispatch: Gather context (Step 0)
+2. LAYER 1 — Dispatch IN PARALLEL:
+   - format-agent
+   - voc-extraction-agent
+3. LAYER 1.5 — Dispatch IN PARALLEL (after format-agent returns):
+   - hook-agent (receives format specs + VoC)
+   - body-agent (receives format specs + VoC)
+   - cta-agent (receives format specs + VoC)
+4. MERGE: Assemble hook + body + CTA into unified content asset
+5. LAYER 2 — Dispatch SEQUENTIALLY:
+   - platform-compliance-agent (receives merged asset)
+   - ab-variant-agent (receives compliance-checked asset)
+6. Dispatch: critic-agent (receives final asset + variant)
+7. If FAIL → re-dispatch named agent(s) with feedback (max 2 cycles)
+8. Deliver artifact
+```
+
+### Route C: Called by Another Skill
+**When:** Invoked by `imc-plan` or `attribution` for inline content work.
+
+```
+1. Read context from calling skill's artifacts
+2. Dispatch relevant agents based on caller needs
+3. Dispatch: critic-agent
+4. Return content to calling skill
+```
+
+---
+
+## Step 0: Pre-Dispatch Context Gathering
+
+### Product Context Check
+Check for `.agents/product-context.md` and `.agents/mkt/imc-plan.md`. If `date` fields are older than 30 days, **warn the user** and recommend re-running upstream skills.
 
 ### Required Artifacts
 | Artifact | Source | If Missing |
@@ -61,88 +142,88 @@ If `.agents/mkt/imc-plan.md` or `.agents/product-context.md` `date` fields are o
 | `icp-research.md` | icp-research | VoC language for copy |
 | `product-context.md` | icp-research | Product details for accuracy |
 
-Read `.agents/mkt/imc-plan.md` if it exists — pull angle, hook type, awareness stage, channel. If it doesn't exist, interview for:
-1. Target angle for this content piece
-2. Channel and placement
-3. Audience awareness stage
-
-Use WebSearch to verify current platform specs before writing — specs change frequently and outdated dimensions waste production time: `"[platform] [format] specs [year]"` (e.g., "LinkedIn carousel specs 2026"). See [references/platform-specs.md](references/platform-specs.md) for baseline reference.
-
----
-
-## Step 1: Write the Hook
-
-The hook stops the scroll. Write the exact text.
-
-| Hook Type | Pattern | Example |
-|-----------|---------|---------|
-| Question | "Have you ever [relatable]?" | "Have you ever spent more time reporting than doing?" |
-| Bold claim | "[Controversial statement]" | "Your meetings problem isn't meetings." |
-| How-to | "How to [outcome] without [sacrifice]" | "How to ship 2x faster without hiring" |
-| Story | "I [action] and [surprise]" | "I cut meetings 80%. Output doubled." |
-| Data | "[Surprising stat]" | "31 hours/month in unproductive meetings" |
-| Contrarian | "Stop [common advice]" | "Stop tracking velocity." |
-
-Apply `copywriting`'s Variation Workflow and Three-Question Test to the hook. Write 3-5 variations, score with the evaluation rubric, and annotate the winner.
+### Context to Pass to All Agents
+1. **Angle:** from IMC plan or user brief
+2. **Channel + placement:** target platform and format
+3. **Awareness stage:** determines hook approach and CTA commitment
+4. **VoC quotes:** from voc-extraction-agent (available after Layer 1)
 
 ---
 
-## Step 2: Write the Body
+## Dispatch Protocol
 
-Write the ACTUAL copy — not an outline, not a description.
+### How to spawn a sub-agent
 
-**Video:** Timestamped script with text-on-screen, voiceover, and visual direction.
-**Static post:** Complete caption, every word.
-**Carousel:** Every slide, cover to CTA.
-**Thread:** Every post, numbered.
-**Full-page copy** (landing pages, homepages): Run `copywriting` for section-by-section organization with alternatives and annotations.
-**Email** (drip campaigns, onboarding sequences, lifecycle emails): Subject line (≤50 chars, A/B variants) + preview text (≤90 chars) + body (one CTA per email, PAS or story framework) + CTA button text + P.S. line (optional — high-read section). For sequences, include send timing and trigger conditions between emails.
+1. **Read** the agent instruction file — include its FULL content in the Agent prompt
+2. **Append** the context (angle, channel, awareness stage, VoC) after the instructions
+3. **Resolve file paths to absolute**: replace relative paths with absolute paths rooted at this skill's directory
+4. **Pass upstream artifacts by content**: the orchestrator reads `.agents/` files FIRST, then includes relevant excerpts in context. Sub-agents should NOT read artifact files directly.
+5. If **feedback** exists (from critic FAIL), append with header "## Critic Feedback — Address Every Point"
 
----
+### Single-agent fallback
 
-## Step 3: Write the CTA
-
-| Stage | Pattern | Example |
-|-------|---------|---------|
-| Unaware | Discover | "See why this matters →" |
-| Problem Aware | Explore | "Discover the fix →" |
-| Solution Aware | Compare | "See how we're different →" |
-| Product Aware | Try | "Start free trial →" |
-| Most Aware | Act | "Start now — first month free →" |
-
-Starting vocabulary, not a prescription. Match CTA energy to audience readiness, not just the awareness stage label. A Most Aware audience may respond better to a softer CTA if trust is already established.
-
-Include: exact CTA text, destination, tracking parameters.
+If multi-agent dispatch is unavailable, execute each agent's instructions sequentially in-context:
+- Layer 1: resolve format specs, extract VoC
+- Layer 1.5: write hook, body, CTA within format constraints
+- Layer 2: check compliance, create variant, evaluate with critic rubric
 
 ---
 
-## Step 4: A/B Variant
+## Layer 1: Parallel Foundation
 
-Create variant B that changes exactly ONE element:
+Spawn **IN PARALLEL**:
 
-| What to Test | When | What You Learn if B Wins |
-|-------------|------|------------------------|
-| Hook | Default — always test the hook first | Audience responds more to [B's approach] than [A's] |
-| CTA | Hook is strong, conversion is weak | [B's framing] reduces friction better |
-| Format | Engagement is low despite good hook | Audience prefers [B's format] on this platform |
-| Angle framing | Testing different emotional entry points | [B's emotion] resonates more than [A's] |
+| Agent | Instruction File | Pass These Inputs | Reference Files |
+|-------|-----------------|-------------------|-----------------|
+| Format Agent | `agents/format-agent.md` | brief (platform + format type) | `references/platform-specs.md` |
+| VoC Extraction Agent | `agents/voc-extraction-agent.md` | brief (topic + persona) | — |
 
----
-
-## Step 5: VoC Validation Check
-
-Before finalizing, verify the content echoes actual audience language:
-- [ ] Hook uses words/phrases from VoC quotes in ICP research (not marketing-speak)
-- [ ] Pain expressions match how the audience actually describes the problem
-- [ ] Emotional triggers are grounded in ICP emotional drivers (not assumed)
-
-If `.agents/mkt/icp-research.md` exists, pull 2-3 VoC quotes and check: does this content sound like something the persona would share, or something a marketer would write? The gap between these two is where content underperforms.
+Wait for both to complete. Their outputs become inputs for Layer 1.5.
 
 ---
 
-## Step 6: Asset Checklist
+## Layer 1.5: Parallel Content Writers
 
-What the production team needs. Be specific about dimensions, formats, and brand assets. For copy polish, apply `copywriting`'s Seven Sweeps or `humanize` for AI pattern removal.
+After format-agent and voc-extraction-agent return, spawn **IN PARALLEL**:
+
+| Agent | Instruction File | Pass These Inputs | Reference Files |
+|-------|-----------------|-------------------|-----------------|
+| Hook Agent | `agents/hook-agent.md` | brief + format specs + VoC quotes | — |
+| Body Agent | `agents/body-agent.md` | brief + format specs + VoC quotes | `references/examples.md`, `references/repurposing-cascade.md` |
+| CTA Agent | `agents/cta-agent.md` | brief + format specs + awareness stage | — |
+
+---
+
+## Merge Step
+
+Assemble Layer 1.5 outputs into the artifact template:
+
+| Section | Owner Agent |
+|---------|-----------|
+| Hook | Hook Agent |
+| Body (all slides/tweets/sections) | Body Agent |
+| CTA (text + destination + tracking) | CTA Agent |
+
+**Assembly rule:** Hook first, then body content, then CTA at the end. CTA placement follows the format-agent's guidance (last slide, last tweet, below fold, etc.).
+
+---
+
+## Layer 2: Sequential Refiners
+
+Dispatch **ONE AT A TIME, IN ORDER**:
+
+| Step | Agent | Instruction File | Receives |
+|------|-------|-----------------|----------|
+| 1 | Platform Compliance Agent | `agents/platform-compliance-agent.md` | Merged content asset |
+| 2 | A/B Variant Agent | `agents/ab-variant-agent.md` | Compliance-checked asset |
+| 3 | Critic Agent | `agents/critic-agent.md` | Final asset + variant |
+
+---
+
+## Critic Gate
+
+- **PASS:** Deliver the annotated artifact.
+- **FAIL:** Re-dispatch named agent(s) with critic feedback. Max 2 rewrite cycles. After 2 failures, deliver with critic annotations and flag to user.
 
 ---
 
@@ -169,7 +250,7 @@ status: draft
 [Exact hook text]
 
 **3Q Test:** Visual: [Y/N] | Falsifiable: [Y/N] | Uniquely ours: [Y/N]
-**Annotations:** [Rule that drove hook choice, cut alternative, rubric score — see copywriting skill]
+**Annotations:** [Rule, cut alternative, rubric score]
 
 ## Body
 
@@ -187,11 +268,10 @@ status: draft
 |---------|----------|-------------|
 | [Hook/CTA/Format] | [Original] | [One change] |
 
-**Test hypothesis:** If B wins, it means [specific learning about the audience].
+**Test hypothesis:** If B wins, it means [specific learning].
 
 ## Asset Checklist
 
-- [ ] [Asset with specs]
 - [ ] [Asset with specs]
 - [ ] [Brand assets needed]
 
@@ -200,74 +280,62 @@ status: draft
 
 ---
 
-## Worked Example
+## Worked Example — LinkedIn Carousel (Route B)
 
-```markdown
-# Content: Status Update Waste — LinkedIn Carousel
+**Brief:** LinkedIn carousel about "12 hrs/week lost to status theater"
+**Audience:** Engineering managers, Problem Aware
+**Channel:** LinkedIn carousel
 
-**Date:** 2026-03-13
-**Skill:** content-create
-**Angle:** "Engineering teams lose 12 hrs/week to status updates nobody reads"
-**Channel:** LinkedIn carousel, @brand
-**Stage:** Problem Aware
+### Step 0: Pre-Dispatch
+Angle from imc-plan: "Engineering teams lose 12 hrs/week to status updates nobody reads"
+Awareness: Problem Aware. Channel: LinkedIn carousel.
 
-## Hook
+### Layer 1: Parallel Foundation
+→ **Format agent** returns: LinkedIn carousel, 1080x1350px, 5-10 slides, ≤50 words/slide, PDF format
+→ **VoC extraction agent** returns: 5 pain quotes from ICP research, buyer language "status theater," "meeting tax"
 
-"Your team loses 12 hours a week to status updates nobody reads."
+### Layer 1.5: Parallel Content Writers (receive format specs + VoC)
+→ **Hook agent** returns: "Your team loses 12 hours a week to status updates nobody reads." (V:Y F:Y U:Y, Data hook)
+→ **Body agent** returns: 6 slides (pie chart breakdown, 4 pain slides, fix slide)
+→ **CTA agent** returns: "See how teams ship without status theater →" (link in comments)
 
-**3Q Test:** Visual: Y (12 hours, status updates) | Falsifiable: Y (12 is a specific, checkable number) | Uniquely ours: Y (cites our research data)
+### Merge
+Assembled into 8-slide carousel: Hook slide → 6 body slides → CTA slide
 
-## Body
-
-- Slide 1: "Your team loses 12 hours a week to status updates nobody reads."
-- Slide 2: "Here's where those hours go:" [pie chart visual]
-- Slide 3: "4 hrs — writing updates for managers who skim them"
-- Slide 4: "3 hrs — standups where 8 people wait to give 30-second updates"
-- Slide 5: "3 hrs — switching between tools to piece together who's doing what"
-- Slide 6: "2 hrs — 'quick syncs' that could have been a dashboard"
-- Slide 7: "The fix isn't better updates. It's fewer updates with better visibility."
-- Slide 8: CTA slide
-
-## CTA
-
-- **Text:** "See how teams ship without status theater →"
-- **Destination:** /product/visibility
-- **Tracking:** utm_source=linkedin&utm_medium=organic&utm_campaign=status-waste&utm_content=carousel-v1
-
-## A/B Variant
-
-| Element | A (Main) | B (Variant) |
-|---------|----------|-------------|
-| Hook | "Your team loses 12 hrs/week..." (Data) | "I stopped doing standups. Here's what happened." (Story) |
-
-**Test hypothesis:** If B wins, our audience responds more to personal narrative than statistics on LinkedIn.
-
-## Asset Checklist
-
-- [ ] 8 slides, 1080×1350px (LinkedIn carousel format)
-- [ ] Slide 2: pie chart showing hour breakdown
-- [ ] Brand fonts + colors applied to all slides
-- [ ] Logo on slides 1 and 8
-```
+### Layer 2: Sequential
+→ **Platform compliance** → PASS (all slides within limits, correct dimensions)
+→ **A/B variant** → Hook variant B: "I stopped doing standups. Here's what happened." (tests story vs. data)
+→ **Critic** → PASS. All dimensions ≥3.5. Delivered.
 
 ---
 
 ## Anti-Patterns
 
-**Burying the lead** — Starting with context or background instead of the hook. The first line must stop the scroll — everything before the hook is wasted because nobody reads past a weak opening.
+**Burying the lead** — Starting with context instead of the hook. INSTEAD: The first thing the reader sees IS the hook. No preamble.
 
-**Platform-generic content** — Writing the same way for LinkedIn, Twitter, and Instagram. Each platform has native patterns (carousel slides vs. threads vs. reels) — content that ignores format conventions underperforms regardless of message quality.
+**Platform-generic content** — Same text for LinkedIn and TikTok. INSTEAD: Each platform gets its own format spec from format-agent. Native patterns outperform imported content.
 
-**Weak CTAs** — "Learn More" and "Click Here" tell the reader nothing about what they get. Every CTA must follow [action verb] + [what they get] — specificity increases click-through.
+**Weak CTAs** — "Learn More" or "Click Here." INSTEAD: [action verb] + [what they get]. "See how teams ship without standups →"
 
-**A/B testing multiple variables** — Changing the hook, CTA, and format simultaneously makes results uninterpretable. Change exactly ONE element per variant — the learning is more valuable than the lift.
+**A/B testing multiple variables** — Changing hook + CTA + format = untestable. INSTEAD: ONE element per variant with a stated hypothesis.
 
-**Writing outlines instead of copy** — Delivering "Slide 3: Talk about the pain point" instead of the actual words. Content creation means writing every word, slide, and timestamp — outlines are not deliverables.
+**Writing outlines** — "Slide 3: Talk about the pain point." INSTEAD: Write every word. "4 hrs — writing updates for managers who skim them."
 
 ---
 
-## References
+## Agent Files
 
+### Sub-Agent Instructions (agents/)
+- [agents/format-agent.md](agents/format-agent.md) — Platform specs, dimensions, native patterns
+- [agents/voc-extraction-agent.md](agents/voc-extraction-agent.md) — Buyer language from ICP research
+- [agents/hook-agent.md](agents/hook-agent.md) — Opening line adapted to format
+- [agents/body-agent.md](agents/body-agent.md) — Complete body content
+- [agents/cta-agent.md](agents/cta-agent.md) — Platform-native CTA
+- [agents/platform-compliance-agent.md](agents/platform-compliance-agent.md) — Technical spec verification
+- [agents/ab-variant-agent.md](agents/ab-variant-agent.md) — One testable alternative
+- [agents/critic-agent.md](agents/critic-agent.md) — Quality scoring, PASS/FAIL
+
+### Shared References (references/)
+- [references/platform-specs.md](references/platform-specs.md) — Platform dimensions, character limits, native patterns
 - [references/examples.md](references/examples.md) — Complete worked examples with full copy
-- [references/platform-specs.md](references/platform-specs.md) — Platform dimensions, limits, native patterns
-- [references/repurposing-cascade.md](references/repurposing-cascade.md) — Hero → derivative content workflow across channels
+- [references/repurposing-cascade.md](references/repurposing-cascade.md) — Hero → derivative content workflow
