@@ -8,9 +8,9 @@ metadata:
   version: "2.0.0"
 ---
 
-# Copywriting — Multi-Agent Orchestrator
+# Copywriting — Orchestrator
 
-*Coordinates specialized sub-agents to produce craft-quality copy with annotations, alternatives, and quantitative evaluation.*
+*Communication — Horizontal. Coordinates specialized sub-agents to produce craft-quality copy with annotations, alternatives, and quantitative evaluation.*
 
 **Core Question:** "Is every key line visual, falsifiable, and uniquely ours?"
 

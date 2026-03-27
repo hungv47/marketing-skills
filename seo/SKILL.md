@@ -8,9 +8,9 @@ metadata:
   version: "2.0.0"
 ---
 
-# SEO
+# SEO — Orchestrator
 
-*Communicate Track — Horizontal skill. Covers the full SEO surface: technical foundations, AI/generative engine optimization, programmatic page generation, and competitor comparison content.*
+*Communication — Horizontal. Covers the full SEO surface: technical foundations, AI/generative engine optimization, programmatic page generation, and competitor comparison content.*
 
 **Core Question:** "How do we get found — by both search engines and AI models?"
 

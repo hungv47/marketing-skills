@@ -8,9 +8,9 @@ metadata:
   version: "2.0.0"
 ---
 
-# Humanize & Compress — Multi-Agent Orchestrator
+# Humanize & Compress — Orchestrator
 
-*Coordinates specialized sub-agents to strip AI patterns, inject brand voice, and compress content so it reads like a human wrote it and an editor approved it.*
+*Communication — Horizontal. Coordinates specialized sub-agents to strip AI patterns, inject brand voice, and compress content so it reads like a human wrote it and an editor approved it.*
 
 **Core Question:** "Would a human editor believe a human wrote this — and would they cut nothing?"
 
@@ -53,13 +53,13 @@ These patterns are so strongly associated with AI that a single instance ruins c
 8. **No unsourced 47 or 73.** These are known LLM number biases. Any instance of 47 or 73 in the output must have a cited real-world source. If the number was generated, replace with actual data or remove entirely.
 
 ## Chain Position
-Horizontal — works on output from any skill. If content passed `copywriting`'s Seven-Sweeps, humanize focuses on compression + residual patterns. For external or AI-generated content, full pipeline applies.
+Horizontal — works on output from any skill. If content passed the `copywriting` skill, humanize focuses on compression + residual patterns. For external or AI-generated content, full pipeline applies.
 **Re-run triggers:** When brand voice adjectives change, when content-create output consistently triggers AI detection, or when voice injection guidance is updated.
 
 ### Skill Deference
 - **Need new content written from scratch?** Use `content-create` — this skill cleans existing content, not creates new.
 - **Conversion optimization needed?** Use `lp-optimization` — this skill focuses on voice and AI pattern removal, not conversion mechanics.
-- **Content already passed copywriting's Seven-Sweeps?** Focus on compression + residual AI patterns only — skip full audit if seven-sweeps already ran.
+- **Content already passed the copywriting skill?** Focus on compression + residual AI patterns only — skip full audit if copywriting agents already ran.
 
 ---
 
@@ -170,7 +170,7 @@ None — can humanize any text standalone.
 |----------|--------|---------|
 | `product-context.md` | icp-research | Voice adjectives for personality injection |
 | `icp-research.md` | icp-research | Audience register calibration |
-| `content/[slug].md` | content-create | Original content with copywriting's seven-sweeps applied |
+| `content/[slug].md` | content-create | Original content with copywriting agents applied |
 
 ### Pre-Writing Assembly
 Compile these fields and pass to every agent in the `pre-writing` input:

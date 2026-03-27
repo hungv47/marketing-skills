@@ -1,15 +1,16 @@
 ---
 name: icp-research
 description: "Builds ideal customer profiles and buyer personas — analyzes demographics, pain points, jobs-to-be-done, and segmentation for a target market. Produces `.agents/mkt/icp-research.md`. Not for competitive positioning (use solution-design) or campaign planning (use imc-plan)."
+argument-hint: "[product or target market]"
 license: MIT
 metadata:
   author: hungv47
   version: "3.0.0"
 ---
 
-# ICP Research — Multi-Agent Orchestrator
+# ICP Research — Orchestrator
 
-*Communicate Track — Step 1 of 4. Foundational skill for all stacks. Coordinates specialized sub-agents to build deep audience intelligence from real research, not assumptions.*
+*Communication — Step 1 of 4. Foundational skill for all stacks. Coordinates specialized sub-agents to build deep audience intelligence from real research, not assumptions.*
 
 **Core Question:** "Who exactly are we talking to and what keeps them up at night?"
 

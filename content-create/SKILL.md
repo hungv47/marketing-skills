@@ -8,9 +8,9 @@ metadata:
   version: "4.0.0"
 ---
 
-# Content Creation — Multi-Agent Orchestrator
+# Content Creation — Orchestrator
 
-*Communicate Track — Step 3 of 4. Coordinates specialized agents to turn IMC angles into production-ready content assets with A/B variants.*
+*Communication — Step 3 of 4. Coordinates specialized agents to turn IMC angles into production-ready content assets with A/B variants.*
 
 **Core Question:** "Would the target persona actually stop scrolling for this?"
 
