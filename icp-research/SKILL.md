@@ -1,6 +1,7 @@
 ---
 name: icp-research
 description: "Builds ideal customer profiles and buyer personas — analyzes demographics, pain points, jobs-to-be-done, and segmentation for a target market. Produces `.agents/mkt/icp-research.md`. Not for competitive positioning (use solution-design) or campaign planning (use imc-plan)."
+argument-hint: "[product or target market]"
 license: MIT
 metadata:
   author: hungv47
