@@ -42,9 +42,11 @@ Some skills use a two-layer multi-agent orchestration pattern:
 5. **Critic agent** scores the output and returns PASS or FAIL (max 2 rewrite cycles)
 
 ### Skills using this pattern
+- `icp-research` — 7 agents (persona, voc-collector, habitat, pain-analysis, decision-psychology, synthesis, critic). Layer 1 parallel (persona + VoC + habitat) → Layer 2 sequential (pain→psychology→synthesis→critic).
 - `copywriting` — 9 agents (hook, body, CTA, social-proof, variant, voice, psychology, zero-risk, critic)
 - `content-create` — 8 agents (format, voc-extraction, hook, body, CTA, platform-compliance, ab-variant, critic). Layer 1→1.5→2 pattern (format resolves first, then writers parallel).
 - `imc-plan` — 6 agents (pillar, angle, channel, timeline, launch-sequencing, critic). Primarily sequential — pillar→angle→channel→timeline→launch→critic.
+- `humanize` — 6 agents (pattern-scanner, voice-extractor, strip, soul-injection, compression, critic). Layer 1 parallel (scan + extract) → Layer 2 sequential (strip→inject→compress→critic).
 
 ### Reusable template
 `copywriting/agents/_template.md` defines the standard structure for agent instruction files. Use it when converting other skills to multi-agent.

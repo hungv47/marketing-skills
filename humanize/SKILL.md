@@ -5,14 +5,25 @@ argument-hint: "[content file or text]"
 license: MIT
 metadata:
   author: hungv47
-  version: "1.2.0"
+  version: "2.0.0"
 ---
 
-# Humanize & Compress
+# Humanize & Compress — Multi-Agent Orchestrator
 
-*Horizontal skill — strips AI patterns and compresses content so it reads like a human wrote it and an editor approved it.*
+*Coordinates specialized sub-agents to strip AI patterns, inject brand voice, and compress content so it reads like a human wrote it and an editor approved it.*
 
 **Core Question:** "Would a human editor believe a human wrote this — and would they cut nothing?"
+
+## Critical Gates — Read First
+
+1. **Do NOT skip the pattern scan.** Step 2 (strip) needs the diagnosis. Without it, strip-agent is guessing.
+2. **ZERO em dashes in final output.** Absolute prohibition. No exceptions, no edge cases. Every em dash becomes a comma, period, or parentheses.
+3. **Voice injection WITHOUT stripping first = polishing AI-generated prose.** Strip always comes first. The soul-injection agent receives clean text, not AI-patterned text.
+4. **Content type matters.** Documentation gets a lighter touch than marketing copy. Check the Content Type Calibration table before dispatching.
+
+## Philosophy
+
+AI-generated content fails in three ways: it reads like AI wrote it (patterns), it sounds like nobody wrote it (no voice), and it says too much with too little (bloat). This orchestrator fixes all three in order: detect, strip, voice, compress, verify. Each concern gets a specialist agent. The critic ensures nothing ships below the bar.
 
 ## Inputs Required
 - Any content artifact (from `content-create`, `lp-optimization`, or any other skill) or raw text
@@ -21,18 +32,18 @@ metadata:
 - `.agents/mkt/content/[slug].humanized.md`
 
 ## Quality Gate
-Before delivering, verify:
+Before delivering, the **critic agent** verifies:
 - [ ] Zero Hard Tell patterns from the 36-pattern checklist
-- [ ] ≤2 Soft Tell patterns in the entire piece
+- [ ] At most 2 Soft Tell patterns in the entire piece
 - [ ] No clusters of 3+ high-frequency AI vocabulary words in any paragraph
-- [ ] ≥15% word reduction from original
+- [ ] At least 15% word reduction from original
 - [ ] No unique ideas, data, examples, or nuance removed (check against original)
-- [ ] Read aloud — no stumbles, no robotic rhythm
+- [ ] Read aloud with no stumbles, no robotic rhythm
 - [ ] Every paragraph contains at least one concrete fact, number, or named example
 
 ### Absolute Prohibitions (zero tolerance, no exceptions)
 These patterns are so strongly associated with AI that a single instance ruins credibility:
-1. **No em dashes (—).** Replace every em dash with a comma, period, or parentheses. Restructure the sentence if needed. Zero em dashes in final output.
+1. **No em dashes (---).** Replace every em dash with a comma, period, or parentheses. Restructure the sentence if needed. Zero em dashes in final output.
 2. **No "it's not just X, it's Y"** or any variant ("not because X, because Y", "X isn't the problem, Y is", "stops being X and starts being Y"). State the positive claim directly.
 3. **No rhetorical questions as hooks.** Never use "Why?", "The best part?", "Sound familiar?", "So what does this mean?" or any standalone question designed to create false suspense. State the point.
 4. **No colons in prose.** Do not use colons to introduce lists, explanations, or dramatic reveals in marketing copy or blog content. Restructure into natural sentences.
@@ -42,21 +53,114 @@ These patterns are so strongly associated with AI that a single instance ruins c
 8. **No unsourced 47 or 73.** These are known LLM number biases. Any instance of 47 or 73 in the output must have a cited real-world source. If the number was generated, replace with actual data or remove entirely.
 
 ## Chain Position
-Horizontal — works on output from any skill. If content passed `copywriting`'s Seven-Sweeps, humanize focuses on compression + residual patterns. For external or AI-generated content, full 5-step process applies.
+Horizontal — works on output from any skill. If content passed `copywriting`'s Seven-Sweeps, humanize focuses on compression + residual patterns. For external or AI-generated content, full pipeline applies.
 **Re-run triggers:** When brand voice adjectives change, when content-create output consistently triggers AI detection, or when voice injection guidance is updated.
 
 ### Skill Deference
-- **Need new content written from scratch?** → Use `content-create` — this skill cleans existing content, not creates new.
-- **Conversion optimization needed?** → Use `lp-optimization` — this skill focuses on voice and AI pattern removal, not conversion mechanics.
-- **Content already passed copywriting's Seven-Sweeps?** → Focus on compression + residual AI patterns only — skip full audit if seven-sweeps already ran.
+- **Need new content written from scratch?** Use `content-create` — this skill cleans existing content, not creates new.
+- **Conversion optimization needed?** Use `lp-optimization` — this skill focuses on voice and AI pattern removal, not conversion mechanics.
+- **Content already passed copywriting's Seven-Sweeps?** Focus on compression + residual AI patterns only — skip full audit if seven-sweeps already ran.
 
 ---
 
-## Before Starting
+## Agent Manifest
 
-### Step 0: Product Context
-Check for `.agents/product-context.md`. If available, read for voice adjectives and brand personality. Voice injection (Step 3) requires these adjectives — without them, output will be clean but generic.
+| Agent | Layer | File | Focus |
+|-------|-------|------|-------|
+| Pattern Scanner | 1 (parallel) | `agents/pattern-scanner-agent.md` | Runs all 36 AI patterns, logs violations by category, estimates compression potential |
+| Voice Extractor | 1 (parallel) | `agents/voice-extractor-agent.md` | Reads voice adjectives, assesses register, identifies injection opportunities |
+| Strip Agent | 2 (sequential) | `agents/strip-agent.md` | Surgical removal of flagged AI patterns — subtract only, no style changes |
+| Soul Injection | 2 (sequential) | `agents/soul-injection-agent.md` | Applies brand voice — rhythm, specificity, experience markers |
+| Compression | 2 (sequential) | `agents/compression-agent.md` | Systematic 15-30% compression at sentence, paragraph, section levels |
+| Critic | 2 (final) | `agents/critic-agent.md` | Three-pass audit, 5-dimension scoring, PASS/FAIL with re-dispatch routing |
+
+### Shared References (read by multiple agents)
+- `references/ai-patterns.md` — 36 AI writing patterns across 8 categories + high-frequency vocabulary and phrase lists (used by pattern-scanner-agent, strip-agent, critic-agent)
+- `references/voice-injection.md` — Voice adjective framework, rhythm, specificity, personality injection (used by voice-extractor-agent, soul-injection-agent)
+- `references/conciseness-rules.md` — Compression techniques at sentence, paragraph, and section level (used by compression-agent)
+
+---
+
+## Routing Logic
+
+Classify the task, then follow the matching route.
+
+### Route A: Quick Humanize (short text)
+**When:** Text is under 200 words. Voice injection and compression have limited impact on short content.
+
+```
+1. Pre-dispatch: Gather context (Step 0 below)
+2. LAYER 1 — Dispatch ONE agent:
+   - pattern-scanner-agent (voice-extractor skipped — short text)
+3. LAYER 2 — Dispatch SEQUENTIALLY:
+   - strip-agent (receives pattern-scanner output + original text)
+   - critic-agent (receives strip-agent output — skip soul-injection + compression)
+4. If critic returns FAIL → re-dispatch strip-agent with feedback (max 2 cycles)
+5. Deliver artifact
+```
+
+**Note:** Route A skips voice-extractor, soul-injection, and compression agents. For texts under 200 words, pattern removal is the primary value. If the user requests voice injection on short text, upgrade to Route B.
+
+### Route B: Full Humanize
+**When:** Text is 200+ words and needs the full treatment (pattern removal + voice + compression).
+
+```
+1. Pre-dispatch: Gather context (Step 0 below)
+2. LAYER 1 — Dispatch IN PARALLEL:
+   - pattern-scanner-agent
+   - voice-extractor-agent
+3. Present diagnosis to user: Show pattern counts, top 3 patterns, compression estimate.
+   Ask: "Proceed with all fixes, or review the flagged patterns first?"
+4. LAYER 2 — Dispatch SEQUENTIALLY:
+   - strip-agent (receives pattern-scanner output + original text)
+   - soul-injection-agent (receives strip-agent output + voice-extractor profile)
+   - compression-agent (receives soul-injection output)
+   - critic-agent (receives compression output)
+5. If critic returns FAIL → re-dispatch named agent(s) with feedback (max 2 cycles)
+6. Deliver final artifact
+```
+
+### Route C: Called by Another Skill
+**When:** Invoked by `content-create`, `lp-optimization`, `copywriting`, or another skill for inline humanization.
+
+```
+1. Pre-dispatch: Read context from calling skill's artifacts
+2. If content already passed copywriting's Seven-Sweeps:
+   - Skip pattern-scanner (patterns already cleaned)
+   - Dispatch compression-agent (receives the text directly)
+   - Dispatch critic-agent
+3. Otherwise: Follow Route B (full pipeline)
+4. Return humanized output to the calling skill
+```
+
+---
+
+## Content Type Calibration
+
+This skill's examples are marketing-focused, but it works on any content type. Adjust the intensity of each step by content type:
+
+| Content Type | Strip Intensity | Voice Injection | Compression Target |
+|-------------|----------------|-----------------|-------------------|
+| Marketing copy | Full — all 36 patterns | Full — brand voice adjectives | 20-30% |
+| Blog posts / thought leadership | Full | Moderate — author voice, not brand voice | 15-25% |
+| Documentation / technical writing | Light — focus on clarity patterns only | Minimal — accuracy over personality | 10-15% |
+| Internal communications | Moderate | Light — conversational, not branded | 15-20% |
+| Academic / research | Light — remove only Hard Tells | None — maintain formal register | 5-10% |
+
+**Key principle:** The further from marketing, the lighter the touch. Documentation that sounds like a blog post is worse than documentation with a few AI tells.
+
+---
+
+## Step 0: Pre-Dispatch Context Gathering
+
+Before dispatching any agent, the orchestrator gathers context that ALL agents will need.
+
+### Product Context Check
+Check for `.agents/product-context.md`. If available, read for voice adjectives and brand personality. Voice injection (soul-injection-agent) requires these adjectives — without them, output will be clean but generic.
 If `.agents/product-context.md`'s `date` field is older than 30 days, recommend re-running `icp-research` to refresh voice adjectives — brand voice evolves.
+
+### Content Type Classification
+Determine the content type from the brief or the source artifact. This governs strip intensity, voice injection level, and compression targets per the Content Type Calibration table above.
 
 ### Required Artifacts
 None — can humanize any text standalone.
@@ -68,125 +172,99 @@ None — can humanize any text standalone.
 | `icp-research.md` | icp-research | Audience register calibration |
 | `content/[slug].md` | content-create | Original content with copywriting's seven-sweeps applied |
 
----
-
-## Step 1: Audit
-
-Scan the content for two categories of problems:
-
-**AI Patterns** — Run through all 36 patterns in [references/ai-patterns.md](references/ai-patterns.md). Start with the high-frequency AI vocabulary scan, then work through each category. For each pattern found, log:
-- Pattern number and name
-- Exact text that triggered it
-- Severity (Hard Tell / Soft Tell)
-
-**Bloat** — Scan for:
-- Redundant sentences (two sentences making the same point)
-- Hedge stacking and unnecessary qualifiers
-- Throat-clearing intros and setup paragraphs
-- Paired synonyms and filler adverbs
-- Bridge sentences that exist only to connect ideas
-- Sections that don't pass the earn-your-place test
-
-Produce the diagnosis, then present it to the user before proceeding. Show:
-- Count of Hard Tell vs Soft Tell patterns found
-- Top 3 most impactful patterns with examples from their text
-- Estimated compression potential
-
-If zero patterns are found in both categories, inform the user the content is already clean and skip directly to Step 3 (voice injection).
-
-Otherwise, ask: "Proceed with all fixes, or review the flagged patterns first?" Voice and tone decisions are subjective enough to warrant confirmation. If the user approves, continue to Step 2. If they want to review, walk through each flagged pattern and confirm which to fix vs keep.
+### Pre-Writing Assembly
+Compile these fields and pass to every agent in the `pre-writing` input:
+- **Content type** — blog, landing page, docs, email, social, etc.
+- **Voice adjectives** — from product-context.md (or defaults: "clear, specific, human")
+- **Audience register** — formal, professional, conversational, casual
+- **Original word count** — for compression tracking
+- **Source** — which skill or external source produced the content
+- **User directives** — any patterns the user wants to keep, or intensity preferences
 
 ---
 
-## Step 2: Strip
+## Dispatch Protocol
 
-Surgical removal of AI tells and filler. **Only subtract — do not rewrite for style yet.**
+### How to spawn a sub-agent
 
-For each flagged pattern from Step 1 (excluding any the user chose to keep during the checkpoint review):
-- Apply the specific fix from [references/ai-patterns.md](references/ai-patterns.md)
-- Replace paired synonyms → pick the stronger word
-- Fix copula avoidance → "serves as" becomes "is"
-- Delete throat-clearing intros → start where the content actually begins
-- Remove template transitions → let sections flow naturally or use a line break
-- Cut hedge stacking → commit or cut the claim
-- Delete -ing phrase tacking → remove "highlighting," "underscoring," "showcasing" appendages
-- Replace vague attributions → name the source and date, or cut the claim
-- Delete formulaic conclusions and generic positive endings → end with the strongest final thought
-- Remove permission-seeking closers → end with a recommendation, not an offer
-- Replace high-frequency AI vocabulary → plain-language equivalents (see vocabulary list)
+For each agent dispatched below, use the **Agent tool** with a prompt constructed as follows:
 
-**Rule:** Every edit in this step must be a subtraction or a substitution. No new sentences, no new ideas, no style changes.
+1. **Read** the agent instruction file (e.g., `agents/pattern-scanner-agent.md`) — include its FULL content in the Agent prompt
+2. **Append** the brief and pre-writing context after the instructions
+3. **Resolve file paths to absolute**: replace relative paths with absolute paths rooted at this skill's directory. Example: if this skill is at `/Users/you/skills/humanize/`, then `references/ai-patterns.md` becomes `/Users/you/skills/humanize/references/ai-patterns.md`. Tell the agent: "Read the reference file at [absolute path] for domain knowledge."
+4. **Pass upstream artifacts by content, not path**: the orchestrator reads `.agents/product-context.md` FIRST, then includes relevant excerpts (voice adjectives, audience register) in the pre-writing object. Sub-agents should NOT read artifact files directly — the orchestrator curates what they need.
+5. If **feedback** exists (from a critic FAIL cycle), append it at the end of the prompt with the header "## Critic Feedback — Address Every Point"
 
----
+### Single-agent fallback
 
-## Step 3: Inject Soul
+If multi-agent dispatch is unavailable (no Agent tool, single-agent runtime, or context constraints), execute each agent's instructions sequentially in-context:
 
-The content is now clean but potentially sterile. Apply voice using [references/voice-injection.md](references/voice-injection.md).
+1. **Layer 1:** Run pattern-scanner-agent's detection logic on the text. Then run voice-extractor-agent's profile logic.
+2. **Layer 2:** Apply strip-agent's fixes, then soul-injection-agent's voice techniques, then compression-agent's rules.
+3. **Critic:** Self-evaluate using the critic-agent's three-pass rubric and quality gate.
 
-1. **Read voice adjectives** from `product-context.md` and apply the adjective framework constraints
-2. **Vary sentence rhythm** — break the AI metronome. Mix short (4-6 words), medium (10-15), and long (18-25) sentences. Use the 1-3-1 pattern as a starting point
-3. **Upgrade abstractions to specifics** — every "many companies" becomes a named company, every "significant improvement" becomes a number
-4. **Break structural monotony** — not every paragraph should be 3 sentences, not every section needs a subheading, not every list needs to be bulleted
-5. **Add experience markers** where brand voice allows — "we found," "our data shows," "teams tell us"
-
-**Constraint:** Net word count from Step 2 must not increase. Every word added means a word removed elsewhere.
+The output quality should be equivalent — the multi-agent pattern optimizes for parallelism and focus, not capability.
 
 ---
 
-## Step 4: Compress
+## Layer 1: Parallel Diagnosis
 
-Systematic compression using [references/conciseness-rules.md](references/conciseness-rules.md). Work at three levels:
+Spawn the following agents **IN PARALLEL** (multiple Agent tool calls in a single message). For each agent, follow the Dispatch Protocol above.
 
-### Sentence Level
-- Replace filler phrases using the compression table (14 substitutions)
-- Eliminate filler adverbs ("really," "very," "significantly")
-- Convert passive → active where it shortens the sentence
+| Agent | Instruction File | Pass These Inputs | Reference Files to Resolve |
+|-------|-----------------|-------------------|---------------------------|
+| Pattern Scanner | `agents/pattern-scanner-agent.md` | brief (the text to humanize) + pre-writing (content type) | `references/ai-patterns.md` |
+| Voice Extractor | `agents/voice-extractor-agent.md` | brief (the text to assess) + pre-writing (voice adjectives, audience) | `references/voice-injection.md` |
 
-### Paragraph Level
-- Apply the merge test: consecutive paragraphs making the same point → merge, keep the stronger example
-- Apply the redundancy test: if the last sentence of a paragraph says the same thing as the first sentence of the next, delete one
-- Eliminate setup paragraphs: if a paragraph exists only to introduce the next, cut it and let the next paragraph stand alone
-- Inline evidence: merge "studies show X" + "for example, Y" into just "Y"
+After both agents return, **present the diagnosis to the user** before proceeding to Layer 2:
+- Show Hard Tell count vs. Soft Tell count
+- Show top 3 most impactful patterns with examples from their text
+- Show estimated compression potential
+- Show voice register assessment and gap
 
-### Section Level
-- Earn-your-place test: if deleting a section entirely loses nothing the reader needs, delete it
-- Hierarchy compression: sections with one paragraph → merge into adjacent section
-- List compression: lists with ≤3 items → convert to sentence
+Ask: **"Proceed with all fixes, or review the flagged patterns first?"**
 
-**Target:** 15-30% reduction from the original word count. Check content-type targets in [references/conciseness-rules.md](references/conciseness-rules.md) for specific guidance.
+If the user wants to review, walk through each flagged pattern and confirm which to fix vs keep. Pass the user's decisions to strip-agent as part of the pre-writing context.
 
 ---
 
-## Step 5: Final Audit
+## Layer 2: Sequential Pipeline
 
-Re-scan the entire piece using a three-pass self-audit:
+Dispatch these agents **ONE AT A TIME, IN ORDER** using the Dispatch Protocol above. Each receives the previous agent's full output as the `upstream` field.
 
-### Pass 1: Systematic check
-1. **Pattern check** — Run all 36 patterns again. Steps 3-4 can reintroduce patterns (especially during voice injection when new sentences are written). Fix any that appear.
-2. **Vocabulary check** — Scan for clusters of 3+ high-frequency AI words in any paragraph. Replace or restructure.
-3. **Density check** — Every paragraph must contain at least one concrete fact, number, or named example. Paragraphs that are pure abstraction get cut or upgraded.
-4. **Meaning preservation** — Compare against the original. Every unique idea, data point, example, and nuance from the original must still be present. If compression removed substance, restore it.
-5. **Compression verification** — Calculate final word count vs. original. Must be ≥15% reduction. If not, return to Step 4.
+```
+strip-agent → soul-injection-agent → compression-agent → critic-agent
+```
 
-### Pass 2: Introspection loop
-After Pass 1, explicitly ask: **"What still makes this obviously AI-generated?"** Answer honestly — identify any remaining tells, even subtle ones not in the 36-pattern checklist. Then fix those tells and re-read. This catches emergent patterns that no checklist covers: the overall "feel" of AI writing that comes from multiple small signals combining.
+| Step | Agent | Instruction File | Receives |
+|------|-------|-----------------|----------|
+| 1 | Strip Agent | `agents/strip-agent.md` | Pattern-scanner output (upstream) + original text (brief) + user-approved keeps (pre-writing) |
+| 2 | Soul Injection | `agents/soul-injection-agent.md` | Strip-agent output (upstream) + voice-extractor profile (pre-writing) |
+| 3 | Compression | `agents/compression-agent.md` | Soul-injection output (upstream) + content type targets (pre-writing) |
+| 4 | Critic | `agents/critic-agent.md` | Compression output (upstream) + original text for comparison (brief) |
 
-6. **Cut quotables** — If any sentence sounds like it was designed to be pulled as a quote or shared on social media, rewrite it. AI generates sentences that sound profound in isolation but say nothing specific. "The best time to start was yesterday" is a quotable. "We lost 40% of signups in the first 48 hours" is a fact. Keep facts, kill quotables.
+Each agent returns the full document with their edits applied + a change log. The orchestrator passes the complete output (text + log) to the next agent.
 
-7. **Read-aloud test** — Read the final piece aloud. Mark any sentence where you stumble or where the rhythm feels mechanical. Fix those sentences. If nothing catches, move to Pass 3.
+---
 
-### Pass 3: Scoring rubric
-Score the final piece on five dimensions, 1-10 each:
+## Critic Gate
 
-| Dimension | Question | 1 (worst) | 10 (best) |
-|-----------|----------|-----------|-----------|
-| Directness | Does the text state things or announce it will state things? | Every paragraph has a setup sentence | Every sentence carries information |
-| Rhythm | Do three consecutive sentences match length? | Metronomic — all 12-15 words | Varied — short punches, long development, fragments |
-| Trust | Does the text explain things the reader already knows? | Patronizing — defines basic terms | Respects the reader's existing knowledge |
-| Authenticity | Would I know who wrote this without a byline? | Could be any brand, any author | Distinctive voice, specific perspective |
-| Density | Can I delete any sentence without losing information? | 30%+ is filler | Every sentence earns its place |
+The critic agent returns one of two verdicts:
 
-**Threshold: 35/50.** Below 35 → return to Step 3 (voice injection) and re-apply with more specificity and personality. Above 35 → the piece is done.
+### PASS
+The text meets all quality standards. Score is 35/50 or above. Zero absolute prohibition violations. Deliver the critic's approved output as the final artifact.
+
+### FAIL
+The critic returns specific failures with:
+- Which text failed and on which dimension
+- Specific fix instructions
+- Which agent to re-dispatch
+
+**Rewrite loop:**
+1. Read the critic's failure report
+2. Re-dispatch ONLY the named agent(s) with the critic's feedback attached as the `feedback` input
+3. Run the modified output back through the critic
+4. **Maximum 2 rewrite cycles.** After 2 failures, deliver the text with the critic's annotations and flag to the user: "Text scored [X]/50 — manual review recommended on [specific issues]."
 
 ---
 
@@ -231,17 +309,51 @@ compression: [X]%
 
 ---
 
-## Worked Example
+## Worked Example — Full Humanize (Route B)
 
-### Original (AI-generated, 178 words)
+**Input:** AI-generated SaaS onboarding blog post, 178 words. Content type: blog post.
 
-> In today's rapidly evolving SaaS landscape, customer onboarding has become a critical and essential component of the user experience. Companies that invest in comprehensive onboarding programs see significantly better retention rates. For example, a well-designed onboarding flow can help users understand the full value of your platform more quickly and efficiently.
->
-> It's important to note that onboarding isn't just about product tours. Effective onboarding encompasses email sequences, in-app guidance, and personalized support. By implementing these strategies, you can create a seamless and intuitive experience that drives long-term engagement.
->
-> In conclusion, investing in onboarding is one of the best decisions a SaaS company can make. The data clearly shows that companies with strong onboarding see up to 50% higher retention. Start building your onboarding program today and see the difference it can make for your business!
+### Step 0: Pre-Dispatch
+- Content type: blog post (strip: full, voice: moderate, compression: 15-25%)
+- Voice adjectives: "direct, warm, technical" (from product-context.md)
+- Original word count: 178
 
-### Humanized + Compressed (91 words)
+### Layer 1: Parallel Dispatch
+
+**Pattern Scanner returns:**
+- 8 Hard Tells found, 2 Soft Tells
+- Top 3: throat-clearing intro (#21, 1 instance), paired synonyms (#6, 2 instances), em dash (#12, 1 instance)
+- Absolute prohibitions: 1 em dash, 1 filler context phrase
+- Estimated compression: 40-50%
+
+**Voice Extractor returns:**
+- Voice profile: direct (short sentences, imperatives), warm (inclusive pronouns), technical (domain-specific)
+- Current register: formal/generic. Target: professional/conversational
+- Sterility: all 6 signs present — uniform sentence length, no experience markers, no fragments, any-brand paragraphs
+- 5 injection opportunities flagged (specificity, rhythm, reader presence)
+
+### User Checkpoint
+"Found 8 Hard Tells and 2 Soft Tells. Top issues: throat-clearing intro, paired synonyms, em dash. Estimated 40-50% compression potential. Proceed with all fixes?"
+
+User confirms. Proceed to Layer 2.
+
+### Layer 2: Sequential Dispatch
+
+**Strip Agent receives** pattern-scanner output + original text:
+> Removes "In today's rapidly evolving SaaS landscape," (throat-clearing). Picks "critical" from "critical and essential" (paired synonym). Removes em dash + -ing phrase. Removes "It's important to note that" (hedge). Removes "In conclusion" (formulaic). Removes "Start building..." (permission-seeking). Word count: 178 to 112.
+
+**Soul Injection receives** strip output + voice profile:
+> Leads with the data point (50% retention). Adds Intercom example with specific numbers. Replaces "companies" with named company. Varies rhythm: 11, 4, 18, 9 word sentences. Adds reader presence. Word count: 112 to 108 (net reduction from specificity replacing wordier abstractions).
+
+**Compression receives** soul-injection output:
+> Applies filler phrase compression ("The key takeaway is that" deleted). Merges setup + conclusion into single sentence. Word count: 108 to 91.
+
+**Critic receives** compression output:
+> Pass 1: Zero Hard Tells. 0 Soft Tells. Vocabulary clean. Density: every paragraph has facts. Meaning preserved. Compression: 49%.
+> Pass 2: "What still sounds AI?" Nothing flagged. No quotables. Read-aloud clean.
+> Pass 3: Directness 8, Rhythm 8, Trust 8, Authenticity 7, Density 9. Total: 40/50. PASS.
+
+### Final Output (91 words, 49% compression)
 
 > SaaS companies with structured onboarding retain 50% more users. Yet most treat it as a product tour and stop there.
 >
@@ -254,7 +366,7 @@ compression: [X]%
 | Location | Original | Change | Rule |
 |----------|----------|--------|------|
 | Para 1, S1 | "In today's rapidly evolving SaaS landscape" | Deleted | Pattern #21 (throat-clearing intro) |
-| Para 1, S1 | "critical and essential" | "critical" → restructured | Pattern #6 (paired synonyms) |
+| Para 1, S1 | "critical and essential" | "critical" then restructured | Pattern #6 (paired synonyms) |
 | Para 1, S1 | "has become a critical component of..." | Lead with the data point instead | Compression: setup elimination |
 | Para 1, S3 | "more quickly and efficiently" | Deleted (paired synonyms + filler) | Pattern #6, Compression |
 | Para 2, S1 | "It's important to note that" | Deleted | Pattern #8 (hedge) + Compression |
@@ -262,47 +374,49 @@ compression: [X]%
 | Para 3, S1 | "In conclusion" | Deleted | Pattern #5 (formulaic structure) + #25 (generic positive conclusion) |
 | Para 3, S3 | "Start building... see the difference!" | Replaced with actionable takeaway | Pattern #20 (permission-seeking) + Pattern #11 (exclamation) |
 | Throughout | Generic claims | Added Intercom example | Voice: specificity as personality |
-| — | 178 words → 91 words | **49% compression** | — |
+| --- | 178 words to 91 words | **49% compression** | --- |
 
 ---
 
 ## Anti-Patterns
 
-**Mechanical pattern-matching without judgment** — Not every instance of a Soft Tell pattern needs fixing. A single hedge before a genuinely uncertain claim is honest. Use the checklist as a detection tool, not a find-and-replace script. Exception: the Absolute Prohibitions (em dashes, negative parallelism, rhetorical questions, colons in prose, "actually" as emphasis, filler context phrases, emojis) are always enforced with zero tolerance.
+**Skipping the pattern scan** — Dispatching strip-agent without a diagnosis. Strip-agent needs the violation log as its work order. Without it, edits are guesswork. INSTEAD: always run pattern-scanner-agent first.
 
-**Sterile output** — Content that's been stripped of AI patterns but has no personality. If the output reads like a legal document, Step 3 (voice injection) was skipped or under-applied. Clean ≠ good.
+**Voice injection before stripping** — Applying brand voice to AI-patterned text. You are polishing a turd. The voice injection agent expects clean, pattern-free input. INSTEAD: strip first, inject second. Always.
 
-**Surface compression** — Cutting depth instead of filler. Removing a data point to save 8 words is the opposite of what compression should do. Check every deletion against the depth preservation rules.
+**Mechanical pattern-matching without judgment** — Not every instance of a Soft Tell pattern needs fixing. A single hedge before a genuinely uncertain claim is honest. Use the checklist as a detection tool, not a find-and-replace script. Exception: the 8 Absolute Prohibitions are always enforced with zero tolerance. INSTEAD: fix Hard Tells and Absolute Prohibitions unconditionally; apply judgment to Soft Tells.
 
-**Voice cosplay** — Injecting a personality that doesn't match the brand. A fintech compliance tool shouldn't sound like a DTC sneaker brand. Read the voice adjectives from product-context.md — they're constraints.
+**Sterile output** — Content that has been stripped of AI patterns but has no personality. If the output reads like a legal document, soul-injection-agent was skipped or under-applied. Clean does not equal good. INSTEAD: always run soul-injection-agent after strip-agent (Route B).
 
-**Compression without reading the full piece first** — Starting to compress paragraph 1 before reading paragraph 12. The piece might make a point once clearly and once redundantly — you need to see both before deciding which to keep.
+**Surface compression** — Cutting depth instead of filler. Removing a data point to save 8 words is the opposite of what compression should do. INSTEAD: check every deletion against the Depth Preservation Rules in conciseness-rules.md.
 
-**One-pass editing** — Running all five steps simultaneously. Each step has a different focus: audit, strip, voice, compress, verify. Combining them produces worse results because you're optimizing for conflicting goals simultaneously.
+**Voice cosplay** — Injecting a personality that does not match the brand. A fintech compliance tool should not sound like a DTC sneaker brand. INSTEAD: read the voice adjectives from product-context.md. They are constraints, not suggestions.
 
-**Destroying structure in the name of conciseness** — Removing all subheadings, merging all sections, eliminating all lists because "shorter is better." Structure aids scanning. Compress within structure before eliminating structure.
+**One-pass editing** — Running all steps simultaneously. Each step has a different focus: detect, strip, voice, compress, verify. Combining them produces worse results because you are optimizing for conflicting goals simultaneously. INSTEAD: follow the sequential pipeline. Each agent has one job.
 
-**Over-compressing introductions** — The opening carries disproportionate weight. A 50% compressed intro that loses its hook is worse than a 20% compressed intro that keeps it. Compress introductions last and most carefully.
+**Ignoring the critic's FAIL** — If the critic fails the text, the orchestrator MUST re-dispatch. Delivering failed text to the user breaks the quality contract. INSTEAD: re-dispatch the named agent(s) with the critic's feedback. Max 2 cycles, then deliver with annotations.
 
-**Ignoring audience register** — Compressing a developer blog post into marketing-speak, or making a white paper sound like a tweet thread. Compression preserves register — it removes filler within the existing tone, not across tones.
+**Destroying structure in the name of conciseness** — Removing all subheadings, merging all sections, eliminating all lists because "shorter is better." Structure aids scanning. INSTEAD: compress within structure before eliminating structure.
 
-**Skipping the final audit** — Steps 3 and 4 frequently reintroduce AI patterns (especially during voice injection when new sentences are written). The final audit catches these. Skip it and you'll ship content with the same patterns you started with.
+**Over-compressing introductions** — The opening carries disproportionate weight. A 50% compressed intro that loses its hook is worse than a 20% compressed intro that keeps it. INSTEAD: compress introductions last and most carefully.
 
 ---
 
-## Content Type Calibration
+## Agent Files
 
-This skill's examples are marketing-focused, but it works on any content type. Adjust the intensity of each step by content type:
+### Sub-Agent Instructions (agents/)
+- [agents/pattern-scanner-agent.md](agents/pattern-scanner-agent.md) — Scans all 36 AI patterns, logs violations, estimates compression
+- [agents/voice-extractor-agent.md](agents/voice-extractor-agent.md) — Reads voice adjectives, assesses register, identifies injection opportunities
+- [agents/strip-agent.md](agents/strip-agent.md) — Surgical removal of flagged AI patterns
+- [agents/soul-injection-agent.md](agents/soul-injection-agent.md) — Applies brand voice through rhythm, specificity, experience markers
+- [agents/compression-agent.md](agents/compression-agent.md) — Systematic compression at sentence, paragraph, section levels
+- [agents/critic-agent.md](agents/critic-agent.md) — Three-pass audit, 5-dimension scoring, PASS/FAIL gate
+- [agents/_template.md](agents/_template.md) — Reusable template for creating new agent files
 
-| Content Type | Strip Intensity | Voice Injection | Compression Target |
-|-------------|----------------|-----------------|-------------------|
-| Marketing copy | Full — all 36 patterns | Full — brand voice adjectives | 20-30% |
-| Blog posts / thought leadership | Full | Moderate — author voice, not brand voice | 15-25% |
-| Documentation / technical writing | Light — focus on clarity patterns only | Minimal — accuracy over personality | 10-15% |
-| Internal communications | Moderate | Light — conversational, not branded | 15-20% |
-| Academic / research | Light — remove only Hard Tells | None — maintain formal register | 5-10% |
-
-**Key principle:** The further from marketing, the lighter the touch. Documentation that sounds like a blog post is worse than documentation with a few AI tells.
+### Shared References (references/)
+- [references/ai-patterns.md](references/ai-patterns.md) — 36 AI writing patterns across 8 categories + high-frequency vocabulary and phrase lists
+- [references/voice-injection.md](references/voice-injection.md) — Voice adjective framework, rhythm, specificity, personality injection
+- [references/conciseness-rules.md](references/conciseness-rules.md) — Compression techniques at sentence, paragraph, and section level
 
 ---
 
@@ -310,6 +424,6 @@ This skill's examples are marketing-focused, but it works on any content type. A
 
 | Reference | Use For |
 |-----------|---------|
-| [ai-patterns.md](references/ai-patterns.md) | 36 AI writing patterns across 8 categories + high-frequency vocabulary & phrase lists — detection, examples, fixes, severity |
+| [ai-patterns.md](references/ai-patterns.md) | 36 AI writing patterns across 8 categories + high-frequency vocabulary and phrase lists — detection, examples, fixes, severity |
 | [conciseness-rules.md](references/conciseness-rules.md) | Compression techniques at sentence, paragraph, and section level |
 | [voice-injection.md](references/voice-injection.md) | Voice adjective framework, rhythm, specificity, personality injection |
