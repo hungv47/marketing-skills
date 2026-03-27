@@ -5,18 +5,18 @@ argument-hint: "[copy task or text to evaluate]"
 license: MIT
 metadata:
   author: hungv47
-  version: "1.0.1"
+  version: "2.0.0"
 ---
 
-# Copywriting
+# Copywriting — Multi-Agent Orchestrator
 
-*Horizontal skill — produces craft-quality copy with annotations, alternatives, and quantitative evaluation.*
+*Coordinates specialized sub-agents to produce craft-quality copy with annotations, alternatives, and quantitative evaluation.*
 
 **Core Question:** "Is every key line visual, falsifiable, and uniquely ours?"
 
 ## Philosophy
 
-The copy frameworks (PAS, 3-Question Test, CTA formula) are proven tools — not mandatory templates. A skilled writer may combine frameworks, or write a hook that breaks the 8-word guideline because the extra words earn their place. The test is: does this stop the scroll and move the reader? Frameworks get you there faster. They don't define the only path.
+Copy frameworks (PAS, 3-Question Test, CTA formula) are proven tools — not mandatory templates. A skilled agent may combine frameworks or break a guideline when the extra words earn their place. The test is: does this stop the scroll and move the reader? This orchestrator dispatches specialist agents for each concern, then a critic agent ensures every key line meets the bar.
 
 ## Inputs Required
 - Brief: what to write (headline, hook, CTA, tagline, subject line, or full-page copy)
@@ -27,7 +27,7 @@ The copy frameworks (PAS, 3-Question Test, CTA formula) are proven tools — not
 - `.agents/mkt/content/[slug].copy.md` (for standalone full-page copy tasks)
 
 ## Quality Gate
-Before delivering, verify:
+Before delivering, the **critic agent** verifies:
 - [ ] Every key line passes the Three-Question Test: visual? falsifiable? uniquely ours?
 - [ ] Rubric score averages ≥3.5 across V/F/U for all key lines
 - [ ] Every key line passes the Competitor Swap Test (swap in competitor name — if it still works, rewrite)
@@ -41,21 +41,99 @@ Horizontal — called by `content-create`, `lp-optimization`, `imc-plan`. Can ru
 **Re-run triggers:** When brand voice changes, when A/B test results suggest a different angle, or when key lines need fresh variations.
 
 ### Skill Deference
-- **Need a full content asset (carousel, thread, email, video)?** → Use `content-create` — this skill writes key lines and page copy, not format-specific assets.
-- **Content reads as AI-generated?** → Run `humanize` after — it strips AI patterns and compresses.
-- **Diagnosing a live page's conversion problem?** → Use `lp-optimization` — this skill writes copy, not diagnoses.
-- **Optimizing for search/AI citations?** → Coordinate with `seo` for keyword targeting and content structure.
+- **Need a full content asset (carousel, thread, email, video)?** → Use `content-create`
+- **Content reads as AI-generated?** → Run `humanize` after
+- **Diagnosing a live page's conversion problem?** → Use `lp-optimization`
+- **Optimizing for search/AI citations?** → Coordinate with `seo`
 
 ---
 
-## Before Starting
+## Agent Manifest
 
-### Step 0: Product Context
-Check for `.agents/product-context.md`. If available, read for product details, voice adjectives, and accuracy.
-If `.agents/product-context.md` or `.agents/mkt/icp-research.md` `date` fields are older than 30 days, recommend re-running upstream skills before proceeding — stale data produces misaligned copy.
+| Agent | Layer | File | Focus |
+|-------|-------|------|-------|
+| Hook Agent | 1 (parallel) | `agents/hook-agent.md` | Headlines, hooks, taglines, subject lines — 3-5 variations with 3Q scoring |
+| Body Agent | 1 (parallel) | `agents/body-agent.md` | Problem, Solution, How It Works sections |
+| CTA Agent | 1 (parallel) | `agents/cta-agent.md` | CTA variations per placement with risk reversal |
+| Social Proof Agent | 1 (parallel) | `agents/social-proof-agent.md` | Testimonials, stats, logos, credibility signals |
+| Variant Agent | 1.5 (post-merge) | `agents/variant-agent.md` | A/B alternatives for key sections |
+| Voice Agent | 2 (sequential) | `agents/voice-agent.md` | Clarity + brand voice consistency, AI slop removal |
+| Psychology Agent | 2 (sequential) | `agents/psychology-agent.md` | So What, Prove It, Specificity, Emotion passes |
+| Zero-Risk Agent | 2 (sequential) | `agents/zero-risk-agent.md` | Barrier removal, guarantees, exit grace |
+| Critic Agent | 2 (final) | `agents/critic-agent.md` | Rubric scoring, 3Q test, annotation, PASS/FAIL |
 
-### Required Artifacts
-None — can write copy standalone with a user-provided brief.
+### Shared References (read by multiple agents)
+- `references/headline-formulas.md` — Headline formula catalog (used by hook-agent)
+- `references/page-sections.md` — Page section specs and testimonial criteria (used by body-agent, social-proof-agent)
+
+---
+
+## Routing Logic
+
+Classify the task, then follow the matching route.
+
+### Route A: Single Key Line
+**When:** Brief asks for a headline, hook, CTA, tagline, or subject line — not a full page.
+
+```
+1. Pre-dispatch: Gather context (Step 0 below)
+2. Dispatch ONE agent:
+   - Hook/headline/tagline/subject line → hook-agent
+   - CTA → cta-agent
+3. Dispatch: critic-agent (on the single agent's output)
+4. If critic returns FAIL → re-dispatch the original agent with feedback (max 2 cycles)
+5. Deliver annotated key lines
+```
+
+**Note:** Route A skips variant-agent. Hook-agent and cta-agent already generate 3-5 variations internally with rubric scoring. Variant-agent is designed for full-page copy where cross-section A/B alternatives are needed.
+
+### Route B: Full-Page Copy
+**When:** Brief asks for landing page copy, full-page copy, or multiple sections.
+
+```
+1. Pre-dispatch: Gather context (Step 0 below)
+2. LAYER 1 — Dispatch IN PARALLEL:
+   - hook-agent
+   - body-agent
+   - cta-agent
+   - social-proof-agent
+3. MERGE: Assemble Layer 1 outputs into page structure
+4. Dispatch: variant-agent (on merged output)
+5. LAYER 2 — Dispatch SEQUENTIALLY:
+   - voice-agent (receives merged + varianted output)
+   - psychology-agent (receives voice-agent output)
+   - zero-risk-agent (receives psychology-agent output)
+6. Dispatch: critic-agent (receives zero-risk-agent output)
+7. If critic returns FAIL → re-dispatch named agent(s) with feedback (max 2 cycles)
+8. Deliver final artifact
+```
+
+### Route C: Called by Another Skill
+**When:** Invoked by `content-create`, `lp-optimization`, or `imc-plan` for inline copy work.
+
+```
+1. Pre-dispatch: Read context from calling skill's artifacts
+2. Dispatch the relevant Layer 1 agent(s) based on what the caller needs:
+   - Headline/hook → hook-agent
+   - Body sections → body-agent
+   - CTAs → cta-agent
+   - Social proof → social-proof-agent
+3. Dispatch: critic-agent
+4. Return annotated output to the calling skill
+```
+
+---
+
+## Step 0: Pre-Dispatch Context Gathering
+
+Before dispatching any agent, the orchestrator gathers context that ALL agents will need.
+
+### Product Context Check
+Check for `.agents/product-context.md`. If available, read for product details, voice adjectives, and accuracy constraints.
+If `.agents/product-context.md` or `.agents/mkt/icp-research.md` `date` fields are older than 30 days, **warn the user** and recommend re-running `icp-research` before proceeding. This is a soft gate — proceed if the user confirms, but note "stale ICP data" in the artifact header.
+
+### Language
+Default: English. If the user specifies another language, note it in pre-writing and pass to all agents. All agent instructions are currently optimized for English copy — other languages may need adapted idioms and cultural references.
 
 ### Optional Artifacts
 | Artifact | Source | Benefit |
@@ -64,126 +142,132 @@ None — can write copy standalone with a user-provided brief.
 | `product-context.md` | icp-research | Product details, voice adjectives |
 | `imc-plan.md` | imc-plan | Angle, awareness stage, channel context |
 
----
+### Pre-Writing Framework
+Answer these 4 questions before dispatching. Pass the answers to every agent as the `pre-writing` input:
 
-## Step 1: Pre-Writing Framework
-
-Before writing any key line, answer:
 1. **Who am I talking to?** What do they currently believe? What language do they use?
 2. **What should they believe after reading this?** What's the one shift?
 3. **What can I say that nobody else can?** What's our unique proof?
-4. **Where is the traffic coming from?** (Ad, search, email, social, direct) — this determines what they already know and expect.
+4. **Where is the traffic coming from?** (Ad, search, email, social, direct) — determines what they already know and expect.
 
 If `.agents/mkt/icp-research.md` exists, pull VoC quotes and pain language. Write how the buyer talks, not how the brand talks.
 
 ---
 
-## Step 2: Three-Question Test
+## Dispatch Protocol
 
-Run every key sentence through this filter:
+### How to spawn a sub-agent
 
-1. **Visual?** Close eyes — can the reader see it? ("Couch to 5K" = yes. "Regain fitness" = no.)
-2. **Falsifiable?** Is it true or false? ("6'2, reads on the tube" = yes. "Funny, smart, good values" = no.)
-3. **Uniquely yours?** Could a competitor sign this? ("The dating app designed to be deleted" = only Hinge. "The best platform" = anyone.)
+For each agent dispatched below, use the **Agent tool** with a prompt constructed as follows:
 
-Three yeses = keep. Any no = rewrite.
+1. **Read** the agent instruction file (e.g., `agents/hook-agent.md`) — include its FULL content in the Agent prompt
+2. **Append** the brief and pre-writing context after the instructions
+3. **Resolve file paths to absolute**: replace relative paths with absolute paths rooted at this skill's directory. Example: if this skill is at `/Users/you/skills/copywriting/`, then `references/headline-formulas.md` becomes `/Users/you/skills/copywriting/references/headline-formulas.md`. Tell the agent: "Read the reference file at [absolute path] for domain knowledge."
+4. **Pass upstream artifacts by content, not path**: the orchestrator reads `.agents/product-context.md` and `.agents/mkt/icp-research.md` FIRST, then includes relevant excerpts (VoC quotes, voice adjectives, pain language) in the pre-writing object. Sub-agents should NOT read artifact files directly — the orchestrator curates what they need.
+5. If **feedback** exists (from a critic FAIL cycle), append it at the end of the prompt with the header "## Critic Feedback — Address Every Point"
 
----
+### Single-agent fallback
 
-## Step 3: Variation Workflow
+If multi-agent dispatch is unavailable (no Agent tool, single-agent runtime, or context constraints), execute each agent's instructions sequentially in-context:
+- Layer 1: run each agent's domain instructions one at a time, writing each section
+- Layer 2: apply each refinement pass to the full document in order
+- Critic: self-evaluate using the critic-agent's rubric and quality gate
 
-Never deliver the first version of a key line. For every hook, headline, CTA, tagline, and subject line:
-
-1. Write 3-5 variations using different approaches
-2. Run each through the Three-Question Test
-3. Apply the Speed Test (show for 2 seconds — understood?)
-4. Run the Competitor Swap Test (replace brand with competitor — still works? → cut it)
-5. Score survivors using the Evaluation Rubric (Step 4)
-6. Keep the highest-scoring version. Present top 2-3 as alternatives with annotations.
-
-**When 2+ variations tie on the 3Q test**, apply secondary criteria:
-
-| Tiebreaker | Question | Higher Score Wins |
-|-----------|---------|-------------------|
-| **Surprise** | Which was least obvious / most unexpected? | Surprising hooks stop the scroll |
-| **ICP anchor** | Which maps to a specific metric or pain from ICP research? | Grounded hooks convert better |
-| **Objection-free** | Which triggers zero obvious objections? | Clean hooks have less falloff |
-
-Document which tiebreaker you used — this trains judgment for future content.
-
-Key lines = hooks, headlines, CTAs, taglines, subject lines. Body copy doesn't need 5 variations — but key lines always do.
+The output quality should be equivalent — the multi-agent pattern optimizes for parallelism and focus, not capability.
 
 ---
 
-## Step 4: Evaluation Rubric
+## Layer 1: Parallel Section Writers
 
-Upgrade the binary Three-Question Test to quantitative scoring for final polish. Use on key lines after the Variation Workflow.
+Spawn the following agents **IN PARALLEL** (multiple Agent tool calls in a single message). For each agent, follow the Dispatch Protocol above.
 
-| Dimension | 1 (Weak) | 3 (Adequate) | 5 (Strong) |
-|---|---|---|---|
-| **Visual Clarity** | Pure abstraction, no image | Reader gets a vague picture | Reader pictures it instantly |
-| **Falsifiability** | Subjective claim anyone makes | Mix of vague and concrete | Concrete, verifiable statement |
-| **Competitive Uniqueness** | Any competitor could sign it | Somewhat specific to us | Only we could say this |
+| Agent | Instruction File | Pass These Inputs | Reference Files to Resolve |
+|-------|-----------------|-------------------|---------------------------|
+| Hook Agent | `agents/hook-agent.md` | brief + pre-writing | `references/headline-formulas.md` |
+| Body Agent | `agents/body-agent.md` | brief + pre-writing | `references/page-sections.md` |
+| CTA Agent | `agents/cta-agent.md` | brief + pre-writing | — |
+| Social Proof Agent | `agents/social-proof-agent.md` | brief + pre-writing + available proof points | `references/page-sections.md` |
 
-**Threshold:** Key lines must average ≥3.5 across all three. Below 3 on ANY dimension → rewrite targeting that specific dimension.
-
-**Relationship to Three-Question Test:** The 3Q test is a quick pass/fail gate during drafting. The rubric is a precision tool for final polish — same dimensions, finer resolution.
-
----
-
-## Step 5: Seven Sweeps
-
-Apply the structured 7-pass editing method to all copy. Each pass focuses on exactly one dimension. The sequence matters — edit in this order. See [references/seven-sweeps.md](references/seven-sweeps.md) for the full checklist.
-
-1. **Clarity** — Can every sentence be understood on first read?
-2. **Voice & Tone** — Does it sound like the brand, consistently?
-3. **So What?** — Every claim must answer "why should I care?"
-4. **Prove It** — Every assertion needs evidence.
-5. **Specificity** — Replace every abstraction with a concrete detail.
-6. **Heightened Emotion** — Make the reader feel something.
-7. **Zero Risk** — Remove every barrier to the desired action.
-
-Key lines (hooks, headlines, CTAs, taglines, subject lines) always get the full seven sweeps. Body copy gets the quick-pass rules (see reference).
+**For single key line tasks (Route A):** Dispatch only the relevant agent, not all four.
 
 ---
 
-## Step 6: Annotation & Delivery
+## Merge Step
 
-When delivering copy, annotate each key line with:
-- **Which rule drove the choice** (Visual? Falsifiable? Conflict? Fact-over-adjective?)
-- **What alternative was considered** and why it was cut
-- **Rubric score** if the line went through evaluation
+After all Layer 1 agents return, assemble their outputs into the page structure.
 
-Format:
+### Section Order (full-page copy)
+1. **Hero** — Hook agent's recommended headline + subheadline + CTA agent's hero CTA
+2. **Social Proof Bar** — Social proof agent's bar element
+3. **Problem** — Body agent's Problem section
+4. **Solution** — Body agent's Solution section
+5. **How It Works** — Body agent's How It Works section
+6. **Testimonials** — Social proof agent's testimonials
+7. **Key Stats** — Social proof agent's stats (if applicable)
+8. **Final CTA** — CTA agent's final CTA + risk reversal
+
+### Assembly Rules
+The merge is deterministic assembly, not creative synthesis. Slot each agent's output into the template by ownership:
+
+| Section | Owner Agent | Content Source |
+|---------|-----------|---------------|
+| Headline + Subheadline | Hook Agent | Recommended hook + subheadline from hook-agent output |
+| Hero CTA | CTA Agent | Hero CTA from cta-agent output |
+| Social Proof Bar | Social Proof Agent | Bar element from social-proof-agent output |
+| Problem | Body Agent | Problem section from body-agent output |
+| Solution | Body Agent | Solution section from body-agent output |
+| How It Works | Body Agent | How It Works section from body-agent output |
+| Testimonials | Social Proof Agent | Testimonials from social-proof-agent output |
+| Mid-Page CTA | CTA Agent | Mid-page CTA from cta-agent output |
+| Key Stats | Social Proof Agent | Stats from social-proof-agent output |
+| Final CTA + Risk Reversal | CTA Agent | Final CTA + risk reversal from cta-agent output |
+
+### Conflict Resolution
+- Each agent owns specific sections (table above). If two agents mention the same fact (e.g., both hook and social-proof reference "12,000 users"), keep the version from the section owner.
+- If hook-agent's headline contradicts body-agent's problem framing, the orchestrator adjusts the body to align with the hook — the hook is the anchor because it's what the reader sees first.
+
+### After Merge: Variant Agent
+Dispatch the **variant-agent** with the assembled document as `upstream`. It returns A/B alternatives for key sections. Variant alternatives are appended to the artifact (not replacing originals) — they're testable options, not replacements.
+
+---
+
+## Layer 2: Sequential Craft Refiners
+
+Dispatch these agents **ONE AT A TIME, IN ORDER** using the Dispatch Protocol above. Each receives the previous agent's full output as the `upstream` field.
+
 ```
-**Headline:** "12 hours/week back from status updates nobody reads."
-  Rule: Visual + Falsifiable. Score: V:5 F:5 U:4.
-  Cut alternative: "Stop wasting time on updates" — failed uniqueness (any tool could say this).
+voice-agent → psychology-agent → zero-risk-agent → critic-agent
 ```
 
-### Full-Page Copy Organization
+| Step | Agent | Instruction File | Receives |
+|------|-------|-----------------|----------|
+| 1 | Voice Agent | `agents/voice-agent.md` | Merged + varianted document |
+| 2 | Psychology Agent | `agents/psychology-agent.md` | Voice agent's output |
+| 3 | Zero-Risk Agent | `agents/zero-risk-agent.md` | Psychology agent's output |
+| 4 | Critic Agent | `agents/critic-agent.md` | Zero-risk agent's output |
 
-When writing full-page copy, organize output section-by-section with 2-3 alternatives per key section:
+Each agent returns the full document with their edits applied + a change log.
 
-1. **Hero** — headline + subheadline + CTA (3 variations)
-2. **Social Proof** — logo bar, stat, or testimonial snippet
-3. **Problem** — articulate their pain (2 variations)
-4. **Solution** — bridge to your product
-5. **How It Works** — 3-4 numbered steps
-6. **Testimonials** — selected per criteria in [references/page-sections.md](references/page-sections.md)
-7. **Final CTA** — recap + CTA (2 variations)
+---
 
-For each section with alternatives, annotate which rule each version leans on and its rubric score.
+## Critic Gate
 
-### Page-Specific Guidance
+The critic agent returns one of two verdicts:
 
-| Page | Key Principle |
-|------|--------------|
-| **Homepage** | What you do in one sentence. Primary use case, not every feature. |
-| **Landing Page** | One goal, one CTA. Match headline to traffic source. Remove nav. |
-| **Pricing** | Lead with value, not price. Anchor with most popular plan. |
-| **Feature** | Lead with outcome ("Track time in one click"), not feature name. |
-| **About** | Founding story. What you believe. Team photos + real context. |
+### PASS
+The copy meets all quality standards. Deliver the critic's annotated output as the final artifact.
+
+### FAIL
+The critic returns specific failures with:
+- Which lines failed and on which dimension
+- Specific fix instructions
+- Which agent to re-dispatch
+
+**Rewrite loop:**
+1. Read the critic's failure report
+2. Re-dispatch ONLY the named agent(s) with the critic's feedback attached as the `feedback` input
+3. Run the modified output back through the critic
+4. **Maximum 2 rewrite cycles.** After 2 failures, deliver the copy with the critic's annotations and flag to the user: "Copy scored [X] — manual review recommended on [specific lines]."
 
 ---
 
@@ -228,156 +312,88 @@ status: draft
 
 ## [Additional sections for full-page copy — Hero, Problem, Solution, etc.]
 
+## A/B Variants
+[Variant agent's alternatives with hypotheses and test priority]
+
 > On re-run: rename existing artifact to `[slug].copy.v[N].md` and create new with incremented version.
 ```
 
 ---
 
-## Worked Example
+## Worked Example — Full-Page Copy (Route B)
 
-```markdown
-# Copy: Status Update Waste — Headlines & Hook
+**Brief:** Landing page for StatusZero, a tool that replaces standups with async status updates.
+**Audience:** Engineering managers at 50-200 person companies, problem aware.
+**Traffic:** LinkedIn ads (cold).
 
-**Date:** 2026-03-19
-**Skill:** copywriting
-**Audience:** Engineering managers at 50-200 person companies
-**Awareness Stage:** Problem Aware
-**Traffic Source:** LinkedIn organic (cold audience)
+### Step 0: Pre-Dispatch
+1. Talking to: EMs who feel buried in status overhead but think it's part of managing.
+2. Shift to: Status updates are a solvable problem, not a cost of doing business.
+3. Only we can say: Internal data shows 12 hrs/week lost to status theater.
+4. Traffic: LinkedIn ad click — cold, haven't searched, hook must interrupt.
 
-## Pre-Writing
+### Layer 1: Parallel Dispatch
+→ **Hook agent** returns 5 headline variations, recommends: "Your team loses 12 hours a week to status updates nobody reads." (V:5 F:5 U:4)
+→ **Body agent** returns Problem (status theater pain), Solution (async updates), How It Works (3 steps)
+→ **CTA agent** returns hero CTA ("See how teams ship without status theater →"), mid-page, and final CTAs with risk reversal
+→ **Social proof agent** returns logo bar (4 tech companies), 2 testimonials with metrics, key stat
 
-1. **Talking to:** Engineering managers who feel buried in status overhead but think it's just part of managing.
-2. **Shift to:** Status updates are a solvable problem, not a cost of doing business.
-3. **Only we can say:** We have internal data showing 12 hrs/week lost to status theater — no competitor has this stat.
-4. **Traffic context:** LinkedIn feed scroll. They haven't searched for anything. Hook must interrupt.
+### Merge (orchestrator assembles)
+Slots Layer 1 outputs into template: Hero → Social Proof Bar → Problem → Solution → How It Works → Testimonials → Final CTA
 
-## Key Lines
+### Dispatch: Variant Agent
+Receives merged document. Returns A/B alternatives:
+→ Hero variant B: "I cut meetings 80%. Output doubled." (tests story hook vs. data hook)
+→ Final CTA variant B: "Try StatusZero free — no credit card, cancel anytime" (tests specificity vs. risk-first)
 
-### Hook
+### Layer 2: Sequential Dispatch
+→ **Voice agent** receives merged + varianted doc. Fixes 3 AI patterns, adjusts tone to "direct, technical." Returns modified doc + change log.
+→ **Psychology agent** receives voice output. Adds "which means..." bridges to 2 features, strengthens emotion in problem section. Returns modified doc + change log.
+→ **Zero-risk agent** receives psychology output. Adds "No credit card required" near hero CTA, "Cancel anytime" near final CTA. Returns modified doc + change log.
 
-**Selected:** "Your team loses 12 hours a week to status updates nobody reads."
-  Rule: Visual (status updates, 12 hours) + Falsifiable (12 is specific, checkable). Score: V:5 F:5 U:4.
-  Cut alternative: "Stop doing standups" — failed falsifiability (opinion, not fact).
-
-**Alternative A:** "I cut meetings 80%. Output doubled."
-  Rule: Falsifiable (80%, doubled) + Story hook. Score: V:4 F:5 U:3.
-
-**Alternative B:** "31 hours/month in unproductive meetings — here's the breakdown."
-  Rule: Falsifiable (31 hours) + Data hook. Score: V:4 F:5 U:3.
-
-### CTA
-
-**Selected:** "See how teams ship without status theater →"
-  Rule: Outcome-focused (ship), specific (status theater). Score: V:4 F:4 U:4.
-  Cut alternative: "Learn more about our product" — generic, fails all three tests.
-
-**Alternative A:** "Watch the 2-minute demo →"
-  Rule: Specificity (2-minute), low commitment. Score: V:3 F:4 U:2.
-```
+### Dispatch: Critic Agent → PASS
+Receives zero-risk output. Scores all key lines. All average ≥3.5. Annotated and delivered.
 
 ---
 
-## Copy Principles — Extended Reference
+## Agent Files
 
-### Make It Visual (Zoom-In Technique)
+### Sub-Agent Instructions (agents/)
+- [agents/hook-agent.md](agents/hook-agent.md) — Headlines, hooks, 3Q scoring, formulas
+- [agents/body-agent.md](agents/body-agent.md) — Problem, Solution, How It Works sections
+- [agents/cta-agent.md](agents/cta-agent.md) — CTA formula, risk reversal, placement
+- [agents/social-proof-agent.md](agents/social-proof-agent.md) — Testimonials, stats, credibility
+- [agents/variant-agent.md](agents/variant-agent.md) — A/B alternatives, rubric scoring
+- [agents/voice-agent.md](agents/voice-agent.md) — Clarity, voice consistency, AI slop removal
+- [agents/psychology-agent.md](agents/psychology-agent.md) — So What, Prove It, Specificity, Emotion
+- [agents/zero-risk-agent.md](agents/zero-risk-agent.md) — Barrier removal, guarantees, exit grace
+- [agents/critic-agent.md](agents/critic-agent.md) — Final evaluation, scoring, PASS/FAIL
+- [agents/_template.md](agents/_template.md) — Reusable template for creating new agent files
 
-Abstract words evaporate. Concrete words stick.
+### Shared References (references/)
+- [references/headline-formulas.md](references/headline-formulas.md) — Headline formula catalog
+- [references/page-sections.md](references/page-sections.md) — Page section types, templates, testimonial selection
 
-**The technique:** Start abstract → ask "what do I actually mean?" → keep zooming until you reach something physical, picturable, droppable-on-your-foot.
+### Page-Specific Guidance
 
-| Start (abstract) | Zoom 1 | Zoom 2 (concrete) |
-|---|---|---|
-| "Regain fitness" | "Run again" | "Couch to 5K" |
-| "Improve productivity" | "Save time on updates" | "12 hours/week back from status updates nobody reads" |
-| "Better collaboration" | "Fewer meetings" | "Ship without a single standup" |
-
-**Test:** If someone can close their eyes and picture it, it's concrete enough.
-
-### Make It Falsifiable (The Pointing Technique)
-
-"Don't talk, only point." — Direct the reader's eye to evidence.
-
-| Unfalsifiable (opinion) | Falsifiable (checkable) |
-|---|---|
-| "The best analytics tool" | "See every metric on one screen, updated every 5 minutes" |
-| "Fast customer support" | "Average response time: 4 minutes" |
-| "Innovative solution" | "First CRM that auto-updates from email signatures" |
-
-### Make It Yours Alone (The Swap Test)
-
-"Never write an ad a competitor can sign." — Jim Durfee
-
-1. Write your headline/claim
-2. Replace your brand name with your top competitor's
-3. Does it still work? → Rewrite. It must ONLY work for you.
-
-### Facts Over Adjectives
-
-Every adjective is a missed opportunity for a fact.
-
-| Adjective | Fact |
-|---|---|
-| "trusted" | "Used by 3,000 teams including Stripe and Notion" |
-| "fast" | "Loads in 200ms" |
-| "popular" | "12,000 signups in the first week" |
-| "reliable" | "99.99% uptime since 2023" |
-
-### The Conflict Framework
-
-Create memorability through tension. State what you're AGAINST, then what you stand FOR.
-
-**Pattern:** "We don't [conventional approach]. We [our approach]."
-
-| Against | For | Brand |
-|---|---|---|
-| "Don't buy this jacket" | Quality over consumption | Patagonia |
-| "Think different" | Non-conformity over status quo | Apple |
-| "A dating app designed to be deleted" | Relationships over engagement | Hinge |
-
-**When to use:** Contrarian hooks, differentiation headlines, brand manifestos, about pages. Not every piece needs conflict — reserve for high-impact placements.
-
-### CTA Formula
-
-`[Action Verb] + [What They Get] + [Qualifier]`
-
-Bad: Submit, Learn More, Click Here
-Good: "Start your free trial", "Download the 2026 playbook", "See pricing for your team"
-
-### Speed Test
-
-Show someone the copy for two seconds. If they don't get it, rewrite.
-
----
-
-## Psychology of Persuasion
-
-### Pratfall Effect
-Small, authentic imperfections increase trust. A brand that admits a weakness ("Our UI isn't the prettiest — but our data is the most accurate") is more believable than one that claims perfection. Include one honest limitation in long-form copy, then pivot to your strength.
-
-### Curse of Knowledge
-Once you know something, you can't imagine not knowing it. Product teams write copy that assumes the reader understands their jargon. Test every key line with someone outside the company. If they can't explain it back, use the Zoom-In Technique to replace abstraction with concreteness.
+| Page | Key Principle |
+|------|--------------|
+| **Homepage** | What you do in one sentence. Primary use case, not every feature. |
+| **Landing Page** | One goal, one CTA. Match headline to traffic source. Remove nav. |
+| **Pricing** | Lead with value, not price. Anchor with most popular plan. |
+| **Feature** | Lead with outcome ("Track time in one click"), not feature name. |
+| **About** | Founding story. What you believe. Team photos + real context. |
 
 ---
 
 ## Anti-Patterns
 
-**Adjective-heavy copy** — "Innovative, cutting-edge, best-in-class solution" says nothing specific. Replace every adjective with a fact: "Used by 3,000 teams" beats "trusted by many."
+**Skipping the pre-writing** — Dispatching agents without answering the 4 pre-writing questions. Every agent needs this context to write relevant copy.
 
-**Features without benefits** — "Real-time sync" is a feature. "Never ask 'did you see my update?' again" is a benefit. Lead with the outcome the reader cares about, then mention the feature that enables it.
+**Dispatching all agents for a single headline** — Route A exists for a reason. A single key line only needs one Layer 1 agent + critic.
 
-**Writing for the brand, not the buyer** — Copy that sounds impressive to the marketing team but doesn't use the buyer's language. Pull phrasing from VoC quotes and ICP research — write how they talk, not how the brand talks.
+**Ignoring the critic's FAIL** — If the critic fails the copy, the orchestrator MUST re-dispatch. Delivering failed copy to the user breaks the quality contract.
 
-**AI copy slop** — Recognizable AI-generated patterns that signal generic output: "Unlock the power of...", "In today's fast-paced world...", "Revolutionize your workflow", "Seamlessly integrate", "Whether you're a [X] or a [Y]". The Competitor Swap Test catches most of these — if it reads like any SaaS website's hero, it fails.
+**Re-dispatching the wrong agent** — The critic specifies which agent to re-dispatch. Read the failure report carefully.
 
-**First-draft delivery** — Delivering the first version of a headline without variation or evaluation. Key lines always need 3-5 versions.
-
-**Untested uniqueness** — Assuming copy is ownable without running the swap test. Most copy fails the swap test on first draft.
-
----
-
-## References
-
-- [references/copywriting-craft.md](references/copywriting-craft.md) — Variation workflow, extended techniques, evaluation rubric, annotation guide
-- [references/seven-sweeps.md](references/seven-sweeps.md) — Structured 7-pass editing method (Clarity → Voice → So What → Prove It → Specificity → Emotion → Zero Risk)
-- [references/headline-formulas.md](references/headline-formulas.md) — Outcome, problem, audience, differentiation, and proof-focused headline formulas
-- [references/page-sections.md](references/page-sections.md) — Landing page section types, page structure templates, testimonial selection
+**More than 2 rewrite cycles** — Diminishing returns. After 2 cycles, deliver with annotations and let the user decide.
