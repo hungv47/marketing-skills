@@ -5,7 +5,7 @@ argument-hint: "[url or mode]"
 license: MIT
 metadata:
   author: hungv47
-  version: "1.0.2"
+  version: "2.0.0"
 ---
 
 # SEO
@@ -18,24 +18,49 @@ metadata:
 
 SEO combines hard technical constraints (Google's CWV thresholds, character limits) with strategic judgment. This skill distinguishes between the two. Technical specs from platform documentation are constraints. Strategic recommendations are defaults with context for when to deviate.
 
+---
+
+## Critical Gates
+
+Before delivering any SEO artifact, these must be true:
+
+1. **Every recommendation has a specific fix.** No "consider improving" or "you might want to." If a finding cannot name the exact page, the exact change, and the expected impact, it is not ready.
+2. **AI SEO is additive, not alternative.** Do the technical audit too. There is no point optimizing for AI citations if crawlers cannot reach your content.
+3. **Source recency matters.** AI platform behavior changes fast. Verify all data and recommendations are current — not citing deprecated practices, outdated crawlers, or stale metrics.
+4. **Mode is explicitly chosen based on diagnosis.** Not a generic "do SEO" deliverable.
+
+---
+
+## Agent Manifest
+
+| Agent | File | Layer | Mode(s) | Focus |
+|-------|------|-------|---------|-------|
+| crawl-agent | `agents/crawl-agent.md` | 1 (parallel) | Technical Audit, Full | Crawlability, indexation, robots.txt, sitemaps, canonicals |
+| foundations-agent | `agents/foundations-agent.md` | 1 (parallel) | Technical Audit, Full | CWV, mobile, HTTPS, URL structure, on-page optimization |
+| content-quality-agent | `agents/content-quality-agent.md` | 1 (parallel) | Technical Audit, Full | E-E-A-T, thin content, duplicate detection, content gaps |
+| authority-agent | `agents/authority-agent.md` | 1 (parallel) | Technical Audit, Full | Backlink profile, internal linking, link equity |
+| ai-structure-agent | `agents/ai-structure-agent.md` | 1 (parallel) | AI SEO, Full | Schema, heading hierarchy, answer passages, structured data |
+| ai-presence-agent | `agents/ai-presence-agent.md` | 1 (parallel) | AI SEO, Full | AI crawler access, llms.txt, citation monitoring, GEO |
+| programmatic-template-agent | `agents/programmatic-template-agent.md` | 1 (parallel) | Programmatic | Template design, URL architecture, defensibility |
+| programmatic-quality-agent | `agents/programmatic-quality-agent.md` | 1 (parallel) | Programmatic | Thin page detection, quality gates, monitoring plan |
+| comparison-page-agent | `agents/comparison-page-agent.md` | 1 (parallel) | Competitor Pages | Page format, content architecture, comparison matrices |
+| prioritization-agent | `agents/prioritization-agent.md` | 2 (sequential) | All | Impact x effort ranking of all findings |
+| critic-agent | `agents/critic-agent.md` | 2 (sequential) | All | Quality gate — specific fixes, no vague language, actionability |
+
+---
+
 ## Inputs Required
+
 - ICP research from `.agents/mkt/icp-research.md` (audience questions, pain points, search behavior)
 - IMC plan from `.agents/mkt/imc-plan.md` (content pillars and angles)
 - OR: User describes their SEO situation / site to audit
 
 ## Output
+
 - `.agents/mkt/seo-[mode].md` (mode = audit | ai | programmatic | competitor)
 
-## Quality Gate
-Before delivering, verify:
-- [ ] Mode is explicitly chosen based on diagnosis — not a generic "do SEO" deliverable
-- [ ] Every recommendation traces to a specific principle (not generic "optimize for keywords")
-- [ ] Technical issues are prioritized by impact, not listed as a flat checklist
-- [ ] AI SEO recommendations are platform-specific (not just "optimize for AI")
-- [ ] Programmatic SEO pages each deliver unique value (not variable substitution into a template)
-- [ ] Schema markup recommendations account for CMS/framework context (static vs. dynamic vs. plugin)
-
 ## Chain Position
+
 Previous: `icp-research` + `imc-plan` (reads audience questions and content pillars) | Next: content production / site updates / `experiment` (to test SEO changes)
 
 Horizontal skill — can be invoked independently or after IMC planning.
@@ -80,27 +105,106 @@ If `.agents/mkt/icp-research.md` or `.agents/mkt/imc-plan.md` `date` fields are 
 
 ---
 
-## Step 1: SEO Diagnosis
+## Routing Logic — Mode-Based Dispatch
+
+### Step 1: Determine Mode
 
 Not every SEO problem needs the same solution. Diagnose first, then enter the right mode.
 
-| Situation | Mode | Go To |
+| Situation | Mode | Route |
 |-----------|------|-------|
-| "Our site has technical issues / traffic dropped / we've never done an SEO audit" | **Technical Audit** | Step 2A |
-| "We want to be cited by ChatGPT / Perplexity / AI search engines" | **AI SEO (GEO)** | Step 2B |
-| "We have structured data and want to generate pages at scale" | **Programmatic SEO** | Step 2C |
-| "We want to rank for competitor comparison queries" | **Competitor Pages** | Step 2D |
-| "We need a comprehensive SEO strategy" | **Full audit first** → then prioritize modes | Step 2A, then others as needed |
+| "Our site has technical issues / traffic dropped / we've never done an SEO audit" | **Technical Audit** | Route A |
+| "We want to be cited by ChatGPT / Perplexity / AI search engines" | **AI SEO (GEO)** | Route B |
+| "We have structured data and want to generate pages at scale" | **Programmatic SEO** | Route C |
+| "We want to rank for competitor comparison queries" | **Competitor Pages** | Route D |
+| "We need a comprehensive SEO strategy" | **Full SEO** (Technical + AI) | Route E |
 
 Multiple modes can run sequentially. Start with Technical Audit if the site has never been audited — no point optimizing for AI citations if crawlers can't reach your content.
 
+### Step 2: Dispatch per Route
+
+**Route A — Technical Audit:**
+```
+Layer 1 (parallel): crawl-agent + foundations-agent + content-quality-agent + authority-agent
+       ↓ merge
+Layer 2 (sequential): prioritization-agent → critic-agent
+```
+
+**Route B — AI SEO:**
+```
+Layer 1 (parallel): ai-structure-agent + ai-presence-agent
+       ↓ merge
+Layer 2 (sequential): prioritization-agent → critic-agent
+```
+
+**Route C — Programmatic SEO:**
+```
+Layer 1 (parallel): programmatic-template-agent + programmatic-quality-agent
+       ↓ merge
+Layer 2 (sequential): prioritization-agent → critic-agent
+```
+
+**Route D — Competitor Pages:**
+```
+Layer 1: comparison-page-agent
+       ↓
+Layer 2 (sequential): prioritization-agent → critic-agent
+```
+
+**Route E — Full SEO (Technical + AI combined):**
+```
+Layer 1 (parallel): crawl-agent + foundations-agent + content-quality-agent + authority-agent + ai-structure-agent + ai-presence-agent
+       ↓ merge
+Layer 2 (sequential): prioritization-agent → critic-agent
+```
+
 ---
 
-## Step 2A: Technical SEO Audit
+## Dispatch Protocol
 
-Audit the site's SEO foundations in priority order. Fix blockers before optimizing content.
+### Multi-Agent Dispatch (default)
 
-### Audit Priority Layers
+1. **Gather context:** Read available artifacts (product-context, icp-research, imc-plan). Identify site type, CMS/framework, and known issues.
+2. **Determine mode:** Apply the routing table from Step 1. If unclear, ask the user. If "comprehensive SEO," use Route E.
+3. **Prepare pre-writing object:**
+   ```
+   {
+     site_url: "[URL]",
+     site_type: "[SaaS / E-commerce / Content-Blog / Local Business / Hybrid]",
+     cms_framework: "[WordPress / Next.js / Webflow / etc.]",
+     mode: "[audit / ai / programmatic / competitor / full]",
+     known_issues: "[any issues the user mentioned]",
+     icp_data: "[audience questions, pain points from icp-research if available]",
+     competitors: "[competitor domains if available]",
+     brand_name: "[brand name]",
+     category: "[product category for AI search testing]"
+   }
+   ```
+4. **Dispatch Layer 1 agents** in parallel with the pre-writing object and relevant reference file paths (resolved to absolute paths).
+5. **Merge Layer 1 outputs** into the artifact template. Each agent's output maps to its designated sections.
+6. **Dispatch prioritization-agent** with the merged document as upstream.
+7. **Dispatch critic-agent** with the prioritized document as upstream.
+8. **Apply critic verdict:**
+   - PASS → deliver the artifact
+   - FAIL → re-dispatch the named agents with the critic's feedback (max 2 cycles)
+
+### Single-Agent Fallback
+
+If multi-agent dispatch is unavailable, execute the full skill as a single agent:
+
+1. Read this SKILL.md completely (including all referenced sections below)
+2. Read the reference files for the active mode
+3. Follow the mode's audit steps (documented in the Reference Knowledge sections below)
+4. Apply the quality gate: every finding must have Issue, Impact, Evidence, Fix, and Priority
+5. Produce the artifact using the template at the end of this file
+
+---
+
+## Layer 1: Mode-Specific Domain Knowledge
+
+The following sections contain the domain knowledge that Layer 1 agents use. In multi-agent mode, each agent reads its own reference files. In single-agent fallback, read the sections relevant to the active mode.
+
+### Technical Audit Domain (Route A)
 
 Work top-down — lower layers depend on upper layers being healthy:
 
@@ -112,50 +216,36 @@ Layer 4: Content Quality (is the content worth ranking?)
 Layer 5: Authority & Links (does the site have external credibility?)
 ```
 
-### Layer 1: Crawlability & Indexation
-- [ ] `robots.txt` is not blocking important pages
-- [ ] XML sitemap exists, is submitted, and matches actual site pages
-- [ ] No orphaned pages (pages with no internal links pointing to them)
-- [ ] Important pages are reachable within 3 clicks from homepage
-- [ ] Canonical tags are correct (no self-referencing loops or wrong targets)
-- [ ] No duplicate content issues (www vs non-www, HTTP vs HTTPS, trailing slashes)
-- [ ] Crawl budget is not wasted on low-value pages (paginated archives, tag pages, search results)
+**Crawlability & Indexation — crawl-agent covers:**
+- robots.txt verification (including AI crawler directives)
+- XML sitemap existence, submission, and accuracy
+- Orphan page detection
+- Click depth (important pages within 3 clicks of homepage)
+- Canonical tag correctness
+- Duplicate content (www/non-www, HTTP/HTTPS, trailing slashes)
+- Crawl budget waste (low-value pages)
 
-### Layer 2: Technical Foundations
-- [ ] Core Web Vitals pass: LCP < 2.5s, INP < 200ms, CLS < 0.1 (Google's official thresholds — not adjustable)
-- [ ] Mobile-friendly (responsive, no horizontal scroll, touch targets ≥44px)
-- [ ] HTTPS everywhere (no mixed content)
-- [ ] URL structure is clean (lowercase, hyphenated, human-readable, no over-nesting)
-- [ ] 404 errors handled (custom page, no broken internal links)
-- [ ] Redirects are clean (no chains, no loops, 301 for permanent moves)
-- [ ] Page speed: load time < 3s on mobile
+**Technical Foundations — foundations-agent covers:**
+- Core Web Vitals: LCP < 2.5s, INP < 200ms, CLS < 0.1 (Google's official thresholds)
+- Mobile-friendly (responsive, touch targets >=44px)
+- HTTPS everywhere
+- URL structure (clean, lowercase, hyphenated)
+- 404 handling and redirect chains
+- On-page optimization (title tags, meta descriptions, heading hierarchy, images, internal links)
+- Keyword cannibalization
 
-### Layer 3: On-Page Optimization
-- [ ] Title tags: 50-60 characters, include primary keyword, unique per page (display limits set by search engines — content beyond gets truncated)
-- [ ] Meta descriptions: 150-160 characters, include CTA, unique per page (display limits set by search engines — content beyond gets truncated)
-- [ ] H1: one per page, includes primary keyword
-- [ ] H2/H3 hierarchy: logical, covers subtopics, matches search intent
-- [ ] Primary keyword appears in first 100 words
-- [ ] Images: descriptive alt text, compressed (WebP), lazy-loaded below fold
-- [ ] Internal links: 5-10 contextual links per 1,000 words, descriptive anchor text
-- [ ] No keyword cannibalization (multiple pages targeting the same query)
+**Content Quality — content-quality-agent covers:**
+- E-E-A-T signal assessment (Experience, Expertise, Authoritativeness, Trustworthiness)
+- Thin content detection
+- Duplicate content analysis
+- Content gap identification (vs. ICP research questions)
 
-### Layer 4: Content Quality (E-E-A-T)
+**Authority & Links — authority-agent covers:**
+- Backlink profile quality and toxic link detection
+- Internal linking architecture and topic clusters
+- Link building opportunities
 
-| Signal | What to Check |
-|--------|--------------|
-| **Experience** | Does the content show first-hand experience? (Case studies, screenshots, personal results) |
-| **Expertise** | Is the author credible for this topic? (Named author, credentials, bio) |
-| **Authoritativeness** | Is the site recognized in this space? (Mentions, citations, awards) |
-| **Trustworthiness** | Can users trust this site? (HTTPS, clear contact info, privacy policy, accurate claims) |
-
-### Layer 5: Authority & Links
-- [ ] Backlink profile: quality over quantity (relevant domains > random directories)
-- [ ] No toxic backlinks (spammy sites, link farms)
-- [ ] Internal linking creates clear topic clusters
-- [ ] Key pages have sufficient incoming internal links
-
-### Site-Type-Specific Issues
+**Site-Type-Specific Issues:**
 
 | Site Type | Watch For |
 |-----------|----------|
@@ -168,24 +258,20 @@ Layer 5: Authority & Links (does the site have external credibility?)
 
 See [references/technical-audit.md](references/technical-audit.md) for the full audit report template.
 
----
+### AI SEO Domain (Route B)
 
-## Step 2B: AI SEO (Generative Engine Optimization)
+**The Three Pillars of AI Visibility:**
 
-Traditional SEO = ranked in results. AI SEO = cited in AI-generated answers. Different systems, different rules.
-
-### The Three Pillars of AI Visibility
-
-#### Pillar 1: Structure (Make Content Citable)
+#### Pillar 1: Structure — ai-structure-agent covers
 
 AI models extract and cite content that's structured for easy parsing.
 
 | Rule | Why | How |
 |------|-----|-----|
 | Clear H2/H3 hierarchy | AI models parse headings to understand topic structure | Every section answers one specific question |
-| 40-60 word answer passages (typical — adjust for topic complexity: simple definitions may need 20-30 words; technical explanations may need 80-100) | Citation-length sweet spot — long enough to be useful, short enough to quote in full | Write a concise answer paragraph immediately after each H2 |
+| 40-60 word answer passages | Citation-length sweet spot (adjust for complexity: 20-30 for definitions, 80-100 for technical) | Write a concise answer paragraph immediately after each H2 |
 | Comparison tables | Comparisons are #1 most-cited content type (33% of AI citations) | Use tables for feature comparisons, pricing tiers, tool comparisons |
-| Source citations in content | Citing sources is the **strongest single factor** for AI visibility — +40% citation boost (Princeton GEO study) | Link to primary sources, studies, data |
+| Source citations in content | **Strongest single factor** for AI visibility — +40% citation boost (Princeton GEO study) | Link to primary sources, studies, data |
 | Statistics in content | +37% citation boost | Include specific numbers, percentages, data points |
 
 **Most-Cited Content Types:**
@@ -219,7 +305,7 @@ AI models extract and cite content that's structured for easy parsing.
 | Review site presence | G2, Capterra, TrustRadius feed AI training data | Actively manage review profiles |
 | Wikipedia presence | 7.8% of ChatGPT citations come from Wikipedia | Contribute to relevant Wikipedia articles (following their guidelines) |
 
-#### Pillar 3: Presence (Be Findable by AI)
+#### Pillar 3: Presence — ai-presence-agent covers
 
 **AI Crawler Management:**
 
@@ -243,67 +329,51 @@ Decision: If you want AI citations, allow the crawlers. If GPTBot is blocked, Ch
 | Claude | Training data + ClaudeBot | Expert content, balanced analysis, original research |
 | Gemini | Google index + Knowledge Graph | Google Business Profile, YouTube, schema |
 
-### AI SEO Audit Steps
+**AI SEO Validation Protocol:**
 
-1. **Direct testing:** Query your brand + key topics across ChatGPT, Perplexity, Google AI Overviews, Claude. Document: mentioned? cited? accurate?
-2. **Structure audit:** Do top pages have H2/H3 hierarchy, 40-60 word answer passages, comparison tables, source citations?
-3. **Authority audit:** Third-party mentions, review site presence, expert attribution, original data published?
-4. **Crawler audit:** robots.txt directives for AI bots, sitemap accessibility, server log activity?
-
-### AI SEO Validation Protocol
-
-Optimization without validation is guesswork. Track whether changes actually improve AI citations:
-
-**Baseline (before optimization):**
-1. Pick 10-20 queries: 5 brand queries, 5 category queries, 5 "how to" queries from ICP research
+Baseline (before optimization):
+1. Pick 10-20 queries: 5 brand, 5 category, 5 "how to" from ICP research
 2. Run each across ChatGPT, Perplexity, Google AI Overviews, Claude
-3. Score each: 0 = not mentioned, 1 = mentioned but not cited, 2 = cited with link/attribution
-4. Record total baseline score (max = queries × platforms × 2)
+3. Score: 0 = not mentioned, 1 = mentioned not cited, 2 = cited with attribution
+4. Record total baseline score
 
-**Post-optimization (re-test weekly for 4 weeks):**
-1. Run the same 10-20 queries on the same platforms
-2. Score identically
-3. Track delta from baseline
+Post-optimization (re-test weekly for 4 weeks):
 
 | Outcome | Interpretation | Action |
 |---------|---------------|--------|
-| Score improves >20% in 4 weeks | Optimization working | Continue and expand to more content |
-| Score flat after 4 weeks | Wrong optimization target | Re-diagnose: is the issue Structure, Authority, or Presence? |
-| Score improves on some platforms but not others | Platform-specific gap | Focus on the lagging platform's specific data source |
-| Score decreases | Something broke | Check crawler access (robots.txt), content freshness, and entity consistency |
+| Score improves >20% in 4 weeks | Optimization working | Continue and expand |
+| Score flat after 4 weeks | Wrong target | Re-diagnose: Structure, Authority, or Presence? |
+| Improves on some platforms, not others | Platform-specific gap | Focus on lagging platform's data source |
+| Score decreases | Something broke | Check crawler access, content freshness, entity consistency |
 
 See [references/ai-seo.md](references/ai-seo.md) for platform-specific optimization details and content templates.
 
----
+### Programmatic SEO Domain (Route C)
 
-## Step 2C: Programmatic SEO
+**programmatic-template-agent covers template design; programmatic-quality-agent covers quality control.**
 
-Generate hundreds or thousands of pages at scale from templates + structured data. Each page must deliver unique value — not just variable substitution.
-
-### When to Use pSEO
+**When to Use pSEO:**
 
 | Use When | Don't Use When |
 |----------|---------------|
-| You have structured data with many entities (cities, integrations, comparisons) | You'd be creating thin pages with no unique value per page |
-| Each page serves a distinct search intent | All pages would answer basically the same question |
-| You can add unique value beyond the data (analysis, recommendations, context) | You're just spinning templates to get more indexed pages |
-| Your data is defensible (proprietary or hard to replicate) | The same data is freely available everywhere |
+| You have structured data with many entities | You'd be creating thin pages with no unique value |
+| Each page serves a distinct search intent | All pages would answer the same question |
+| You can add unique value beyond the data | You're just spinning templates for indexed pages |
+| Your data is defensible | The same data is freely available everywhere |
 
-### Data Defensibility Hierarchy
-
-How defensible is your pSEO play? Higher = harder for competitors to replicate.
+**Data Defensibility Hierarchy:**
 
 | Tier | Data Type | Example | Defensibility |
 |------|-----------|---------|---------------|
-| 1 | **Proprietary** | Your own user data, benchmarks, metrics | Highest — no one else has it |
-| 2 | **Product-derived** | Integration-specific data, compatibility info | High — tied to your product |
-| 3 | **User-generated** | Reviews, community content, templates | Medium — builds over time |
-| 4 | **Licensed** | Purchased datasets, API data | Low-medium — others can license too |
-| 5 | **Public** | Government data, Wikipedia, free APIs | Lowest — anyone can build this |
+| 1 | **Proprietary** | Your own user data, benchmarks | Highest |
+| 2 | **Product-derived** | Integration data, compatibility | High |
+| 3 | **User-generated** | Reviews, community content | Medium |
+| 4 | **Licensed** | Purchased datasets, API data | Low-medium |
+| 5 | **Public** | Government data, free APIs | Lowest |
 
-**Rule:** If your data is Tier 4-5, you need exceptional template quality or additional proprietary enrichment to compete.
+**Rule:** Tier 4-5 data needs exceptional template quality or proprietary enrichment.
 
-### 12 pSEO Playbook Patterns
+**12 pSEO Playbook Patterns:**
 
 | Pattern | Example | Search Intent |
 |---------|---------|--------------|
@@ -320,78 +390,83 @@ How defensible is your pSEO play? Higher = harder for competitors to replicate.
 | **Directory** | "[Category] companies/tools" | ProductHunt, G2 |
 | **Profiles** | "[Entity] overview/stats" | CrunchBase, LinkedIn |
 
-### pSEO Quality Requirements
+**pSEO Quality Requirements (every page must pass):**
+- [ ] Unique value test: offers something no other page on the site provides
+- [ ] Search intent match: answers what the searcher actually wants
+- [ ] Heading hierarchy: proper H1/H2/H3 structure
+- [ ] Schema markup: appropriate structured data
+- [ ] Internal linking: connected to hub and related pages
+- [ ] Indexation strategy: only index pages meeting quality bar
 
-Every generated page must pass:
-- [ ] **Unique value test:** Does this page offer something you can't get from any other page on the site?
-- [ ] **Search intent match:** Does the page answer what someone searching this query actually wants?
-- [ ] **Heading hierarchy:** Proper H1/H2/H3 structure (not just injected variables)
-- [ ] **Schema markup:** Appropriate structured data for the page type
-- [ ] **Internal linking:** Connected to hub pages and related pSEO pages
-- [ ] **Indexation strategy:** Only index pages that meet quality bar; noindex thin pages
+See [references/programmatic-seo.md](references/programmatic-seo.md) for template patterns and implementation guide.
 
-### URL Architecture
+### Competitor Pages Domain (Route D)
 
-- Use subfolders, not subdomains (consolidates domain authority)
-- Pattern: `/[category]/[entity]` — e.g., `/integrations/slack`, `/vs/competitor-name`
-- Keep URLs flat (2-3 levels max)
+**comparison-page-agent covers page format selection, content architecture, and competitive positioning.**
 
-### Post-Launch Monitoring
-
-| Metric | Check | Frequency |
-|--------|-------|-----------|
-| Indexation rate | What % of pSEO pages are indexed? | Weekly (first month), monthly after |
-| Thin content flags | Search Console coverage report | Weekly |
-| Traffic per page | Are pages getting traffic, or are they dead weight? | Monthly |
-| Cannibalization | Are pSEO pages competing with each other? | Monthly |
-| Conversion | Are pSEO pages driving signups/leads? | Monthly |
-
-See [references/programmatic-seo.md](references/programmatic-seo.md) for template design patterns and implementation guide.
-
----
-
-## Step 2D: Competitor Comparison Pages
-
-Competitor comparison and alternative pages are high-intent SEO content. These capture buyers actively evaluating options.
-
-### Four Page Formats
-
-Each format targets a different search intent:
+**Four Page Formats:**
 
 | Format | URL Pattern | Search Intent | Example |
 |--------|------------|--------------|---------|
 | **Singular alternative** | `/alternatives/[competitor]` | "I want to leave [competitor]" | `/alternatives/salesforce` |
-| **Plural alternatives** | `/[competitor]-alternatives` | "What are my options besides [competitor]?" | `/salesforce-alternatives` |
-| **Direct comparison** | `/vs/[competitor]` | "How does [your product] compare to [competitor]?" | `/vs/salesforce` |
-| **Third-party comparison** | `/[comp-a]-vs-[comp-b]` | "Which is better, [A] or [B]?" (you may not be either) | `/salesforce-vs-hubspot` |
+| **Plural alternatives** | `/[competitor]-alternatives` | "What are my options?" | `/salesforce-alternatives` |
+| **Direct comparison** | `/vs/[competitor]` | "How does [us] compare?" | `/vs/salesforce` |
+| **Third-party comparison** | `/[comp-a]-vs-[comp-b]` | "Which is better, A or B?" | `/salesforce-vs-hubspot` |
 
-**Priority:** Start with direct comparison pages for your top 3 competitors. Then build alternative pages. Third-party comparisons only if you have the authority to rank.
+**Priority:** Direct comparison for top 3 competitors first. Then alternatives. Third-party only if you have authority.
 
-### Content Architecture
+**Content Architecture (essential sections per page):**
+1. TL;DR summary — 40-60 word direct answer (AI-citable)
+2. Comparison table — specific, verifiable features (not vague "better UX")
+3. Category breakdown — compare by use case, not just feature list
+4. Audience segmentation — "Choose [them] if... Choose [us] if..."
+5. Migration guidance — how to switch, with social proof
+6. Honest assessment — acknowledge competitor strengths (Pratfall Effect builds trust)
 
-**Centralized data:** Maintain a single source of truth for competitor data (pricing, features, ratings) that propagates across all comparison pages. When a competitor changes pricing, update once.
+**Internal Linking (hub-and-spoke):**
+- Hub: `/alternatives` or `/compare` (links to all comparison pages)
+- Spokes: individual comparison pages (link back to hub + related comparisons)
+- Cross-links: each comparison page links to 2-3 related comparisons
 
-**Essential sections per page:**
-1. **TL;DR summary** — 40-60 word direct answer (AI-citable)
-2. **Comparison table** — specific, verifiable features (not vague "better UX")
-3. **Category breakdown** — compare by use case, not just feature list
-4. **Audience segmentation** — "Choose [competitor] if... Choose [us] if..."
-5. **Migration guidance** — how to switch, with social proof from switchers
-6. **Honest assessment** — acknowledge competitor strengths (Pratfall Effect builds trust)
-
-### Internal Linking
-
-Build a hub-and-spoke structure:
-- **Hub:** `/alternatives` or `/compare` (links to all comparison pages)
-- **Spokes:** Individual comparison pages (link back to hub + to related comparisons)
-- **Cross-links:** Each comparison page links to 2-3 related comparisons
-
-### Update Cadence
-- **Quarterly:** Verify competitor pricing and feature changes
-- **Annually:** Full content refresh
-- **Triggered:** When a competitor launches a major feature or changes pricing
+**Update Cadence:**
+- Quarterly: verify competitor pricing and feature changes
+- Annually: full content refresh
+- Triggered: competitor launches major feature or changes pricing
 
 See [references/competitor-pages.md](references/competitor-pages.md) for content templates and keyword targeting.
+
+---
+
+## Layer 2: Prioritization and Critic
+
+### Prioritization (all modes)
+
+The **prioritization-agent** takes all Layer 1 findings and produces a single ranked action plan:
+
+1. **Quick Wins** (High Impact, Low Effort) — execute first
+2. **Strategic Investments** (High Impact, High Effort) — plan for next
+3. **Low-Hanging Fruit** (Medium Impact, Low Effort) — fill gaps
+4. **Backlog** (Low Impact or High Effort) — defer
+
+Implementation phases with timelines: Phase 1 (Week 1-2), Phase 2 (Month 1), Phase 3 (Month 2-3), Phase 4 (Ongoing).
+
+Dependencies are mapped — no action recommended before its prerequisite.
+
+### Critic Gate (all modes)
+
+The **critic-agent** evaluates the full document against these standards:
+
+- Every finding has Issue, Impact, Evidence, and Fix
+- Every Fix is specific enough to implement without further research
+- No vague language: "consider," "might want to," "could potentially"
+- Actions are force-ranked (not flat "High priority" lists)
+- Mode-appropriate coverage is complete
+- Technical specs reference correct thresholds
+
+**Verdict:** PASS or FAIL (binary — no conditional pass).
+**Max cycles:** 2 rewrites. If the document fails after 2 cycles, deliver with a note explaining what remains unresolved.
+
+On FAIL, the critic names which agent to re-dispatch with specific fix instructions.
 
 ---
 
@@ -419,18 +494,42 @@ status: draft
 
 ## Findings
 
-[Mode-specific findings — see mode sections above for structure]
+[Mode-specific findings from Layer 1 agents — merged by section]
+
+### [Section from Agent 1]
+[Agent 1's findings]
+
+### [Section from Agent 2]
+[Agent 2's findings]
+
+[Continue for all Layer 1 agents in the active mode]
 
 ## Priority Actions
 
-| # | Action | Category | Impact | Effort |
-|---|--------|----------|--------|--------|
-| 1 | [action] | [category] | H/M/L | H/M/L |
-| 2 | [action] | [category] | H/M/L | H/M/L |
+| # | Action | Category | Impact | Effort | Timeline |
+|---|--------|----------|--------|--------|----------|
+| 1 | [action] | Quick Win | H | L | [timeline] |
+| 2 | [action] | Strategic | H | H | [timeline] |
 
 ## Implementation Plan
 
-[Ordered list of what to do first, second, third]
+### Phase 1: Immediate (Week 1-2)
+[Quick wins]
+
+### Phase 2: Short-term (Month 1)
+[Strategic investments]
+
+### Phase 3: Medium-term (Month 2-3)
+[Remaining items]
+
+### Phase 4: Ongoing
+[Maintenance and monitoring]
+
+## Dependencies
+
+| Action | Depends On | Why |
+|--------|-----------|-----|
+| [action] | [prerequisite] | [reason] |
 
 ## Metrics to Track
 
@@ -447,23 +546,103 @@ status: draft
 
 ---
 
+## Worked Example: Technical Audit (Route A)
+
+**Scenario:** SaaS company, Next.js site, first SEO audit. User says "Our organic traffic dropped 30% last quarter."
+
+**Step 1: Mode determination** → Technical Audit (traffic drop + never audited = Route A)
+
+**Step 2: Context gathering**
+```
+pre-writing: {
+  site_url: "https://example.com",
+  site_type: "SaaS",
+  cms_framework: "Next.js",
+  mode: "audit",
+  known_issues: "30% organic traffic drop last quarter",
+  icp_data: "from .agents/mkt/icp-research.md",
+  competitors: ["competitor-a.com", "competitor-b.com"]
+}
+```
+
+**Step 3: Layer 1 dispatch (parallel)**
+
+*crawl-agent finds:*
+```
+- Issue: robots.txt line 8 blocks /resources/ (47 indexed guides)
+- Impact: 47 guide pages deindexed, ~2,300 sessions/month lost
+- Fix: Replace Disallow: /resources/ with Disallow: /resources/internal/
+- Priority: Critical
+```
+
+*foundations-agent finds:*
+```
+- Issue: LCP is 4.2s on /pricing (hero image 2.4MB PNG)
+- Impact: Fails CWV (threshold: <2.5s), poor mobile experience on highest-intent page
+- Fix: Convert hero.png to WebP via next/image, add priority loading. Expected: ~180KB, LCP <2s.
+- Priority: Critical
+```
+
+*content-quality-agent finds:*
+```
+- Issue: 23 integration pages average 142 words unique content each
+- Impact: Helpful Content Update risk — thin pSEO pages can drag down domain quality
+- Fix: Add 2-3 unique workflows + setup steps per integration page. Target 600+ unique words.
+- Priority: High
+```
+
+*authority-agent finds:*
+```
+- Issue: /pricing has 0 internal links from blog posts (12 posts mention pricing)
+- Impact: Highest-intent page has no internal link equity from content
+- Fix: Add contextual links to /pricing from 12 blog posts that mention pricing
+- Priority: Medium
+```
+
+**Step 4: Merge + prioritization-agent**
+
+Quick Wins:
+1. Fix robots.txt /resources/ block (Critical, 5 minutes)
+2. Add internal links to /pricing from 12 blog posts (Medium impact, 2 hours)
+
+Strategic Investments:
+3. Convert hero images to WebP across site (Critical, 1-2 days)
+4. Enrich 23 integration pages with unique content (High, 2-3 weeks)
+
+**Step 5: critic-agent evaluates** → PASS (every finding has specific fix, no vague language, priorities are ranked)
+
+**Step 6: Deliver** `.agents/mkt/seo-audit.md`
+
+---
+
 ## Anti-Patterns
 
 **"Do SEO" without diagnosis** — Running a generic checklist without determining whether the problem is technical, content, authority, or AI visibility. Different problems need different modes.
+INSTEAD: Diagnose first using the routing table. Ask the user what triggered the SEO request.
 
-**Keyword stuffing (traditional or AI)** — Reduces AI visibility by ~10% (Princeton GEO study) and triggers Google's spam detection. Write for humans, structure for machines.
+**Keyword stuffing (traditional or AI)** — Reduces AI visibility by ~10% (Princeton GEO study) and triggers Google's spam detection.
+INSTEAD: Write for humans, structure for machines. Use natural language headings that match audience questions.
 
-**pSEO as a content farm** — Generating thousands of thin pages with no unique value per page. Google's Helpful Content Update specifically targets this. Better to have 100 great pages than 10,000 thin ones.
+**pSEO as a content farm** — Generating thousands of thin pages with no unique value per page. Google's Helpful Content Update specifically targets this.
+INSTEAD: Better to have 100 great pages than 10,000 thin ones. Apply the 60% uniqueness threshold.
 
 **Ignoring third-party presence for AI SEO** — Optimizing only your own site while ignoring review sites and publications. Third-party sources drive 6.5x more AI citations.
+INSTEAD: Build G2/Capterra profiles, pursue industry mentions, manage review responses.
 
 **Blocking AI crawlers then expecting citations** — If GPTBot is blocked in robots.txt, ChatGPT can't cite your content.
+INSTEAD: Audit robots.txt for all 5 AI crawler directives. Allow crawlers for platforms where you want citations.
 
-**Flat competitor comparison tables** — Listing features with checkmarks tells the reader nothing about context. Compare by use case and audience, not just features.
+**Flat competitor comparison tables** — Listing features with checkmarks tells the reader nothing about context.
+INSTEAD: Compare by use case and audience. Every cell has specific data, not checkmarks.
 
-**Schema false positives** — Flagging missing schema based on raw HTML when CMS plugins inject JSON-LD via client-side JavaScript. Always verify schema with Google Rich Results Test or browser DevTools.
+**Schema false positives** — Flagging missing schema based on raw HTML when CMS plugins inject JSON-LD via client-side JavaScript.
+INSTEAD: Verify schema with Google Rich Results Test or browser DevTools.
 
-**One-and-done audits** — SEO is ongoing. Technical issues resurface, competitors change, algorithms update. Set re-audit cadence (quarterly for technical, monthly for AI visibility).
+**One-and-done audits** — SEO is ongoing. Technical issues resurface, competitors change, algorithms update.
+INSTEAD: Set re-audit cadence: quarterly for technical, monthly for AI visibility.
+
+**"Consider improving" recommendations** — Vague hedge language that gives the reader nothing to act on.
+INSTEAD: Every recommendation names the exact page, the exact change, and the expected impact.
 
 ---
 
