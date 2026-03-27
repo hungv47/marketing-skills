@@ -4,18 +4,31 @@ description: "Builds ideal customer profiles and buyer personas — analyzes dem
 license: MIT
 metadata:
   author: hungv47
-  version: "2.2.2"
+  version: "3.0.0"
 ---
 
-# ICP Research & Audience Intelligence
+# ICP Research — Multi-Agent Orchestrator
 
-*Communicate Track — Step 1 of 4. Foundational skill for all stacks. Builds deep audience intelligence from real research, not assumptions.*
+*Communicate Track — Step 1 of 4. Foundational skill for all stacks. Coordinates specialized sub-agents to build deep audience intelligence from real research, not assumptions.*
 
 **Core Question:** "Who exactly are we talking to and what keeps them up at night?"
 
+---
+
+## Critical Gates — Read First
+
+Before dispatching any agent, internalize these non-negotiable constraints:
+
+1. **Do NOT guess personas — evidence from VoC or interview only.** Every persona attribute must trace to product context, brief details, user input, or VoC quotes. Fabricated personas collapse under scrutiny and mislead 12+ downstream skills.
+2. **Do NOT skip habitat mapping — channels without habitats waste downstream effort.** IMC planning depends on specific community names with density and engagement type. "They're on LinkedIn" is not actionable.
+3. **Max 2 personas — more dilutes focus for 12+ downstream skills.** If research reveals 4+ segments, force-rank by revenue potential. This is a genuine constraint, not a suggestion.
+4. **Stale product context (>30 days) → recommend re-running.** If `.agents/product-context.md` exists but its `Date` field is older than 30 days, warn the user and recommend re-running this skill. Proceed if the user confirms, but note "stale product context" in the artifact header.
+
+---
+
 ## Philosophy
 
-This skill provides research structure, not a rigid formula. The minimums for channels, quotes, and platforms ensure thoroughness — they're not arbitrary thresholds. If overwhelming evidence surfaces in 2 channels, you don't need a third. If one devastating quote captures a pain perfectly, you don't need three. Let evidence dictate depth.
+This skill provides research structure, not a rigid formula. The minimums for channels, quotes, and platforms ensure thoroughness — they're not arbitrary thresholds. If overwhelming evidence surfaces in 2 channels, you don't need a third. If one devastating quote captures a pain perfectly, you don't need three. Let evidence dictate depth. This orchestrator dispatches specialist agents for each research concern, then a critic agent ensures every section meets the bar.
 
 ## Inputs Required
 - Product context from `.agents/product-context.md` (or willingness to answer product questions)
@@ -24,11 +37,13 @@ This skill provides research structure, not a rigid formula. The minimums for ch
 - `.agents/mkt/icp-research.md`
 
 ## Quality Gate
-Before delivering, verify:
+Before delivering, the **critic agent** verifies:
 - [ ] Every VoC quote includes platform name and is from a real source (not agent-generated)
-- [ ] Each persona has a habitat map with specific channels with supporting evidence. Aim for ≥3; if research surfaces fewer, document why (niche audience, concentrated community). (Not just "Reddit" — which subreddit?)
-- [ ] Each emotional driver is traced to ≥2 specific quotes
+- [ ] Each persona has a habitat map with specific channels with supporting evidence. Aim for 3+; if research surfaces fewer, document why.
+- [ ] Each emotional driver is traced to at least 2 specific quotes
 - [ ] Decision psychology section names specific cognitive biases and objections (not generic "they need trust")
+- [ ] At least 15 VoC quotes across categories
+- [ ] Maximum 2 personas
 
 ## Chain Position
 Previous: none (or any skill needing audience context) | Next: `imc-plan`, `brand-system` (from design-skills — uses audience data for brand strategy)
@@ -36,11 +51,92 @@ Previous: none (or any skill needing audience context) | Next: `imc-plan`, `bran
 **Foundational role:** This skill creates `.agents/product-context.md`, used by 12+ downstream skills across all 4 stacks (comms, strategy, prod, design). Running it first provides significantly better output for all downstream skills.
 **Re-run triggers:** When pivoting audience, entering a new market, after major product changes, or quarterly for active products.
 
+### Skill Deference
+- **Need competitive analysis or market sizing?** → Use `market-research`
+- **Need campaign planning from these personas?** → Use `imc-plan`
+- **Need brand identity using audience data?** → Use `brand-system`
+- **Need to diagnose a business problem, not an audience?** → Use `problem-analysis`
+
 ---
 
-## Before Starting
+## Agent Manifest
 
-### Step 0: Product Context (Canonical Source)
+| Agent | Layer | File | Focus |
+|-------|-------|------|-------|
+| Persona Agent | 1 (parallel) | `agents/persona-agent.md` | Demographics, role, goals, frustrations — builds persona cards |
+| VoC Collector Agent | 1 (parallel) | `agents/voc-collector-agent.md` | Voice-of-customer quote collection from multiple platforms |
+| Habitat Agent | 1 (parallel) | `agents/habitat-agent.md` | Platform/community mapping — where the ICP lives online |
+| Pain Analysis Agent | 2 (sequential) | `agents/pain-analysis-agent.md` | Surface → Hidden → Emotional pain classification from VoC evidence |
+| Decision Psychology Agent | 2 (sequential) | `agents/decision-psychology-agent.md` | Trigger events, research behavior, cognitive biases, objections |
+| Synthesis Agent | 2 (sequential) | `agents/synthesis-agent.md` | Merges all fragments into coherent ICP profile |
+| Critic Agent | 2 (final) | `agents/critic-agent.md` | Quality gate — PASS/FAIL evaluation with rewrite routing |
+
+### Shared References (read by multiple agents)
+- `references/voice-of-customer.md` — VoC collection patterns, quote categories, platform tips (used by voc-collector-agent)
+- `references/customer-interviews.md` — Win/loss interview methodology, support ticket analysis (used by voc-collector-agent)
+- `references/habitat-mapping.md` — Density definitions, engagement types, cross-persona analysis (used by habitat-agent)
+- `references/icp-to-imc-handoff.md` — How to package outputs for IMC planning (used by synthesis-agent)
+
+---
+
+## Routing Logic
+
+Classify the task, then follow the matching route.
+
+### Route A: Quick ICP
+**When:** Brief asks for a focused ICP with minimal scope — single persona, known audience, time-constrained.
+
+```
+1. Pre-dispatch: Gather context (Step 0 below)
+2. Scope interview (Step 1 below)
+3. LAYER 1 — Dispatch IN PARALLEL:
+   - persona-agent
+   - voc-collector-agent
+4. LAYER 2 — Dispatch SEQUENTIALLY:
+   - pain-analysis-agent (receives persona + VoC output)
+   - synthesis-agent (receives all upstream — skips habitat + decision psychology)
+   - critic-agent
+5. If critic returns FAIL → re-dispatch named agent(s) with feedback (max 2 cycles)
+6. Deliver artifact
+```
+
+**Note:** Route A skips habitat-agent and decision-psychology-agent. Use when the user needs speed over depth. The artifact will have empty Habitat Map and Decision Psychology sections — note this as a limitation.
+
+### Route B: Full ICP
+**When:** Brief asks for comprehensive ICP research — full persona profiles, habitat mapping, decision psychology.
+
+```
+1. Pre-dispatch: Gather context (Step 0 below)
+2. Scope interview (Step 1 below)
+3. LAYER 1 — Dispatch IN PARALLEL:
+   - persona-agent
+   - voc-collector-agent
+   - habitat-agent
+4. LAYER 2 — Dispatch SEQUENTIALLY:
+   - pain-analysis-agent (receives persona + VoC output)
+   - decision-psychology-agent (receives pain-analysis output)
+   - synthesis-agent (receives ALL upstream outputs)
+   - critic-agent (receives synthesis output)
+5. If critic returns FAIL → re-dispatch named agent(s) with feedback (max 2 cycles)
+6. Deliver final artifact
+```
+
+### Route C: Called by Another Skill
+**When:** Invoked by `imc-plan`, `brand-system`, `content-create`, or another skill that needs audience context.
+
+```
+1. Pre-dispatch: Read context from calling skill's artifacts
+2. Check if .agents/mkt/icp-research.md already exists:
+   - If exists and fresh (< 30 days) → return existing artifact
+   - If exists but stale (> 30 days) → warn caller and recommend re-run
+   - If missing → run Route B
+3. Return artifact to calling skill
+```
+
+---
+
+## Step 0: Pre-Dispatch — Product Context
+
 Check for `.agents/product-context.md`. If missing, **scan first, then interview for gaps:**
 
 1. **Auto-scan available sources:** Look for README.md, marketing site copy, pricing page, product descriptions, and any existing documentation in the codebase. Extract what you can about the 8 dimensions below.
@@ -92,142 +188,96 @@ All marketing skills read this file for product context.
 
 ---
 
-## Step 1: Scope
+## Step 1: Scope Interview
 
 Interview for:
 1. **Who are we researching?** (Job role, mindset, community, or use case)
 2. **What decisions will this inform?** (Messaging? Channels? Positioning? All three?)
 3. **B2C or B2B?** Geography? Specific segments to focus or exclude?
 
----
-
-## Step 2: Research
-
-Use research tools to find real quotes — they prevent hallucinated personas and ground pain points. Avoid generating hypothetical quotes, invented personas, or assumed pain points — they collapse under scrutiny and mislead downstream skills.
-
-**Research tool priority:**
-1. **Exa MCP** or **Perplexity MCP** (if installed) — best for semantic search across forums, communities, and reviews. Use first when available.
-2. **Firecrawl** or **Defuddle** (if installed) — for scraping specific pages (G2 reviews, competitor blogs, community threads).
-3. **WebSearch** — supporting role for broad discovery and gap-filling. Always available as fallback.
-4. **User interview fallback** — when all tools yield insufficient data, ask the user for customer quotes, support tickets, sales call notes, or internal Slack threads.
-
-When data is thin (niche audience, few public discussions), flag confidence level as **LOW** in the artifact and note specific data gaps.
-
-### Search Query Patterns
-
-Use these specific queries. Adapt [topic] to the product/audience:
-
-| Goal | Query Pattern |
-|------|--------------|
-| Find communities | `site:reddit.com "[topic]" subreddit` |
-| Find pain points | `site:reddit.com "[topic]" frustrated OR struggling OR hate` |
-| Find reviews | `site:g2.com "[product category]" OR site:capterra.com "[product category]"` |
-| Find discussions | `"[topic]" forum OR community best OR worst` |
-| Find Twitter takes | `site:twitter.com "[topic]" thread` |
-| Find decision criteria | `"[product category]" vs OR alternative OR switch from` |
-| Find objections | `"[product/competitor]" not worth OR overpriced OR disappointing` |
-
-### Multi-Platform Coverage
-
-Search across multiple categories for breadth. Aim for ≥4 when audience is spread; for niche B2B, 2-3 may suffice if they cover primary habitats:
-
-| Category | Where | What to Extract |
-|----------|-------|----------------|
-| Communities | Reddit, Facebook Groups, LinkedIn Groups | Pain expressions, solution attempts |
-| Social | Twitter/X, TikTok | Real-time frustrations, opinions |
-| Reviews | G2, Capterra, App Store, Amazon | Feature complaints, switching reasons |
-| Content | YouTube comments, Quora | Questions asked, knowledge gaps |
-| Professional | Discord, Slack communities, industry forums | Unfiltered opinions, workflow details |
-
-### VoC Quality Criteria
-
-A **good quote** has:
-- Emotional intensity (frustration, excitement, relief — not neutral)
-- Specificity (mentions a specific tool, workflow, number, or scenario)
-- Recency (within last 12 months)
-- Relevance to the product category
-
-A **bad quote** is:
-- Generic ("I wish there was a better way")
-- Old (2+ years, industry may have shifted)
-- From a seller/marketer, not a real user
-- A one-word reaction with no context
-
-Collect 3 quotes per pain category. Stop when patterns repeat.
-
-**Quote weighting** — not all quotes are equally useful. Prioritize:
-
-| Priority | Quote Type | Why |
-|----------|-----------|-----|
-| **Critical** | Decision-maker quote (buyer, budget holder) | Their words are what stops or starts a purchase |
-| **High** | Quote revealing mechanism (explains WHY pain exists, not just that it does) | Mechanisms inform solutions; complaints only inform messaging |
-| **High** | Quote contradicting your assumptions | The most valuable data is what surprises you |
-| **Standard** | User/practitioner quote expressing pain | Useful for copy but doesn't reveal buying dynamics |
-| **Low** | Emotion-only quote ("this is so frustrating") without mechanism | Validates intensity but gives no strategic direction |
-
-Hunt for mechanism-revealing and decision-maker quotes first — they're the most strategically useful.
-
-When you have 3 quotes for a pain category, check: do you have at least one mechanism-revealing quote? If all 3 are emotion-only, keep searching — you have the WHAT but not the WHY.
-
-### Pain Analysis (3 Levels)
-
-| Level | What | Where to Find |
-|-------|------|--------------|
-| **Surface** | What they openly complain about | Public forums, review sites |
-| **Hidden** | What they say anonymously | Reddit throwaways, anonymous reviews |
-| **Emotional** | Identity threats, status anxiety, fear | Language intensity, desperation indicators |
-
-### Habitat Mapping
-
-For every platform where audience activity appears, document specifically — vague platform names produce vague channel strategies downstream:
-
-| Platform | Specific Community | Density | Engagement Type | Role |
-|----------|-------------------|---------|----------------|------|
-| Reddit | r/[specific subreddit] | H/M/L | Lurker/Engager/Creator | Discovery/Trust/Conversion |
-
-Specify the exact community, not just the platform — "Reddit" is too vague; name the subreddit. "LinkedIn" is too vague; name the group or content type.
-
-**Engagement type classification** — sample 20-30 profiles from the community to classify:
-
-| Type | Behavior Threshold | How to Identify |
-|------|-------------------|----------------|
-| **Lurker** | Visits regularly, posts <1x/month, consumes >10 pieces/week | No visible post history in community; high member count vs. low post volume |
-| **Engager** | Comments/likes 1-4x/month, occasionally shares | Visible in comment sections, responds to others, doesn't start threads |
-| **Creator** | Posts original content 1x/week+, starts discussions, responds to replies | Active post history, recognized by community, generates threads |
-| **Subscriber** | Prefers push content (email, notifications), passive consumption | Follows newsletters, subscribed to feeds, rarely visible in community |
-| **Searcher** | Uses platform search when problems arise, no ongoing presence | Appears in search-triggered threads, asks questions then disappears |
-
-Assign **density** as % of your target persona active in the community: H = >30%, M = 10-30%, L = <10%. Estimate by checking: how many posts in the last month are from someone matching your persona's role/situation?
-
-See [references/habitat-mapping.md](references/habitat-mapping.md) for density definitions.
-
-### Decision Psychology
-
-Document:
-- **Trigger:** What event makes them seek solutions?
-- **Research behavior:** Where they go first, second, third
-- **Cognitive biases:** Which are strongest? (Loss aversion? Social proof? Authority?)
-- **Top 3 objections:** What stops them from buying? What's the psychological root of each?
-- **Trust signals:** Who/what do they trust? What creates instant distrust?
+Use the answers to determine the route (A, B, or C) and to populate the brief passed to all agents.
 
 ---
 
-## Step 3: Synthesize
+## Dispatch Protocol
 
-### 2 Personas (max) — Genuine constraint: more than 2 dilutes focus for downstream skills. Force-rank if research reveals 4+ segments.
+### How to spawn a sub-agent
 
-For each persona, provide ALL of:
-- **Demographics:** Age range, role, industry, company size
-- **Pain Profile:** Top 3 pains with triggers, impact, and quotes
-- **Decision Psychology:** Research behavior, biases, objections + roots
-- **Habitat Map:** ≥3 specific channels with density and engagement type
-- **VoC Quotes:** 3-5 most revealing, with platform attribution
+For each agent dispatched below, use the **Agent tool** with a prompt constructed as follows:
 
-### Top 3 Emotional Drivers
-Core psychological motivations. Each traced to ≥2 specific quotes.
+1. **Read** the agent instruction file (e.g., `agents/persona-agent.md`) — include its FULL content in the Agent prompt
+2. **Append** the brief and context after the instructions
+3. **Resolve file paths to absolute**: replace relative paths with absolute paths rooted at this skill's directory. Example: if this skill is at `/path/to/icp-research/`, then `references/voice-of-customer.md` becomes `/path/to/icp-research/references/voice-of-customer.md`. Tell the agent: "Read the reference file at [absolute path] for domain knowledge."
+4. **Pass upstream artifacts by content, not path**: the orchestrator reads `.agents/product-context.md` FIRST, then includes relevant excerpts (product, buyer, problem, differentiator) in the context object. Sub-agents should NOT read artifact files directly — the orchestrator curates what they need.
+5. If **feedback** exists (from a critic FAIL cycle), append it at the end of the prompt with the header "## Critic Feedback — Address Every Point"
 
-### Red Flags
-Language or positioning that triggers instant skepticism for this audience.
+### Single-agent fallback
+
+If multi-agent dispatch is unavailable (no Agent tool, single-agent runtime, or context constraints), execute each agent's instructions sequentially in-context:
+
+- **Layer 1:** Run each agent's domain instructions one at a time — persona, VoC collection, habitat mapping
+- **Layer 2:** Apply pain analysis to Layer 1 outputs, then decision psychology, then synthesis
+- **Critic:** Self-evaluate using the critic-agent's quality gate criteria
+- Produce the complete artifact as if all agents had run
+
+The output quality should be equivalent — the multi-agent pattern optimizes for parallelism and focus, not capability.
+
+---
+
+## Layer 1: Parallel Research Agents
+
+Spawn the following agents **IN PARALLEL** (multiple Agent tool calls in a single message). For each agent, follow the Dispatch Protocol above.
+
+| Agent | Instruction File | Pass These Inputs | Reference Files to Resolve |
+|-------|-----------------|-------------------|---------------------------|
+| Persona Agent | `agents/persona-agent.md` | brief + product context | — |
+| VoC Collector Agent | `agents/voc-collector-agent.md` | brief + product context | `references/voice-of-customer.md`, `references/customer-interviews.md` |
+| Habitat Agent | `agents/habitat-agent.md` | brief + product context | `references/habitat-mapping.md` |
+
+**For Quick ICP (Route A):** Dispatch only persona-agent and voc-collector-agent.
+
+After Layer 1 completes, the orchestrator holds all three outputs (persona cards, VoC library, habitat map) ready to feed into Layer 2.
+
+---
+
+## Layer 2: Sequential Analysis Chain
+
+Dispatch these agents **ONE AT A TIME, IN ORDER** using the Dispatch Protocol above. Each receives the previous agent's output (plus relevant Layer 1 outputs) as the `upstream` field.
+
+```
+pain-analysis-agent → decision-psychology-agent → synthesis-agent → critic-agent
+```
+
+| Step | Agent | Instruction File | Receives |
+|------|-------|-----------------|----------|
+| 1 | Pain Analysis Agent | `agents/pain-analysis-agent.md` | persona-agent output + voc-collector-agent output |
+| 2 | Decision Psychology Agent | `agents/decision-psychology-agent.md` | pain-analysis-agent output |
+| 3 | Synthesis Agent | `agents/synthesis-agent.md` | ALL upstream: persona + VoC + habitat + pain + psychology |
+| 4 | Critic Agent | `agents/critic-agent.md` | synthesis-agent output |
+
+**For Quick ICP (Route A):** Skip decision-psychology-agent. Pain-analysis feeds directly to synthesis, which feeds to critic.
+
+---
+
+## Critic Gate
+
+The critic agent returns one of two verdicts:
+
+### PASS
+The artifact meets all quality standards. Deliver the synthesis agent's output as the final artifact to `.agents/mkt/icp-research.md`.
+
+### FAIL
+The critic returns specific failures with:
+- Which gate failed and what's wrong
+- Specific fix instructions
+- Which agent to re-dispatch
+
+**Rewrite loop:**
+1. Read the critic's failure report
+2. Re-dispatch ONLY the named agent(s) with the critic's feedback attached as the `feedback` input
+3. If the fix affects downstream agents, re-run the chain from the fixed agent forward
+4. Run the modified output back through the critic
+5. **Maximum 2 rewrite cycles.** After 2 failures, deliver the artifact with the critic's annotations and flag to the user: "ICP scored below quality gate — manual review recommended on [specific sections]."
 
 ---
 
@@ -296,64 +346,101 @@ Run `imc-plan` to turn these insights into a communication plan.
 
 ---
 
-## Worked Example
+## Worked Example — Full ICP (Route B)
 
-**User:** "Research my ICP for a project management tool aimed at engineering teams."
+**Brief:** "Research my ICP for a project management tool aimed at engineering teams."
 
-**Interview:**
-- "Who are we researching?" → "Engineering managers at mid-size SaaS companies (50-200 engineers)"
-- "What decisions will this inform?" → "Messaging and channel strategy for launch"
-- "B2B or B2C?" → "B2B, US and EU"
+### Step 0: Pre-Dispatch
+Product context scanned from README.md and pricing page. Saved to `.agents/product-context.md`:
+- Product: ProjectSync — async project visibility for engineering teams
+- Buyer: Engineering managers at mid-size SaaS companies
+- Problem: Hours lost to status updates nobody reads
 
-**Artifact saved to `.agents/mkt/icp-research.md`:**
+### Step 1: Scope Interview
+- "Who?" → Engineering managers at mid-size SaaS companies (50-200 engineers)
+- "What decisions?" → Messaging and channel strategy for launch
+- "B2B/B2C?" → B2B, US and EU
+- **Route selected:** B (Full ICP — comprehensive research needed for launch)
 
-```markdown
-# ICP Research
+### Layer 1: Parallel Dispatch
 
-**Date:** 2026-03-17
-**Skill:** icp-research
-**Product:** ProjectSync — async project visibility for engineering teams
+Three agents dispatched simultaneously:
 
-## Persona 1: The Overwhelmed EM
+**Persona agent** returns:
+> ### Persona 1: The Overwhelmed EM
+> **Demographics:** 30-38, Engineering Manager, B2B SaaS, 50-200 engineers
+> **Goals:** (1) Ship on schedule without burning out the team. (2) Give leadership visibility without micromanaging.
+> **Frustrations:** "I spend more time telling people what I did than actually doing it." "Our standups are 45 minutes of reading Jira tickets aloud."
+> **Day-in-the-life:** Monday 9am — Sarah opens Slack to 47 unread messages, half status updates she needs to compile for her VP by 10am.
 
-**Demographics:** 30-40, Engineering Manager, B2B SaaS, 50-200 engineers
+**VoC collector agent** returns:
+> 18 quotes across 5 categories from r/ExperiencedDevs, r/engineeringmanagers, G2, Twitter, LinkedIn. Key mechanism quote: "No single tool shows me what my team actually shipped this week — I have to check Jira, GitHub, and Slack separately and piece it together."
 
-### Pain Profile
-1. **Status update theater** — hours lost writing updates nobody reads
-   - Trigger: Monday morning status email that takes 45 min to compile
-   - Impact: 6-8 hrs/week across the team on reporting instead of building
-   - Quote: "I spend more time telling people what I did than actually doing it" — r/ExperiencedDevs
-   - Quote: "Our Monday standup is 45 minutes of people reading Jira tickets aloud" — r/engineeringmanagers
+**Habitat agent** returns:
+> | Platform | Community | Density | Engagement | Role |
+> |----------|-----------|---------|-----------|------|
+> | Reddit | r/ExperiencedDevs | H | Engager | Trust |
+> | Reddit | r/engineeringmanagers | M | Lurker | Trust |
+> | LinkedIn | #engineeringmanagement feed | M | Creator | Discovery |
+> | Twitter/X | #engmanagement | L | Lurker | Discovery |
+> | Slack | Rands Leadership Slack | H | Engager | Trust |
 
-### Habitat Map
-| Platform | Community | Density | Engagement | Role |
-|----------|-----------|---------|-----------|------|
-| Reddit | r/ExperiencedDevs | H | Engager | Discovery |
-| Reddit | r/engineeringmanagers | M | Lurker | Trust |
-| LinkedIn | #engineeringmanagement feed | M | Creator | Conversion |
-```
+### Layer 2: Sequential Dispatch
+
+**Pain analysis agent** receives persona + VoC output. Returns:
+> #### 1. Status Update Theater — hours lost compiling updates nobody reads
+> - **Level:** Surface → Hidden (spreadsheet workarounds) → Emotional (fear of looking disorganized)
+> - **Trigger:** Monday 9am — VP expects status email by 10am
+> - **Impact:** 6-8 hrs/week on reporting. Career: EMs who can't show visibility get passed over.
+> - **Mechanism:** No single system aggregates team activity. The EM becomes the human integration layer.
+
+**Decision psychology agent** receives pain analysis output. Returns:
+> - **Trigger:** Promoted to manage second team — reporting overhead doubles
+> - **Research path:** 1st Reddit (r/ExperiencedDevs) → 2nd G2 comparisons → 3rd free trial
+> - **Key biases:** Status-quo bias (invested in current Jira setup), loss aversion (fear of losing data in migration)
+> - **Objections:** (1) "We already have Jira" — root: sunk cost + status-quo bias. (2) "My team won't adopt another tool" — root: diffusion of responsibility. (3) "How is this different from Monday.com?" — root: category fatigue.
+
+**Synthesis agent** receives all upstream. Merges into complete ICP artifact matching the template. Adds:
+> ## Top 3 Emotional Drivers
+> 1. **Fear of being perceived as unable to scale** — EMs who can't produce visibility for leadership fear being passed over for promotion or labeled as "not ready for director." Quotes: "My skip-level keeps asking me for updates I can't produce fast enough" (r/engineeringmanagers), "I got feedback that I 'lack strategic visibility' and I don't even know what that means" (r/ExperiencedDevs)
+
+### Critic Gate → PASS
+All 7 gates pass. 18 quotes with attribution. Habitats are specific. Biases are named. Drivers traced to 2+ quotes each. Artifact delivered to `.agents/mkt/icp-research.md`.
 
 ---
 
 ## Anti-Patterns
 
-**Demographic-only personas** — "35-year-old male, $80K income" tells marketing nothing about motivations or language. Personas must include pain profile, decision psychology, and habitat map — demographics alone produce generic messaging.
+**Guessing personas without evidence** — Inventing "Sarah, 34, EM" because it sounds right, without VoC quotes or brief details to support it. INSTEAD: Let the persona agent build from product context and brief, and the pain analysis agent validate against VoC evidence.
 
-**Hallucinated quotes** — Generating plausible-sounding VoC quotes instead of finding real ones. Fabricated quotes collapse under scrutiny and mislead downstream skills. Every quote must include a real platform attribution.
+**Skipping habitat mapping for speed** — Dropping the habitat agent because "we know they're on Reddit." INSTEAD: Use Route A (Quick ICP) which explicitly skips habitats and notes the limitation. Don't silently omit sections.
 
-**Researching existing customers only** — Existing customers survived the funnel; their feedback has survivorship bias. Research must include prospects who *didn't* convert and users of competitor products.
+**Fabricating VoC quotes** — Generating plausible-sounding quotes when research tools return thin results. INSTEAD: Document data gaps honestly, flag confidence as LOW, and recommend the user provide customer quotes, support tickets, or sales call notes.
 
-**Too many personas** — More than 2 personas dilutes focus and makes downstream IMC planning impossible. If research reveals 4+ distinct segments, force-rank and pick the top 2 by revenue potential.
+**Too many personas** — Including 3+ personas because research surfaced distinct segments. INSTEAD: Force-rank to 2 max by revenue potential. Document who was cut and why in the Segment Rationale.
 
-**Platform-level habitat mapping** — "They're on LinkedIn" is too vague to act on. Specify the exact subreddit, group, hashtag, or content type — vague platforms produce vague channel strategies.
+**Platform-level habitat mapping** — "They're on LinkedIn" without naming the specific group, hashtag, or content type. INSTEAD: Every habitat entry must name the specific community. The habitat agent enforces this.
 
-**Recycling stale research** — Reusing personas and VoC quotes from a previous product iteration or market without re-validation. Markets shift, competitors launch, and pain points evolve. Always validate existing research against current sources before reusing.
+**Recycling stale research** — Reusing personas and VoC from a previous iteration without re-validation. INSTEAD: Check the artifact date. If >30 days, recommend re-running. Markets shift, competitors launch, and pain points evolve.
+
+**Ignoring the critic's FAIL** — Delivering an artifact that failed quality gates because "it's close enough." INSTEAD: Re-dispatch the named agent with critic feedback. Max 2 cycles, then deliver with annotations.
 
 ---
 
-## References
+## Agent Files
 
-- [references/habitat-mapping.md](references/habitat-mapping.md) — Density definitions, cross-persona analysis
-- [references/icp-to-imc-handoff.md](references/icp-to-imc-handoff.md) — How to package outputs for IMC
-- [references/voice-of-customer.md](references/voice-of-customer.md) — VoC collection patterns
+### Sub-Agent Instructions (agents/)
+- [agents/persona-agent.md](agents/persona-agent.md) — Demographics, role, goals, frustrations — persona card builder
+- [agents/voc-collector-agent.md](agents/voc-collector-agent.md) — VoC quote collection from multiple platforms
+- [agents/habitat-agent.md](agents/habitat-agent.md) — Platform/community mapping with density and engagement
+- [agents/pain-analysis-agent.md](agents/pain-analysis-agent.md) — Surface → Hidden → Emotional pain classification
+- [agents/decision-psychology-agent.md](agents/decision-psychology-agent.md) — Triggers, biases, objections, trust/distrust signals
+- [agents/synthesis-agent.md](agents/synthesis-agent.md) — Merges fragments into coherent ICP artifact
+- [agents/critic-agent.md](agents/critic-agent.md) — Quality gate — PASS/FAIL with rewrite routing
+- [agents/_template.md](agents/_template.md) — Reusable template for creating new agent files
+
+### Shared References (references/)
+- [references/voice-of-customer.md](references/voice-of-customer.md) — VoC collection patterns, quote categories, platform tips
 - [references/customer-interviews.md](references/customer-interviews.md) — Win/loss interview methodology, support ticket analysis
+- [references/habitat-mapping.md](references/habitat-mapping.md) — Density definitions, engagement types, cross-persona analysis
+- [references/icp-to-imc-handoff.md](references/icp-to-imc-handoff.md) — How to package outputs for IMC planning
