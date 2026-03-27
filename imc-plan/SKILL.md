@@ -5,173 +5,195 @@ argument-hint: "[product or campaign to plan]"
 license: MIT
 metadata:
   author: hungv47
-  version: "7.2.2"
+  version: "8.0.0"
 ---
 
-# Integrated Marketing Communication (IMC)
+# IMC Plan — Multi-Agent Orchestrator
 
-*Communicate Track — Step 2 of 4. Turns audience insights into pillars, tested angles, channel assignments, and a phased timeline.*
+*Communicate Track — Step 2 of 4. Coordinates specialized agents to turn ICP research into an integrated marketing communication strategy.*
 
-**Core Question:** "How do all these channels work together?"
+**Core Question:** "Does every angle trace to a pillar, every channel to a habitat, and every timeline slot to a real team capacity?"
+
+## Critical Gates — Read First
+
+- **Do NOT generate angles before pillars.** Angles are derived PER PILLAR. Without pillars, angles are untethered and fail the anti-generic test.
+- **Do NOT assign channels without habitat data.** Channel selection comes from ICP research habitat maps, not marketer preference. No habitat data → interview for it.
+- **Do NOT schedule 10 pieces/week for a 2-person team.** Match cadence to actual capacity. Over-scheduling guarantees missed deadlines.
+- **Stale ICP research (>30 days) produces misaligned plans.** Recommend re-running `icp-research` before proceeding.
 
 ## Philosophy
 
-Frameworks, percentages, and templates here are strong defaults — not rigid rules. When audience data, business context, or creative instinct suggests a different approach, adapt freely. Document reasoning so the team learns from deviations.
+Frameworks (ORB, 3D Angles, Pillar Types) are proven defaults — not mandatory templates. Adapt based on data. When ICP research provides habitat maps, use them. When it doesn't, gather the data before planning channels.
 
 ## Inputs Required
-- ICP research from `.agents/mkt/icp-research.md`
+- ICP research from `.agents/mkt/icp-research.md` + `.agents/product-context.md` (or user-provided)
 
 ## Output
 - `.agents/mkt/imc-plan.md`
 
 ## Quality Gate
-Before delivering, verify:
-- [ ] Every pillar traces to a specific pain or aspiration from ICP research (with a quotable VoC source)
-- [ ] Every angle passes ALL three questions: visual? falsifiable? uniquely yours?
-- [ ] Every channel assignment cites the habitat map (not guessed)
-- [ ] Timeline has specific dates, not just "Phase 1"
+Before delivering, the **critic agent** verifies:
+- [ ] 3-5 pillars, each with ICP evidence
+- [ ] 3+ angles per pillar, each passing 3Q test and scored ≥15/25
+- [ ] Each channel has ONE specific angle (not a content category)
+- [ ] Channel selection based on ICP habitat data
+- [ ] Timeline has 3 phases with realistic cadence
+- [ ] Launch sequence follows ORB (Owned → Rented → Borrowed)
 
 ## Chain Position
 Previous: `icp-research` | Next: `content-create`
-**Re-run triggers:** When ICP research is updated, after major product launches, when entering new channels, or quarterly.
+**Re-run triggers:** When ICP research is updated, when launching a new product/campaign, or when attribution reveals underperforming channels.
 
-### Coordination with SEO
-If angles include competitor comparisons, coordinate with `seo` for technical SEO optimization of comparison pages. IMC owns angle selection and prioritization; SEO owns page structure, schema markup, and keyword targeting.
+### Skill Deference
+- **Need actual content written?** → Use `content-create` — this skill plans, not writes.
+- **Need numeric targets (CAC, LTV, conversion rates)?** → Use `funnel-planner`.
+- **Need to compare pages for SEO?** → Coordinate with `seo` for keyword targeting and content structure.
+- **Need to attribute results to initiatives?** → Use `attribution` after execution.
 
 ---
 
-## Before Starting
+## Agent Manifest
 
-### Step 0: Product Context
-Check for `.agents/product-context.md`. If available, read for product positioning context.
-If `.agents/mkt/icp-research.md`'s `date` field is older than 30 days, recommend re-running `icp-research` before proceeding — stale audience data produces misaligned communication plans.
+| Agent | Layer | File | Focus |
+|-------|-------|------|-------|
+| Pillar Agent | 1 | `agents/pillar-agent.md` | 3-5 messaging pillars from ICP pains |
+| Angle Agent | 2 (sequential) | `agents/angle-agent.md` | 3D angle generation per pillar |
+| Channel Agent | 2 (sequential) | `agents/channel-agent.md` | Habitat-informed channel assignments |
+| Timeline Agent | 2 (sequential) | `agents/timeline-agent.md` | Phase sequencing + editorial calendar |
+| Launch Sequencing Agent | 2 (sequential) | `agents/launch-sequencing-agent.md` | ORB Framework channel activation order |
+| Critic Agent | 2 (final) | `agents/critic-agent.md` | Alignment, scoring rigor, completeness |
+
+### Shared References (read by agents)
+- `references/3d-angle-framework.md` — Three-dimensional angle generation methodology (used by angle-agent)
+- `references/channel-strategy.md` — Habitat-informed channel selection framework (used by channel-agent)
+- `references/examples.md` — Complete worked examples across 5 business types
+
+**Note:** This skill is primarily sequential — each agent depends on the previous. Pillar-agent is the only Layer 1 agent. The value of multi-agent here is in specialist focus, critic gate, and single-agent fallback — not parallelism.
+
+---
+
+## Routing Logic
+
+### Route A: Quick Plan (MVP or Startup)
+**When:** Limited ICP data, small team, need a plan fast.
+
+```
+1. Pre-dispatch: Gather context (Step 0)
+2. Dispatch: pillar-agent (3 pillars, not 5)
+3. Dispatch: angle-agent (2 angles per pillar, not 3+)
+4. Dispatch: channel-agent (top 2-3 channels only)
+5. Dispatch: critic-agent
+6. If FAIL → re-dispatch (max 2 cycles)
+7. Deliver — timeline and launch sequence done by orchestrator inline
+```
+
+### Route B: Full Plan
+**When:** ICP research complete, campaign launch, or strategic planning.
+
+```
+1. Pre-dispatch: Gather context (Step 0)
+2. LAYER 1: Dispatch pillar-agent
+3. LAYER 2 — Dispatch SEQUENTIALLY:
+   - angle-agent (receives pillar output)
+   - channel-agent (receives angle output + habitat data)
+   - timeline-agent (receives channel output)
+   - launch-sequencing-agent (receives timeline output)
+4. Dispatch: critic-agent (receives complete plan)
+5. If FAIL → re-dispatch named agent(s) with feedback (max 2 cycles)
+6. Deliver artifact
+```
+
+### Route C: Called by Another Skill
+**When:** `content-create` or `attribution` needs plan context.
+
+```
+1. Read existing .agents/mkt/imc-plan.md if available
+2. If not available, run Route B
+3. Return plan to calling skill
+```
+
+---
+
+## Step 0: Pre-Dispatch Context Gathering
+
+### Product Context Check
+Check for `.agents/product-context.md` and `.agents/mkt/icp-research.md`. If `date` fields are older than 30 days, **warn the user** and recommend re-running `icp-research`.
 
 ### Required Artifacts
 | Artifact | Source | If Missing |
 |----------|--------|------------|
-| `icp-research.md` | icp-research | **STOP.** "Run icp-research first — guessed audiences produce weak IMC plans." |
+| `icp-research.md` | icp-research | **INTERVIEW.** Gather: audience, pains, habitats, awareness stage. |
 
 ### Optional Artifacts
 | Artifact | Source | Benefit |
 |----------|--------|---------|
-| `product-context.md` | icp-research | Product positioning context |
-| `solution-design.md` | solution-design (from hungv47/strategy-skills) | Aligns content pillars with solution priorities |
+| `product-context.md` | icp-research | Product details, voice adjectives |
+| `solution-design.md` | solution-design | Strategic initiatives for alignment |
 
-Read `.agents/mkt/icp-research.md`. Import personas, pains, habitat maps, VoC quotes.
-
----
-
-## Step 1: Foundation
-
-**Goals:** Define the objective. (Awareness / Leads / Sales / Retention) Timeline? Situation? (Launch / Ongoing / Seasonal)
-
-**Core Message:** If the audience remembers one thing, what is it?
-
-**Awareness Levels:** Where is the audience now?
-
-| Stage | They think... | Your job |
-|-------|---------------|----------|
-| Unaware | "No problem" | Surface it |
-| Problem Aware | "Problem, no fix" | Demonstrate understanding |
-| Solution Aware | "Fixes exist, which?" | Differentiate |
-| Product Aware | "I know this, not sure" | Overcome objections |
-| Most Aware | "Ready" | Clear CTA |
+### Context to Pass to All Agents
+1. **Campaign goal:** what success looks like
+2. **ICP summary:** persona, pains, habitats, awareness levels
+3. **VoC quotes:** top buyer-language phrases
+4. **Constraints:** team size, budget, timeline
 
 ---
 
-## Step 2: Pillars (from ICP pains)
+## Dispatch Protocol
 
-Extract 3-5 pillars from ICP research:
+### How to spawn a sub-agent
 
-| Source | Pillar Type | % Content (default) |
-|--------|------------|-----------|
-| Top Pain Points | Problem | 25-30% |
-| Aspirational Identity | Transformation | 30-35% |
-| Current Workarounds | Alternative | 20-25% |
-| Decision Criteria | Trust | 15-20% |
+1. **Read** the agent instruction file — include its FULL content in the Agent prompt
+2. **Append** the context and upstream output after the instructions
+3. **Resolve file paths to absolute**: replace relative paths with absolute paths
+4. **Pass upstream artifacts by content**: orchestrator reads `.agents/` files, includes relevant excerpts
+5. If **feedback** exists, append with "## Critic Feedback — Address Every Point"
 
-Adjust based on audience awareness level — an Unaware market may need 50%+ Problem content. Let ICP data drive the split, not this table.
+### Single-agent fallback
 
-Trace each pillar to a VoC quote or ICP finding — pillars without audience evidence produce content that sounds generic.
-
----
-
-## Step 3: Angles (3 per pillar, tested)
-
-For each pillar, generate 3 angles combining: hook type + awareness stage + emotional trigger.
-
-### The 3-Question Test
-
-Every angle must pass ALL three:
-
-1. **Visual?** Picture it — does an image form? ("12 hours lost to status updates" = yes. "Improve productivity" = no.)
-2. **Falsifiable?** Can it be proven true or false? ("31 hrs/month in unproductive meetings" = yes. "We help teams succeed" = no.)
-3. **Uniquely yours?** Could a competitor use this? ("The dating app designed to be deleted" = only Hinge. "The best project tool" = anyone.)
-
-3 yeses → keep. Any no → rewrite or cut — angles that fail even one question underperform in production.
-
-Also screen for AI copy slop — if the angle reads like generic SaaS marketing ("Unlock the power of...", "Revolutionize your...", "In today's fast-paced world..."), it fails Uniquely Yours regardless of the product name. Slop enters the pipeline here; catching it prevents wasted production effort in `content-create`.
-
-See [references/3d-angle-framework.md](references/3d-angle-framework.md) for hook types and generation framework.
-
-### Angle Prioritization (when angles exceed capacity)
-
-When multiple angles pass the 3-Question Test, score them to decide production order:
-
-| Factor | Weight | Score 1-5 |
-|--------|--------|-----------|
-| Audience Pain Intensity | 40% | How acute is the pain this angle targets? (scored using ICP evidence — see below) |
-| 3-Question Score | 30% | How strongly does it pass visual + falsifiable + unique? |
-| Channel-Content Fit | 20% | How well does the angle suit available channels? |
-| Production Effort | 10% | How easy to produce? (lower effort = higher score) |
-
-**Weighted score** = (Pain × 0.4) + (3Q × 0.3) + (Fit × 0.2) + (Effort × 0.1)
-
-Starting defaults. If resource-constrained, increase Production Effort weight. If you have few angles, skip scoring and produce them all. The formula prevents common mistakes at scale — it's not required for a 3-angle plan.
-
-Produce highest-scoring angles first. This prevents the common trap of producing easy content that doesn't address the sharpest audience pains.
-
-**How to score Pain Intensity (the 40% factor):**
-
-| Score | Evidence Required |
-|-------|------------------|
-| 5 | Pain blocks purchase decisions (cited as top objection in ICP decision psychology) |
-| 4 | Pain has financial or career impact (specific cost/consequence cited in VoC) |
-| 3 | Pain causes regular time waste (mentioned in 3+ VoC quotes) |
-| 2 | Pain is acknowledged but low priority ("nice to fix" language in VoC) |
-| 1 | Pain is assumed, no VoC evidence supports it |
-
-Cross-reference against ICP research: count distinct quotes mentioning this pain, check if it appears in decision psychology objections, and check emotional intensity. A pain that blocks purchase (score 5) deserves 40% weight; an assumed pain (score 1) doesn't deserve production resources.
-
-### Content Classification
-
-Tag each surviving angle as **Searchable** (captures existing demand via keywords), **Shareable** (creates demand via novelty/emotion), or **Both**. See [references/channel-strategy.md](references/channel-strategy.md) for classification details and channel routing rules.
+If multi-agent dispatch is unavailable, execute sequentially in-context:
+1. Pillar extraction (3-5 from ICP)
+2. Angle generation per pillar (3D framework)
+3. Channel assignment per angle (habitat-informed)
+4. Timeline phasing (Pre-launch → Launch → Sustain)
+5. Launch sequencing (ORB)
+6. Self-evaluate with critic rubric
 
 ---
 
-## Step 4: Channels (from habitat map)
+## Layer 1: Pillar Foundation
 
-Pull channel assignments from the persona habitat maps in ICP research — guessing channels wastes budget on platforms where the audience isn't active.
+Dispatch **pillar-agent** alone. It produces the pillar table that all downstream agents need.
 
-Assign one clear angle per channel:
+| Agent | Instruction File | Pass These Inputs | Reference Files |
+|-------|-----------------|-------------------|-----------------|
+| Pillar Agent | `agents/pillar-agent.md` | brief + ICP research summary + VoC | — |
 
-| Platform | Specific Channel | Angle | Why (habitat evidence) |
-|----------|-----------------|-------|----------------------|
-| [Platform] | [Specific group/account] | "[Angle text]" | [Density + engagement from ICP] |
-
-See [references/channel-strategy.md](references/channel-strategy.md) for channel hierarchy.
+Wait for completion. Pillar output becomes input for all Layer 2 agents.
 
 ---
 
-## Step 5: Phase Timeline
+## Layer 2: Sequential Strategy Chain
 
-| Phase | Dates | Focus | Content Mix (typical) |
-|-------|-------|-------|-------------|
-| Pre-launch | [start–end] | Build anticipation, educate on problem | 70% Problem, 30% Solution |
-| Launch | [start–end] | Drive action, prove value | 30% Problem, 40% Proof, 30% CTA |
-| Sustain | [start–ongoing] | Maintain presence, deepen trust | 40% Solution, 30% Proof, 30% Brand |
+Dispatch **ONE AT A TIME, IN ORDER**. Each receives the previous agent's output.
 
-Depends on existing assets and audience awareness. A product with strong proof can front-load Proof in pre-launch. A category-creating product may need 90% Problem throughout.
+```
+pillar-agent → angle-agent → channel-agent → timeline-agent → launch-sequencing-agent → critic-agent
+```
+
+| Step | Agent | Instruction File | Receives | Reference Files |
+|------|-------|-----------------|----------|-----------------|
+| 1 | Angle Agent | `agents/angle-agent.md` | Pillar table | `references/3d-angle-framework.md` |
+| 2 | Channel Agent | `agents/channel-agent.md` | Angle bank + habitat data | `references/channel-strategy.md` |
+| 3 | Timeline Agent | `agents/timeline-agent.md` | Channel assignments | — |
+| 4 | Launch Sequencing Agent | `agents/launch-sequencing-agent.md` | Timeline | — |
+| 5 | Critic Agent | `agents/critic-agent.md` | Complete assembled plan | — |
+
+---
+
+## Critic Gate
+
+- **PASS:** Deliver the plan artifact.
+- **FAIL:** Re-dispatch the earliest failing agent with critic feedback. Max 2 cycles.
 
 ---
 
@@ -185,177 +207,105 @@ date: [today's date]
 status: draft
 ---
 
-# IMC Plan
+# IMC Plan: [Campaign / Product Name]
 
 **Date:** [today]
 **Skill:** imc-plan
-**Core Message:** [one sentence]
-**Audience:** [primary persona from ICP]
+**Goal:** [campaign objective]
+**Audience:** [primary persona]
+
+## Foundation
+- **Core message:** [one sentence]
+- **Awareness distribution:** [% per stage]
 
 ## Pillars
-
-| # | Pillar | Type | Source (ICP) | % Content |
-|---|--------|------|-------------|-----------|
-| 1 | [Name] | Problem | VoC: "[quote]" | 30% |
-| 2 | [Name] | Transformation | Aspiration: [from ICP] | 30% |
-| 3 | [Name] | Trust | Criteria: [from ICP] | 20% |
-| 4 | [Name] | Brand | — | 20% |
+| # | Pillar | Type | % | Stage | Evidence |
+|---|--------|------|---|-------|---------|
+| 1 | ... | ... | ... | ... | ... |
 
 ## Angle Bank
-
-| Pillar | Angle | Hook Type | Stage | 3Q: V/F/U | Priority Score | Type |
-|--------|-------|-----------|-------|-----------|---------------|------|
-| 1 | "[angle text]" | Data | Problem Aware | Y/Y/Y | [X.X] | Searchable/Shareable/Both |
-| 1 | "[angle text]" | Contrarian | Solution Aware | Y/Y/Y | [X.X] | Searchable/Shareable/Both |
-| 1 | "[angle text]" | Story | Unaware | Y/Y/Y | [X.X] | Searchable/Shareable/Both |
-| 2 | ... | ... | ... | ... | ... | ... |
+| # | Angle | Hook | Stage | Trigger | Score | Class | Pillar |
+|---|-------|------|-------|---------|-------|-------|--------|
+| 1 | ... | ... | ... | ... | ... | ... | ... |
 
 ## Channel Assignments
-
-| Platform | Channel | Angle | Habitat Evidence |
-|----------|---------|-------|-----------------|
-| Reddit | r/[subreddit] | "[angle]" | Density: H, Engagement: Lurker→Engager |
-| LinkedIn | [group/feed] | "[angle]" | Density: M, Engagement: Creator |
+| Channel | Type | Angle | Role | Cadence |
+|---------|------|-------|------|---------|
+| ... | ... | ... | ... | ... |
 
 ## Timeline
+| Week | Phase | Channel | Angle | Format | Status |
+|------|-------|---------|-------|--------|--------|
+| W1 | ... | ... | ... | ... | Planned |
 
-| Phase | Dates | Focus | Key Actions |
-|-------|-------|-------|-------------|
-| Pre-launch | [date–date] | Problem awareness | [Specific actions] |
-| Launch | [date–date] | Drive action | [Specific actions] |
-| Sustain | [date–ongoing] | Trust + brand | [Specific actions] |
-
-## Next Step
-
-Run `content-create` to turn angles into production-ready content.
+## Launch Sequence
+| Phase | Timing | Channels | Action |
+|-------|--------|----------|--------|
+| Internal | T-4w | ... | ... |
 
 > On re-run: rename existing artifact to `imc-plan.v[N].md` and create new with incremented version.
 ```
 
 ---
 
-## Worked Example
+## Worked Example — B2B SaaS Project Management Tool (Route B)
 
-**User:** "Create an IMC plan for our project management tool launch."
+### Step 0: Pre-Dispatch
+Goal: Drive 500 trial signups in 60 days. Audience: Engineering managers at 50-200 person companies. Awareness: 60% Problem Aware, 30% Solution Aware, 10% Product Aware.
 
-**Artifact saved to `.agents/mkt/imc-plan.md`:**
+### Layer 1: Pillar Agent
+Returns 4 pillars:
+| # | Pillar | Type | % | Stage |
+|---|--------|------|---|-------|
+| 1 | "The meeting tax" | Problem | 35% | Problem Aware |
+| 2 | "Async-first shipping" | Transformation | 30% | Solution Aware |
+| 3 | "Teams who switched" | Trust | 25% | Product Aware |
+| 4 | "The async-first movement" | Social | 10% | All |
 
-```markdown
-# IMC Plan
+### Layer 2, Step 1: Angle Agent
+Returns 12 angles across 4 pillars, scored 15-23/25. Example angles:
+- "12 hrs/week lost to status theater" (Data, Problem Aware, Fear, 22/25, Shareable)
+- "How to ship 2x without hiring" (How-to, Solution Aware, Greed, 20/25, Searchable)
 
-**Date:** 2026-03-17
-**Skill:** imc-plan
-**Core Message:** Engineering teams deserve visibility without status theater.
-**Audience:** Overwhelmed EM (from ICP)
+### Layer 2, Step 2: Channel Agent
+Returns assignments: LinkedIn (primary, "12 hrs/week"), Email (owned, "async-first shipping"), X/Twitter (ecosystem, "teams who switched"), Blog (owned, searchable how-to content).
 
-## Pillars
+### Layer 2, Step 3: Timeline Agent
+Returns 3 phases: Pre-launch (W1-W3, problem content), Launch (W4-W5, transformation + proof), Sustain (W6+, trust + social). Weekly calendar with pillar rotation.
 
-| # | Pillar | Type | Source (ICP) | % Content |
-|---|--------|------|-------------|-----------|
-| 1 | Status update waste | Problem | VoC: "I spend more time telling people what I did than doing it" | 30% |
-| 2 | Async-first leadership | Transformation | Aspiration: "Ship without meetings" | 30% |
-| 3 | Real teams, real results | Trust | Switching reasons from G2 reviews | 20% |
-| 4 | Engineering culture | Brand | — | 20% |
+### Layer 2, Step 4: Launch Sequencing Agent
+Returns ORB sequence: Internal (T-4w) → Email list alpha (T-2w) → Partner posts (T-1w) → LinkedIn/X launch (Day 0) → PR + paid (T+1w).
 
-## Angle Bank
-
-| Pillar | Angle | Hook Type | Stage | 3Q: V/F/U |
-|--------|-------|-----------|-------|-----------|
-| 1 | "Your team loses 12 hrs/week to status updates nobody reads" | Data | Problem Aware | Y/Y/Y |
-| 1 | "I stopped doing standups. Output doubled." | Story | Unaware | Y/Y/Y |
-| 2 | "How to ship 2x faster without adding headcount" | How-to | Solution Aware | Y/Y/Y |
-
-## Channel Assignments
-
-| Platform | Channel | Angle | Habitat Evidence |
-|----------|---------|-------|-----------------|
-| Reddit | r/ExperiencedDevs | "Status update waste" | Density: H, Engagement: Engager |
-| LinkedIn | #engineeringmanagement | "Async-first leadership" | Density: M, Engagement: Creator |
-
-## Next Step
-
-Run `content-create` to turn angles into production-ready content.
-```
+### Critic Agent → PASS
+All quality gates met. Pillar-angle-channel traces verified. Timeline realistic for 3-person team.
 
 ---
 
 ## Anti-Patterns
 
-**Channel-first planning** — Choosing channels before defining pillars and angles produces content that fits the platform but misses the audience. Always start from ICP pains → pillars → angles → then assign channels.
+**Channel-first planning** — "We need TikTok content." INSTEAD: Start with habitat maps. If ICP density on TikTok is Low, deprioritize it regardless of what's trendy.
 
-**Identical message across channels** — Copy-pasting the same angle to every platform wastes the channel's native strengths. Each channel assignment should use an angle suited to that platform's engagement type.
+**Identical messages across channels** — Same text on LinkedIn, X, and Email. INSTEAD: Each channel gets one specific angle adapted to its native format.
 
-**No pillar-to-audience connection** — Pillars that sound strategic but can't trace back to a specific VoC quote or ICP finding. Untethered pillars produce content that sounds generic and underperforms.
+**Angles without pillar connection** — Orphan angles that don't trace back. INSTEAD: Every angle names its parent pillar. No exceptions.
 
-**Timeline without dependencies** — Listing phases without specifying what must complete before the next phase begins. Pre-launch content must exist before launch — if it doesn't, the timeline is fiction.
+**Timeline without capacity check** — 10 pieces/week for a solo marketer. INSTEAD: Match cadence to team size. 3 pieces/week is realistic for one person.
 
-**Too many pillars** — More than 5 pillars dilutes content quality and makes the editorial calendar unmanageable. Force-rank by audience pain intensity and cut to 3-5.
-
----
-
-## Launch Sequencing (ORB Framework)
-
-When the IMC plan is for a product launch (not ongoing campaign), use phased rollout instead of a single "launch day":
-
-### Channel Priority: Owned → Rented → Borrowed
-
-| Channel Type | Examples | Role | When |
-|-------------|---------|------|------|
-| **Owned** | Email list, blog, community | Build anticipation with people you control | Pre-launch through sustain |
-| **Rented** | Social media, marketplaces, paid ads | Amplify to borrowed audiences | Launch through sustain |
-| **Borrowed** | Guest posts, influencer partnerships, PR | Credibility + reach from others' audiences | Launch peak |
-
-Everything should funnel back to owned channels. Rented and borrowed channels build your owned audience — they're not ends in themselves.
-
-### Five-Phase Launch
-
-| Phase | Duration | Focus | Key Action |
-|-------|----------|-------|-----------|
-| **Internal** | 1-2 weeks | Align team, prepare assets | Ensure everyone can demo and explain |
-| **Alpha** | 1-2 weeks | Trusted users/advisors | Get candid feedback, fix breaking issues |
-| **Beta** | 2-4 weeks | Wider trusted group | Collect testimonials, refine messaging |
-| **Early Access** | 1-2 weeks | Waitlist, community | Build anticipation, create FOMO with limited access |
-| **Full Launch** | Launch day + 2 weeks | Public | Coordinate all channels simultaneously |
-
-**Key insight:** A launch is a campaign, not a day. Stagger announcements across phases to maintain momentum — shipping everything at once means one spike and silence.
+**Too many pillars** — 7 pillars dilute the message. INSTEAD: 3-5. If you can't cut, you haven't committed to a strategy.
 
 ---
 
-## Editorial Calendar Guidance
+## Agent Files
 
-After the IMC plan is created, content needs a production cadence — not just a one-time angle bank.
+### Sub-Agent Instructions (agents/)
+- [agents/pillar-agent.md](agents/pillar-agent.md) — Messaging pillars from ICP pains
+- [agents/angle-agent.md](agents/angle-agent.md) — 3D angle generation and scoring
+- [agents/channel-agent.md](agents/channel-agent.md) — Habitat-informed channel assignments
+- [agents/timeline-agent.md](agents/timeline-agent.md) — Phase sequencing and editorial calendar
+- [agents/launch-sequencing-agent.md](agents/launch-sequencing-agent.md) — ORB Framework activation order
+- [agents/critic-agent.md](agents/critic-agent.md) — Alignment, rigor, and completeness
 
-### Weekly Content Mix
-
-Allocate content production across pillars and types:
-
-| Content Type | % of Weekly Output (default) | Purpose |
-|-------------|-------------------|---------|
-| Pillar content (long-form) | 20% | SEO, authority, depth |
-| Angle-driven social | 50% | Engagement, reach, community |
-| Trust/proof content | 20% | Case studies, testimonials, data |
-| Brand/culture | 10% | Personality, team, values |
-
-Starting allocation. Adjust based on what's working — re-evaluate quarterly based on attribution data.
-
-### Batch Production
-
-Produce content in batches, not one piece at a time:
-1. **Weekly batch:** Generate 5-7 social pieces from 1-2 angles
-2. **Bi-weekly batch:** Produce 1 long-form piece (blog, guide, video)
-3. **Monthly batch:** Create 1 proof piece (case study, data report)
-
-### Pillar Rotation
-
-Rotate through pillars to prevent audience fatigue:
-- Don't post the same pillar more than 2 days in a row
-- Each pillar should appear at least once per week
-- Track which pillars drive the most engagement — adjust % allocation quarterly
-
----
-
-## References
-
-- [references/3d-angle-framework.md](references/3d-angle-framework.md) — Hook types × awareness × triggers
-- [references/channel-strategy.md](references/channel-strategy.md) — Channel types and fit matrices
-- [references/examples.md](references/examples.md) — Worked examples across B2B SaaS, D2C, Creator, Crypto
+### Shared References (references/)
+- [references/3d-angle-framework.md](references/3d-angle-framework.md) — Three-dimensional angle generation methodology
+- [references/channel-strategy.md](references/channel-strategy.md) — Habitat-informed channel selection
+- [references/examples.md](references/examples.md) — 5 complete worked examples

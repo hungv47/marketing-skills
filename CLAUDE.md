@@ -43,6 +43,8 @@ Some skills use a two-layer multi-agent orchestration pattern:
 
 ### Skills using this pattern
 - `copywriting` — 9 agents (hook, body, CTA, social-proof, variant, voice, psychology, zero-risk, critic)
+- `content-create` — 8 agents (format, voc-extraction, hook, body, CTA, platform-compliance, ab-variant, critic). Layer 1→1.5→2 pattern (format resolves first, then writers parallel).
+- `imc-plan` — 6 agents (pillar, angle, channel, timeline, launch-sequencing, critic). Primarily sequential — pillar→angle→channel→timeline→launch→critic.
 
 ### Reusable template
 `copywriting/agents/_template.md` defines the standard structure for agent instruction files. Use it when converting other skills to multi-agent.
