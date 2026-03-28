@@ -6,6 +6,34 @@ license: MIT
 metadata:
   author: hungv47
   version: "2.0.0"
+routing:
+  intent-tags:
+    - write-copy
+    - evaluate-copy
+    - headline
+    - cta
+    - tagline
+    - landing-page-copy
+  position: horizontal
+  produces:
+    - mkt/content/[slug].copy.md
+  consumes:
+    - product-context.md
+    - mkt/icp-research.md
+    - mkt/imc-plan.md
+  requires: []
+  defers-to:
+    - skill: content-create
+      when: "need full content asset (carousel, thread, email)"
+    - skill: humanize
+      when: "AI-sounding text needs cleanup"
+    - skill: lp-optimization
+      when: "diagnosing a live page's conversion problem"
+    - skill: seo
+      when: "optimizing for search/AI citations"
+  parallel-with: []
+  interactive: false
+  estimated-complexity: heavy
 ---
 
 # Copywriting — Orchestrator

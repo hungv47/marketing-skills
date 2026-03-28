@@ -6,6 +6,31 @@ license: MIT
 metadata:
   author: hungv47
   version: "3.0.0"
+routing:
+  intent-tags:
+    - kpi-mapping
+    - channel-roi
+    - gap-analysis
+    - marketing-measurement
+  position: pipeline
+  produces:
+    - mkt/attribution.md
+  consumes:
+    - product-context.md
+    - mkt/imc-plan.md
+    - mkt/content/[slug].md
+    - solution-design.md
+    - targets.md
+    - experiment-[name].md
+  requires: []
+  defers-to:
+    - skill: funnel-planner
+      when: "setting numeric targets, not measuring results"
+    - skill: experiment
+      when: "designing validation tests, not tracking attribution"
+  parallel-with: []
+  interactive: false
+  estimated-complexity: medium
 ---
 
 # Attribution Mapping — Orchestrator
@@ -132,7 +157,6 @@ If the environment does not support multi-agent dispatch, execute all steps sequ
 ```yaml
 brief: [user's attribution task]
 product_context: [from product-context.md if available]
-business_model: [from interview or upstream artifacts]
 upstream_artifacts:
   targets: [contents of targets.md or null]
   solution_design: [contents of solution-design.md or null]
@@ -143,80 +167,18 @@ route: [A / B / C]
 review_date: [today + 4 weeks]
 ```
 
-### L1: KPI Hierarchy Agent
-```yaml
-agent: kpi-hierarchy-agent
-input:
-  brief: ${brief}
-  pre-writing: ${pre_writing}
-  upstream: null
-  references:
-    - references/attribution-models.md
-    - references/attribution-examples.md
-  feedback: null  # or critic feedback on rewrite cycle
-```
+### Agent Dispatch Sequence
 
-### L2: Initiative Mapper Agent
-```yaml
-agent: initiative-mapper-agent
-input:
-  brief: ${brief}
-  pre-writing: ${pre_writing}
-  upstream: ${kpi_hierarchy_agent.output}
-  references:
-    - references/attribution-examples.md
-    - references/attribution-models.md
-  feedback: null
-```
+Each agent receives `brief`, `pre-writing`, and its `upstream` (previous agent's output). References are resolved to absolute paths before dispatch.
 
-### L3: Content Mapper Agent (Route B and C only)
-```yaml
-agent: content-mapper-agent
-input:
-  brief: ${brief}
-  pre-writing: ${pre_writing}
-  upstream: ${initiative_mapper_agent.output}
-  references:
-    - references/attribution-examples.md
-    - references/tracking-guide.md
-  feedback: null
-```
-
-### L4: Gap Analysis Agent
-```yaml
-agent: gap-analysis-agent
-input:
-  brief: ${brief}
-  pre-writing: ${pre_writing}
-  upstream: ${merged_L1_L2_L3}  # merged output from all prior agents
-  references:
-    - references/attribution-models.md
-    - references/tracking-guide.md
-  feedback: null
-```
-
-### L5: Action Agent
-```yaml
-agent: action-agent
-input:
-  brief: ${brief}
-  pre-writing: ${pre_writing}  # includes prior action items on Route C
-  upstream: ${merged_all_prior}  # full chain including gap analysis
-  references: []
-  feedback: null
-```
-
-### L6: Critic Agent
-```yaml
-agent: critic-agent
-input:
-  brief: ${brief}
-  pre-writing: ${pre_writing}
-  upstream: ${merged_final_document}
-  references:
-    - references/attribution-examples.md
-  feedback: null
-```
+| Agent | Upstream | References | Skip on Route A? |
+|-------|----------|-----------|-----------------|
+| kpi-hierarchy-agent | null (first) | attribution-models.md, attribution-examples.md | No |
+| initiative-mapper-agent | kpi-hierarchy output | attribution-examples.md, attribution-models.md | No |
+| content-mapper-agent | initiative-mapper output | attribution-examples.md, tracking-guide.md | **Yes** |
+| gap-analysis-agent | merged L1-L3 output | attribution-models.md, tracking-guide.md | No |
+| action-agent | merged all prior | — | No |
+| critic-agent | merged final document | attribution-examples.md | No |
 
 ---
 
@@ -436,42 +398,8 @@ No experiment files found.
 ```
 
 ### L4: gap-analysis-agent output (internal — not in final artifact)
-```markdown
-## Gap Analysis
 
-### Uncovered KPIs
-| KPI | Current Coverage | Severity |
-|-----|-----------------|----------|
-| Organic signups | 0 initiatives, no owner | Critical |
-
-### Low-Confidence Initiatives
-| Initiative | KPI | Confidence | Risk |
-|-----------|-----|-----------|------|
-| Restore Social Proof | Homepage bounce rate | M | If this fails, homepage bounce has no backup initiative |
-
-### Funnel Imbalances
-| Initiative | Reach | Trust | Conversion | Imbalance |
-|-----------|-------|-------|-----------|-----------|
-| Restore Paid Targeting | 0 | 0 | 0 | No content at all |
-| Restore Social Proof | 0 | 0 | 0 | No content at all |
-
-### Tracking Gaps
-| Content/Initiative | Gap | Impact |
-|-------------------|-----|--------|
-| Status Update Carousel | No UTM parameters | Cannot attribute LinkedIn traffic to content |
-
-### Ownership Gaps
-| Item | Type | Gap |
-|------|------|-----|
-| Organic signups | KPI | No owner assigned |
-
-## Severity Summary
-| Severity | Count | Description |
-|----------|-------|-------------|
-| Critical | 2 | KPI 3 uncovered + KPI 3 no owner |
-| High | 2 | Both initiatives have zero content support |
-| Medium | 1 | Carousel has no UTMs |
-```
+Identifies: 1 uncovered KPI (organic signups — Critical), 1 low-confidence initiative (Social Proof — Medium), 2 content-sparse initiatives, 1 tracking gap (no UTMs on carousel), 1 ownership gap (KPI 3 no owner). Severity: 2 Critical, 2 High, 1 Medium.
 
 ### L5: action-agent output
 ```markdown
