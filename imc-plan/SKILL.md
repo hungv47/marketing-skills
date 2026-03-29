@@ -6,6 +6,29 @@ license: MIT
 metadata:
   author: hungv47
   version: "8.0.0"
+routing:
+  intent-tags:
+    - campaign-planning
+    - channel-strategy
+    - content-calendar
+    - go-to-market
+  position: pipeline
+  produces:
+    - mkt/imc-plan.md
+  consumes:
+    - product-context.md
+    - mkt/icp-research.md
+    - solution-design.md
+  requires: []
+  defers-to:
+    - skill: content-create
+      when: "need to write actual content assets, not plan the campaign"
+    - skill: attribution
+      when: "measuring results, not planning channels"
+  parallel-with:
+    - brand-system
+  interactive: false
+  estimated-complexity: heavy
 ---
 
 # IMC Plan — Orchestrator

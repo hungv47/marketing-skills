@@ -6,6 +6,30 @@ license: MIT
 metadata:
   author: hungv47
   version: "4.0.0"
+routing:
+  intent-tags:
+    - content-asset
+    - social-post
+    - email
+    - blog
+    - video-script
+    - carousel
+  position: pipeline
+  produces:
+    - mkt/content/[slug].md
+  consumes:
+    - product-context.md
+    - mkt/icp-research.md
+    - mkt/imc-plan.md
+  requires: []
+  defers-to:
+    - skill: copywriting
+      when: "need craft-quality headlines/CTAs, not full content assets"
+    - skill: humanize
+      when: "editing existing AI-sounding text"
+  parallel-with: []
+  interactive: false
+  estimated-complexity: heavy
 ---
 
 # Content Creation — Orchestrator

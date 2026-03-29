@@ -6,6 +6,28 @@ license: MIT
 metadata:
   author: hungv47
   version: "3.0.0"
+routing:
+  intent-tags:
+    - conversion-audit
+    - landing-page-audit
+    - page-optimization
+    - cro
+  position: horizontal
+  produces:
+    - mkt/lp-optimization.md
+  consumes:
+    - product-context.md
+    - mkt/icp-research.md
+  requires: []
+  defers-to:
+    - skill: copywriting
+      when: "need to write new copy, not audit existing page"
+    - skill: seo
+      when: "optimizing for search, not conversion"
+  parallel-with:
+    - seo
+  interactive: false
+  estimated-complexity: medium
 ---
 
 # Landing Page Conversion Optimization — Orchestrator

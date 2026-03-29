@@ -6,6 +6,25 @@ license: MIT
 metadata:
   author: hungv47
   version: "3.0.0"
+routing:
+  intent-tags:
+    - audience-research
+    - voc-research
+    - persona-development
+    - customer-profiling
+  position: foundation
+  produces:
+    - product-context.md
+    - mkt/icp-research.md
+  consumes: []
+  requires: []
+  defers-to:
+    - skill: market-research
+      when: "need competitive landscape, not audience research"
+  parallel-with:
+    - market-research
+  interactive: false
+  estimated-complexity: heavy
 ---
 
 # ICP Research — Orchestrator

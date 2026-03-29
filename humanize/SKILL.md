@@ -6,6 +6,28 @@ license: MIT
 metadata:
   author: hungv47
   version: "2.0.0"
+routing:
+  intent-tags:
+    - humanize
+    - voice-injection
+    - ai-pattern-removal
+    - compression
+    - text-polish
+  position: horizontal
+  produces:
+    - mkt/content/[slug].humanized.md
+  consumes:
+    - product-context.md
+    - mkt/content/[slug].md
+  requires: []
+  defers-to:
+    - skill: copywriting
+      when: "need to write new copy from scratch"
+    - skill: content-create
+      when: "need to create a new content asset"
+  parallel-with: []
+  interactive: false
+  estimated-complexity: medium
 ---
 
 # Humanize & Compress — Orchestrator
