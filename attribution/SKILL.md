@@ -157,6 +157,7 @@ If the environment does not support multi-agent dispatch, execute all steps sequ
 ```yaml
 brief: [user's attribution task]
 product_context: [from product-context.md if available]
+business_model: [from interview or upstream artifacts — informs KPI hierarchy structure]
 upstream_artifacts:
   targets: [contents of targets.md or null]
   solution_design: [contents of solution-design.md or null]
