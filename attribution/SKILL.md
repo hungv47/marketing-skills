@@ -12,6 +12,10 @@ routing:
     - channel-roi
     - gap-analysis
     - marketing-measurement
+    - channel-attribution
+    - multi-touch-attribution
+    - cac-by-channel
+    - offline-measurement
   position: pipeline
   produces:
     - mkt/attribution.md
@@ -45,9 +49,11 @@ routing:
 
 1. **Every KPI has >= 1 initiative** mapped or an explicit action item. No uncovered KPIs.
 2. **Every initiative maps to a KPI** or has a Kill/Reframe/Test recommendation with reason.
-3. **Every recommendation is a verb** (Create / Kill / Rebalance / Test / Assign) — not an observation.
-4. **Review date is set** (~4 weeks from today).
-5. **Critic returns PASS** before delivery. Max 2 rewrite cycles.
+3. **Every active channel has an attribution model assigned** — first-touch, last-touch, linear, time-decay, or position-based. No channel without a measurement approach.
+4. **Offline channels have proxy measurement methods** — QR codes, vanity URLs, promo codes, or branded search lift. No offline channel without a tracking strategy.
+5. **Every recommendation is a verb** (Create / Kill / Rebalance / Test / Assign) — not an observation.
+6. **Review date is set** (~4 weeks from today).
+7. **Critic returns PASS** before delivery. Max 2 rewrite cycles.
 
 ---
 
@@ -67,7 +73,8 @@ routing:
 |-------|------|-------|-------|
 | **kpi-hierarchy-agent** | `agents/kpi-hierarchy-agent.md` | Builds North Star → Leading → Supporting metric tree | L1 |
 | **initiative-mapper-agent** | `agents/initiative-mapper-agent.md` | Maps initiatives to KPIs with contribution % and confidence | L2 (after kpi-hierarchy) |
-| **content-mapper-agent** | `agents/content-mapper-agent.md` | Maps content to initiatives with funnel roles | L3 (after initiative-mapper) |
+| **channel-attribution-agent** | `agents/channel-attribution-agent.md` | Maps each active channel to contribution weight, CAC, payback, and attribution model | L2.5 (after initiative-mapper) |
+| **content-mapper-agent** | `agents/content-mapper-agent.md` | Maps content to initiatives with funnel roles | L3 (after channel-attribution) |
 | **gap-analysis-agent** | `agents/gap-analysis-agent.md` | Identifies uncovered KPIs, low-confidence initiatives, funnel imbalances | L4 (after content-mapper) |
 | **action-agent** | `agents/action-agent.md` | Converts gaps into prioritized action items | L5 (after gap-analysis) |
 | **critic-agent** | `agents/critic-agent.md` | Quality gate — PASS/FAIL with rewrite routing | L6 (final) |
@@ -77,10 +84,11 @@ routing:
 ```
 kpi-hierarchy-agent (L1)
   └─► initiative-mapper-agent (L2) — needs KPI tree to map against
-        └─► content-mapper-agent (L3) — needs initiative map to map against
-              └─► gap-analysis-agent (L4) — needs full chain to analyze
-                    └─► action-agent (L5) — needs gaps to convert
-                          └─► critic-agent (L6) — evaluates merged output
+        └─► channel-attribution-agent (L2.5) — needs initiative map to weight channels
+              └─► content-mapper-agent (L3) — needs initiative + channel maps to map against
+                    └─► gap-analysis-agent (L4) — needs full chain to analyze
+                          └─► action-agent (L5) — needs gaps to convert
+                                └─► critic-agent (L6) — evaluates merged output
 ```
 
 **Why fully sequential:** Each agent's output is a required input for the next. Initiative mapping requires the KPI hierarchy (to know what to map to). Content mapping requires the initiative map (to know what to map to). Gap analysis requires all three maps. Actions require the gaps. The critic evaluates everything.
@@ -91,12 +99,12 @@ kpi-hierarchy-agent (L1)
 
 ### Route A: Quick Attribution Check
 **Trigger:** User asks to check attribution for specific initiatives or KPIs, or wants a lightweight audit.
-**Chain:** kpi-hierarchy → initiative-mapper → gap-analysis → action → critic
+**Chain:** kpi-hierarchy → initiative-mapper → channel-attribution → gap-analysis → action → critic
 **Skip:** content-mapper (no content audit needed for a quick check)
 
 ### Route B: Full Attribution
 **Trigger:** User asks for full attribution mapping, or this is a first-time run.
-**Chain:** kpi-hierarchy → initiative-mapper → content-mapper → gap-analysis → action → critic
+**Chain:** kpi-hierarchy → initiative-mapper → channel-attribution → content-mapper → gap-analysis → action → critic
 **Skip:** Nothing — all agents run.
 
 ### Route C: Re-Run (Monthly Cadence)
@@ -147,7 +155,7 @@ This skill maps content → initiatives → KPIs. For full-stack attribution:
 Without strategy artifacts, this skill interviews for KPIs and initiatives directly — it still works, but cross-stack alignment is stronger with upstream artifacts.
 
 ### Single-Agent Fallback
-If the environment does not support multi-agent dispatch, execute all steps sequentially in a single pass following the same order: build KPI hierarchy → map initiatives → map content → analyze gaps → write actions. Apply the critic checklist as a self-check before delivery.
+If the environment does not support multi-agent dispatch, execute all steps sequentially in a single pass following the same order: build KPI hierarchy → map initiatives → map channels (attribution models, CAC, offline measurement) → map content → analyze gaps → write actions. Apply the critic checklist as a self-check before delivery.
 
 ---
 
@@ -176,7 +184,8 @@ Each agent receives `brief`, `pre-writing`, and its `upstream` (previous agent's
 |-------|----------|-----------|-----------------|
 | kpi-hierarchy-agent | null (first) | attribution-models.md, attribution-examples.md | No |
 | initiative-mapper-agent | kpi-hierarchy output | attribution-examples.md, attribution-models.md | No |
-| content-mapper-agent | initiative-mapper output | attribution-examples.md, tracking-guide.md | **Yes** |
+| channel-attribution-agent | initiative-mapper output | attribution-models.md, tracking-guide.md | No |
+| content-mapper-agent | channel-attribution output | attribution-examples.md, tracking-guide.md | **Yes** |
 | gap-analysis-agent | merged L1-L3 output | attribution-models.md, tracking-guide.md | No |
 | action-agent | merged all prior | — | No |
 | critic-agent | merged final document | attribution-examples.md | No |
@@ -189,10 +198,11 @@ After each agent completes, merge its output into the growing attribution docume
 
 1. **After L1 (kpi-hierarchy):** Document has KPI Hierarchy section
 2. **After L2 (initiative-mapper):** Add Initiative → KPI Mapping + Orphan Initiatives sections
-3. **After L3 (content-mapper):** Add Content → Initiative Mapping + Orphan Content sections
-4. **After L4 (gap-analysis):** Add Gap Analysis section (not in final artifact — used internally)
-5. **After L5 (action-agent):** Add Action Items + Previous Review Progress sections
-6. **After L6 (critic):** Evaluate merged document → PASS or FAIL
+3. **After L2.5 (channel-attribution):** Add Channel Attribution + Channel Interaction Map sections
+4. **After L3 (content-mapper):** Add Content → Initiative Mapping + Orphan Content sections
+5. **After L4 (gap-analysis):** Add Gap Analysis section (not in final artifact — used internally)
+6. **After L5 (action-agent):** Add Action Items + Previous Review Progress sections
+7. **After L6 (critic):** Evaluate merged document → PASS or FAIL
 
 Gap analysis output is consumed by the action-agent but does NOT appear as a standalone section in the final artifact. The action items table IS the user-facing output of the gap analysis.
 
@@ -212,6 +222,7 @@ Gap analysis output is consumed by the action-agent but does NOT appear as a sta
 |-------------|---------------|
 | KPI hierarchy incomplete or has vanity metrics | **kpi-hierarchy-agent** |
 | Initiative mapping has unjustified confidence or missing entries | **initiative-mapper-agent** |
+| Channel attribution missing models, CAC estimates, or offline measurement | **channel-attribution-agent** |
 | Content mapping incomplete or orphans not flagged | **content-mapper-agent** |
 | Gaps missed or severity misclassified | **gap-analysis-agent** |
 | Actions are observations, missing owners/deadlines, or wrong verbs | **action-agent** |
@@ -279,6 +290,61 @@ North Star: [metric] — [current] → [target]
 | Initiative | Action |
 |------------|--------|
 | ... | ... |
+
+## Channel Attribution
+
+Maps each active channel from the 9-channel map to its contribution weight and measurement approach.
+
+| Channel | Funnel Role | Attribution Model | Est. CAC | Payback Period | Confidence | Rationale |
+|---------|------------|------------------|----------|----------------|------------|-----------|
+| [e.g. Search engines/GEO (paid)] | Conversion | Last-touch | [$X] | [X months] | [H/M/L] | [Why this model for this channel] |
+| [e.g. Social media (organic)] | Awareness | First-touch | [N/A — organic] | [N/A] | [M] | [Why this model] |
+| [e.g. IRL] | Relationship | Position-based | [$X] | [X months] | [L] | [Why this model] |
+
+Split channels by paid vs. organic when they behave differently (e.g., "Search engines/GEO (organic)" and "Search engines/GEO (paid)").
+
+**Attribution model selection guide:**
+- **First-touch** — credit the channel that introduced the customer. Best for: brand awareness channels (OOH, PR, social organic, news)
+- **Last-touch** — credit the channel that closed the deal. Best for: conversion channels (search ads, retargeting, SMS, email CTA)
+- **Linear** — equal credit across all touchpoints. Best for: evaluating channel mix balance
+- **Time-decay** — more credit to recent touchpoints. Best for: long sales cycles (SLG/enterprise, 60+ day cycles)
+- **Position-based (U-shaped)** — 40% first touch, 40% last touch, 20% middle. Best for: hybrid motions (PLG+SLG), store/listing platforms (marketplace discovery → evaluation → install)
+
+**Channel-specific model recommendations:**
+
+| Channel | Recommended Model | Rationale |
+|---------|------------------|-----------|
+| Search engines/GEO (organic) | First-touch or linear | Often the first discovery channel |
+| Search engines/GEO (paid) | Last-touch | High-intent conversion channel |
+| Store/Listing platforms | Position-based | Discovery (first) + install (last) both matter |
+| Bounty/Info platforms | Last-touch | Incentivized conversions — credit the converting action |
+| News | First-touch | Primarily awareness and trust-building |
+| Forums/Communities | First-touch or linear | Discovery and trust, rarely direct conversion |
+| Social media (organic) | First-touch | Brand awareness channel |
+| Social media (paid) | Last-touch or time-decay | Direct response, retargeting |
+| IRL (events/OOH/POS) | First-touch | Awareness, hard to track mid-funnel |
+| Mailbox (email) | Time-decay or last-touch | Nurture channel, often in middle/end of path |
+| SMS | Last-touch | Direct response, conversion-focused |
+
+### Channel Interaction Map
+- **Common conversion paths:** [Channel A] → [Channel B] → Conversion
+- **Assist channels:** [channels that rarely convert directly but appear in most paths]
+- **Channel velocity:** [average days from first touch to conversion per channel]
+
+### Offline Channel Measurement
+
+For channels without native digital tracking:
+
+| Channel | Proxy Measurement | Implementation |
+|---------|-------------------|----------------|
+| IRL / Events | Unique QR codes per event, lead capture forms, post-event survey ("How did you hear about us?") | QR → UTM-tagged landing page → GA4 event |
+| OOH (billboards) | Branded search lift (compare branded search volume before/after campaign), vanity URLs | Google Trends / GA4 branded search report |
+| Point of Sales | Unique promo codes per location, loyalty program attribution | POS system → CRM sync |
+| SMS campaigns | Click-through tracking (shortened URLs with UTMs), conversion codes | SMS platform analytics + GA4 |
+| PR / News | Referral traffic spikes from publication domains, branded search lift post-article | GA4 referral report + Google Trends |
+| Bounty/Info platforms | Unique referral codes per affiliate, conversion tracking via referral links | Affiliate platform dashboard + CRM attribution |
+| Store/Listing platforms | App store analytics (impressions → page views → installs), review platform referral tracking | App Store Connect / Google Play Console / G2 analytics |
+| Mailbox (direct mail) | Unique promo codes per campaign, dedicated vanity URLs, matchback analysis (match recipient list to conversion list) | CRM matchback + GA4 vanity URL tracking |
 
 ## Content → Initiative Mapping
 

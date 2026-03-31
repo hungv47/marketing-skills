@@ -398,6 +398,375 @@ Technical specs and native content patterns for major platforms.
 
 ---
 
+## Store / Listing Platforms
+
+### App Store (iOS)
+
+| Spec | Value |
+|------|-------|
+| App name | 30 characters |
+| Subtitle | 30 characters (keyword-rich) |
+| Description | 4,000 characters |
+| Promotional text | 170 characters (can update without review) |
+| "What's New" | 4,000 characters |
+| Keywords field | 100 characters (comma-separated, hidden) |
+| Screenshots | Up to 10, 6.7" (1290x2796), 6.5" (1284x2778), 5.5" (1242x2208) |
+| Preview video | 15-30 sec, up to 3 videos |
+
+**Native patterns:**
+- First 3 lines of description are visible before "Read More"
+- Lead with strongest value prop
+- Bullet-formatted features
+- Social proof (awards, user count, rating) near top
+- Screenshot captions: one benefit per screen, not feature labels
+
+### Google Play Store
+
+| Spec | Value |
+|------|-------|
+| App name | 30 characters |
+| Short description | 80 characters |
+| Full description | 4,000 characters |
+| Screenshots | 2-8, 16:9 or 9:16 |
+| Feature graphic | 1024x500 (required) |
+| Promo video | YouTube link |
+
+**Native patterns:**
+- Short description = elevator pitch (visible in search)
+- Full description: keyword-rich but readable
+- First 167 chars of full description shown in search on some devices
+- Feature graphic appears above screenshots in listing
+
+### Review Platforms (G2, Capterra, Trustpilot)
+
+| Spec | Value |
+|------|-------|
+| Company description | 500-2,000 characters (varies by platform) |
+| Product description | 300-1,000 characters |
+| Category selection | Primary + secondary categories |
+| Screenshots | Product screenshots, 3-10 images |
+| Review response | 1,000 characters typical |
+
+**Native patterns:**
+- Profile completeness drives ranking
+- Respond to every review (positive and negative)
+- Negative review response template: acknowledge → explain → resolve → invite back
+- Feature comparison tables (G2-specific)
+
+---
+
+## Forums / Communities
+
+### Reddit
+
+| Spec | Value |
+|------|-------|
+| Title | 300 characters |
+| Self-text (body) | 40,000 characters |
+| Comment | 10,000 characters |
+| Link post | URL + title |
+| Image post | Up to 20 images |
+
+**Native patterns:**
+- Title is the hook — conversational, question-based, or provocative
+- Self-text: story format, data-backed insight, or genuine question
+- NO overt self-promotion — provide value first, mention product naturally
+- Subreddit rules vary — read them before posting
+- Show HN format (for r/startups, r/SaaS): "Show /r/startups: [what you built] — [key stat]"
+- AMA (Ask Me Anything) format for founder engagement
+
+**Anti-self-promotion rules:**
+- Reddit's 10% rule: max 10% of posts/comments should be self-promotional
+- Lead with insight or value, not product pitch
+- Engage genuinely in comments on others' posts
+
+### HackerNews (Show HN)
+
+| Spec | Value |
+|------|-------|
+| Title format | "Show HN: [Product Name] – [One-line description]" |
+| Title limit | ~80 characters (displays fully) |
+| Body text | Brief, technical, honest |
+| Comments | Founder expected to engage actively |
+
+**Native patterns:**
+- Technical audience — lead with how it works, not marketing claims
+- Be honest about limitations and tradeoffs
+- Respond to every comment in first 2-3 hours
+- Avoid marketing speak — HN community rejects it aggressively
+
+### Quora
+
+| Spec | Value |
+|------|-------|
+| Answer length | 500-2,000 words optimal |
+| Question targeting | Answer existing high-traffic questions |
+| Links | 1-2 contextual links maximum |
+
+**Native patterns:**
+- Answer the question genuinely, then mention product as one option
+- Use personal experience or data
+- Long, detailed answers outperform short ones
+- Credentialing in bio, not in answer
+
+### General Forum (VOZ, niche forums)
+
+| Spec | Value |
+|------|-------|
+| Thread title | Clear, descriptive, searchable |
+| Post length | Varies — match community norm |
+| Images | Usually allowed, BBCode formatting |
+| Signature | Often allowed — subtle brand placement |
+
+**Native patterns:**
+- Read the room — match existing tone and formatting
+- Contribute before promoting
+- Thread starter format: problem/question → insight → discussion prompt
+- Build reputation through consistent valuable contributions
+
+---
+
+## SMS / MMS
+
+### Transactional SMS
+
+| Spec | Value |
+|------|-------|
+| Characters | 160 (GSM-7 encoding) / 70 (UCS-2 for unicode/emoji) |
+| Segments | >160 chars split into 153-char segments |
+| Sender ID | Short code (5-6 digits) or 10DLC |
+| Link | Shortened URL (counts against limit) |
+
+**Native patterns:**
+- Order confirmations, shipping updates, appointment reminders
+- Brand name first: "[BrandName]: Your order #1234 has shipped"
+- Include tracking link or action link
+- No opt-out required for purely transactional
+
+### Marketing SMS
+
+| Spec | Value |
+|------|-------|
+| Characters | 160 (aim for single segment) |
+| Required elements | Opt-out instruction ("Reply STOP to unsubscribe") |
+| Sending window | 8am-9pm recipient local time (varies by jurisdiction) |
+| Frequency | 2-4 per month maximum (higher = high unsubscribe) |
+
+**Native patterns:**
+- Short, urgent, action-oriented
+- Format: [Brand]: [Offer/Value] [CTA] [Link] Reply STOP to opt out
+- Time-sensitive offers work best
+- Personalization (name, past purchase) increases response
+
+**Compliance requirements (major markets — verify local regulations for other jurisdictions):**
+- **TCPA (US):** Prior express written consent required. Clear opt-in, easy opt-out (STOP keyword).
+- **GDPR (EU/UK):** Explicit consent, right to withdraw, data processing transparency. Post-Brexit UK follows similar ICO rules.
+- **CASL (Canada):** Express or implied consent, identification, unsubscribe mechanism.
+- **10DLC registration (US):** Required for A2P messaging on 10-digit long codes. Register brand and campaign.
+- **Other markets:** Australia (Spam Act 2003), Singapore (PDPA), India (TRAI DND), Brazil (LGPD) — consult local counsel before SMS campaigns in these jurisdictions.
+
+### Sponsorship SMS
+
+| Spec | Value |
+|------|-------|
+| Characters | 160 |
+| Identification | Must identify sponsor clearly |
+| Format | "[Partner] x [Brand]: [Message]" |
+
+---
+
+## OOH / IRL Materials
+
+### Billboard
+
+| Spec | Value |
+|------|-------|
+| Copy | 7 words maximum (read in 3-5 seconds at speed) |
+| Layout | Single focal point, high contrast |
+| Dimensions | Varies: 14'x48' (bulletin), 6'x12' (poster), 5'x11' (junior) |
+| Resolution | 72 DPI minimum for large format |
+| Font size | Readable at 500+ feet (250pt+ for headlines) |
+
+**Native patterns:**
+- One message, one visual, one CTA
+- Vanity URL or QR code for tracking (large enough to scan from car)
+- Brand name + memorable hook
+- Dark background + light text for highway visibility
+- Avoid fine print — it won't be read
+
+### Point of Sale (POS)
+
+| Spec | Value |
+|------|-------|
+| Shelf talker | 3.5" x 5" typical |
+| Counter card | 5" x 7" or 4" x 6" |
+| Floor decal | 18" diameter typical |
+| Standee | 24" x 60" or custom |
+
+**Native patterns:**
+- Price/offer prominent
+- One benefit statement
+- Brand colors and logo
+- QR code to product page
+- Urgency element ("Limited time", "While supplies last")
+
+### Event Booth / Banner
+
+| Spec | Value |
+|------|-------|
+| Retractable banner | 33.5" x 78" (standard), 47" x 78" (wide) |
+| Table top banner | 24" x 63" |
+| Backdrop | 8' x 8' or 10' x 8' |
+| Tablecloth | 6' or 8' fitted |
+
+**Native patterns:**
+- Readable from 10+ feet: company name, one-line value prop
+- QR code to lead capture form
+- Demo area prominently featured
+- Collateral takeaway (one-pager, card)
+
+### Flyer / Handout
+
+| Spec | Value |
+|------|-------|
+| Size | Letter (8.5" x 11") or A4, half-letter, or postcard (4" x 6") |
+| Layout | Front: hook + visual + CTA. Back: details + proof |
+| QR code | Required for tracking attribution |
+
+**Native patterns:**
+- Headline: benefit-driven, not feature-driven
+- One clear CTA with QR code and short URL
+- Social proof (testimonial, stat, logo bar)
+- Contact info and next step
+- Promo code for attribution tracking
+
+**Offline tracking methods:**
+- Unique QR codes per campaign/location
+- Vanity URLs (brand.com/event-name)
+- Promo codes (EVENT2026, BOOTH10)
+- Lead capture forms (tablet at booth)
+
+---
+
+## PR / Guest-Post
+
+### Press Release
+
+| Spec | Value |
+|------|-------|
+| Headline | 65-80 characters, factual |
+| Subheadline | Optional, adds context |
+| Body | 400-800 words, inverted pyramid |
+| Boilerplate | Company description, 50-100 words |
+| Contact info | PR contact name, email, phone |
+
+**Native patterns:**
+- Inverted pyramid: most important info first
+- Lead paragraph answers: Who, What, When, Where, Why
+- Include 1-2 quotes from leadership
+- Data/stats in second or third paragraph
+- Boilerplate at end (standard company description)
+
+### Guest-Post Pitch Email
+
+| Spec | Value |
+|------|-------|
+| Subject line | "[Publication Name] Pitch: [Topic]" |
+| Body | 150-250 words |
+| Components | Hook, 3-5 bullet points of outline, author bio, 1-2 relevant clips |
+
+**Native patterns:**
+- Personalize to the publication's recent content
+- Propose 2-3 topic options
+- Show you've read their existing content
+- Include a brief outline, not the full article
+- Mention your unique angle or data
+
+### Byline / Contributed Article
+
+| Spec | Value |
+|------|-------|
+| Length | 800-1,500 words (varies by publication) |
+| Tone | Educational, not promotional |
+| Self-reference | 1-2 mentions maximum, contextual |
+| Bio | 50-100 words with one link |
+
+**Native patterns:**
+- Lead with industry insight, not company news
+- Data-backed claims
+- Actionable takeaways
+- Subtle product reference within larger narrative
+- Strong author bio with relevant credentials
+
+---
+
+## UGC / Creator Briefs
+
+### Influencer / Creator Brief
+
+| Spec | Value |
+|------|-------|
+| Length | 1-2 pages |
+| Sections | Brand overview, deliverables, talking points, dos/don'ts, timeline, compensation |
+
+**Template structure:**
+1. **Campaign overview:** goal, key message, target audience
+2. **Deliverables:** format, quantity, platforms, due dates
+3. **Talking points:** 3-5 key messages to weave in naturally
+4. **Brand guidelines:** tone, visual style, hashtags, mentions
+5. **Do's:** authentic voice, personal experience, genuine reaction
+6. **Don'ts:** competitor mentions, false claims, off-brand language
+7. **Approval process:** draft review timeline, revision rounds
+8. **Compensation + usage rights:** payment terms, content licensing
+
+### Internal UGC Guidelines (Mass Accounts / Clippings)
+
+| Spec | Value |
+|------|-------|
+| Account setup | Platform-native persona, not overtly branded |
+| Content cadence | 3-5 posts/week per account |
+| Voice | Authentic consumer voice, not corporate |
+| Disclosure | Follow platform and legal disclosure requirements |
+
+**Guidelines:**
+- Each account has a consistent persona and posting style
+- Content should feel organic — share experiences, reactions, recommendations
+- Never fake reviews or testimonials (legal risk, platform ban)
+- Clipping strategy: repurpose genuine user content with permission
+- Track engagement per account, retire underperforming accounts
+- Disclose paid/sponsored relationships as required by FTC/local law
+
+---
+
+## Bounty / Incentive Programs
+
+### Referral Program Landing Page
+
+| Spec | Value |
+|------|-------|
+| Headline | Benefit-driven: "Give $X, Get $X" or "Invite friends, earn rewards" |
+| Body | 100-200 words: how it works (3 steps), reward details |
+| CTA | "Share your link" / "Invite now" |
+| Shareable assets | Pre-written messages, social share buttons, unique referral link |
+
+### Affiliate Offer Description
+
+| Spec | Value |
+|------|-------|
+| Length | 200-400 words |
+| Components | Commission structure, cookie duration, creative assets, tracking, terms |
+
+### Bounty Brief (Info Platforms)
+
+| Spec | Value |
+|------|-------|
+| Task description | Clear, specific deliverable |
+| Reward | Monetary or credit |
+| Quality criteria | What counts as a valid submission |
+| Timeline | Deadline and review period |
+
+---
+
 ## Quick Reference: Character Limits
 
 | Platform | Post | Caption | Bio |

@@ -14,9 +14,15 @@ routing:
     - keyword-research
     - search-optimization
     - competitor-seo
+    - aso
+    - app-store-optimization
+    - marketplace-seo
+    - geo
+    - generative-engine-optimization
   position: horizontal
   produces:
     - mkt/seo-[mode].md
+    # mode = audit | ai | programmatic | competitor | aso
   consumes:
     - product-context.md
     - mkt/icp-research.md
@@ -69,6 +75,10 @@ Before delivering any SEO artifact, these must be true:
 | programmatic-template-agent | `agents/programmatic-template-agent.md` | 1 (parallel) | Programmatic | Template design, URL architecture, defensibility |
 | programmatic-quality-agent | `agents/programmatic-quality-agent.md` | 1 (parallel) | Programmatic | Thin page detection, quality gates, monitoring plan |
 | comparison-page-agent | `agents/comparison-page-agent.md` | 1 (parallel) | Competitor Pages | Page format, content architecture, comparison matrices |
+| aso-keyword-agent | `agents/aso-keyword-agent.md` | 1 (parallel) | ASO | Keyword research for App Store, Play Store, G2, Capterra |
+| aso-listing-agent | `agents/aso-listing-agent.md` | 1 (parallel) | ASO | Title, subtitle, description, screenshots, preview video optimization |
+| aso-reviews-agent | `agents/aso-reviews-agent.md` | 1 (parallel) | ASO | Review sentiment analysis, response templates, rating improvement |
+| aso-competitive-agent | `agents/aso-competitive-agent.md` | 1 (parallel) | ASO | Competitor listing comparison, feature matrix positioning |
 | prioritization-agent | `agents/prioritization-agent.md` | 2 (sequential) | All | Impact x effort ranking of all findings |
 | critic-agent | `agents/critic-agent.md` | 2 (sequential) | All | Quality gate — specific fixes, no vague language, actionability |
 
@@ -82,7 +92,7 @@ Before delivering any SEO artifact, these must be true:
 
 ## Output
 
-- `.agents/mkt/seo-[mode].md` (mode = audit | ai | programmatic | competitor)
+- `.agents/mkt/seo-[mode].md` (mode = audit | ai | programmatic | competitor | aso)
 
 ## Chain Position
 
@@ -143,6 +153,7 @@ Not every SEO problem needs the same solution. Diagnose first, then enter the ri
 | "We have structured data and want to generate pages at scale" | **Programmatic SEO** | Route C |
 | "We want to rank for competitor comparison queries" | **Competitor Pages** | Route D |
 | "We need a comprehensive SEO strategy" | **Full SEO** (Technical + AI) | Route E |
+| "We distribute via app stores / listing platforms (App Store, Play Store, G2, Capterra, Product Hunt)" | **ASO (App Store Optimization)** | Route F |
 
 Multiple modes can run sequentially. Start with Technical Audit if the site has never been audited — no point optimizing for AI citations if crawlers can't reach your content.
 
@@ -183,6 +194,13 @@ Layer 1 (parallel): crawl-agent + foundations-agent + content-quality-agent + au
 Layer 2 (sequential): prioritization-agent → critic-agent
 ```
 
+**Route F — ASO (App Store Optimization):**
+```
+Layer 1 (parallel): aso-keyword-agent + aso-listing-agent + aso-reviews-agent + aso-competitive-agent
+       ↓ merge
+Layer 2 (sequential): prioritization-agent → critic-agent
+```
+
 ---
 
 ## Dispatch Protocol
@@ -197,7 +215,7 @@ Layer 2 (sequential): prioritization-agent → critic-agent
      site_url: "[URL]",
      site_type: "[SaaS / E-commerce / Content-Blog / Local Business / Hybrid]",
      cms_framework: "[WordPress / Next.js / Webflow / etc.]",
-     mode: "[audit / ai / programmatic / competitor / full]",
+     mode: "[audit / ai / programmatic / competitor / aso / full]",
      known_issues: "[any issues the user mentioned]",
      icp_data: "[audience questions, pain points from icp-research if available]",
      competitors: "[competitor domains if available]",
@@ -232,16 +250,18 @@ Domain knowledge for each mode lives in the agent instruction files. The orchest
 | Mode | Agents | Domain Focus |
 |------|--------|-------------|
 | Technical Audit | crawl-agent, foundations-agent, content-quality-agent, authority-agent | Crawlability, CWV, E-E-A-T, backlinks — top-down audit layering |
-| AI SEO | ai-structure-agent, ai-presence-agent | Structure for AI citation (answer passages, schema), AI crawler access, GEO optimization |
+| AI SEO (GEO) | ai-structure-agent, ai-presence-agent | Structure for AI citation + AI crawler access. **ai-structure-agent** targets: 40-60 word answer passages per key question, FAQ/HowTo/speakable schema, heading hierarchy matching user questions, comparison content (33% of AI citations), citation-optimized content types. **ai-presence-agent** targets: AI crawler access (GPTBot, ClaudeBot, PerplexityBot, GoogleOther in robots.txt), llms.txt implementation, citation monitoring across ChatGPT/Perplexity/Gemini, third-party presence optimization (6.5x more AI citations from G2/Capterra/publications than owned content) |
 | Programmatic SEO | programmatic-template-agent, programmatic-quality-agent | Scalable page templates, data defensibility, quality gates |
 | Competitor Pages | comparison-page-agent | Page format selection, content architecture, comparison matrices |
+| ASO | aso-keyword-agent, aso-listing-agent, aso-reviews-agent, aso-competitive-agent | App Store / Play Store keyword research, listing optimization (title, subtitle, description, screenshots), review management and sentiment analysis, competitor listing comparison. Also covers marketplace SEO for G2, Capterra, Product Hunt, Trustpilot — profile completeness scoring, review velocity, category ranking factors |
 
 **Reference files** (passed to agents at dispatch, not read by orchestrator):
 - `references/technical-audit.md` — Full audit template and checklists
-- `references/ai-seo.md` — Platform-specific AI optimization and citation data
+- `references/ai-seo.md` — Platform-specific AI optimization, citation data, GEO techniques (answer passage optimization, AI crawler access, structured data for AI, freshness signals)
 - `references/programmatic-seo.md` — pSEO template patterns and implementation
 - `references/competitor-pages.md` — Comparison page templates and keyword targeting
 - `references/schema-reference.md` — Schema types, implementation contexts, validation
+- `references/aso.md` — App Store / Play Store optimization, marketplace SEO (G2, Capterra, Product Hunt), keyword research, listing optimization, review management, competitive analysis
 
 **Key principle for single-agent fallback:** If executing without multi-agent dispatch, read the reference files for the active mode and follow the audit steps documented there. Apply the quality gate: every finding must have Issue, Impact, Evidence, Fix, and Priority.
 
@@ -285,7 +305,7 @@ On FAIL, the critic names which agent to re-dispatch with specific fix instructi
 ```markdown
 ---
 skill: seo
-mode: [audit | ai | programmatic | competitor]
+mode: [audit | ai | programmatic | competitor | aso]
 version: 1
 date: [today's date]
 status: draft
@@ -295,7 +315,7 @@ status: draft
 
 **Date:** [today]
 **Skill:** seo
-**Mode:** [Technical Audit | AI SEO | Programmatic SEO | Competitor Pages]
+**Mode:** [Technical Audit | AI SEO | Programmatic SEO | Competitor Pages | ASO]
 **Product:** [from product-context.md]
 
 ## Diagnosis

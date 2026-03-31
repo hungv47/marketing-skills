@@ -12,6 +12,10 @@ routing:
     - channel-strategy
     - content-calendar
     - go-to-market
+    - plg-channels
+    - slg-channels
+    - growth-motion
+    - 9-channel-map
   position: pipeline
   produces:
     - mkt/imc-plan.md
@@ -39,6 +43,8 @@ routing:
 
 ## Critical Gates — Read First
 
+- **Identify the growth motion BEFORE selecting channels.** PLG (product drives acquisition), SLG (outbound/performance drives acquisition), or Hybrid. The motion determines channel priorities — PLG favors community/SEO/forums, SLG favors paid/email/IRL/SMS.
+- **Evaluate ALL 9 channels, not just digital.** The full channel map: Search engines/GEO, Store/Listing platforms, Bounty/Info platforms, News, Forums/Communities, Social media, IRL (OOH/Events/POS), Mailbox, SMS. Offline channels (IRL, SMS) produce strategy docs and creative briefs for physical execution.
 - **Do NOT generate angles before pillars.** Angles are derived PER PILLAR. Without pillars, angles are untethered and fail the anti-generic test.
 - **Do NOT assign channels without habitat data.** Channel selection comes from ICP research habitat maps, not marketer preference. No habitat data → interview for it.
 - **Do NOT schedule 10 pieces/week for a 2-person team.** Match cadence to actual capacity. Over-scheduling guarantees missed deadlines.
@@ -56,10 +62,14 @@ Frameworks (ORB, 3D Angles, Pillar Types) are proven defaults — not mandatory 
 
 ## Quality Gate
 Before delivering, the **critic agent** verifies:
+- [ ] Growth motion explicitly stated (PLG / SLG / Hybrid)
 - [ ] 3-5 pillars, each with ICP evidence
 - [ ] 3+ angles per pillar, each passing 3Q test and scored ≥15/25
-- [ ] Each channel has ONE specific angle (not a content category)
-- [ ] Channel selection based on ICP habitat data
+- [ ] All 9 channels evaluated (selected or explicitly skipped with rationale)
+- [ ] Each selected channel has ONE specific angle (not a content category)
+- [ ] Channel selection based on ICP habitat data AND growth motion alignment
+- [ ] Channel execution briefs present for every selected channel
+- [ ] Offline channels (if selected) include compliance and execution notes
 - [ ] Timeline has 3 phases with realistic cadence
 - [ ] Launch sequence follows ORB (Owned → Rented → Borrowed)
 
@@ -81,7 +91,7 @@ Previous: `icp-research` | Next: `content-create`
 |-------|-------|------|-------|
 | Pillar Agent | 1 | `agents/pillar-agent.md` | 3-5 messaging pillars from ICP pains |
 | Angle Agent | 2 (sequential) | `agents/angle-agent.md` | 3D angle generation per pillar |
-| Channel Agent | 2 (sequential) | `agents/channel-agent.md` | Habitat-informed channel assignments |
+| Channel Agent | 2 (sequential) | `agents/channel-agent.md` | 9-channel evaluation with habitat-informed selection + execution briefs |
 | Timeline Agent | 2 (sequential) | `agents/timeline-agent.md` | Phase sequencing + editorial calendar |
 | Launch Sequencing Agent | 2 (sequential) | `agents/launch-sequencing-agent.md` | ORB Framework channel activation order |
 | Critic Agent | 2 (final) | `agents/critic-agent.md` | Alignment, scoring rigor, completeness |
@@ -153,11 +163,24 @@ Check for `.agents/product-context.md` and `.agents/mkt/icp-research.md`. If `da
 | `product-context.md` | icp-research | Product details, voice adjectives |
 | `solution-design.md` | solution-design | Strategic initiatives for alignment |
 
+### Growth Motion Identification
+
+Before dispatching any agent, determine the growth motion:
+
+| Signal | Motion | Channel Priority |
+|--------|--------|-----------------|
+| Free tier/trial exists, self-serve signup, product virality | **PLG** | Search engines/GEO, Forums/Communities, Social media (organic), Mailbox (onboarding), Store/Listing platforms, Bounty/Info platforms |
+| Sales team, high ACV, demos required, paid channels primary | **SLG** | Search engines/GEO (paid), Social media (paid), Mailbox (outbound), SMS, IRL (events/OOH), News |
+| Both motions coexist (e.g., self-serve SMB + sales enterprise) | **Hybrid** | Blend both — designate primary motion per audience segment |
+
+If growth motion is unclear from upstream artifacts, ask: "Does your product grow through self-serve adoption (PLG), outbound/paid performance (SLG), or both?"
+
 ### Context to Pass to All Agents
-1. **Campaign goal:** what success looks like
-2. **ICP summary:** persona, pains, habitats, awareness levels
-3. **VoC quotes:** top buyer-language phrases
-4. **Constraints:** team size, budget, timeline
+1. **Growth motion:** PLG, SLG, or Hybrid (determines channel weighting)
+2. **Campaign goal:** what success looks like
+3. **ICP summary:** persona, pains, habitats, awareness levels
+4. **VoC quotes:** top buyer-language phrases
+5. **Constraints:** team size, budget, timeline
 
 ---
 
@@ -183,6 +206,13 @@ If multi-agent dispatch is unavailable, execute sequentially in-context:
 
 ---
 
+## Orchestrator-Written Sections
+
+The orchestrator writes these sections inline (no agent dispatched):
+- **Growth Motion** — determined in Step 0, written directly into the artifact before Layer 1
+- **Foundation** — core message and awareness distribution, assembled after pillar-agent returns
+- **Channel Execution Briefs** — assembled by the orchestrator after channel-agent returns, using channel-agent's output (channel assignments + habitat data) to populate the briefs table with objective, tactic, budget type, metric, owner, and milestone per channel
+
 ## Layer 1: Pillar Foundation
 
 Dispatch **pillar-agent** alone. It produces the pillar table that all downstream agents need.
@@ -206,7 +236,7 @@ pillar-agent → angle-agent → channel-agent → timeline-agent → launch-seq
 | Step | Agent | Instruction File | Receives | Reference Files |
 |------|-------|-----------------|----------|-----------------|
 | 1 | Angle Agent | `agents/angle-agent.md` | Pillar table | `references/3d-angle-framework.md` |
-| 2 | Channel Agent | `agents/channel-agent.md` | Angle bank + habitat data | `references/channel-strategy.md` |
+| 2 | Channel Agent | `agents/channel-agent.md` | Angle bank + habitat data + growth motion | `references/channel-strategy.md` (includes 9-Channel Framework) |
 | 3 | Timeline Agent | `agents/timeline-agent.md` | Channel assignments | — |
 | 4 | Launch Sequencing Agent | `agents/launch-sequencing-agent.md` | Timeline | — |
 | 5 | Critic Agent | `agents/critic-agent.md` | Complete assembled plan | — |
@@ -237,6 +267,11 @@ status: draft
 **Goal:** [campaign objective]
 **Audience:** [primary persona]
 
+## Growth Motion
+- **Motion:** [PLG / SLG / Hybrid]
+- **Primary acquisition lever:** [product / outbound / both]
+- **Channel weighting rationale:** [why these channels match the motion]
+
 ## Foundation
 - **Core message:** [one sentence]
 - **Awareness distribution:** [% per stage]
@@ -255,6 +290,21 @@ status: draft
 | Channel | Type | Angle | Role | Cadence |
 |---------|------|-------|------|---------|
 | ... | ... | ... | ... | ... |
+
+**9-Channel Evaluation:** For each channel, the channel-agent assesses relevance and produces a select/skip decision. Channels: Search engines/GEO, Store/Listing platforms, Bounty/Info platforms, News, Forums/Communities, Social media, IRL (OOH/Events/POS), Mailbox, SMS.
+
+## Channel Execution Briefs
+
+For each selected channel, a mini-brief with actionable next steps:
+
+| Channel | Objective | Tactic | Budget Type | Success Metric | Owner | First Milestone |
+|---------|-----------|--------|-------------|----------------|-------|-----------------|
+| [e.g. Search engines] | [e.g. Capture intent traffic] | [e.g. Google Search ads + SEO content] | [Paid + Organic] | [CTR, CPL] | [Person] | [e.g. First campaign live by W2] |
+
+For offline channels (IRL, SMS), include execution notes:
+- **IRL:** Vendor/location requirements, lead capture method (QR code, signup form), follow-up workflow
+- **SMS:** Compliance requirements (TCPA/GDPR opt-in), character limits (160 GSM-7), unsubscribe mechanism
+- **OOH:** Readability specs, vanity URL/QR for tracking, legal disclaimers
 
 ## Timeline
 | Week | Phase | Channel | Angle | Format | Status |
