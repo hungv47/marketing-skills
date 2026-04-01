@@ -132,10 +132,10 @@ None — can build from scratch by interviewing.
 | Artifact | Source | Benefit |
 |----------|--------|---------|
 | `targets.md` | funnel-planner | KPI baselines |
-| `solution-design.md` | solution-design (from hungv47/strategy-skills) | Initiative list to map |
+| `solution-design.md` | solution-design (from hungv47/research-skills) | Initiative list to map |
 | `imc-plan.md` | imc-plan | Content plan to audit |
 | Previous `attribution.md` | attribution | Check progress on prior action items |
-| `experiment-*.md` | experiment (from strategy-skills) | Experiment outcomes as confidence adjustments — concluded experiments update contribution confidence |
+| `experiment-*.md` | experiment (from research-skills) | Experiment outcomes as confidence adjustments — concluded experiments update contribution confidence |
 
 Read upstream files if they exist: `.agents/targets.md`, `.agents/solution-design.md`, `.agents/mkt/imc-plan.md`. If previous `.agents/mkt/attribution.md` exists, read it — check progress on prior action items before building the new map.
 

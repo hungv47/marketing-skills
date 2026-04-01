@@ -5,7 +5,7 @@ Marketing communication skills — audience research, campaign planning, content
 ## Installation
 
 ```bash
-npx skills add hungv47/comms-skills
+npx skills add hungv47/marketing-skills
 ```
 
 ## Skills
@@ -33,7 +33,7 @@ Exception: `.agents/product-context.md` is saved to the shared cross-stack path 
 
 ## Cross-Stack Workflow
 
-Attribution and IMC Plan can read strategy artifacts (`.agents/solution-design.md`, `.agents/targets.md`) from [strategy-skills](https://github.com/hungv47/strategy-skills).
+Attribution and IMC Plan can read strategy artifacts (`.agents/solution-design.md`, `.agents/targets.md`) from [research-skills](https://github.com/hungv47/research-skills).
 
 ## Usage
 

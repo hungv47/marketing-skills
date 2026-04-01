@@ -24,7 +24,7 @@ Skills write to `.agents/mkt/`, except `product-context.md` which is cross-stack
 Attribution and IMC Plan can read strategy artifacts for alignment:
 - `.agents/solution-design.md` (from solution-design)
 - `.agents/targets.md` (from funnel-planner)
-`npx skills add hungv47/strategy-skills`
+`npx skills add hungv47/research-skills`
 
 ## Multi-Agent Skills
 
