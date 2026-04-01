@@ -1,31 +1,32 @@
-# Communication Skills
+# Marketing Skills
 
-Marketing communication skills — audience research, campaign planning, content creation, and performance attribution.
+Brand identity, content creation, campaign planning, optimization, and performance attribution.
 
 ## Installation
 
 ```bash
-npx skills add hungv47/comms-skills
+npx skills add hungv47/marketing-skills
 ```
 
 ## Skills
 
 | Skill | Description |
 |-------|-------------|
-| `icp-research` | Deep audience research and Ideal Customer Profile development |
+| `brand-system` | Brand identity — strategy, personality, voice, visual identity, tokens |
 | `imc-plan` | Integrated Marketing Communication planning |
 | `content-create` | Production-ready platform-native content assets with A/B variants |
-| `attribution` | KPI-initiative-content mapping and coverage audit |
 | `copywriting` | Craft-quality copy — headlines, hooks, CTAs, full-page copy with annotations |
 | `lp-optimization` | High-conversion landing page optimization |
 | `seo` | Technical audit, AI/GEO optimization, programmatic SEO, competitor pages |
+| `attribution` | KPI-initiative-content mapping and coverage audit |
 | `humanize` | Strip AI patterns, inject voice, and compress content for density |
 
 ## Pipeline
 
 ```
-icp-research → imc-plan → content-create → attribution
-Horizontal: lp-optimization, seo, humanize, copywriting
+brand-system (visual identity)
+imc-plan → content-create → attribution
+Horizontal: copywriting, lp-optimization, seo, humanize
 ```
 
 Artifacts save to `.agents/mkt/`.
@@ -33,23 +34,20 @@ Exception: `.agents/product-context.md` is saved to the shared cross-stack path 
 
 ## Cross-Stack Workflow
 
-Attribution and IMC Plan can read strategy artifacts (`.agents/solution-design.md`, `.agents/targets.md`) from [strategy-skills](https://github.com/hungv47/strategy-skills).
+Attribution and IMC Plan can read strategy artifacts (`.agents/solution-design.md`, `.agents/targets.md`) from [research-skills](https://github.com/hungv47/research-skills).
 
 ## Usage
 
-- "Research my ICP" → `icp-research`
+- "Define brand identity" → `brand-system`
 - "Create an IMC plan" → `imc-plan`
 - "Create content" → `content-create`
 - "Write copy" → `copywriting`
 - "Write headlines" → `copywriting`
-- "Evaluate this copy" → `copywriting`
-- "Map attribution" → `attribution`
 - "Optimize landing page" → `lp-optimization`
 - "SEO audit" → `seo`
 - "Optimize for AI search" → `seo`
-- "Build programmatic SEO pages" → `seo`
+- "Map attribution" → `attribution`
 - "Humanize this" → `humanize`
-- "Make this concise" → `humanize`
 - "Remove AI patterns" → `humanize`
 
 ## License
