@@ -4,6 +4,51 @@ Detailed channel selection frameworks including fit matrices and habitat-informe
 
 ---
 
+## 9-Channel Framework
+
+The complete channel map for growth. Evaluate every channel for relevance — don't default to digital-only.
+
+### Channel Map
+
+| # | Channel | Organic Tactics | Paid Tactics | Typical Role |
+|---|---------|----------------|--------------|--------------|
+| 1 | **Search engines/GEO** | SEO, GEO (AI search optimization) | Search ads (Google, Bing), Shopping ads | Acquisition (intent capture) |
+| 2 | **Store/Listing platforms** | ASO (App Store/Play Store), G2/Capterra profiles, Product Hunt | Apple Search ads, Google Play ads, sponsored listings | Acquisition (marketplace discovery) |
+| 3 | **Bounty/Info platforms** | Referral programs, affiliate networks | Incentive campaigns, bounty programs, paid referrals | Acquisition (incentivized) |
+| 4 | **News** | Earned press coverage, contributed articles | Paid PR articles, guest-postings, press releases | Awareness + Trust |
+| 5 | **Forums/Communities** | Threading (Reddit, VOZ, HN, Quora), community engagement | Paid ads (Reddit ads, forum sponsorships) | Awareness + Trust + Advocacy |
+| 6 | **Social media** | Organic brand content, affiliate content, UGC (influencers/creators), Internal UGC (mass accounts, clippings) | Paid ads (Meta, X, LinkedIn, TikTok), boosted posts | Full funnel |
+| 7 | **IRL** | Events, conferences, meetups, word of mouth | OOH (billboards, transit), Point of Sales materials, event sponsorships | Awareness + Relationship |
+| 8 | **Mailbox** | Transactional emails, newsletters, onboarding sequences | Paid inbox ads (Gmail Sponsored Promotions) | Nurture + Conversion |
+| 9 | **SMS** | Transactional SMS, order updates | Paid SMS campaigns, sponsorship SMS | Conversion + Re-engagement |
+
+### Channel Selection by Growth Motion
+
+| Channel | PLG Priority | SLG Priority | Why |
+|---------|-------------|-------------|-----|
+| Search engines/GEO | **High** — captures problem-aware searchers | **High** — captures intent | Both motions need search visibility |
+| Store/Listing platforms | **High** — if product is app-based | **Medium** — for marketplace presence | PLG relies on self-serve discovery |
+| Bounty/Info platforms | **Medium** — referral is PLG lever | **Medium** — affiliate extends reach | PLG: organic referral > paid incentive |
+| News | **Low** — unless raising funding/launching | **Medium** — builds trust for enterprise | SLG needs credibility signals |
+| Forums/Communities | **High** — builds community, advocacy | **Low** — unless ICP lives there | PLG: community IS the growth engine |
+| Social media | **Medium** — organic + UGC | **High** — paid + outbound | SLG: paid social drives leads |
+| IRL | **Low** — unless at events | **High** — conferences, demos, POS | SLG: relationship-driven sales |
+| Mailbox | **High** — onboarding + activation | **High** — nurture + outbound | Both motions need email |
+| SMS | **Low** — unless transactional | **Medium** — follow-ups, campaigns | SLG: direct response channel |
+
+### Channel Evaluation Checklist
+
+For each candidate channel, assess:
+
+1. **ICP Habitat Match** — Does the ICP live here? (from icp-research habitat maps)
+2. **Cost Model** — Paid, organic, or hybrid? What's the expected CAC contribution?
+3. **Timeline to Impact** — How long until this channel delivers results? (Search: months. Paid ads: days. Community: quarters.)
+4. **Resource Requirements** — Team size, content volume, tools, budget needed
+5. **Measurability** — Can we track attribution? (Digital: high. OOH/IRL: low — needs proxy metrics)
+6. **Scalability** — Can we increase spend/effort and get proportional returns?
+
+---
+
 ## Channel Types Reference (by role)
 
 | Type | Role | Content Approach | Who Controls |

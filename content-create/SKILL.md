@@ -14,6 +14,14 @@ routing:
     - blog
     - video-script
     - carousel
+    - store-listing
+    - forum-post
+    - sms-copy
+    - ugc-brief
+    - ooh-materials
+    - pr-guest-post
+    - newsletter
+    - bounty-incentive
   position: pipeline
   produces:
     - mkt/content/[slug].md
@@ -44,6 +52,7 @@ routing:
 - **Do NOT dispatch all agents for a single social post.** Route A exists for quick assets. Only Route B uses the full agent stack.
 - **Do NOT write outlines.** Every agent must produce complete copy — every word, slide, timestamp. "Discuss benefits" is not a deliverable.
 - **Stale IMC data (>30 days) produces misaligned content.** Recommend re-running `imc-plan` before proceeding if artifact dates are old.
+- **Platform compliance is non-negotiable for regulated channels.** SMS requires TCPA/GDPR opt-in/opt-out. Store listings must follow Apple/Google metadata policies. Forum posts must respect community rules. OOH materials need legal disclaimers. Email requires CAN-SPAM/GDPR compliance.
 
 ## Philosophy
 
@@ -81,7 +90,7 @@ Previous: `imc-plan` | Next: `attribution`
 
 | Agent | Layer | File | Focus |
 |-------|-------|------|-------|
-| Format Agent | 1 (parallel) | `agents/format-agent.md` | Platform specs, dimensions, native patterns |
+| Format Agent | 1 (parallel) | `agents/format-agent.md` | Platform specs for all 9 channels (social, store listings, forums, SMS, OOH/IRL, PR, UGC, email) |
 | VoC Extraction Agent | 1 (parallel) | `agents/voc-extraction-agent.md` | Buyer language from ICP research |
 | Hook Agent | 1.5 (after format) | `agents/hook-agent.md` | Opening line adapted to format constraints |
 | Body Agent | 1.5 (after format) | `agents/body-agent.md` | Complete content between hook and CTA |
@@ -147,6 +156,36 @@ Previous: `imc-plan` | Next: `attribution`
 3. Dispatch: critic-agent
 4. Return content to calling skill
 ```
+
+### Route D: Channel-Specific Asset
+**When:** User specifies a channel from the 9-channel map + an angle/message. Auto-selects the right format-agent configuration.
+
+```
+1. Pre-dispatch: Identify channel → map to format type
+2. LAYER 1 — format-agent (with channel-specific specs) + voc-extraction-agent
+3. LAYER 1.5 — hook-agent + body-agent + cta-agent (adapted to channel constraints)
+4. LAYER 2 — platform-compliance-agent (with channel-specific rules) → critic-agent
+5. Deliver artifact
+```
+
+**Channel → Format Mapping:**
+
+| Channel | Format Types | Key Constraint |
+|---------|-------------|----------------|
+| Store/Listing platforms | App Store listing, Play Store listing, G2 profile | Character limits, keyword strategy, screenshot captions |
+| Bounty/Info platforms | Referral page, affiliate description, bounty brief | Clear reward structure, quality criteria |
+| Forums/Communities | Reddit post, HN Show HN, Quora answer, forum thread | Anti-self-promotion rules, community tone matching |
+| News | Press release, guest-post pitch, byline article | Inverted pyramid, editorial tone, minimal self-promotion |
+| IRL (OOH/Events/POS) | Billboard (7 words max), POS card, event banner, flyer | Readability at distance, QR tracking, legal disclaimers |
+| SMS | Transactional SMS, marketing SMS, sponsorship SMS | 160 char limit (GSM-7), TCPA/GDPR compliance, opt-out required |
+| Mailbox | Newsletter, onboarding sequence, promotional email | Subject line + preview text, CAN-SPAM compliance |
+| UGC | Influencer brief, internal UGC guidelines | Authentic voice, FTC disclosure, deliverable specs |
+
+**Routing clarification:**
+- Social media content (LinkedIn, X, TikTok, Instagram, Facebook) → Route A (single post) or Route B (carousel, campaign)
+- Search engine content (blog posts, SEO articles) → Route B
+- All other channels (store listings, forums, SMS, OOH, PR, UGC, bounty, newsletter) → Route D
+- If unsure, check `references/platform-specs.md` — if the format is listed under Store/Listing, Forums, SMS, OOH/IRL, PR, UGC, or Bounty sections, use Route D.
 
 ---
 
