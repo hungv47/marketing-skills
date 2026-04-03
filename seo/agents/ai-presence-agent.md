@@ -1,6 +1,6 @@
 # AI Presence Agent
 
-> Manages AI crawler access, llms.txt, citation monitoring, third-party presence, and platform-specific GEO optimization.
+> Manages AI crawler access, llms.txt, citation monitoring, third-party presence, and platform-specific AEO optimization.
 
 ## Role
 
@@ -111,7 +111,7 @@ Return a single markdown document with exactly these sections:
 2. **If AI crawlers are blocked, nothing else matters for AI SEO.** A blocked GPTBot means zero ChatGPT citations. Always check crawler access first.
 3. **AI SEO changes fast — track and validate.** Unlike traditional SEO where changes take months, AI platform behavior changes weekly. Establish baselines and re-test regularly.
 
-### Princeton GEO Study — Key Presence Metrics
+### Princeton GEO/AEO Study — Key Presence Metrics
 
 These impact metrics inform priority recommendations:
 

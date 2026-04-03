@@ -17,8 +17,8 @@ routing:
     - aso
     - app-store-optimization
     - marketplace-seo
-    - geo
-    - generative-engine-optimization
+    - aeo
+    - agent-engine-optimization
   position: horizontal
   produces:
     - mkt/seo-[mode].md
@@ -41,7 +41,7 @@ routing:
 
 # SEO — Orchestrator
 
-*Communication — Horizontal. Covers the full SEO surface: technical foundations, AI/generative engine optimization, programmatic page generation, and competitor comparison content.*
+*Communication — Horizontal. Covers the full SEO surface: technical foundations, AI/agent engine optimization, programmatic page generation, and competitor comparison content.*
 
 **Core Question:** "How do we get found — by both search engines and AI models?"
 
@@ -71,7 +71,7 @@ Before delivering any SEO artifact, these must be true:
 | content-quality-agent | `agents/content-quality-agent.md` | 1 (parallel) | Technical Audit, Full | E-E-A-T, thin content, duplicate detection, content gaps |
 | authority-agent | `agents/authority-agent.md` | 1 (parallel) | Technical Audit, Full | Backlink profile, internal linking, link equity |
 | ai-structure-agent | `agents/ai-structure-agent.md` | 1 (parallel) | AI SEO, Full | Schema, heading hierarchy, answer passages, structured data |
-| ai-presence-agent | `agents/ai-presence-agent.md` | 1 (parallel) | AI SEO, Full | AI crawler access, llms.txt, citation monitoring, GEO |
+| ai-presence-agent | `agents/ai-presence-agent.md` | 1 (parallel) | AI SEO, Full | AI crawler access, llms.txt, citation monitoring, AEO |
 | programmatic-template-agent | `agents/programmatic-template-agent.md` | 1 (parallel) | Programmatic | Template design, URL architecture, defensibility |
 | programmatic-quality-agent | `agents/programmatic-quality-agent.md` | 1 (parallel) | Programmatic | Thin page detection, quality gates, monitoring plan |
 | comparison-page-agent | `agents/comparison-page-agent.md` | 1 (parallel) | Competitor Pages | Page format, content architecture, comparison matrices |
@@ -149,7 +149,7 @@ Not every SEO problem needs the same solution. Diagnose first, then enter the ri
 | Situation | Mode | Route |
 |-----------|------|-------|
 | "Our site has technical issues / traffic dropped / we've never done an SEO audit" | **Technical Audit** | Route A |
-| "We want to be cited by ChatGPT / Perplexity / AI search engines" | **AI SEO (GEO)** | Route B |
+| "We want to be cited by ChatGPT / Perplexity / AI search engines" | **AI SEO (AEO)** | Route B |
 | "We have structured data and want to generate pages at scale" | **Programmatic SEO** | Route C |
 | "We want to rank for competitor comparison queries" | **Competitor Pages** | Route D |
 | "We need a comprehensive SEO strategy" | **Full SEO** (Technical + AI) | Route E |
@@ -250,14 +250,14 @@ Domain knowledge for each mode lives in the agent instruction files. The orchest
 | Mode | Agents | Domain Focus |
 |------|--------|-------------|
 | Technical Audit | crawl-agent, foundations-agent, content-quality-agent, authority-agent | Crawlability, CWV, E-E-A-T, backlinks — top-down audit layering |
-| AI SEO (GEO) | ai-structure-agent, ai-presence-agent | Structure for AI citation + AI crawler access. **ai-structure-agent** targets: 40-60 word answer passages per key question, FAQ/HowTo/speakable schema, heading hierarchy matching user questions, comparison content (33% of AI citations), citation-optimized content types. **ai-presence-agent** targets: AI crawler access (GPTBot, ClaudeBot, PerplexityBot, GoogleOther in robots.txt), llms.txt implementation, citation monitoring across ChatGPT/Perplexity/Gemini, third-party presence optimization (6.5x more AI citations from G2/Capterra/publications than owned content) |
+| AI SEO (AEO) | ai-structure-agent, ai-presence-agent | Structure for AI citation + AI crawler access. **ai-structure-agent** targets: 40-60 word answer passages per key question, FAQ/HowTo/speakable schema, heading hierarchy matching user questions, comparison content (33% of AI citations), citation-optimized content types. **ai-presence-agent** targets: AI crawler access (GPTBot, ClaudeBot, PerplexityBot, GoogleOther in robots.txt), llms.txt implementation, citation monitoring across ChatGPT/Perplexity/Gemini, third-party presence optimization (6.5x more AI citations from G2/Capterra/publications than owned content) |
 | Programmatic SEO | programmatic-template-agent, programmatic-quality-agent | Scalable page templates, data defensibility, quality gates |
 | Competitor Pages | comparison-page-agent | Page format selection, content architecture, comparison matrices |
 | ASO | aso-keyword-agent, aso-listing-agent, aso-reviews-agent, aso-competitive-agent | App Store / Play Store keyword research, listing optimization (title, subtitle, description, screenshots), review management and sentiment analysis, competitor listing comparison. Also covers marketplace SEO for G2, Capterra, Product Hunt, Trustpilot — profile completeness scoring, review velocity, category ranking factors |
 
 **Reference files** (passed to agents at dispatch, not read by orchestrator):
 - `references/technical-audit.md` — Full audit template and checklists
-- `references/ai-seo.md` — Platform-specific AI optimization, citation data, GEO techniques (answer passage optimization, AI crawler access, structured data for AI, freshness signals)
+- `references/ai-seo.md` — Platform-specific AI optimization, citation data, AEO techniques (answer passage optimization, AI crawler access, structured data for AI, freshness signals)
 - `references/programmatic-seo.md` — pSEO template patterns and implementation
 - `references/competitor-pages.md` — Comparison page templates and keyword targeting
 - `references/schema-reference.md` — Schema types, implementation contexts, validation
@@ -450,7 +450,7 @@ Strategic Investments:
 **"Do SEO" without diagnosis** — Running a generic checklist without determining whether the problem is technical, content, authority, or AI visibility. Different problems need different modes.
 INSTEAD: Diagnose first using the routing table. Ask the user what triggered the SEO request.
 
-**Keyword stuffing (traditional or AI)** — Reduces AI visibility by ~10% (Princeton GEO study) and triggers Google's spam detection.
+**Keyword stuffing (traditional or AI)** — Reduces AI visibility by ~10% (Princeton GEO/AEO study) and triggers Google's spam detection.
 INSTEAD: Write for humans, structure for machines. Use natural language headings that match audience questions.
 
 **pSEO as a content farm** — Generating thousands of thin pages with no unique value per page. Google's Helpful Content Update specifically targets this.

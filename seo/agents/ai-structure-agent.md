@@ -68,7 +68,7 @@ Return a single markdown document with exactly these sections:
 
 ### [Finding Title]
 - **Issue:** [what's wrong]
-- **Impact:** [how it affects AI citation likelihood — reference Princeton GEO metrics where applicable]
+- **Impact:** [how it affects AI citation likelihood — reference Princeton GEO/AEO metrics where applicable]
 - **Evidence:** [specific page, current structure, or missing element]
 - **Fix:** [exact structural change needed]
 - **Priority:** Critical / High / Medium / Low
@@ -90,9 +90,9 @@ Return a single markdown document with exactly these sections:
 
 1. **Structure is how AI models "see" your content.** AI models parse headings, tables, and answer passages to extract citable information. Unstructured walls of text get skipped even if the information is excellent.
 2. **Schema is explicit metadata for machines.** While heading structure helps AI models parse content, schema markup provides machine-readable metadata that search engines and AI systems consume directly. Both matter.
-3. **Cite sources — it is the single strongest factor for AI visibility.** The Princeton GEO study found that citing sources provides a +40% citation boost. This is the highest-impact structural change.
+3. **Cite sources — it is the single strongest factor for AI visibility.** The Princeton GEO/AEO study found that citing sources provides a +40% citation boost. This is the highest-impact structural change.
 
-### Princeton GEO Study — Optimization Impact on AI Citations
+### Princeton GEO/AEO Study — Optimization Impact on AI Citations
 
 Reference these metrics when sizing the impact of structural changes:
 
@@ -172,7 +172,7 @@ reviews.
 
 ### Anti-Patterns
 
-- **Keyword stuffing in headings** — AI models penalize keyword stuffing (-10% citations per Princeton GEO study). Use natural language headings that match audience questions.
+- **Keyword stuffing in headings** — AI models penalize keyword stuffing (-10% citations per Princeton GEO/AEO study). Use natural language headings that match audience questions.
 - **Schema without matching visible content** — Schema that describes content not visible on the page is a Google penalty risk. Schema must reflect what users see.
 - **Generic comparison tables** — Checkmark tables (feature: yes/no) are low-value. Compare with specific details: "$49/mo for 10 users" vs. "$79/mo for 5 users."
 - **Flagging missing schema from raw HTML** — CMS plugins inject JSON-LD via JavaScript. Always verify with Rich Results Test before reporting missing schema.
@@ -185,7 +185,7 @@ Before returning your output, verify every item:
 - [ ] Answer passage audit identifies pages missing 40-60 word direct answer blocks
 - [ ] Schema audit uses Rich Results Test verification (not raw HTML inspection alone)
 - [ ] Schema recommendations are CMS/framework-aware
-- [ ] Princeton GEO metrics are referenced for impact sizing (not made-up numbers)
+- [ ] Princeton GEO/AEO metrics are referenced for impact sizing (not made-up numbers)
 - [ ] Source citation presence is checked and recommendations are specific
 - [ ] Comparison table presence and quality are evaluated
 - [ ] Output stays within my section boundaries (no overlap with other agents)

@@ -12,7 +12,7 @@ The complete channel map for growth. Evaluate every channel for relevance — do
 
 | # | Channel | Organic Tactics | Paid Tactics | Typical Role |
 |---|---------|----------------|--------------|--------------|
-| 1 | **Search engines/GEO** | SEO, GEO (AI search optimization) | Search ads (Google, Bing), Shopping ads | Acquisition (intent capture) |
+| 1 | **Search engines/AEO** | SEO, AEO (AI search optimization) | Search ads (Google, Bing), Shopping ads | Acquisition (intent capture) |
 | 2 | **Store/Listing platforms** | ASO (App Store/Play Store), G2/Capterra profiles, Product Hunt | Apple Search ads, Google Play ads, sponsored listings | Acquisition (marketplace discovery) |
 | 3 | **Bounty/Info platforms** | Referral programs, affiliate networks | Incentive campaigns, bounty programs, paid referrals | Acquisition (incentivized) |
 | 4 | **News** | Earned press coverage, contributed articles | Paid PR articles, guest-postings, press releases | Awareness + Trust |
@@ -26,7 +26,7 @@ The complete channel map for growth. Evaluate every channel for relevance — do
 
 | Channel | PLG Priority | SLG Priority | Why |
 |---------|-------------|-------------|-----|
-| Search engines/GEO | **High** — captures problem-aware searchers | **High** — captures intent | Both motions need search visibility |
+| Search engines/AEO | **High** — captures problem-aware searchers | **High** — captures intent | Both motions need search visibility |
 | Store/Listing platforms | **High** — if product is app-based | **Medium** — for marketplace presence | PLG relies on self-serve discovery |
 | Bounty/Info platforms | **Medium** — referral is PLG lever | **Medium** — affiliate extends reach | PLG: organic referral > paid incentive |
 | News | **Low** — unless raising funding/launching | **Medium** — builds trust for enterprise | SLG needs credibility signals |

@@ -1,4 +1,4 @@
-# AI SEO (GEO) Reference
+# AI SEO (AEO) Reference
 
 Platform-specific optimization details and citation-optimized content templates.
 

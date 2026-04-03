@@ -297,11 +297,11 @@ Maps each active channel from the 9-channel map to its contribution weight and m
 
 | Channel | Funnel Role | Attribution Model | Est. CAC | Payback Period | Confidence | Rationale |
 |---------|------------|------------------|----------|----------------|------------|-----------|
-| [e.g. Search engines/GEO (paid)] | Conversion | Last-touch | [$X] | [X months] | [H/M/L] | [Why this model for this channel] |
+| [e.g. Search engines/AEO (paid)] | Conversion | Last-touch | [$X] | [X months] | [H/M/L] | [Why this model for this channel] |
 | [e.g. Social media (organic)] | Awareness | First-touch | [N/A — organic] | [N/A] | [M] | [Why this model] |
 | [e.g. IRL] | Relationship | Position-based | [$X] | [X months] | [L] | [Why this model] |
 
-Split channels by paid vs. organic when they behave differently (e.g., "Search engines/GEO (organic)" and "Search engines/GEO (paid)").
+Split channels by paid vs. organic when they behave differently (e.g., "Search engines/AEO (organic)" and "Search engines/AEO (paid)").
 
 **Attribution model selection guide:**
 - **First-touch** — credit the channel that introduced the customer. Best for: brand awareness channels (OOH, PR, social organic, news)
@@ -314,8 +314,8 @@ Split channels by paid vs. organic when they behave differently (e.g., "Search e
 
 | Channel | Recommended Model | Rationale |
 |---------|------------------|-----------|
-| Search engines/GEO (organic) | First-touch or linear | Often the first discovery channel |
-| Search engines/GEO (paid) | Last-touch | High-intent conversion channel |
+| Search engines/AEO (organic) | First-touch or linear | Often the first discovery channel |
+| Search engines/AEO (paid) | Last-touch | High-intent conversion channel |
 | Store/Listing platforms | Position-based | Discovery (first) + install (last) both matter |
 | Bounty/Info platforms | Last-touch | Incentivized conversions — credit the converting action |
 | News | First-touch | Primarily awareness and trust-building |
