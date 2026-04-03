@@ -116,7 +116,7 @@ Every item must pass for a PASS verdict:
 
 **Source Recency:**
 - [ ] Recommendations are current — not citing deprecated practices or outdated tools
-- [ ] Data points used are dated or attributable (Princeton GEO study, Google documentation, etc.)
+- [ ] Data points used are dated or attributable (Princeton GEO/AEO study, Google documentation, etc.)
 
 ### Rewrite Routing
 

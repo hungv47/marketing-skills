@@ -93,7 +93,7 @@ Audits hero section, CTAs, social proof, objection handling, and page flow. Prod
 
 ### `seo` — grow organic visibility
 
-Technical audit, keyword research, AI/GEO optimization, programmatic SEO, competitor analysis, and app store optimization (ASO).
+Technical audit, keyword research, AI/AEO optimization, programmatic SEO, competitor analysis, and app store optimization (ASO).
 
 **Use when:**
 - You want more organic traffic from search engines or AI answer engines

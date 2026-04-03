@@ -33,7 +33,7 @@ Return a single markdown document with exactly these sections:
 
 | Channel | Funnel Role | Attribution Model | Estimated CAC | Payback Period | Confidence | Rationale |
 |---------|-----------|------------------|--------------|---------------|------------|-----------|
-| Search engines/GEO | [Reach / Trust / Conversion] | [model] | [$ or range] | [months] | H / M / L | [why this model for this channel] |
+| Search engines/AEO | [Reach / Trust / Conversion] | [model] | [$ or range] | [months] | H / M / L | [why this model for this channel] |
 | Store/Listing platforms | [Reach / Trust / Conversion] | [model] | [$ or range] | [months] | H / M / L | [why this model for this channel] |
 | Bounty/Info platforms | [Reach / Trust / Conversion] | [model] | [$ or range] | [months] | H / M / L | [why this model for this channel] |
 | News | [Reach / Trust / Conversion] | [model] | [$ or range] | [months] | H / M / L | [why this model for this channel] |
@@ -86,7 +86,7 @@ For each channel, explain the model choice in detail:
 ### Model-Channel Matrix
 | Channel | Recommended Model | Alternative Model | Switch Trigger |
 |---------|------------------|------------------|---------------|
-| Search engines/GEO | [model + why] | [alternative] | [when to switch — e.g., "Switch to data-driven when >1,000 conversions/month from this channel"] |
+| Search engines/AEO | [model + why] | [alternative] | [when to switch — e.g., "Switch to data-driven when >1,000 conversions/month from this channel"] |
 | Store/Listing platforms | First-touch or position-based | [alternative] | [when to switch] |
 | Bounty/Info platforms | Last-touch | [alternative] | [when to switch] |
 | News | First-touch | [alternative] | [when to switch] |
@@ -112,7 +112,7 @@ For each channel, explain the model choice in detail:
 
 **Rules:**
 1. Every active channel MUST have an attribution model assigned. No channel left without a model.
-2. All 9 channels from the channel map MUST appear in the Channel Attribution table: Search engines/GEO, Store/Listing platforms, Bounty/Info platforms, News, Forums/Communities, Social media, IRL, Mailbox, SMS. If a channel is not active, include it with a note: "Not active — [reason]. Recommended model if activated: [model]."
+2. All 9 channels from the channel map MUST appear in the Channel Attribution table: Search engines/AEO, Store/Listing platforms, Bounty/Info platforms, News, Forums/Communities, Social media, IRL, Mailbox, SMS. If a channel is not active, include it with a note: "Not active — [reason]. Recommended model if activated: [model]."
 3. Offline channels (IRL, Mailbox, SMS) MUST have proxy measurement methods in the Offline Channel Measurement section. Never mark an offline channel as "unmeasurable."
 4. For Store/Listing platforms, use first-touch or position-based attribution (marketplace discovery — users find the product through the platform's search and category browsing).
 5. For Bounty/Info platforms, use last-touch attribution (incentivized conversion — users arrive with high intent from bounty or referral programs).
@@ -131,11 +131,11 @@ For each channel, explain the model choice in detail:
 
 ### Channel-Specific Attribution Guidance
 
-**Search engines/GEO:**
+**Search engines/AEO:**
 - Typically first-touch for organic (how users discover the brand) or last-touch for paid search (users searching with intent)
 - Organic SEO: long measurement window (30-90 days) — discovery to conversion takes time
 - Paid search: short measurement window (7-14 days) — direct response
-- GEO (AI search / answer engines): first-touch — brand discovery through AI-generated answers
+- AEO (AI search / answer engines): first-touch — brand discovery through AI-generated answers
 
 **Store/Listing platforms (G2, Capterra, Product Hunt, app stores):**
 - First-touch or position-based — these platforms are discovery mechanisms
@@ -207,7 +207,7 @@ When exact data is unavailable, provide a range (e.g., "$40-80") and note the co
 
 | Channel | Funnel Role | Attribution Model | Estimated CAC | Payback Period | Confidence | Rationale |
 |---|---|---|---|---|---|---|
-| Search engines/GEO | Reach + Conversion | Position-based | $35-55 (organic), $80-120 (paid) | 2-3 months | M | Organic drives discovery (first-touch) and paid captures intent (last-touch); position-based credits both |
+| Search engines/AEO | Reach + Conversion | Position-based | $35-55 (organic), $80-120 (paid) | 2-3 months | M | Organic drives discovery (first-touch) and paid captures intent (last-touch); position-based credits both |
 | Store/Listing platforms | Trust + Conversion | First-touch | $15-30 (G2 organic profile) | 1-2 months | M | G2 buyers arrive in evaluation mode — the platform introduces the product; first-touch credits discovery |
 | Bounty/Info platforms | Conversion | Last-touch | $25-40 (per referral payout) | 1 month | H | Affiliate referral is the direct conversion trigger; last-touch is appropriate for incentivized actions |
 | IRL | Reach + Trust | Position-based | $150-300 (events) | 4-6 months | L | Events create first impressions or close deals; position-based credits both roles. Proxy: post-event survey + unique landing URLs |
@@ -230,7 +230,7 @@ When exact data is unavailable, provide a range (e.g., "$40-80") and note the co
 
 Before returning your output, verify every item:
 
-- [ ] All 9 channels appear in the Channel Attribution table: Search engines/GEO, Store/Listing platforms, Bounty/Info platforms, News, Forums/Communities, Social media, IRL, Mailbox, SMS
+- [ ] All 9 channels appear in the Channel Attribution table: Search engines/AEO, Store/Listing platforms, Bounty/Info platforms, News, Forums/Communities, Social media, IRL, Mailbox, SMS
 - [ ] Every active channel has an attribution model, CAC estimate, payback period, and confidence level — none are blank
 - [ ] Store/Listing platforms use first-touch or position-based attribution (not last-touch)
 - [ ] Bounty/Info platforms use last-touch attribution

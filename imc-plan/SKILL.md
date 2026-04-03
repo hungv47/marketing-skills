@@ -44,7 +44,7 @@ routing:
 ## Critical Gates — Read First
 
 - **Identify the growth motion BEFORE selecting channels.** PLG (product drives acquisition), SLG (outbound/performance drives acquisition), or Hybrid. The motion determines channel priorities — PLG favors community/SEO/forums, SLG favors paid/email/IRL/SMS.
-- **Evaluate ALL 9 channels, not just digital.** The full channel map: Search engines/GEO, Store/Listing platforms, Bounty/Info platforms, News, Forums/Communities, Social media, IRL (OOH/Events/POS), Mailbox, SMS. Offline channels (IRL, SMS) produce strategy docs and creative briefs for physical execution.
+- **Evaluate ALL 9 channels, not just digital.** The full channel map: Search engines/AEO, Store/Listing platforms, Bounty/Info platforms, News, Forums/Communities, Social media, IRL (OOH/Events/POS), Mailbox, SMS. Offline channels (IRL, SMS) produce strategy docs and creative briefs for physical execution.
 - **Do NOT generate angles before pillars.** Angles are derived PER PILLAR. Without pillars, angles are untethered and fail the anti-generic test.
 - **Do NOT assign channels without habitat data.** Channel selection comes from ICP research habitat maps, not marketer preference. No habitat data → interview for it.
 - **Do NOT schedule 10 pieces/week for a 2-person team.** Match cadence to actual capacity. Over-scheduling guarantees missed deadlines.
@@ -169,8 +169,8 @@ Before dispatching any agent, determine the growth motion:
 
 | Signal | Motion | Channel Priority |
 |--------|--------|-----------------|
-| Free tier/trial exists, self-serve signup, product virality | **PLG** | Search engines/GEO, Forums/Communities, Social media (organic), Mailbox (onboarding), Store/Listing platforms, Bounty/Info platforms |
-| Sales team, high ACV, demos required, paid channels primary | **SLG** | Search engines/GEO (paid), Social media (paid), Mailbox (outbound), SMS, IRL (events/OOH), News |
+| Free tier/trial exists, self-serve signup, product virality | **PLG** | Search engines/AEO, Forums/Communities, Social media (organic), Mailbox (onboarding), Store/Listing platforms, Bounty/Info platforms |
+| Sales team, high ACV, demos required, paid channels primary | **SLG** | Search engines/AEO (paid), Social media (paid), Mailbox (outbound), SMS, IRL (events/OOH), News |
 | Both motions coexist (e.g., self-serve SMB + sales enterprise) | **Hybrid** | Blend both — designate primary motion per audience segment |
 
 If growth motion is unclear from upstream artifacts, ask: "Does your product grow through self-serve adoption (PLG), outbound/paid performance (SLG), or both?"
@@ -291,7 +291,7 @@ status: draft
 |---------|------|-------|------|---------|
 | ... | ... | ... | ... | ... |
 
-**9-Channel Evaluation:** For each channel, the channel-agent assesses relevance and produces a select/skip decision. Channels: Search engines/GEO, Store/Listing platforms, Bounty/Info platforms, News, Forums/Communities, Social media, IRL (OOH/Events/POS), Mailbox, SMS.
+**9-Channel Evaluation:** For each channel, the channel-agent assesses relevance and produces a select/skip decision. Channels: Search engines/AEO, Store/Listing platforms, Bounty/Info platforms, News, Forums/Communities, Social media, IRL (OOH/Events/POS), Mailbox, SMS.
 
 ## Channel Execution Briefs
 
