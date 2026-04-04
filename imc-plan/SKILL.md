@@ -1,6 +1,6 @@
 ---
 name: imc-plan
-description: "Creates integrated marketing plans — channel strategy, positioning, content calendar, budget allocation, and go-to-market timelines. Produces `.agents/mkt/imc-plan.md`. Not for writing actual content (use content-create) or setting numeric targets (use funnel-planner)."
+description: "Creates integrated marketing plans — channel strategy, positioning, content calendar, budget allocation, and go-to-market timelines. Produces `.agents/mkt/imc-plan.md`. Not for writing actual content (use content-create) or setting numeric targets (use funnel-planner). For SEO strategy, see seo. For landing page optimization, see lp-optimization."
 argument-hint: "[product or campaign to plan]"
 license: MIT
 metadata:

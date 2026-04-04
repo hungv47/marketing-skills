@@ -1,6 +1,6 @@
 ---
 name: humanize
-description: "Strips AI patterns, injects brand voice, and compresses existing text so it reads human-written. Targets 15%+ word reduction with zero idea loss. Produces `.agents/mkt/content/[slug].humanized.md`. Not for writing new content (use content-create)."
+description: "Strips AI patterns, injects brand voice, and compresses existing text so it reads human-written. Targets 15%+ word reduction with zero idea loss. Produces `.agents/mkt/content/[slug].humanized.md`. Not for writing new content (use content-create). For brand voice reference, see brand-system. For SEO compliance, see seo."
 argument-hint: "[content file or text]"
 license: MIT
 metadata:

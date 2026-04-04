@@ -1,6 +1,6 @@
 ---
 name: brand-system
-description: "Builds brand identity systems — color palettes, typography, design tokens, logo guidelines, and visual language with usage rules and component specs. Produces `.agents/design/brand-system.md`. Not for writing marketing copy (use content-create) or mapping user flows (use user-flow)."
+description: "Builds brand identity systems — color palettes, typography, design tokens, logo guidelines, and visual language with usage rules and component specs. Produces `.agents/design/brand-system.md`. Not for writing marketing copy (use content-create) or mapping user flows (use user-flow). For campaign planning, see imc-plan. For audience research, see icp-research."
 argument-hint: "[product or brand to design]"
 license: MIT
 metadata:
