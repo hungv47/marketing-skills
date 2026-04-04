@@ -1,6 +1,6 @@
 ---
 name: copywriting
-description: "Writes and evaluates persuasive copy — headlines, hooks, CTAs, taglines, and full-page section copy with rubric scoring, annotations, and ranked alternatives. Produces inline annotations or `.agents/mkt/content/[slug].copy.md`. Not for content format selection (use content-create) or editing AI-sounding text (use humanize). For making AI text sound human, see humanize. For brand voice guidelines, see brand-system."
+description: "Writes and evaluates persuasive copy — headlines, hooks, CTAs, taglines, and full-page section copy with rubric scoring, annotations, and ranked alternatives. Produces inline annotations or `.agents/mkt/content/[slug].copy.md`. Not for content format selection (use content-create) or editing AI-sounding text (use humanize). For brand voice guidelines, see brand-system. For landing page conversion audits, see lp-optimization."
 argument-hint: "[copy task or text to evaluate]"
 license: MIT
 metadata:
