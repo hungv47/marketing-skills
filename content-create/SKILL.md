@@ -1,6 +1,6 @@
 ---
 name: content-create
-description: "Drafts marketing content assets — social posts, ads, emails, newsletters, blog posts, case studies, video scripts, and launch announcements in platform-native formats. Produces `.agents/mkt/content/[slug].md`. Not for editing existing text (use humanize) or persuasive headlines and CTAs (use copywriting)."
+description: "Drafts marketing content assets — social posts, ads, emails, newsletters, blog posts, case studies, video scripts, and launch announcements in platform-native formats. Produces `.agents/mkt/content/[slug].md`. Not for editing existing text (use humanize) or persuasive headlines and CTAs (use copywriting). For making AI text sound human, see humanize. For SEO optimization, see seo."
 argument-hint: "[angle or topic]"
 license: MIT
 metadata:

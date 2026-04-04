@@ -1,6 +1,6 @@
 ---
 name: attribution
-description: "Maps marketing activities to business outcomes — evaluates channel ROI, identifies what's driving results, and recommends where to double down or cut spend. Produces `.agents/mkt/attribution.md`. Not for setting new KPIs (use funnel-planner) or creating new content (use content-create)."
+description: "Maps marketing activities to business outcomes — evaluates channel ROI, identifies what's driving results, and recommends where to double down or cut spend. Produces `.agents/mkt/attribution.md`. Not for setting new KPIs (use funnel-planner) or creating new content (use content-create). For campaign planning, see imc-plan. For experiment design, see experiment."
 argument-hint: "[initiatives or KPIs to map]"
 license: MIT
 metadata:
