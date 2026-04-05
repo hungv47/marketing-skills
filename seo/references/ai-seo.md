@@ -22,7 +22,7 @@ Platform-specific optimization details and citation-optimized content templates.
 
 **Content-Answer Fit** (ZipTie study): 55% of ChatGPT citation likelihood comes from matching ChatGPT's own response format. Domain authority accounts for only 12%, on-page structure 14%. Implication: study how each AI platform formats its answers, then structure your content to match that format.
 
-**Key takeaway:** The highest-leverage AEO actions are (1) cite sources in your content, (2) include specific statistics, (3) include expert quotes. These three alone account for +107% combined visibility. Keyword stuffing actively hurts.
+**Key takeaway:** The highest-leverage AEO actions are (1) cite sources in your content, (2) include specific statistics, (3) include expert quotes. These three are the highest-impact individual methods (+40%, +37%, +30% respectively). Apply all three — the combined effect is significant even if not strictly additive. Keyword stuffing actively hurts.
 
 ---
 
