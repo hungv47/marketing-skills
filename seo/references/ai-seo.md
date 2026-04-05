@@ -4,6 +4,28 @@ Platform-specific optimization details and citation-optimized content templates.
 
 ---
 
+## Research-Backed Optimization Methods
+
+**Source:** Princeton GEO Study (KDD 2024) — tested 9 optimization methods across multiple AI platforms and measured visibility boost.
+
+| Method | Visibility Boost | Notes |
+|--------|-----------------|-------|
+| Cite sources | +40% | Highest single impact. AI systems trust content that references other sources. |
+| Add statistics | +37% | Specific numbers with sources outperform vague claims. |
+| Add quotations | +30% | Expert quotes signal authority and original reporting. |
+| Improve fluency | +25% | Clear, well-structured writing. |
+| Authoritative tone | +20% | Confident, expert voice. |
+| Technical terminology | +15% | Domain-specific language signals depth. |
+| Easy-to-understand | +10% | Accessible explanations (complementary to technical). |
+| Unique words | +5% | Distinctive vocabulary. |
+| Keyword stuffing | **-10%** | Actively reduces AI visibility. Opposite of traditional SEO intuition. |
+
+**Content-Answer Fit** (ZipTie study): 55% of ChatGPT citation likelihood comes from matching ChatGPT's own response format. Domain authority accounts for only 12%, on-page structure 14%. Implication: study how each AI platform formats its answers, then structure your content to match that format.
+
+**Key takeaway:** The highest-leverage AEO actions are (1) cite sources in your content, (2) include specific statistics, (3) include expert quotes. These three alone account for +107% combined visibility. Keyword stuffing actively hurts.
+
+---
+
 ## Platform-Specific Optimization
 
 ### Google AI Overviews
