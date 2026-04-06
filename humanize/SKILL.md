@@ -55,7 +55,7 @@ AI-generated content fails in three ways: it reads like AI wrote it (patterns), 
 
 ## Quality Gate
 Before delivering, the **critic agent** verifies:
-- [ ] Zero Hard Tell patterns from the 36-pattern checklist
+- [ ] Zero Hard Tell patterns from the 37-pattern checklist
 - [ ] At most 2 Soft Tell patterns in the entire piece
 - [ ] No clusters of 3+ high-frequency AI vocabulary words in any paragraph
 - [ ] At least 15% word reduction from original
@@ -73,6 +73,7 @@ These patterns are so strongly associated with AI that a single instance ruins c
 6. **No filler context phrases.** "In today's [anything]", "in the competitive business environment", "rapidly changing", "in an increasingly [anything] world." Delete the entire phrase or sentence.
 7. **No emojis.** Not in any content type.
 8. **No unsourced 47 or 73.** These are known LLM number biases. Any instance of 47 or 73 in the output must have a cited real-world source. If the number was generated, replace with actual data or remove entirely.
+9. **No staccato taglines.** "Your X, Y'd" ("Your Workflows, Mapped") and "X. Y." ("Analytics. Simplified.") are fragmentary headline constructions so overused by AI they are an instant fingerprint. Rewrite with a specific claim that communicates something real.
 
 ## Chain Position
 Horizontal — works on output from any skill. If content passed the `copywriting` skill, humanize focuses on compression + residual patterns. For external or AI-generated content, full pipeline applies.
@@ -89,7 +90,7 @@ Horizontal — works on output from any skill. If content passed the `copywritin
 
 | Agent | Layer | File | Focus |
 |-------|-------|------|-------|
-| Pattern Scanner | 1 (parallel) | `agents/pattern-scanner-agent.md` | Runs all 36 AI patterns, logs violations by category, estimates compression potential |
+| Pattern Scanner | 1 (parallel) | `agents/pattern-scanner-agent.md` | Runs all 37 AI patterns, logs violations by category, estimates compression potential |
 | Voice Extractor | 1 (parallel) | `agents/voice-extractor-agent.md` | Reads voice adjectives, assesses register, identifies injection opportunities |
 | Strip Agent | 2 (sequential) | `agents/strip-agent.md` | Surgical removal of flagged AI patterns — subtract only, no style changes |
 | Soul Injection | 2 (sequential) | `agents/soul-injection-agent.md` | Applies brand voice — rhythm, specificity, experience markers |
@@ -97,7 +98,7 @@ Horizontal — works on output from any skill. If content passed the `copywritin
 | Critic | 2 (final) | `agents/critic-agent.md` | Three-pass audit, 5-dimension scoring, PASS/FAIL with re-dispatch routing |
 
 ### Shared References (read by multiple agents)
-- `references/ai-patterns.md` — 36 AI writing patterns across 8 categories + high-frequency vocabulary and phrase lists (used by pattern-scanner-agent, strip-agent, critic-agent)
+- `references/ai-patterns.md` — 37 AI writing patterns across 8 categories + high-frequency vocabulary and phrase lists (used by pattern-scanner-agent, strip-agent, critic-agent)
 - `references/voice-injection.md` — Voice adjective framework, rhythm, specificity, personality injection (used by voice-extractor-agent, soul-injection-agent)
 - `references/conciseness-rules.md` — Compression techniques at sentence, paragraph, and section level (used by compression-agent)
 
@@ -163,7 +164,7 @@ This skill's examples are marketing-focused, but it works on any content type. A
 
 | Content Type | Strip Intensity | Voice Injection | Compression Target |
 |-------------|----------------|-----------------|-------------------|
-| Marketing copy | Full — all 36 patterns | Full — brand voice adjectives | 20-30% |
+| Marketing copy | Full — all 37 patterns | Full — brand voice adjectives | 20-30% |
 | Blog posts / thought leadership | Full | Moderate — author voice, not brand voice | 15-25% |
 | Documentation / technical writing | Light — focus on clarity patterns only | Minimal — accuracy over personality | 10-15% |
 | Internal communications | Moderate | Light — conversational, not branded | 15-20% |
@@ -427,7 +428,7 @@ User confirms. Proceed to Layer 2.
 ## Agent Files
 
 ### Sub-Agent Instructions (agents/)
-- [agents/pattern-scanner-agent.md](agents/pattern-scanner-agent.md) — Scans all 36 AI patterns, logs violations, estimates compression
+- [agents/pattern-scanner-agent.md](agents/pattern-scanner-agent.md) — Scans all 37 AI patterns, logs violations, estimates compression
 - [agents/voice-extractor-agent.md](agents/voice-extractor-agent.md) — Reads voice adjectives, assesses register, identifies injection opportunities
 - [agents/strip-agent.md](agents/strip-agent.md) — Surgical removal of flagged AI patterns
 - [agents/soul-injection-agent.md](agents/soul-injection-agent.md) — Applies brand voice through rhythm, specificity, experience markers
@@ -436,7 +437,7 @@ User confirms. Proceed to Layer 2.
 - [agents/_template.md](agents/_template.md) — Reusable template for creating new agent files
 
 ### Shared References (references/)
-- [references/ai-patterns.md](references/ai-patterns.md) — 36 AI writing patterns across 8 categories + high-frequency vocabulary and phrase lists
+- [references/ai-patterns.md](references/ai-patterns.md) — 37 AI writing patterns across 8 categories + high-frequency vocabulary and phrase lists
 - [references/voice-injection.md](references/voice-injection.md) — Voice adjective framework, rhythm, specificity, personality injection
 - [references/conciseness-rules.md](references/conciseness-rules.md) — Compression techniques at sentence, paragraph, and section level
 
@@ -446,6 +447,6 @@ User confirms. Proceed to Layer 2.
 
 | Reference | Use For |
 |-----------|---------|
-| [ai-patterns.md](references/ai-patterns.md) | 36 AI writing patterns across 8 categories + high-frequency vocabulary and phrase lists — detection, examples, fixes, severity |
+| [ai-patterns.md](references/ai-patterns.md) | 37 AI writing patterns across 8 categories + high-frequency vocabulary and phrase lists — detection, examples, fixes, severity |
 | [conciseness-rules.md](references/conciseness-rules.md) | Compression techniques at sentence, paragraph, and section level |
 | [voice-injection.md](references/voice-injection.md) | Voice adjective framework, rhythm, specificity, personality injection |

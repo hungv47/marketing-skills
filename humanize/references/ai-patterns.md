@@ -1,6 +1,6 @@
 # AI Writing Patterns — Detection & Fix Reference
 
-36 patterns across 8 categories. Each pattern includes severity:
+37 patterns across 8 categories. Each pattern includes severity:
 - **Hard Tell** — Immediately flags content as AI-generated. Fix before publishing.
 - **Soft Tell** — Suspicious in clusters. Fix when 3+ appear in the same piece.
 
@@ -342,6 +342,22 @@ Note: "navigate" and "landscape" also appear in the vocabulary list above. The v
 > - Reason three"
 **Fix:** Integrate items into a sentence. "This matters because [reason one], and teams that ignore it [consequence]." For technical documentation or tables, colons may be acceptable. In marketing copy, blog posts, and general prose, eliminate colons. Restructure "X: Y" constructions into natural sentences.
 
+### 37. Staccato Tagline Construction
+**Severity:** Hard Tell
+**Description:** Fragmentary headlines built from a noun (or "Your [noun]") paired with a past participle or adjective, separated by a comma or period. AI generates these to sound punchy and memorable, but they are so overused they have become an instant AI fingerprint. Two common forms: "Your X, Y'd" ("Your Workflows, Mapped") and "X. Y." ("Analytics. Simplified."). Often used as hero headlines, section headers, or taglines.
+**Common variants (Hard Tell — flag on sight):**
+- "Your [Noun], [Past Participle]." — "Your Data, Protected." / "Your Growth, Unlocked." / "Your Ideas, Realized."
+- "[Noun]. [Past Participle/Adjective]." — "Analytics. Simplified." / "Code. Shipped." / "Compliance. Solved." / "Design. Elevated."
+
+**Weaker variants (flag only when clustered with the above or repeated 2+ times in the same piece):**
+- "[Noun]. [Noun]." — "Insight. Action." / "Speed. Scale."
+- "[Adjective] [Noun]. [Adverb/Adjective] [Noun]." — "Better Data. Smarter Decisions."
+
+These weaker forms predate AI and appear in legitimate human copywriting. A single instance in a slide deck or callout is not a tell. Two or more in the same piece, or one combined with the Hard Tell variants above, is a signal.
+**Example:**
+> "Your Workflows, Mapped" / "Insights. Delivered." / "Your Security, Simplified."
+**Fix:** Write a headline that says something specific. "Your Workflows, Mapped" becomes "See every workflow in one view." "Analytics. Simplified." becomes "One dashboard instead of twelve." The fragmented form sounds clever but communicates nothing — it is a structure pretending to be a message.
+
 ---
 
 ## Category 7: Agency & Perspective Tells
@@ -426,6 +442,7 @@ When auditing content, scan in this order (most obvious tells first):
    - [ ] False insight phrases — "Imagine a world where...", "Here's the kicker", "Let's be honest" (phrases list)
    - [ ] AI-typical numbers — 47 or 73 as "random" numbers without cited source (34)
    - [ ] Fabricated precision — specific stats with no named source (36)
+   - [ ] Staccato tagline — "Your X, Y'd" or "X. Y." fragmentary headlines (37)
 
 2. **Soft Tells** — Flag when 3+ appear in the same piece
    - [ ] Symmetric lists (2)
@@ -447,7 +464,7 @@ When auditing content, scan in this order (most obvious tells first):
 
 ## Speed Scan Checklist
 
-A flat 18-item rapid-fire checklist for re-checking during final audit (Step 5). Covers the most common residual tells — patterns that survive initial stripping or get reintroduced during voice injection.
+A flat 19-item rapid-fire checklist for re-checking during final audit (Step 5). Covers the most common residual tells — patterns that survive initial stripping or get reintroduced during voice injection.
 
 - [ ] Any em dash (—) anywhere? → Replace with comma, period, or parentheses. Zero allowed.
 - [ ] Any "it's not just X, it's Y" or variant? → State the positive claim directly. Zero allowed.
@@ -467,3 +484,4 @@ A flat 18-item rapid-fire checklist for re-checking during final audit (Step 5).
 - [ ] Any sentence announcing what the text will do ("In this section...") → Delete.
 - [ ] Number 47 or 73 used as a "random" value? → Cite the source or replace with real data.
 - [ ] Three or more round numbers (50%, 30%, 10x) in the same piece? → Replace with actual data or remove.
+- [ ] Any "Your X, Y'd" or "X. Y." fragmentary headline? → Rewrite with a specific claim. Zero allowed.
