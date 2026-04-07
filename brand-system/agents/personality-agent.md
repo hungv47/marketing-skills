@@ -48,18 +48,18 @@ In action:
 
 ## Emotional Journey Map
 
-| Touchpoint | Emotion | What triggers it |
-|------------|---------|------------------|
-| **First encounter** | [emotion] | [what about the name, visual, or positioning creates this feeling] |
-| **Landing page** | [emotion] | [what visual or copy element triggers this] |
-| **First use** | [emotion] | [what interaction, feature, or onboarding moment triggers this] |
-| **Daily use** | [emotion] | [what sustained experience or ritual triggers this] |
-| **Collaboration / sharing** | [emotion] | [what social feature or sharing moment triggers this — if applicable] |
-| **Hitting a limit / friction** | [emotion] | [how the brand handles the constraint — what does the user feel?] |
-| **Upgrade / purchase** | [emotion] | [how the transaction feels — reward or ransom?] |
-| **Telling someone** | [emotion] | [what they say, how they describe it, what they're proud of] |
+| Touchpoint | Emotion | What design/interaction triggers it |
+|------------|---------|-------------------------------------|
+| **First encounter** | [emotion] | [what about the name, visual identity, or positioning creates this feeling] |
+| **Landing page** | [emotion] | [what visual element, layout, or interaction triggers this] |
+| **First use** | [emotion] | [what interaction, animation, or onboarding moment triggers this] |
+| **Daily use** | [emotion] | [what sustained design quality, interaction pattern, or ritual triggers this] |
+| **Collaboration / sharing** | [emotion] | [what social feature or interaction design triggers this — if applicable] |
+| **Hitting a limit / friction** | [emotion] | [how the UI handles the constraint — what visual/interaction pattern does the user experience?] |
+| **Upgrade / purchase** | [emotion] | [how the transaction UI feels — reward or ransom?] |
+| **Telling someone** | [emotion] | [what visual or experiential quality makes them want to share] |
 
-[Add or remove touchpoints based on the product. A B2B tool might add "onboarding call" or "integration setup." A game might add "first win" or "first loss." Map the touchpoints that actually exist for this product.]
+[Add or remove touchpoints based on the product. Triggers should focus on design, interaction, and visual elements — not copy. "The spring-physics animation feels alive" is a design trigger. "The error message says X" is a copy trigger (belongs in copywriting).]
 
 **CORE TENSION:** [Problem/desire the brand resolves — one sentence. The gap between the user's current state and their desired state.]
 

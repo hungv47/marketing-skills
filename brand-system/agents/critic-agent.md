@@ -107,9 +107,10 @@ Score: [N] items flagged — [clean / needs review / needs regeneration]
 - [ ] **Values have real tradeoffs** — Each value's opposite is a legitimate alternative. "Quality" is generic. "Speed over polish" has a real tradeoff. If values are generic, FAIL.
 - [ ] **Positioning is falsifiable with competitive context** — "The only [category] that [difference]" — if every competitor could say this, FAIL. Competitive landscape (perceptual map + 2 axes + white space) must be present in the positioning section.
 - [ ] **Emotional journey is touchpoint-level** — 6-10 touchpoints with specific emotions and triggers. Before/during/after only = FAIL.
-- [ ] **Voice chart completeness** — 3-5 voice attributes, each with Do/Don't examples using real brand contexts. Missing examples = FAIL.
-- [ ] **Tone spectrum has examples** — Every context has a tone shift description AND a concrete copy example. Abstract tone without examples = FAIL.
-- [ ] **Tagline has context alternatives** — Primary tagline + 3+ surface-specific variants. Single tagline only = FAIL.
+- [ ] **Voice attributes are actionable** — 3-5 voice attributes, each with Do/Don't examples using real brand contexts. Missing examples = FAIL. Attributes without examples are empty adjectives.
+- [ ] **Tone range defined** — 3 key contexts (marketing, product UI, errors) with tone shift AND example. These must show clear shift across the range. Identical tone across contexts = FAIL.
+- [ ] **Tagline is ownable** — 2-7 words, scored with V/F/U rubric (minimum 6/9). Fails the competitor swap test. Generic tagline = FAIL. NOTE: only a primary tagline belongs here — platform variants are copywriting's job.
+- [ ] **No scope creep into copywriting** — BRAND.md should NOT contain: elevator pitches, boilerplate, messaging pillars, platform-specific tagline variants, or per-context copy beyond the 3-5 tone range examples. If these appear, FAIL and instruct voice-agent to remove.
 - [ ] **Product-specific sections exist** — At least 1 section unique to this product with WHAT and WHY. Generic brand doc = FAIL.
 - [ ] **Digital touchpoints have specifics** — 5+ surfaces with concrete brand expression details. "Show the product" = FAIL.
 - [ ] **Prose quality** — BRAND.md reads like a brand book that a founder would share with investors. Template fill-in-the-blank = FAIL.

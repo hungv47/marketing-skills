@@ -109,46 +109,50 @@
 
 ---
 
-## Tone Spectrum
+## Tone Range
 
-**Quality differentiator:** Every context has a tone shift description AND a concrete copy example. Not just "formal vs casual" dimensions.
+**Quality differentiator:** 3 key contexts that define the range (marketing = expressive, product UI = neutral, errors = constrained). Each has a tone shift description AND a concrete example.
 
 **Good:**
-> | **Pricing page** | Transparent + confident. No manipulation. | "Free: 3 boards, 50 notes. Everything else. / Pro: $5.99/mo. Unlimited boards. Nature theme." |
-> | **Error messages** | Calm + honest. What happened, what to do. | "Couldn't save that note. Retrying now. Your text is safe locally." |
+> Default dimensional position: Formal ←[X]→ Casual (30% casual), Serious ←---[X]→ Playful (40%), etc.
+>
+> | **Marketing / landing page** | Inviting + confident. Let the visuals speak. | "Break the page." |
+> | **Product UI** | Minimal + warm. Functional but not cold. | "New note" not "Create a new note on this board." |
+> | **Error / friction** | Calm + honest. What happened, what to do. | "Couldn't save that note. Retrying now. Your text is safe locally." |
 
 **Bad:**
 > | **Pricing page** | Professional | |
 > | **Error messages** | Empathetic | |
+> | **Social media** | Fun | |
+> | [9 more rows with single-word descriptions and no examples...]
 
 **Why the good version works:**
-- Tone shift is described in two adjectives that CREATE tension (transparent + confident, calm + honest)
-- Every row has an actual copy example a writer could use as a model
-- The examples are specific to the product's real contexts, not hypothetical
+- 3 contexts define the full range — any surface can interpolate from these three
+- Tone shift is described in two adjectives that CREATE tension (inviting + confident, calm + honest)
+- Every row has a concrete copy example
+- Doesn't overextend into copy production — 3 examples calibrate the voice, 9 examples IS copywriting
 
 ---
 
-## Messaging Architecture — Tagline
+## Tagline
 
-**Quality differentiator:** Primary tagline scored with V/F/U rubric + 3-4 context-specific alternatives for different surfaces.
+**Quality differentiator:** Primary tagline scored with V/F/U rubric. One tagline — platform variants belong in copywriting.
 
 **Good:**
 > **Primary:** "Break the page."
 >
-> V:3 F:2 U:3 = 8/9. Visual (a page cracking open into infinite space). Falsifiable (most apps respect the page). Ownable (tied to the infinite canvas concept).
->
-> **Alternatives by context:**
-> - App Store subtitle: "Infinite canvas for visual thinkers"
-> - Social bio: "Glass surfaces. Sticky notes. Infinite canvas."
-> - About page: "Spanish for 'conqueror.' Because thinking was never meant to be linear."
+> V:3 F:2 U:3 = 8/9.
+> - Visual: a page cracking open into infinite space — strong image
+> - Falsifiable: most apps respect the page — this claims the opposite
+> - Unique: tied to the infinite canvas concept — no competitor would say this
 
 **Bad:**
 > **Tagline:** "Think Better Together"
 
 **Why the good version works:**
-- Scored against a rubric (Visual, Falsifiable, Unique) — prevents generic taglines from passing
-- Each context alternative is written for its specific surface (App Store is keyword-rich, social is punchy, about page is narrative)
-- A single tagline can't serve all surfaces — the alternatives show brand consistency across registers
+- Scored against a rubric (V/F/U) — prevents generic taglines from passing
+- The competitor swap test: could Miro say "Think Better Together"? Yes. Could Miro say "Break the page"? No. That's the difference.
+- One tagline in the brand system. Platform-specific variants (App Store subtitle, social bio) are produced by copywriting, which consumes the voice DNA from BRAND.md
 
 ---
 

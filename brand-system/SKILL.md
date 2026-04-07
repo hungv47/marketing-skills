@@ -88,7 +88,7 @@ The skill produces two complementary files, each serving a different audience:
 |-------------|-----------|------------|
 | Strategy Agent | Origin story, naming, purpose/mission/vision, values, positioning, competitive landscape, product-specific sections, digital touchpoints | — |
 | Personality Agent | Archetype, personality traits, emotional journey map | — |
-| Voice Agent | Voice chart, tone spectrum, messaging architecture | — |
+| Voice Agent | Voice attributes (Do/Don't), tone range (3 contexts), tagline | — |
 | Visual Agent | Brand mark / logo system | Visual atmosphere, color system, per-theme palettes, typography, imagery, iconography, surface & material language, shadow system, z-index, do's and don'ts |
 | Token Architect Agent | — | Primitive scales, semantic token map, spacing, radius |
 | Component Token Agent | — | Component specs, product-specific components, motion tokens, named animations |
@@ -100,10 +100,13 @@ Before delivering, the **critic agent** verifies both files:
 **BRAND.md checks:**
 - [ ] Origin story and naming have cultural/etymological depth — not just "we named it X"
 - [ ] Values have real tradeoffs (not generic "innovation, quality, integrity")
-- [ ] Voice chart has Do/Don't examples for every attribute using real brand contexts
-- [ ] Emotional journey is touchpoint-level (not just before/during/after)
-- [ ] Messaging has context-specific alternatives (App Store, social, about page)
+- [ ] Voice attributes have Do/Don't examples using real brand contexts (not hypothetical)
+- [ ] Tone range covers 3 key contexts with clear shift across the range
+- [ ] Tagline scored with V/F/U (minimum 6/9), passes competitor swap test
+- [ ] No copywriting scope creep (no boilerplate, pillars, elevator pitch, tagline variants)
+- [ ] Emotional journey is touchpoint-level with design/interaction triggers (not copy triggers)
 - [ ] Brand mark described with enough detail to commission or generate
+- [ ] Digital touchpoints scoped to visual expression (not verbal)
 - [ ] Prose quality: reads like a brand book, not fill-in-the-blank templates
 
 **DESIGN.md checks:**
@@ -145,7 +148,7 @@ Previous: none | Next: `user-flow`
 |-------|-------|------|-----------|-------|
 | Strategy Agent | 1 (parallel) | `agents/strategy-agent.md` | BRAND.md | Purpose, mission, vision, values, positioning, competitive landscape, **brand narrative (origin/naming), product-specific sections, digital touchpoints** |
 | Personality Agent | 1 (parallel) | `agents/personality-agent.md` | BRAND.md | Jungian archetype (70/30 blend), personality traits, **touchpoint-level emotional journey** |
-| Voice Agent | 1 (parallel) | `agents/voice-agent.md` | BRAND.md | Voice chart, tone spectrum, messaging architecture, **context-specific tagline alternatives**, on-brand examples |
+| Voice Agent | 1 (parallel) | `agents/voice-agent.md` | BRAND.md | Voice attributes (Do/Don't), tone range (3 key contexts), primary tagline with V/F/U score |
 | Visual Agent | 1 (parallel) | `agents/visual-agent.md` | Both | Logo → BRAND.md. **Visual atmosphere, color system, per-theme palettes, typography, imagery, surface & material language, shadow system, z-index, do's and don'ts** → DESIGN.md |
 | Token Architect Agent | 2 (sequential) | `agents/token-architect-agent.md` | DESIGN.md | 3-layer W3C token system, semantic map, radius-to-archetype, **per-theme token tables** |
 | Component Token Agent | 2 (sequential) | `agents/component-token-agent.md` | DESIGN.md | Button 6 variants, input specs, card specs, **product-specific components, named animations with physics values**, motion tokens |
@@ -311,8 +314,7 @@ After Layer 1 completes, assemble outputs into **two separate files** simultaneo
 | Brand Archetype | Personality Agent | 70/30 blend with "in action" section |
 | Personality Traits | Personality Agent | "Trait, but not extreme" table |
 | Emotional Journey Map | Personality Agent | Touchpoint-by-touchpoint, not before/during/after |
-| Brand Voice & Tone | Voice Agent | Voice chart + tone spectrum + tone by context |
-| Messaging Architecture | Voice Agent | Tagline + context-specific alternatives + boilerplate |
+| Brand Voice DNA | Voice Agent | Voice attributes (Do/Don't) + tone range (3 contexts) + tagline |
 | The Brand Mark | Visual Agent (logo section) | Visual description, variations, color combos, rules |
 | [Product-Specific Sections] | Strategy Agent | Differentiators, pricing as brand, parent brand relationship |
 | Digital Touchpoints | Strategy Agent | How brand expresses at each surface |
@@ -506,9 +508,9 @@ We help [who] [do what] by [how], so they can [outcome].
 
 ---
 
-## Brand Voice & Tone
+## Brand Voice DNA
 
-### Voice Chart
+### Voice Attributes
 
 | Attribute | Description | Do | Don't |
 |-----------|-------------|-----|-------|
@@ -516,23 +518,23 @@ We help [who] [do what] by [how], so they can [outcome].
 | **[Attr 2]** | [...] | "[...]" | "[...]" |
 | **[Attr 3]** | [...] | "[...]" | "[...]" |
 
-[3-5 attributes. Do/Don't examples must be from real brand contexts (error messages, CTAs, onboarding), not hypothetical.]
+[3-5 attributes. Do/Don't examples must be from real brand contexts (error messages, CTAs, onboarding), not hypothetical. These define the voice — they're what copywriting consumes downstream.]
 
-### Tone Spectrum
+### Tone Range
+
+Default dimensional position:
+- Formal <--[X]--------> Casual
+- Serious <----[X]------> Playful
+- Respectful <-[X]--------> Irreverent
+- Enthusiastic <------[X]---> Matter-of-fact
 
 | Context | Tone shift | Example |
 |---------|-----------|---------|
-| **Landing page / marketing** | [shift description] | "[example copy]" |
-| **Product UI (labels, tooltips)** | [shift description] | "[example copy]" |
-| **Onboarding** | [shift description] | "[example copy]" |
-| **Error messages** | [shift description] | "[example copy]" |
-| **Pricing page** | [shift description] | "[example copy]" |
-| **Upgrade prompts** | [shift description] | "[example copy]" |
-| **Release notes** | [shift description] | "[example copy]" |
+| **Marketing / landing page** | [shift description] | "[example copy]" |
+| **Product UI** | [shift description] | "[example copy]" |
+| **Error / friction** | [shift description] | "[example copy]" |
 
----
-
-## Messaging Architecture
+[3 contexts define the range. Add 1-2 more only for unusual product surfaces.]
 
 ### Tagline
 
@@ -540,22 +542,7 @@ We help [who] [do what] by [how], so they can [outcome].
 
 V:[1-3] F:[1-3] U:[1-3] = [total]/9. [Scoring rationale: Visual, Falsifiable, Unique/Ownable]
 
-**Alternatives by context:**
-- App Store subtitle: "[variant]"
-- Social bio: "[variant]"
-- About page / brand story: "[variant]"
-
-### Elevator Pitch
-
-[25 words max — what, for whom, why it matters]
-
-### Boilerplate
-
-**Short version** (social bios, footers):
-[~10 words]
-
-**Standard:**
-[~100 words — self-contained, covers product + audience + differentiator + pricing + parent brand]
+[One tagline. Platform-specific variants (App Store, social bio, etc.) are produced by copywriting, not brand-system.]
 
 ---
 
@@ -601,14 +588,14 @@ V:[1-3] F:[1-3] U:[1-3] = [total]/9. [Scoring rationale: Visual, Falsifiable, Un
 
 ## Digital Touchpoints
 
-| Touchpoint | Brand expression |
-|------------|-----------------|
-| **Landing page** | [how brand manifests here] |
-| **App (core experience)** | [how brand manifests here] |
-| **App Store listing** | [how brand manifests here] |
-| **Social media** | [how brand manifests here] |
-| **Email** | [how brand manifests here] |
-| **Documentation** | [how brand manifests here] |
+| Touchpoint | Visual brand expression |
+|------------|------------------------|
+| **Landing page** | [visual system, layout, typography, hero, material language] |
+| **App (core experience)** | [design system in action — theme, components, chrome density] |
+| **App Store listing** | [icon, screenshot composition, visual style] |
+| **Social media** | [profile visual, post style, screenshot treatments] |
+| **Email** | [typography with fallbacks, visual treatment] |
+| **Documentation** | [theme, typography, visual hierarchy] |
 ```
 
 ### DESIGN.md Template
@@ -946,11 +933,11 @@ Product: personal finance app. Audience: young professionals 22-30. Competitors:
 All 4 agents dispatched in parallel:
 - **Strategy agent** returns: Origin story ("born from a founder's shame spiral at 24"), name ("FinLit — financial literacy, shortened to feel casual"), purpose "make finance empowering, not shameful." Positioning: "the only finance app that feels like a supportive friend." Values: transparency over comfort, simplicity over completeness, progress over perfection. Digital touchpoints mapped across 6 surfaces. Product-specific: "Streak System as brand expression" section.
 - **Personality agent** returns: Caregiver (70%) + Explorer (30%). Traits: encouraging but not patronizing, clear but not dumbed-down, warm but not saccharine. Emotional journey: 8-touchpoint map (first encounter → app store → onboarding → first budget → daily check → missed goal → annual review → telling a friend).
-- **Voice agent** returns: Voice chart with 3 attributes (straight-talking, encouraging, honest) with real-context Do/Don't examples. Tagline: "Money, minus the shame." Context alternatives: App Store "Simple budgeting for real life", social bio "Your money. Your pace. No judgment." Tone spectrum by 7 contexts. Boilerplate in 4 lengths.
+- **Voice agent** returns: Voice DNA with 3 attributes (straight-talking, encouraging, honest) with real-context Do/Don't examples. Tone range across 3 contexts (marketing: inviting + confident, product UI: minimal + clear, errors: calm + honest). Tagline: "Money, minus the shame." V:3 F:2 U:3 = 8/9.
 - **Visual agent** returns: **For BRAND.md:** Logo system (4 variations, color combos, rules). **For DESIGN.md:** Visual atmosphere ("warm kitchen table, not bank lobby"). Primary warm teal `oklch(0.65 0.15 180)` / `#2cbaa0`. Complete light + dark theme palettes (18 tokens each). Neutral base: Stone. Display: Plus Jakarta Sans. Body: Inter. Shadow system (5 levels). Surface material: soft matte (no glass). Imagery: real people, natural light, warm tones. Do's and Don'ts (12 items each).
 
 ### Merge — Two Files
-**BRAND.md assembled** from strategy (origin/name/purpose/values/positioning/touchpoints) + personality (archetype/traits/journey) + voice (voice chart/tone/messaging) + visual (logo only).
+**BRAND.md assembled** from strategy (origin/name/purpose/values/positioning/touchpoints) + personality (archetype/traits/journey) + voice (voice DNA/tone range/tagline) + visual (logo only).
 **DESIGN.md started** from visual (atmosphere/colors/typography/shadows/imagery/do's-don'ts). AI-readable header generated.
 
 Coherence check: Caregiver archetype aligns with warm teal (trust + growth), humanist-leaning typography (approachable), 0.5rem radius (soft). PASS — proceed to Layer 2.

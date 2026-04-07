@@ -114,16 +114,16 @@ We help [who] [do what] by [how], so they can [outcome].
 
 ## Digital Touchpoints
 
-| Touchpoint | Brand expression |
-|------------|-----------------|
-| **Landing page** | [how brand manifests — visual, copy, interaction] |
-| **App (core experience)** | [how brand manifests] |
-| **App Store / distribution** | [how brand manifests — icon, screenshots, description] |
-| **Social media** | [profile, post style, content approach] |
-| **Email** | [how brand manifests — typography, tone, visual treatment] |
-| **Documentation** | [how brand manifests] |
+| Touchpoint | Visual brand expression |
+|------------|------------------------|
+| **Landing page** | [visual system, layout approach, typography treatment, hero design, material language] |
+| **App (core experience)** | [how the design system manifests — theme, component styling, chrome density] |
+| **App Store / distribution** | [icon, screenshot composition, visual style of listing] |
+| **Social media** | [profile visual, post visual style, screenshot treatments] |
+| **Email** | [typography choices with fallbacks, visual treatment, layout] |
+| **Documentation** | [theme, typography, visual hierarchy] |
 
-[Add or remove touchpoints based on the product. A CLI tool doesn't need "App Store." A B2C app might need "Packaging" or "Physical spaces."]
+[Add or remove touchpoints based on the product. Each touchpoint describes HOW the visual brand manifests at that surface — layout, materials, typography, color usage. Verbal expression at each touchpoint is copywriting's job, not brand-system's.]
 
 ## Change Log
 - [What you wrote/changed and the rule or principle that drove the decision]
