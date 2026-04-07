@@ -37,52 +37,45 @@ Return a single markdown document with exactly these sections:
 
 ## Tone Spectrum
 
-Default position on each dimension:
-- Formal <--[X]--------> Casual
-- Serious <----[X]------> Funny
-- Respectful <-[X]--------> Irreverent
-- Enthusiastic <------[X]---> Matter-of-fact
+| Context | Tone shift | Example |
+|---------|-----------|---------|
+| **Landing page / marketing** | [how tone adjusts — e.g., "Inviting + confident. Let the visuals speak."] | "[actual example copy]" |
+| **Product UI (labels, tooltips)** | [e.g., "Minimal + warm. Functional but not cold."] | "[example — short, specific]" |
+| **Onboarding** | [e.g., "Encouraging + brief. Show, don't explain."] | "[example]" |
+| **Rich text / editor** | [e.g., "Invisible. Should feel like writing, not software."] | "[example labels]" |
+| **Pricing page** | [e.g., "Transparent + confident. No manipulation."] | "[example]" |
+| **Error messages** | [e.g., "Calm + honest. What happened, what to do."] | "[example]" |
+| **Collaboration / invites** | [e.g., "Warm + minimal."] | "[example]" |
+| **Upgrade prompts** | [e.g., "Factual + respectful."] | "[example]" |
+| **Release notes** | [e.g., "Specific + proud. What changed, why."] | "[example]" |
 
-### Tone by Context
-
-| Context | Formal/Casual | Serious/Funny | Respectful/Irreverent | Enthusiastic/MoF |
-|---------|:---:|:---:|:---:|:---:|
-| Marketing / homepage | [position] | [position] | [position] | [position] |
-| Product UI | ... | ... | ... | ... |
-| Help docs / support | ... | ... | ... | ... |
-| Error messages | ... | ... | ... | ... |
-| Social media | ... | ... | ... | ... |
+[Add or remove contexts based on the product. The key: every context must have a TONE SHIFT description AND a concrete copy example. Abstract tone descriptions without examples are useless.]
 
 ## Messaging Architecture
 
-TAGLINE (2-7 words): [memorable, ownable, evocative]
-ELEVATOR PITCH (25 words): [what, for whom, why it matters]
-VALUE PROPOSITION (1-2 sentences): [functional + emotional benefits]
+### Tagline
 
-MESSAGING PILLARS (3-5):
-  Pillar 1: [Headline] -> Narrative (2-3 sentences) -> Proof points
-  Pillar 2: [Headline] -> Narrative -> Proof points
-  Pillar 3: [Headline] -> Narrative -> Proof points
+**Primary:** "[Tagline — 2-7 words]"
 
-BOILERPLATE:
-  One-liner (10w): [text]
-  Short (50w): [text]
-  Standard (100w): [text]
-  Full (200w): [text]
+V:[1-3] F:[1-3] U:[1-3] = [total]/9. [Score each dimension: Visual (does it trigger an image?), Falsifiable (could a competitor NOT say this?), Unique/Ownable (is it tied to this brand specifically?)]
 
-## On-Brand vs Off-Brand Examples
+**Alternatives by context:**
+- App Store subtitle: "[variant — descriptive, keyword-rich]"
+- Social bio: "[variant — punchy, personality-forward]"
+- About page / brand story: "[variant — narrative, connects to origin]"
+- Investor/press: "[variant — positioning-forward]"
 
-### Welcome Email
-ON-BRAND: [specific example]
-OFF-BRAND: [specific example]
+### Elevator Pitch
 
-### Error Message
-ON-BRAND: [specific example]
-OFF-BRAND: [specific example]
+[25 words max — what, for whom, why it matters]
 
-### CTA Button
-ON-BRAND: [specific example]
-OFF-BRAND: [specific example]
+### Boilerplate
+
+**Short version** (social bios, footers, ~10 words):
+[text]
+
+**Standard** (~100 words):
+[Self-contained paragraph covering product + audience + differentiator + pricing + parent brand if applicable]
 
 ## Change Log
 - [What you wrote/changed and the rule or principle that drove the decision]
@@ -115,11 +108,10 @@ OFF-BRAND: [specific example]
 - The voice attributes stay constant; only the position on each dimension shifts
 
 **Messaging architecture:**
-- Tagline: 2-7 words, ownable (could only be this brand), evocative (triggers an emotion or image)
+- Tagline: 2-7 words, ownable (could only be this brand), evocative (triggers an emotion or image). Score with V/F/U rubric.
+- Context-specific alternatives: App Store (descriptive), social bio (punchy), about page (narrative), investor/press (positioning). The tagline adapts to each surface while staying on-brand.
 - Elevator pitch: 25 words answering what/who/why
-- Value prop: functional benefit + emotional benefit in 1-2 sentences
-- Pillars: 3-5 themes that organize all brand messaging, each with headline + narrative + proof
-- Boilerplate: 4 lengths (10w, 50w, 100w, 200w) — all consistent, each self-contained
+- Boilerplate: 2 lengths (10w short, 100w standard) — both self-contained. The standard version covers product + audience + differentiator + pricing + parent brand.
 
 **On-brand/off-brand test:**
 Write side-by-side examples for 3 touchpoints: welcome email, error message, CTA button. These are the highest-signal tests because they span emotional range (celebration, frustration, persuasion).
@@ -155,13 +147,14 @@ Before returning your output, verify every item:
 
 - [ ] 3-5 voice attributes, each with specific Do and Don't examples
 - [ ] Do/Don't examples are from real brand contexts (not hypothetical)
-- [ ] Tone spectrum plotted on all 4 NN/g dimensions
-- [ ] Tone by context table covers 5 contexts (marketing, UI, help, errors, social)
+- [ ] Tone spectrum covers 7+ contexts, each with tone shift description AND concrete copy example
+- [ ] No context has a tone description without an example (abstract tone is useless)
 - [ ] Tagline is 2-7 words, ownable (fails the competitor swap test), and evocative
+- [ ] Tagline scored with V/F/U rubric (Visual, Falsifiable, Unique)
+- [ ] Context-specific tagline alternatives for 3+ surfaces (App Store, social, about page)
 - [ ] Elevator pitch is ≤25 words
-- [ ] 3-5 messaging pillars, each with headline + narrative + proof points
-- [ ] Boilerplate in all 4 lengths (10w, 50w, 100w, 200w)
-- [ ] On-brand/off-brand examples for 3 touchpoints (welcome, error, CTA)
+- [ ] Boilerplate in 2 lengths (10w short, 100w standard) — self-contained
+- [ ] Tone spectrum examples cover high-signal contexts (pricing, errors, upgrades) — not just marketing
 - [ ] Output stays within my section boundaries (no overlap with other agents)
 - [ ] No `[BLOCKED]` markers remain unresolved
 

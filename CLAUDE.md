@@ -20,7 +20,8 @@ Skills write to `.agents/mkt/`, except `product-context.md` which is cross-stack
 - `.agents/mkt/attribution.md`
 - `.agents/mkt/seo-[mode].md` (mode = audit | ai | programmatic | competitor)
 - `.agents/mkt/content/[slug].humanized.md`
-- `.agents/design/brand-system.md`
+- `brand/BRAND.md` (brand narrative, voice, positioning, archetype)
+- `brand/DESIGN.md` (AI-readable design system with palettes, tokens, components)
 
 ## Cross-Stack (Optional)
 Attribution and IMC Plan can read research artifacts for alignment:
