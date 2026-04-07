@@ -69,6 +69,14 @@ V:[1-3] F:[1-3] U:[1-3] = [total]/9. [Score each dimension: Visual (does it trig
 
 [25 words max — what, for whom, why it matters]
 
+### Messaging Pillars (3-5)
+
+Pillar 1: [Headline] → Narrative (2-3 sentences) → Proof points
+Pillar 2: [Headline] → Narrative → Proof points
+Pillar 3: [Headline] → Narrative → Proof points
+
+[Each pillar covers distinct messaging territory. If two pillars say roughly the same thing, merge them. Pillars organize all brand messaging into themes — they're what content-create and imc-plan consume downstream.]
+
 ### Boilerplate
 
 **Short version** (social bios, footers, ~10 words):
@@ -153,6 +161,7 @@ Before returning your output, verify every item:
 - [ ] Tagline scored with V/F/U rubric (Visual, Falsifiable, Unique)
 - [ ] Context-specific tagline alternatives for 3+ surfaces (App Store, social, about page)
 - [ ] Elevator pitch is ≤25 words
+- [ ] 3-5 messaging pillars, each with headline + narrative + proof points, no overlap between pillars
 - [ ] Boilerplate in 2 lengths (10w short, 100w standard) — self-contained
 - [ ] Tone spectrum examples cover high-signal contexts (pricing, errors, upgrades) — not just marketing
 - [ ] Output stays within my section boundaries (no overlap with other agents)

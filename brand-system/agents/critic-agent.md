@@ -134,6 +134,7 @@ Score: [N] items flagged — [clean / needs review / needs regeneration]
 - [ ] **Cross-element coherence** — Radius matches archetype, typography personality matches archetype, color emotion aligns, imagery reflects archetype.
 - [ ] **Voice-visual alignment** — The tone described in BRAND.md matches the atmosphere described in DESIGN.md.
 - [ ] **AI slop check** — Run the ai-slop-detection checklist. 0-1 items clean. 2-3 needs review. 4+ FAIL.
+- [ ] **Anchoring bias check** — If output shares visual language with the quality guide examples (glass surfaces, amethyst palette, geometric type, spring-physics notes, infinite canvas) without justification from the brief, flag as anchoring bias from reference examples. The guides teach structural quality, not design direction.
 
 ### Cross-Element Coherence Matrix
 

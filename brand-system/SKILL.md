@@ -17,7 +17,7 @@ routing:
   position: pipeline
   produces:
     - brand/BRAND.md
-    - brand/DESIGN.md
+    - brand/DESIGN.md  # Route B (full) only. Quick Brand (Route A) produces BRAND.md only.
   consumes:
     - product-context.md
   requires: []
@@ -30,6 +30,21 @@ routing:
     - imc-plan
   interactive: false
   estimated-complexity: heavy
+---
+
+## ⚠ v6 Breaking Change
+
+Output moved from `.agents/design/brand-system.md` → `brand/BRAND.md` + `brand/DESIGN.md`.
+
+**Downstream consumers to update:**
+- `product-skills/user-flow` — consumes `design/brand-system.md` → update to `brand/DESIGN.md`
+- `product-skills/technical-writer` — consumes `.agents/design/brand-system.md` → update to `brand/BRAND.md` (voice/terminology) and `brand/DESIGN.md` (tokens)
+- Root `README.md` artifact table → update path
+
+**Duration scale change:** Timings shifted from (100, 200, 300, 500)ms to (75, 150, 250, 400, 600)ms with a new `--duration-emphasis` tier. Brands built on v5 will have different motion timing.
+
+**Quick Brand (Route A)** produces `brand/BRAND.md` only. DESIGN.md requires the full Route B pipeline.
+
 ---
 
 # Brand Identity & Design System — Orchestrator
@@ -669,7 +684,7 @@ The mood is: **[3-4 adjectives].**
 | `--border` | `oklch(...)` | #... | Default borders |
 | `--input` | `oklch(...)` | #... | Input borders |
 | `--ring` | `oklch(...)` | #... | Focus ring |
-| `--canvas-bg` | `oklch(...)` | #... | Canvas surface (if applicable) |
+| `--canvas-bg` | `oklch(...)` | #... | Canvas/workspace surface [optional — only for canvas-based products] |
 
 [Repeat for Dark theme, and any product-specific themes]
 
