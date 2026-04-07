@@ -39,19 +39,31 @@ In action:
 
 ## Personality Traits
 
-1. [Trait] — but not [extreme to avoid]. In practice: [concrete example]
-2. [Trait] — but not [extreme to avoid]. In practice: [concrete example]
-3. [Trait] — but not [extreme to avoid]. In practice: [concrete example]
-[4-5 optional]
+| Trait | What it means | What it doesn't mean |
+|-------|---------------|----------------------|
+| **[Trait], but not [extreme]** | [Concrete description with product-specific examples — what this looks like in the UI, the copy, the interactions] | [Where the line is — what this trait is NOT, with specific product examples of the wrong direction] |
+| **[Trait], but not [extreme]** | [...] | [...] |
+| **[Trait], but not [extreme]** | [...] | [...] |
+[3-5 traits. Each row must have enough specificity that a designer or copywriter can make decisions from it.]
 
 ## Emotional Journey Map
 
-Before product: [emotional state]
-During: [transformation]
-After: [desired outcome]
+| Touchpoint | Emotion | What design/interaction triggers it |
+|------------|---------|-------------------------------------|
+| **First encounter** | [emotion] | [what about the name, visual identity, or positioning creates this feeling] |
+| **Landing page** | [emotion] | [what visual element, layout, or interaction triggers this] |
+| **First use** | [emotion] | [what interaction, animation, or onboarding moment triggers this] |
+| **Daily use** | [emotion] | [what sustained design quality, interaction pattern, or ritual triggers this] |
+| **Collaboration / sharing** | [emotion] | [what social feature or interaction design triggers this — if applicable] |
+| **Hitting a limit / friction** | [emotion] | [how the UI handles the constraint — what visual/interaction pattern does the user experience?] |
+| **Upgrade / purchase** | [emotion] | [how the transaction UI feels — reward or ransom?] |
+| **Telling someone** | [emotion] | [what visual or experiential quality makes them want to share] |
 
-CORE TENSION: [problem/desire the brand resolves]
-DESIGN PROMISE: [what the entire brand experience communicates]
+[Add or remove touchpoints based on the product. Triggers should focus on design, interaction, and visual elements — not copy. "The spring-physics animation feels alive" is a design trigger. "The error message says X" is a copy trigger (belongs in copywriting).]
+
+**CORE TENSION:** [Problem/desire the brand resolves — one sentence. The gap between the user's current state and their desired state.]
+
+**DESIGN PROMISE:** [What the entire brand experience communicates — one sentence. Not a tagline, but the implicit commitment across every touchpoint.]
 
 ## Change Log
 - [What you wrote/changed and the rule or principle that drove the decision]
@@ -86,11 +98,11 @@ Innocent (simplicity), Everyman (belonging), Hero (mastery), Outlaw (liberation)
 - Outlaw + Ruler (rebellion vs. control)
 - Jester + Sage (irreverence vs. gravitas)
 
-**"But not" format:**
-`[Positive trait] — but not [the extreme that misinterpretation leads to]. In practice: [concrete scenario showing the line]`
+**Personality trait table format:**
+Use a two-column "What it means / What it doesn't mean" table. Each cell should reference specific product contexts — UI examples, copy examples, interaction examples. The table format prevents drift better than inline prose because both columns are visible simultaneously.
 
-**Emotional journey map:**
-Map the user's emotional arc: frustrated/confused/overwhelmed BEFORE → supported/guided/empowered DURING → confident/accomplished/belonging AFTER. The core tension is the gap between before and after. The design promise is the brand's implicit commitment across every touchpoint.
+**Emotional journey — touchpoint-level map:**
+Map the user's emotional arc across 6-10 specific touchpoints (first encounter → landing page → first use → daily use → collaboration → friction → purchase → advocacy). Each touchpoint names the emotion AND the specific trigger. Generic emotions ("happy") are useless — use specific emotions ("intrigue," "surprise," "flow," "respect"). The core tension is the gap between the user's current state and desired state. The design promise is the brand's implicit commitment across every touchpoint.
 
 ### Examples
 
@@ -120,11 +132,13 @@ In action:
 3. Modern
 ```
 
-**Trait with "but not" (GOOD):**
+**Trait table (GOOD):**
 ```
-1. Encouraging — but not patronizing. In practice: "You saved $200 more this month" not "Great job, buddy! 🎉🎉🎉"
-2. Clear — but not dumbed-down. In practice: We explain APR simply but still use the term, not "the number that shows how much borrowing costs"
-3. Warm — but not saccharine. In practice: Friendly illustrations, not cartoon mascots
+| Trait | What it means | What it doesn't mean |
+|-------|---------------|----------------------|
+| **Encouraging, but not patronizing** | The UI celebrates real progress: "You saved $200 more this month." Illustrations show capability. Tooltips explain without condescension. | We don't use confetti, exclamation marks, or "Great job, buddy!" The user is an adult managing money, not a child completing a worksheet. |
+| **Clear, but not dumbed-down** | We explain APR simply but still use the term. Jargon gets a one-line explanation on first encounter, not a euphemism. | We don't say "the number that shows how much borrowing costs" instead of APR. We respect intelligence. |
+| **Warm, but not saccharine** | Friendly illustrations with real skin tones and natural poses. Error messages that acknowledge frustration. Warm teal palette, not corporate blue. | No cartoon mascots. No "oopsie!" error messages. No rounded-everything bubbly UI. Warmth lives in the palette and motion, not in childish styling. |
 ```
 
 ### Anti-Patterns
@@ -141,9 +155,12 @@ Before returning your output, verify every item:
 - [ ] Primary archetype (70%) connects to audience's core desire, not just brand aspiration
 - [ ] Secondary archetype (30%) adds nuance without contradicting the primary
 - [ ] "In action" section has 4 dimensions (inspire, communicate, feel, never-do)
-- [ ] 3-5 traits total, each in "trait, but not" format with concrete example
+- [ ] 3-5 traits in table format: "What it means / What it doesn't mean" with product-specific examples in both columns
 - [ ] No pair from the contradictory list selected together
-- [ ] Emotional journey starts from a real pain state (not neutral or positive)
+- [ ] Emotional journey has 6-10 touchpoints (not just before/during/after)
+- [ ] Each touchpoint names a specific emotion AND a specific trigger
+- [ ] Emotions are specific (intrigue, surprise, flow, respect) not generic (happy, good, satisfied)
+- [ ] Touchpoints are tailored to this product (not copy-pasted from template)
 - [ ] Core tension is specific and resolvable by the product
 - [ ] Design promise is one sentence covering the full brand experience
 - [ ] Output stays within my section boundaries (no overlap with other agents)

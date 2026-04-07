@@ -194,7 +194,7 @@ bg-primary text-primary-foreground   /* foreground = text designed for primary s
 - **Token soup** — More than ~20 semantic tokens creates decision paralysis. If you're creating `--subtle-muted-foreground-alt`, the system is too granular.
 - **Skipping semantic layer** — Components must reference semantic tokens, never primitives. `var(--primary)` not `oklch(0.546 0.245 262)`.
 - **Dark mode as inversion** — Simply swapping light/dark values produces unusable surfaces. Dark mode requires deliberate surface hierarchy (background → card → popover), reduced saturation, and adjusted primary lightness.
-- **Multiple radius values** — One global `--radius`. Not `--radius-sm`, `--radius-md`, `--radius-lg` unless there's an explicit component need. Components derive sizing from the global value.
+- **Unjustified radius proliferation** — One global `--radius` as the base. A radius scale (`--radius-sm` through `--radius-full`) is acceptable when visual-agent specifies per-component overrides (e.g., sticky notes at 20px vs inputs at 6px). The scale must derive from the archetype-justified base value. Don't invent radius tokens that visual-agent didn't call for.
 
 ## Self-Check
 
