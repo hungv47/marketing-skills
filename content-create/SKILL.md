@@ -30,12 +30,15 @@ routing:
     - product-context.md
     - mkt/icp-research.md
     - mkt/imc-plan.md
+    - mkt/content-research.md
   requires: []
   defers-to:
     - skill: copywriting
       when: "need craft-quality headlines/CTAs, not full content assets"
     - skill: humanize
       when: "editing existing AI-sounding text"
+    - skill: content-research
+      when: "need to research what content to create before writing"
   parallel-with: []
   interactive: false
   estimated-complexity: heavy
@@ -340,11 +343,11 @@ status: draft
 - [ ] [Brand assets needed]
 
 > On re-run: rename existing artifact to `[slug].v[N].md` and create new with incremented version.
+```
 
 ## Next Step
 
 Run `humanize` to strip AI patterns and inject brand voice. Run `attribution` to map this content to KPIs and set up tracking.
-```
 
 ---
 

@@ -327,13 +327,13 @@ compression: [X]%
 ---
 
 [Humanized content here]
+```
+
+> On re-run: rename existing artifact to `[slug].humanized.v[N].md` and create new with incremented version.
 
 ## Next Step
 
 Content is ready for publishing. Run `attribution` to set up tracking before launch.
-```
-
-> On re-run: rename existing artifact to `[slug].humanized.v[N].md` and create new with incremented version.
 
 ---
 

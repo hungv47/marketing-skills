@@ -22,6 +22,7 @@ routing:
     - product-context.md
     - mkt/icp-research.md
     - mkt/imc-plan.md
+    - mkt/content-research.md
   requires: []
   defers-to:
     - skill: content-create
@@ -345,11 +346,11 @@ status: draft
 [Variant agent's alternatives with hypotheses and test priority]
 
 > On re-run: rename existing artifact to `[slug].copy.v[N].md` and create new with incremented version.
+```
 
 ## Next Step
 
 Run `humanize` to refine voice and compress. Run `lp-optimization` if this copy is for a landing page. Run `attribution` to track performance.
-```
 
 ---
 

@@ -23,6 +23,7 @@ routing:
   consumes:
     - product-context.md
     - mkt/icp-research.md
+    - mkt/content-research.md
     - solution-design.md
   requires: []
   defers-to:
@@ -30,6 +31,8 @@ routing:
       when: "need to write actual content assets, not plan the campaign"
     - skill: attribution
       when: "measuring results, not planning channels"
+    - skill: content-research
+      when: "need pre-creation content intelligence before planning"
   parallel-with:
     - brand-system
   interactive: false

@@ -24,6 +24,7 @@ routing:
     - product-context.md
     - mkt/imc-plan.md
     - mkt/content/[slug].md
+    - mkt/content/[slug].humanized.md
     - solution-design.md
     - targets.md
     - experiment-[name].md
