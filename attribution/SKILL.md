@@ -2,6 +2,7 @@
 name: attribution
 description: "Maps marketing activities to business outcomes — evaluates channel ROI, identifies what's driving results, and recommends where to double down or cut spend. Produces `.agents/mkt/attribution.md`. Not for setting new KPIs (use funnel-planner) or creating new content (use content-create). For campaign planning, see imc-plan. For experiment design, see experiment."
 argument-hint: "[initiatives or KPIs to map]"
+allowed-tools: Read Grep Glob Bash WebSearch WebFetch
 license: MIT
 metadata:
   author: hungv47
@@ -378,124 +379,19 @@ Status definitions:
 If the same action appears as "Parked" or "Dropped" across 2+ reviews, escalate: either commit to doing it or kill the underlying initiative.
 
 > On re-run: rename existing artifact to `attribution.v[N].md` and create new with incremented version.
+
+## Next Step
+
+Re-run this skill monthly to track action progress (Route C). Run `content-create` for any content gaps identified. Run `experiment` to validate high-uncertainty initiatives.
 ```
 
 ---
 
 ## Worked Example
 
-### Pre-writing gathered
-```yaml
-brief: "Map our current marketing to business outcomes — we have KPIs and initiatives but no attribution"
-product_context: B2B SaaS, project management tool
-upstream_artifacts:
-  targets: targets.md with North Star (Weekly Signups) and 3 KPIs
-  solution_design: solution-design.md with 2 initiatives
-  imc_plan: imc-plan.md with 3 content pieces
-  previous_attribution: null
-  experiments: null
-route: B (full attribution — first run)
-review_date: 2026-04-24
-```
+See [references/attribution-examples.md](references/attribution-examples.md) for 3 complete worked examples across business types (B2B SaaS PLG, Developer Tools API Platform, E-Commerce D2C).
 
-### L1: kpi-hierarchy-agent output
-```markdown
-## KPI Hierarchy
-
-​```
-North Star: Weekly Signups — 200 → 350
-├── KPI 1: Paid signup rate — 1.2% → 3.0% — Owner: Sarah
-├── KPI 2: Homepage bounce rate — 52% → 40% — Owner: James
-└── KPI 3: Organic signups — 80/wk → 120/wk — Owner: (unassigned)
-​```
-
-## KPI Metadata
-
-| KPI | Type | Funnel Stage | Measurement Window | Current Source |
-|-----|------|-------------|-------------------|----------------|
-| Weekly Signups | North Star | Acquisition | 7 days | GA4 |
-| Paid signup rate | Leading | Acquisition | 14 days | GA4 + Ads |
-| Homepage bounce rate | Leading | Activation | 7 days | GA4 |
-| Organic signups | Leading | Acquisition | 30 days | GA4 |
-```
-
-### L2: initiative-mapper-agent output
-```markdown
-## Initiative → KPI Mapping
-
-| Initiative | Primary KPI | Secondary KPIs | Contribution | Confidence |
-|------------|-------------|----------------|-------------|------------|
-| Restore Paid Targeting | Paid signup rate | — | ~55% of target gap | H |
-| Restore Social Proof | Homepage bounce rate | — | ~35% of target gap | M |
-
-## Confidence Justification
-
-| Initiative | Confidence | Basis |
-|------------|-----------|-------|
-| Restore Paid Targeting | H | Previous campaign data: similar targeting achieved 2.8% rate |
-| Restore Social Proof | M | Industry benchmark: social proof reduces bounce by 10-15pp. Our gap is 12pp, so ~35% is reasonable but unproven for our audience. |
-
-## Orphan Initiatives
-None — both initiatives map to KPIs.
-
-## Experiment Integration
-No experiment files found.
-```
-
-### L3: content-mapper-agent output
-```markdown
-## Content → Initiative Mapping
-
-| Content | Initiative | Type | Channel | Tracking Status |
-|---------|-----------|------|---------|----------------|
-| Status Update Carousel | (none — brand awareness) | Reach | LinkedIn | Partial (no UTMs) |
-
-## Orphan Content
-
-| Content | Source | Current Channel | Recommendation |
-|---------|--------|----------------|----------------|
-| Status Update Carousel | imc-plan | LinkedIn | **Rebalance:** Add CTA linking to product page, reframe as supporting Paid Targeting initiative |
-
-## Coverage Heatmap
-
-| Initiative | Reach | Trust | Conversion | Total | Assessment |
-|-----------|-------|-------|-----------|-------|------------|
-| Restore Paid Targeting | 0 | 0 | 0 | 0 | Sparse — no content supporting this initiative |
-| Restore Social Proof | 0 | 0 | 0 | 0 | Sparse — no content supporting this initiative |
-```
-
-### L4: gap-analysis-agent output (internal — not in final artifact)
-
-Identifies: 1 uncovered KPI (organic signups — Critical), 1 low-confidence initiative (Social Proof — Medium), 2 content-sparse initiatives, 1 tracking gap (no UTMs on carousel), 1 ownership gap (KPI 3 no owner). Severity: 2 Critical, 2 High, 1 Medium.
-
-### L5: action-agent output
-```markdown
-## Action Items
-
-| # | Gap | Severity | Action | Owner | Deadline |
-|---|-----|----------|--------|-------|----------|
-| 1 | KPI 3 (organic signups) has 0 initiatives | Critical | **Create:** Run `problem-analysis` on organic traffic stagnation | James | 2026-04-03 |
-| 2 | KPI 3 has no owner | Critical | **Assign:** Name an owner for organic signups KPI | Marketing lead | Now |
-| 3 | Restore Paid Targeting has 0 content | High | **Create:** Run `content-create` for paid landing page and ad copy | Sarah | 2026-04-10 |
-| 4 | Restore Social Proof has 0 content | High | **Create:** Run `content-create` for testimonial/case study content | James | 2026-04-10 |
-| 5 | Status Update Carousel orphaned | Medium | **Rebalance:** Add product CTA to carousel, track as Paid Targeting support | Content lead | 2026-04-03 |
-
-## Action Rationale
-
-| # | Action | Why This Action | Why This Priority | Skill to Run |
-|---|--------|----------------|------------------|-------------|
-| 1 | Create initiative for organic | KPI with 0 coverage — business goal has no path | Critical — completely unaddressed goal | `problem-analysis` |
-| 2 | Assign KPI owner | Metrics without owners don't improve | Critical — blocks progress | manual |
-| 3 | Create content for Paid Targeting | Initiative has no content support | High — initiative is funded but unsupported | `content-create` |
-| 4 | Create content for Social Proof | Initiative has no content support | High — initiative is funded but unsupported | `content-create` |
-| 5 | Rebalance carousel | Orphan content is wasted effort | Medium — easy redirect | manual |
-
-## Previous Review Progress
-First run — no prior actions to review.
-```
-
-### L6: critic-agent returns PASS
-All quality gates satisfied. Merged into final artifact.
+**Example 1 summary:** B2B SaaS PLG → Route B → L1 builds KPI tree (North Star: MAU, 4 KPIs: Signups, Activation, Trial-to-Paid, Churn) → L2 maps 5 initiatives to KPIs with confidence levels → L3 maps 7 content pieces to initiatives → L4 flags uncovered KPIs (Churn has 1 low-confidence initiative) and orphan content → L5 generates action items → L6 critic evaluates.
 
 ---
 

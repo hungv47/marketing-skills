@@ -2,6 +2,7 @@
 name: lp-optimization
 description: "Audits a landing page for conversion — analyzes hero, CTA, social proof, objection handling, and page flow. Produces specific copy and structure change recommendations. Not for A/B testing variants (use experiment) or full site SEO audits (use seo). For brand identity and design tokens, see brand-system. For content strategy, see imc-plan."
 argument-hint: "[url or description]"
+allowed-tools: Read Grep Glob Bash WebSearch WebFetch
 license: MIT
 metadata:
   author: hungv47
@@ -332,6 +333,10 @@ status: draft
 ```
 
 > On re-run: rename existing artifact to `[name].v[N].md` and create new with incremented version.
+
+## Next Step
+
+Run `copywriting` to rewrite specific sections. Run `seo` for technical search optimization. Run `experiment` to set up A/B tests for recommended changes.
 
 ---
 

@@ -2,6 +2,7 @@
 name: copywriting
 description: "Writes and evaluates persuasive copy — headlines, hooks, CTAs, taglines, and full-page section copy with rubric scoring, annotations, and ranked alternatives. Produces inline annotations or `.agents/mkt/content/[slug].copy.md`. Not for content format selection (use content-create) or editing AI-sounding text (use humanize). For brand voice guidelines, see brand-system. For landing page conversion audits, see lp-optimization."
 argument-hint: "[copy task or text to evaluate]"
+allowed-tools: Read Grep Glob Bash WebSearch WebFetch
 license: MIT
 metadata:
   author: hungv47
@@ -344,6 +345,10 @@ status: draft
 [Variant agent's alternatives with hypotheses and test priority]
 
 > On re-run: rename existing artifact to `[slug].copy.v[N].md` and create new with incremented version.
+
+## Next Step
+
+Run `humanize` to refine voice and compress. Run `lp-optimization` if this copy is for a landing page. Run `attribution` to track performance.
 ```
 
 ---

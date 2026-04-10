@@ -2,6 +2,7 @@
 name: imc-plan
 description: "Creates integrated marketing plans — channel strategy, positioning, content calendar, budget allocation, and go-to-market timelines. Produces `.agents/mkt/imc-plan.md`. Not for writing actual content (use content-create) or setting numeric targets (use funnel-planner). For SEO strategy, see seo. For landing page optimization, see lp-optimization."
 argument-hint: "[product or campaign to plan]"
+allowed-tools: Read Grep Glob Bash WebSearch WebFetch
 license: MIT
 metadata:
   author: hungv47
@@ -317,6 +318,10 @@ For offline channels (IRL, SMS), include execution notes:
 | Internal | T-4w | ... | ... |
 
 > On re-run: rename existing artifact to `imc-plan.v[N].md` and create new with incremented version.
+
+## Next Step
+
+Run `content-research` to research what content is working in the market. Run `content-create` to produce the content assets from this plan. Run `attribution` to set up measurement.
 ```
 
 ---

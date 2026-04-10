@@ -2,6 +2,7 @@
 name: content-create
 description: "Drafts marketing content assets — social posts, ads, emails, newsletters, blog posts, case studies, video scripts, and launch announcements in platform-native formats. Produces `.agents/mkt/content/[slug].md`. Not for editing existing text (use humanize) or persuasive headlines and CTAs (use copywriting). For SEO optimization, see seo. For campaign strategy and channel planning, see imc-plan."
 argument-hint: "[angle or topic]"
+allowed-tools: Read Grep Glob Bash WebSearch WebFetch
 license: MIT
 metadata:
   author: hungv47
@@ -339,6 +340,10 @@ status: draft
 - [ ] [Brand assets needed]
 
 > On re-run: rename existing artifact to `[slug].v[N].md` and create new with incremented version.
+
+## Next Step
+
+Run `humanize` to strip AI patterns and inject brand voice. Run `attribution` to map this content to KPIs and set up tracking.
 ```
 
 ---
