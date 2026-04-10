@@ -2,6 +2,7 @@
 name: content-create
 description: "Drafts marketing content assets — social posts, ads, emails, newsletters, blog posts, case studies, video scripts, and launch announcements in platform-native formats. Produces `.agents/mkt/content/[slug].md`. Not for editing existing text (use humanize) or persuasive headlines and CTAs (use copywriting). For SEO optimization, see seo. For campaign strategy and channel planning, see imc-plan."
 argument-hint: "[angle or topic]"
+allowed-tools: Read Grep Glob Bash WebSearch WebFetch
 license: MIT
 metadata:
   author: hungv47
@@ -29,12 +30,15 @@ routing:
     - product-context.md
     - mkt/icp-research.md
     - mkt/imc-plan.md
+    - mkt/content-research.md
   requires: []
   defers-to:
     - skill: copywriting
       when: "need craft-quality headlines/CTAs, not full content assets"
     - skill: humanize
       when: "editing existing AI-sounding text"
+    - skill: content-research
+      when: "need to research what content to create before writing"
   parallel-with: []
   interactive: false
   estimated-complexity: heavy
@@ -204,12 +208,14 @@ Check for `.agents/product-context.md` and `.agents/mkt/imc-plan.md`. If `date` 
 |----------|--------|---------|
 | `icp-research.md` | icp-research | VoC language for copy |
 | `product-context.md` | icp-research | Product details for accuracy |
+| `mkt/content-research.md` | content-research (research-skills) | Winning patterns, audience language map, content briefs — feeds hook-agent and voc-extraction-agent with research-backed language and angles |
 
 ### Context to Pass to All Agents
 1. **Angle:** from IMC plan or user brief
 2. **Channel + placement:** target platform and format
 3. **Awareness stage:** determines hook approach and CTA commitment
 4. **VoC quotes:** from voc-extraction-agent (available after Layer 1)
+5. **Content research insights (if available):** from `mkt/content-research.md` — winning hook patterns, audience language map (brand terms → audience terms), competitor content gaps. Pass to hook-agent and voc-extraction-agent as `research_context`.
 
 ---
 
@@ -218,9 +224,9 @@ Check for `.agents/product-context.md` and `.agents/mkt/imc-plan.md`. If `date` 
 ### How to spawn a sub-agent
 
 1. **Read** the agent instruction file — include its FULL content in the Agent prompt
-2. **Append** the context (angle, channel, awareness stage, VoC) after the instructions
+2. **Append** the context (angle, channel, awareness stage, VoC, content research insights) after the instructions
 3. **Resolve file paths to absolute**: replace relative paths with absolute paths rooted at this skill's directory
-4. **Pass upstream artifacts by content**: the orchestrator reads `.agents/` files FIRST, then includes relevant excerpts in context. Sub-agents should NOT read artifact files directly.
+4. **Pass upstream artifacts by content**: the orchestrator reads `.agents/product-context.md`, `.agents/mkt/icp-research.md`, `.agents/mkt/imc-plan.md`, and `.agents/mkt/content-research.md` (if it exists) FIRST, then includes relevant excerpts in context. Sub-agents should NOT read artifact files directly.
 5. If **feedback** exists (from critic FAIL), append with header "## Critic Feedback — Address Every Point"
 
 ### Single-agent fallback
@@ -239,7 +245,7 @@ Spawn **IN PARALLEL**:
 | Agent | Instruction File | Pass These Inputs | Reference Files |
 |-------|-----------------|-------------------|-----------------|
 | Format Agent | `agents/format-agent.md` | brief (platform + format type) | `references/platform-specs.md` |
-| VoC Extraction Agent | `agents/voc-extraction-agent.md` | brief (topic + persona) | — |
+| VoC Extraction Agent | `agents/voc-extraction-agent.md` | brief (topic + persona) + research_context (audience language map from content-research, if available) | — |
 
 Wait for both to complete. Their outputs become inputs for Layer 1.5.
 
@@ -251,7 +257,7 @@ After format-agent and voc-extraction-agent return, spawn **IN PARALLEL**:
 
 | Agent | Instruction File | Pass These Inputs | Reference Files |
 |-------|-----------------|-------------------|-----------------|
-| Hook Agent | `agents/hook-agent.md` | brief + format specs + VoC quotes | — |
+| Hook Agent | `agents/hook-agent.md` | brief + format specs + VoC quotes + research_context (winning hook patterns from content-research, if available) | — |
 | Body Agent | `agents/body-agent.md` | brief + format specs + VoC quotes | `references/examples.md`, `references/repurposing-cascade.md` |
 | CTA Agent | `agents/cta-agent.md` | brief + format specs + awareness stage | — |
 
@@ -340,6 +346,10 @@ status: draft
 
 > On re-run: rename existing artifact to `[slug].v[N].md` and create new with incremented version.
 ```
+
+## Next Step
+
+Run `humanize` to strip AI patterns and inject brand voice. Run `attribution` to map this content to KPIs and set up tracking.
 
 ---
 

@@ -70,7 +70,7 @@ Return a single markdown document with exactly these sections:
 
 **Content inventory from upstream artifacts:**
 1. Read `imc-plan.md` — extract planned content with channels and timelines
-2. Read content files from `.agents/mkt/content/` — extract produced content
+2. Read content files from `.agents/mkt/content/` — extract produced content. When both `[slug].md` and `[slug].humanized.md` exist, use the `.humanized.md` version (the publish-ready artifact) for attribution mapping
 3. Read the initiative map (from initiative-mapper-agent output) — get the list of initiatives to map against
 4. For each content piece, identify which initiative it supports and what funnel role it plays
 

@@ -2,6 +2,7 @@
 name: copywriting
 description: "Writes and evaluates persuasive copy — headlines, hooks, CTAs, taglines, and full-page section copy with rubric scoring, annotations, and ranked alternatives. Produces inline annotations or `.agents/mkt/content/[slug].copy.md`. Not for content format selection (use content-create) or editing AI-sounding text (use humanize). For brand voice guidelines, see brand-system. For landing page conversion audits, see lp-optimization."
 argument-hint: "[copy task or text to evaluate]"
+allowed-tools: Read Grep Glob Bash WebSearch WebFetch
 license: MIT
 metadata:
   author: hungv47
@@ -21,6 +22,7 @@ routing:
     - product-context.md
     - mkt/icp-research.md
     - mkt/imc-plan.md
+    - mkt/content-research.md
   requires: []
   defers-to:
     - skill: content-create
@@ -169,6 +171,7 @@ Default: English. If the user specifies another language, note it in pre-writing
 | `icp-research.md` | icp-research | VoC language for copy |
 | `product-context.md` | icp-research | Product details, voice adjectives |
 | `imc-plan.md` | imc-plan | Angle, awareness stage, channel context |
+| `mkt/content-research.md` | content-research (research-skills) | Audience language map, winning hook patterns, competitor positioning gaps — directly informs hook and voice agents |
 
 ### Pre-Writing Framework
 Answer these 4 questions before dispatching. Pass the answers to every agent as the `pre-writing` input:
@@ -179,6 +182,8 @@ Answer these 4 questions before dispatching. Pass the answers to every agent as 
 4. **Where is the traffic coming from?** (Ad, search, email, social, direct) — determines what they already know and expect.
 
 If `.agents/mkt/icp-research.md` exists, pull VoC quotes and pain language. Write how the buyer talks, not how the brand talks.
+
+If `.agents/mkt/content-research.md` exists, pull the Audience Language Map (brand language → audience language pairs) and Winning Patterns (hook types that are performing in this niche). Feed these into pre-writing as `research_language` and `research_patterns` for hook-agent and voice-agent.
 
 ---
 
@@ -191,7 +196,7 @@ For each agent dispatched below, use the **Agent tool** with a prompt constructe
 1. **Read** the agent instruction file (e.g., `agents/hook-agent.md`) — include its FULL content in the Agent prompt
 2. **Append** the brief and pre-writing context after the instructions
 3. **Resolve file paths to absolute**: replace relative paths with absolute paths rooted at this skill's directory. Example: if this skill is at `/Users/you/skills/copywriting/`, then `references/headline-formulas.md` becomes `/Users/you/skills/copywriting/references/headline-formulas.md`. Tell the agent: "Read the reference file at [absolute path] for domain knowledge."
-4. **Pass upstream artifacts by content, not path**: the orchestrator reads `.agents/product-context.md` and `.agents/mkt/icp-research.md` FIRST, then includes relevant excerpts (VoC quotes, voice adjectives, pain language) in the pre-writing object. Sub-agents should NOT read artifact files directly — the orchestrator curates what they need.
+4. **Pass upstream artifacts by content, not path**: the orchestrator reads `.agents/product-context.md`, `.agents/mkt/icp-research.md`, and `.agents/mkt/content-research.md` (if it exists) FIRST, then includes relevant excerpts (VoC quotes, voice adjectives, pain language, research-backed audience language and winning patterns) in the pre-writing object. Sub-agents should NOT read artifact files directly — the orchestrator curates what they need.
 5. If **feedback** exists (from a critic FAIL cycle), append it at the end of the prompt with the header "## Critic Feedback — Address Every Point"
 
 ### Single-agent fallback
@@ -345,6 +350,10 @@ status: draft
 
 > On re-run: rename existing artifact to `[slug].copy.v[N].md` and create new with incremented version.
 ```
+
+## Next Step
+
+Run `humanize` to refine voice and compress. Run `lp-optimization` if this copy is for a landing page. Run `attribution` to track performance.
 
 ---
 

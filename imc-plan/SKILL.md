@@ -2,6 +2,7 @@
 name: imc-plan
 description: "Creates integrated marketing plans — channel strategy, positioning, content calendar, budget allocation, and go-to-market timelines. Produces `.agents/mkt/imc-plan.md`. Not for writing actual content (use content-create) or setting numeric targets (use funnel-planner). For SEO strategy, see seo. For landing page optimization, see lp-optimization."
 argument-hint: "[product or campaign to plan]"
+allowed-tools: Read Grep Glob Bash WebSearch WebFetch
 license: MIT
 metadata:
   author: hungv47
@@ -22,6 +23,7 @@ routing:
   consumes:
     - product-context.md
     - mkt/icp-research.md
+    - mkt/content-research.md
     - solution-design.md
   requires: []
   defers-to:
@@ -29,6 +31,8 @@ routing:
       when: "need to write actual content assets, not plan the campaign"
     - skill: attribution
       when: "measuring results, not planning channels"
+    - skill: content-research
+      when: "need pre-creation content intelligence before planning"
   parallel-with:
     - brand-system
   interactive: false
@@ -162,6 +166,7 @@ Check for `.agents/product-context.md` and `.agents/mkt/icp-research.md`. If `da
 |----------|--------|---------|
 | `product-context.md` | icp-research | Product details, voice adjectives |
 | `solution-design.md` | solution-design | Strategic initiatives for alignment |
+| `mkt/content-research.md` | content-research (research-skills) | Competitor content patterns, audience language, trending topics — informs channel selection and angle priorities |
 
 ### Growth Motion Identification
 
@@ -318,6 +323,10 @@ For offline channels (IRL, SMS), include execution notes:
 
 > On re-run: rename existing artifact to `imc-plan.v[N].md` and create new with incremented version.
 ```
+
+## Next Step
+
+Run `content-create` to produce the content assets from this plan. Run `attribution` to set up measurement. If content-research was not run before this plan, consider running it now to validate content angles with market data before creating assets.
 
 ---
 

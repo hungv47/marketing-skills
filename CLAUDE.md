@@ -4,7 +4,7 @@ Brand identity, content creation, campaign planning, optimization, and attributi
 
 ## Pipeline
 brand-system (visual identity foundation)
-imc-plan → content-create → attribution
+content-research (research-skills) → imc-plan → content-create → attribution
 Horizontal: copywriting, lp-optimization, seo, humanize
 
 ## Recommended Starting Point
@@ -14,6 +14,7 @@ Run `icp-research` (from [research-skills](https://github.com/hungv47/research-s
 Skills write to `.agents/mkt/`, except `product-context.md` which is cross-stack:
 - `.agents/product-context.md` (cross-stack — created by icp-research in research-skills)
 - `.agents/mkt/icp-research.md`
+- `.agents/mkt/content-research.md` (from content-research in research-skills)
 - `.agents/mkt/imc-plan.md`
 - `.agents/mkt/content/[slug].md`
 - `.agents/mkt/content/[slug].copy.md`
@@ -52,7 +53,7 @@ All 8 skills use a two-layer multi-agent orchestration pattern:
 - `humanize` — 6 agents (pattern-scanner, voice-extractor, strip, soul-injection, compression, critic). Layer 1 parallel (scan + extract) → Layer 2 sequential (strip→inject→compress→critic).
 - `lp-optimization` — 7 agents (hero-audit, trust-audit, cta-audit, ux-audit, message-match, prioritization, critic). Layer 1 parallel (4 audit agents) → Layer 2 sequential (message-match→prioritization→critic).
 - `seo` — 11 agents across 4 modes (technical, AI, programmatic, competitor). Mode-based routing.
-- `attribution` — 6 agents (kpi-hierarchy, initiative-mapper, content-mapper, gap-analysis, action, critic). Fully sequential.
+- `attribution` — 7 agents (kpi-hierarchy, initiative-mapper, channel-attribution, content-mapper, gap-analysis, action, critic). Fully sequential.
 
 ### Reusable template
 `copywriting/agents/_template.md` defines the standard structure for agent instruction files.

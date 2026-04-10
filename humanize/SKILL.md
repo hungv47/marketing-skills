@@ -2,6 +2,7 @@
 name: humanize
 description: "Strips AI patterns, injects brand voice, and compresses existing text so it reads human-written. Targets 15%+ word reduction with zero idea loss. Produces `.agents/mkt/content/[slug].humanized.md`. Not for writing new content (use content-create). For brand voice reference, see brand-system. For SEO compliance, see seo."
 argument-hint: "[content file or text]"
+allowed-tools: Read Grep Glob Bash WebSearch WebFetch
 license: MIT
 metadata:
   author: hungv47
@@ -329,6 +330,10 @@ compression: [X]%
 ```
 
 > On re-run: rename existing artifact to `[slug].humanized.v[N].md` and create new with incremented version.
+
+## Next Step
+
+Content is ready for publishing. Run `attribution` to set up tracking before launch.
 
 ---
 
