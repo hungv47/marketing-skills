@@ -183,6 +183,8 @@ Answer these 4 questions before dispatching. Pass the answers to every agent as 
 
 If `.agents/mkt/icp-research.md` exists, pull VoC quotes and pain language. Write how the buyer talks, not how the brand talks.
 
+If `.agents/mkt/content-research.md` exists, pull the Audience Language Map (brand language → audience language pairs) and Winning Patterns (hook types that are performing in this niche). Feed these into pre-writing as `research_language` and `research_patterns` for hook-agent and voice-agent.
+
 ---
 
 ## Dispatch Protocol
@@ -194,7 +196,7 @@ For each agent dispatched below, use the **Agent tool** with a prompt constructe
 1. **Read** the agent instruction file (e.g., `agents/hook-agent.md`) — include its FULL content in the Agent prompt
 2. **Append** the brief and pre-writing context after the instructions
 3. **Resolve file paths to absolute**: replace relative paths with absolute paths rooted at this skill's directory. Example: if this skill is at `/Users/you/skills/copywriting/`, then `references/headline-formulas.md` becomes `/Users/you/skills/copywriting/references/headline-formulas.md`. Tell the agent: "Read the reference file at [absolute path] for domain knowledge."
-4. **Pass upstream artifacts by content, not path**: the orchestrator reads `.agents/product-context.md` and `.agents/mkt/icp-research.md` FIRST, then includes relevant excerpts (VoC quotes, voice adjectives, pain language) in the pre-writing object. Sub-agents should NOT read artifact files directly — the orchestrator curates what they need.
+4. **Pass upstream artifacts by content, not path**: the orchestrator reads `.agents/product-context.md`, `.agents/mkt/icp-research.md`, and `.agents/mkt/content-research.md` (if it exists) FIRST, then includes relevant excerpts (VoC quotes, voice adjectives, pain language, research-backed audience language and winning patterns) in the pre-writing object. Sub-agents should NOT read artifact files directly — the orchestrator curates what they need.
 5. If **feedback** exists (from a critic FAIL cycle), append it at the end of the prompt with the header "## Critic Feedback — Address Every Point"
 
 ### Single-agent fallback
