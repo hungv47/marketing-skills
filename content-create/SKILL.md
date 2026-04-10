@@ -208,6 +208,7 @@ Check for `.agents/product-context.md` and `.agents/mkt/imc-plan.md`. If `date` 
 |----------|--------|---------|
 | `icp-research.md` | icp-research | VoC language for copy |
 | `product-context.md` | icp-research | Product details for accuracy |
+| `mkt/content-research.md` | content-research (research-skills) | Winning patterns, audience language map, content briefs — feeds hook-agent and voc-extraction-agent with research-backed language and angles |
 
 ### Context to Pass to All Agents
 1. **Angle:** from IMC plan or user brief

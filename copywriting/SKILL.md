@@ -171,6 +171,7 @@ Default: English. If the user specifies another language, note it in pre-writing
 | `icp-research.md` | icp-research | VoC language for copy |
 | `product-context.md` | icp-research | Product details, voice adjectives |
 | `imc-plan.md` | imc-plan | Angle, awareness stage, channel context |
+| `mkt/content-research.md` | content-research (research-skills) | Audience language map, winning hook patterns, competitor positioning gaps — directly informs hook and voice agents |
 
 ### Pre-Writing Framework
 Answer these 4 questions before dispatching. Pass the answers to every agent as the `pre-writing` input:

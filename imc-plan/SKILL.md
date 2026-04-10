@@ -166,6 +166,7 @@ Check for `.agents/product-context.md` and `.agents/mkt/icp-research.md`. If `da
 |----------|--------|---------|
 | `product-context.md` | icp-research | Product details, voice adjectives |
 | `solution-design.md` | solution-design | Strategic initiatives for alignment |
+| `mkt/content-research.md` | content-research (research-skills) | Competitor content patterns, audience language, trending topics — informs channel selection and angle priorities |
 
 ### Growth Motion Identification
 
@@ -321,11 +322,11 @@ For offline channels (IRL, SMS), include execution notes:
 | Internal | T-4w | ... | ... |
 
 > On re-run: rename existing artifact to `imc-plan.v[N].md` and create new with incremented version.
+```
 
 ## Next Step
 
 Run `content-research` to research what content is working in the market. Run `content-create` to produce the content assets from this plan. Run `attribution` to set up measurement.
-```
 
 ---
 
