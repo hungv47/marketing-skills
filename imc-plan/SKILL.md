@@ -326,7 +326,7 @@ For offline channels (IRL, SMS), include execution notes:
 
 ## Next Step
 
-Run `content-research` to research what content is working in the market. Run `content-create` to produce the content assets from this plan. Run `attribution` to set up measurement.
+Run `content-create` to produce the content assets from this plan. Run `attribution` to set up measurement. If content-research was not run before this plan, consider running it now to validate content angles with market data before creating assets.
 
 ---
 

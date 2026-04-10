@@ -215,6 +215,7 @@ Check for `.agents/product-context.md` and `.agents/mkt/imc-plan.md`. If `date` 
 2. **Channel + placement:** target platform and format
 3. **Awareness stage:** determines hook approach and CTA commitment
 4. **VoC quotes:** from voc-extraction-agent (available after Layer 1)
+5. **Content research insights (if available):** from `mkt/content-research.md` — winning hook patterns, audience language map (brand terms → audience terms), competitor content gaps. Pass to hook-agent and voc-extraction-agent as `research_context`.
 
 ---
 
@@ -223,9 +224,9 @@ Check for `.agents/product-context.md` and `.agents/mkt/imc-plan.md`. If `date` 
 ### How to spawn a sub-agent
 
 1. **Read** the agent instruction file — include its FULL content in the Agent prompt
-2. **Append** the context (angle, channel, awareness stage, VoC) after the instructions
+2. **Append** the context (angle, channel, awareness stage, VoC, content research insights) after the instructions
 3. **Resolve file paths to absolute**: replace relative paths with absolute paths rooted at this skill's directory
-4. **Pass upstream artifacts by content**: the orchestrator reads `.agents/` files FIRST, then includes relevant excerpts in context. Sub-agents should NOT read artifact files directly.
+4. **Pass upstream artifacts by content**: the orchestrator reads `.agents/product-context.md`, `.agents/mkt/icp-research.md`, `.agents/mkt/imc-plan.md`, and `.agents/mkt/content-research.md` (if it exists) FIRST, then includes relevant excerpts in context. Sub-agents should NOT read artifact files directly.
 5. If **feedback** exists (from critic FAIL), append with header "## Critic Feedback — Address Every Point"
 
 ### Single-agent fallback
@@ -244,7 +245,7 @@ Spawn **IN PARALLEL**:
 | Agent | Instruction File | Pass These Inputs | Reference Files |
 |-------|-----------------|-------------------|-----------------|
 | Format Agent | `agents/format-agent.md` | brief (platform + format type) | `references/platform-specs.md` |
-| VoC Extraction Agent | `agents/voc-extraction-agent.md` | brief (topic + persona) | — |
+| VoC Extraction Agent | `agents/voc-extraction-agent.md` | brief (topic + persona) + research_context (audience language map from content-research, if available) | — |
 
 Wait for both to complete. Their outputs become inputs for Layer 1.5.
 
@@ -256,7 +257,7 @@ After format-agent and voc-extraction-agent return, spawn **IN PARALLEL**:
 
 | Agent | Instruction File | Pass These Inputs | Reference Files |
 |-------|-----------------|-------------------|-----------------|
-| Hook Agent | `agents/hook-agent.md` | brief + format specs + VoC quotes | — |
+| Hook Agent | `agents/hook-agent.md` | brief + format specs + VoC quotes + research_context (winning hook patterns from content-research, if available) | — |
 | Body Agent | `agents/body-agent.md` | brief + format specs + VoC quotes | `references/examples.md`, `references/repurposing-cascade.md` |
 | CTA Agent | `agents/cta-agent.md` | brief + format specs + awareness stage | — |
 
