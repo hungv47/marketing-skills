@@ -215,3 +215,89 @@ Test these across ChatGPT, Perplexity, Google AI Overviews, Claude:
 |-------|----------|-----------|--------|-----------|-------------|
 | [query] | ChatGPT | Y/N | Y/N | Y/N | [date] |
 | [query] | Perplexity | Y/N | Y/N | Y/N | [date] |
+
+---
+
+## Machine-Readable Discovery Files
+
+AI agents increasingly browse on behalf of users — comparing products, evaluating options, making purchase recommendations. These files make your site legible to AI agents doing research.
+
+### llms.txt
+
+A `/llms.txt` file at your domain root tells AI crawlers what your site does, what's important, and where to find key content. Think of it as `robots.txt` for understanding, not crawling.
+
+```text
+# [Company Name]
+
+> [One-sentence description of what the company does]
+
+## Key Pages
+
+- [Homepage](https://example.com): [What visitors find here]
+- [Pricing](https://example.com/pricing): [Plans and pricing]
+- [Docs](https://example.com/docs): [API/product documentation]
+- [Blog](https://example.com/blog): [Thought leadership and updates]
+
+## Product
+
+- Category: [e.g., "Project Management Software"]
+- Best for: [specific ICP use case]
+- Pricing model: [freemium/subscription/usage-based]
+- Key differentiator: [one sentence]
+```
+
+**When to recommend:** Always for AI mode audits. Low effort, high signal for AI agent discovery.
+
+### pricing.md
+
+A `/pricing.md` file provides structured pricing data that AI agents can parse when comparing products. This is becoming a standard for AI-mediated buying journeys.
+
+```markdown
+# [Product] Pricing
+
+## Plans
+
+| Plan | Price | Best for | Key features |
+|------|-------|----------|-------------|
+| Free | $0/mo | [use case] | [features] |
+| Pro | $X/mo | [use case] | [everything in Free + features] |
+| Enterprise | Custom | [use case] | [everything in Pro + features] |
+
+## FAQ
+
+**Is there a free trial?** [answer]
+**What payment methods?** [answer]
+**Annual discount?** [answer]
+```
+
+**When to recommend:** For any product/SaaS site running AI mode. AI agents doing purchase research will parse this over scraping a complex pricing page.
+
+### robots.txt AI Bot Allowlist (consolidated)
+
+Ensure these bots are allowed in `robots.txt`:
+
+```
+# AI Search Bots — allow for AEO visibility
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+```
+
+**Note:** Many sites block these by default. The ai-structure-agent should check `robots.txt` for blocks and recommend unblocking as a priority action.
