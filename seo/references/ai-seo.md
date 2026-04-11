@@ -300,4 +300,4 @@ User-agent: cohere-ai
 Allow: /
 ```
 
-**Note:** Many sites block these by default. The ai-structure-agent should check `robots.txt` for blocks and recommend unblocking as a priority action.
+**Note:** Many sites block these by default. The AI mode audit should check `robots.txt` for blocks and recommend unblocking as a priority action.
