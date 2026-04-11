@@ -293,6 +293,9 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
+User-agent: Applebot-Extended
+Allow: /
+
 User-agent: Bytespider
 Allow: /
 
@@ -300,4 +303,6 @@ User-agent: cohere-ai
 Allow: /
 ```
 
-**Note:** Many sites block these by default. The AI mode audit should check `robots.txt` for blocks and recommend unblocking as a priority action.
+**Notes:**
+- Many sites block these by default. The AI mode audit should check `robots.txt` for blocks and recommend unblocking as a priority action.
+- **Bytespider** (ByteDance/TikTok) is aggressive — recommend allowing only if the client targets Chinese markets or TikTok discovery. Otherwise, block.
