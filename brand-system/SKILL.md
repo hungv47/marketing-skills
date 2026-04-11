@@ -7,6 +7,8 @@ license: MIT
 metadata:
   author: hungv47
   version: "6.0.0"
+  budget: deep
+  estimated-cost: "$2-5"
 routing:
   intent-tags:
     - brand-identity
